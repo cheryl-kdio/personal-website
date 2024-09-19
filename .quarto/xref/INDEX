@@ -1,0 +1,32 @@
+{
+  "about.qmd": {
+    "about.html": "c0446c0a"
+  },
+  "index.qmd": {
+    "index.html": "a8146437"
+  },
+  "App_sup/reg_lin.qmd": {
+    "reg_lin.html": "c8001e69"
+  },
+  "index_gdr.qmd": {
+    "index_gdr.html": "173eda7f"
+  },
+  "2A/App_sup/reg_lin.qmd": {
+    "reg_lin.html": "809452bf"
+  },
+  "3A/bilan_entreprise.qmd": {
+    "bilan_entreprise.html": "3ac44b45"
+  },
+  "3A/reglementation_prudentielle.qmd": {
+    "reglementation_prudentielle.html": "b7c11aa2"
+  },
+  "3A/ISR.qmd": {
+    "ISR.html": "9ef98f32"
+  },
+  "3A/risque_def.qmd": {
+    "risque_def.html": "66259b52"
+  },
+  "3A/var_def.qmd": {
+    "var_def.html": "c64f6b1a"
+  }
+}

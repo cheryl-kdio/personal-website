@@ -1,0 +1,75 @@
+---
+title: "Le risque, qu'est ce que c'est ?"
+sidebar: auto
+author:
+  - Cheryl Kouadio
+---
+
+En finance, le risque peut être défini comme la survenance d'un événement incertain qui peut avoir des conséquences négatives sur le bilan, ou le compte de résultat d'une banque. Par exemple, une fraude aura un impact négative sur la réputation d'une banque ce qui peut entrainer des pertes importants ayant un impact négatif sur le résultat net de celle-ci. En économie, le risque est un événement probabilisable tandis que l'incertitude est non probabilisable.
+
+Nous pouvons caractériser 3 grands types de risques établis par le comité de Bâle qui veille au renforcement et à la stabilité du système financier. (rangés par ordre d'importance pour une banque universelle ) :
+
+-   le risque de crédit - credit risk : Dès qu'un créancier accorde un prêt à un débiteur (une contrepartie), il court le risque que ce dernier ne le rembourse pas. C'est le risque de crédit appelé encore, le risque de contrepartie. *Quelques exemples de risque : risque de défaillance(default risk), risque de dégradation de la valeur de la créance(downgrading risk) etc.*
+
+-   le risque opérationnel - operational risk : La possibilité de pertes financières ou de dommages indirects dus à des défaillances ou des erreurs dans les processus d'une organisation ou sur le lieu de travail. *Quelques exemples de risque opérationnel : risque de désastre (disaster risk), de fraude(fraud risk), technologique,(technologic risk) juridique (litigation risk)...*
+
+-   le risque de marché - market risk : le risque de perte liée à l'évolution de la valeur de marché d'un portefeuille d'instruments financiers (actions, les obligations etc.). *Quelques exemples de risque de marché : risque de taux d'intérêt (interest rate risk), risque de change (currency risk), risque de volatilité (volatitlity risk)...*
+
+Pour les distinguer, il faut dissocier la cause de la conséquence. Toutefois, certains risque sont difficiles à distinguer. Ils se trouvent à la frontière entre le risque de marché, de crédit et le risque opérationnel.
+
+Il est important de noter que le but d'une banque n'est pas de prendre le moins de risque, mais d'atteindre une rentabilité maximale pour un risque donné. La théorie financière nous apprend que seul le risque est rémunéré. La banque procède donc à une arbitrage entre risque et rentabilité. C'est pourquoi la gestion des risques est un élément clé de la stratégie de décision de la banque. La mesure du risque intervient pour calculer les fonds propres nécessaires pour assurer chaque opération financière. Elle est indispensable pour calculer des mesures de performance.
+
+> \[...\] la gestion d'une banque cobsiste en une gestion globale et cordonnée, sous contraintes internes et externes, de la rentabilité et des risques liés aux activités de l'établissement.
+>
+> *- Augros & Quéruel, 2000*
+
+## Les mesures de risque
+
+En 1999, Artzner et al. ont défini les propriétés que devrait avoir une mesure de risque $\mathcal{R}$ <i> cohérente</i>. Une mesure de risque est une fonction qui permet de quantifier le risque d'un portefeuille. Elle est cohérente si elle satisfait les propriétés suivantes :
+
+-   sous-additivité : $\mathcal{R}(X+Y) \leq \mathcal{R}(X) + \mathcal{R}(Y)$
+-   homogénéité positive : $\mathcal{R}(\lambda X) = \lambda \mathcal{R}(X), \quad \lambda \geq 0$
+-   invariance par translation : $\mathcal{R}(X+c) = \mathcal{R}(X) - c, \quad c \in \mathbb{R}$
+-   monotonie : $F_1(x) \leq F_2(x) \Rightarrow \mathcal{R}(X) \leq \mathcal{R}(Y)$
+
+La sous-additivité signifie que le risque d'un portefeuille est inférieur ou égal à la somme des risques des actifs qui le composent. Ce phénomène est appelé effet de diversification. En effet, la diversification permet de réduire le risque d'un portefeuille en investissant dans des actifs non corrélés. Ainsi, en agrégeant deux porte-feuilles, il n'y a pas de création de risque supplémentaire.
+
+L'homogénéité positive signifie que le risque d'un portefeuille est proportionnel à la taille du portefeuille. Cette propriété ignore les problèmes de liquidité.
+
+L'invariance par translation signifie que l'addition au portefeuille initiale un montant sûr rémunéré au taux sans risque diminue la mesure du risque. En particulier, $\mathcal{R}(L+\mathcal{R}(L)) = 0$. Ainsi pour couvrir un portefeuille, il suffit d'immobiliser des fonds propres égaux à la mesure du risque.
+
+La monotonie signifie que le risque d'un portefeuille est inférieur ou égal au risque d'un autre portefeuille si la distribution de probabilité de la perte potentielle du premier portefeuille est inférieure ou égale à celle du deuxième portefeuille. Celà traduit l'ordre stochastique des distributions de pertes potentielles des portefeuilles.
+
+### La valeur en risque (VaR)
+
+Sachant la valeur d'un portefeuille à un instant t donné, le risque est la variation négative de ce portefeuille dans le futur. Le risque se caractérisait donc par une perte relativfe (par rapport à la valeur initiale du portefeuille à un instant t). Pendant très longtemps, les banques utilisaient la volatilité (écart-type) pour mesurer le risque. Cette mesure du risque a notamment beaucoup évoluée et celle qui est la plus répandue est la Value at Risk (VaR). Statistiquement parlant, la VaR est le quantile de la perte potentielle d'un portefeuille à un horizon $h$ donné et un seuil de confiance $\alpha$ :
+
+$$VaR = F^{-1}(\alpha)=inf(t \in \mathbb{R}, F(t) \geq \alpha),$$
+
+où F est la distribution de probabilité de la perte potentielle du portefeuille.
+
+Par exemple, une VaR à $\alpha=1\%$ de 1 million d'euros signifie que la probabilité que la banque perde plus de 1 million d'euros est égale à 1%. Autrement dit, la banque a 99% de chance de ne pas perdre plus de 1 million d'euros sur une période donnée (C'est la perte maximale encourue par la banque avec un intervalle de confiance à 99%). Nous allons préférer la deuxième formulation de l'interprétation.
+
+Deux éléments sont nécessaires pour déterminer la VaR : la distribution de la perte potentielle et le seuil de confiance. La distribution de la perte potentielle est souvent inconnue. Nous pouvons assimiler le seuil de confiance à un indicateur de tolérance pour le risque. Une couverture à 99% est beaucoup plus exigente et donc plus coûteuse qu'une couverture à 95%. En ce qui concerne la distribution de la perte potentielle, il faudrait définir l'horizon h. Par exemple, une couverture à 1 jour est moins coûteuse qu'une couverture à 1 mois. C'est la combinaison de ces deux éléments qui détermine le degré de la couverture qui peut être exprimé en temps de retour [^1] $t°$qui est la durée moyenne entre deux dépassements de la VaR. Il permet de caractériser la rareté d'un évènement (dont la probabilité d'occurence est petite)
+
+[^1]: période de retour doit être interprétée comme la probabilité statistique qu'un évènement se produise
+
+$$t°= \frac{h}{1-\alpha}$$
+
+| Lorsqu'on entend parler de gestion de risque décennal, celà revient à considérer une valeur en risque (VaR) journalière (horizon = 1 jour) pour un seuil de confiance $\alpha=99.96\%$.
+
+#### Critiques de la VaR
+
+La VaR est une mesure de risque non cohérente car elle ne respecte pas la propriété de sous-additivité. De nombreux professionnels recommanderaient alors l'utilisation de la CVAR (Expected Shortfall - ES) qui est une mesure de risque cohérente. La CVAR est l'espérance de la perte au delà de la VaR. Toutefois, la VaR reste une mesure de risque très utilisée en pratique, qui ne respecte pas la propriété de sous-additivité que dans certains cas, par exemple lorsque les fonctions de distribution des facteurs de risque ne sont pas continues et lorsque les probabilités sont principalement localisées dans les quantiles extrêmes.
+
+### D'autres mesures de risque
+
+D'autres mesures peuvent être définis comme celle de la perte exceptionnelle (Unexpected Loss - UL) définie par : $$\mathcal{R}=VaR(\alpha)-\mathbb{E}[L],$$ où L est la distribution de la perte potentielle.
+
+Il s'agit là de la différence entre la VaR et la perte moyenne (expected loss - EL). Il y a également le regret espéré défini par :
+
+$$\mathcal{R}=\mathbb{E}[L|L\geq H]$$ avec H un seuil donné représentant le montant de la perte tolérable par l'institut financier. Cette mesure de risque est donc la moyenne des pertes non supportables par l'institut financier. Lorsque H est endogène, c'est-à-dire dépendant de la distribution de la perte potentielle, et égale à la VaR, on obtient la Var conditionnelle CVAR (Expected Shortfall - ES) qui est l'espérance de la perte au delà de la VaR.:
+
+$$\mathcal{R}=\mathbb{E}[L|L\geq F^{-1}(\alpha)]$$
+
+La CVAR est par ailleurs un cas particulier des mesures LPM (Lower Partial Moment) $\mathcal{R}=\mathbb{E}[max(0,L-H)^m]$ avec $m=1$. Ce sont des mesures de risque qui prennent en compte les pertes au delà d'un certain seuil. La CVAR est une mesure de risque plus conservatrice que la VaR car elle prend en compte les pertes au delà de la VaR. Lorsque H=0 est m=2, nous obtenons la variance des pertes sans prendre en compte les gains : c'est la semi variance.

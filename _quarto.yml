@@ -1,0 +1,32 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "*.qmd" # Render all .qmd files
+    - "!3A/var_application.qmd" # Ignore a specific file
+    - "!ignored-dir/" # Ignore a specific directory
+
+website:
+  title: "Cheryl KOUADIO"
+  back-to-top-navigation: true
+  navbar:
+    left:
+      - href: index.qmd
+        text: Accueil
+      - href: index_gdr.qmd
+        text: Gestion des risques
+      - about.qmd
+
+
+format:
+  html:
+    link-external-newwindow: true
+    theme:
+      light: cosmo
+      dark: superhero
+    css: styles.css
+    toc: true
+    toc-location: left
+    toc-title: "Sommaire"
+    df-print: kable    
+

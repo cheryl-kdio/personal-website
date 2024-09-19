@@ -1,0 +1,25 @@
+---
+title: "A propos de moi"
+---
+
+<div class="box">
+<h1 style="display: block;">Cheryl KOUADIO</h1>
+
+<div style="display: flex;align-items: center;">
+<ul>
+    <li> Etudiante gestion des risques financiers </li>
+    <li> École Nationale de la Statistique et de l'analyse de l'information </li>
+    <br>
+    <li> Email : cheryl.s.kouadio@gmail.com </li>
+    <li> CV (Français/English) : [cv_cheryl_kouadio_fr.pdf](CV/CV_Cheryl_KOUADIO___3A-fr.pdf)/[cv_cheryl_kouadio_en.pdf](CV/CV_Cheryl_KOUADIO___3A-en.pdf)
+</ul> 
+
+<img src="illust_graphics.jpg"  style="width: 250px; height: 250px;">
+</div>
+
+<h2> Intérêts</h2>
+
+Je m'intéresse particulièrement à la modélisation des risques financiers (risques de marché et de crédit) ainsi qu'aux normes et réglementations qui régissent le système bancaire (Bâle III, etc.), à l'audit des modèles quantitatifs et à la validation des méthodes statistiques appliquées à la gestion des risques. Je suis également passionné par l'évolution des approches statistiques, ce qui m'amène à effectuer une veille constante des nouvelles méthodes.
+
+</div>
+

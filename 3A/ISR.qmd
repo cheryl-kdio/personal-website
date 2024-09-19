@@ -1,0 +1,82 @@
+---
+title: "Investissement Socialement Responsable (ISR): De quoi parle-t-on ?"
+sidebar: auto
+author:
+  - Cheryl Kouadio
+---
+
+## Qu'est-ce-que l'Investissement Socialement Responsable ?
+
+L'Investissement Socialement Responsable (ISR) représente une approche d'investissement qui privilégie l'intégration de critères extra-financiers, notamment les critères ESG (Environnementaux, Sociaux et de Gouvernance), dans les décisions d'investissement, que ce soit pour un individu ou pour une entreprise.
+
+Les critères ESG englobent des aspects tels que le respect de l'environnement (Environnementaux), le bien-être des salariés (Sociaux) et la qualité de la gouvernance au sein des entreprises (Gouvernance). Ils servent à évaluer la durabilité et l'éthique des investissements au-delà des performances financières traditionnelles. Ce faisant, ils offrent un cadre pour mesurer l'impact des entreprises sur la société et l'environnement, soulignant l'importance croissante des enjeux écologiques, climatiques et sociaux dans le monde actuel.
+
+En outre, l'adoption de ces critères est souvent liée à la mise en œuvre de stratégies de Responsabilité Sociétale des Entreprises (RSE), illustrant un engagement vers une gestion d'entreprise plus responsable et transparente. Ainsi, l'ISR incarne non seulement une démarche d'investissement éthique mais également une vision à long terme visant à concilier performance économique et impact social positif.
+
+## Pourquoi faire un investissement socialement responsable ?
+
+L'ISR présente de multiples avantages tant pour les investisseurs que pour les entreprises engagées dans cette démarche. Ces avantages reflètent l'évolution des attentes sociétales et la reconnaissance croissante de l'importance de la durabilité et de l'éthique dans le monde des affaires. J'en ai identifier certains dans les points suivants.
+
+### Pour les entreprises :
+
+1.  **Meilleure image :** Une forte performance ESG peut significativement améliorer la réputation d'une entreprise. Elle témoigne de son engagement envers des pratiques durables et éthiques, ce qui peut renforcer la confiance des consommateurs, des partenaires et des investisseurs.
+
+2.  **Meilleure performance financière :** De nombreuses études démontrent que les entreprises avec une notation ESG élevée tendent de meilleures performances financièrement sur le long terme. Cela s'explique par une meilleure anticipation des risques, une gestion plus efficace et une capacité à saisir les opportunités de marché liées à la durabilité.
+
+3.  **Meilleure gestion des risques :** L'adoption de pratiques ESG solides permet aux entreprises de mieux identifier et gérer les risques, qu'ils soient climatiques, sociaux ou de marché.
+
+4.  **Meilleure attractivité pour les investisseurs :** En démontrant un engagement clair envers la durabilité et l'éthique, les entreprises attirent davantage d'investisseurs conscients de l'importance des critères ESG. Cette attractivité accrue peut se traduire par un accès facilité au capital et à de meilleures conditions de financement.
+
+### Pour les investisseurs :
+
+1.  **Contribution à la réduction de certains risques financiers :** En investissant dans des entreprise intégrant les critères ESG dans leur processus de décision, les investisseurs contribuent indirectement à une meilleure identification et anticipation les risques liés au changement climatique, aux problématiques sociales, et aux défis de gouvernance, ce qui contribue à une meilleure protection de leur capital sur le long terme.
+
+2.  **Impact positif sur la société :** L'ISR permet aux investisseurs de contribuer activement à une économie plus durable et équitable. En choisissant d'investir dans des entreprises qui adoptent des pratiques responsables, ils favorisent des modèles économiques respectueux de l'environnement et du bien-être social.
+
+En somme, l'ISR offre une perspective d'investissement qui va au-delà des retours financiers immédiats pour embrasser des bénéfices à long terme, tant sur le plan économique que social et environnemental.
+
+## Comment investir?
+
+### Comment souscrire à un fonds ISR ?
+
+Souscrire à un fonds[^1] ISR (Investissement Socialement Responsable) est une démarche accessible pour tout particulier souhaitant allier rendement financier et impact positif sur la société et l'environnement[@comment]. En consultant son conseiller financier ou son établissement bancaire, il est possible de placer son argent dans une variété de produits financiers responsables, parmi lesquels :
+
+[^1]: Souvent appelé fonds de placement. Il s’agit d’une société d’ordre public ou privé qui investit du capital pour soutenir des projets souvent innovants.
+
+-   Assurance-vie
+
+-   Plan d’Épargne en Actions (PEA) : (sous réserver de s’assurer que le fonds ISR choisi est bien éligible au PEA) Offre la possibilité de placer son épargne en actions de sociétés européennes.
+
+-   Les compte-titres ordinaires(CTO) : permet d'investir en bourse sur les marchés financiers français et/ou étrangers et dans tout type de valeurs mobilières (OPC[^2], actions, obligations, monétaire, warrants, trackers…).
+
+-   L’épargne salariale ou les plans d’épargne d’entreprise (PEE) : un produit d'épargne collectif qui permet aux salariés d'une entreprise de se constituer un portefeuille de valeurs mobilières qui peuvent proposer des fonds ISR.
+
+-   Enfin, certains produits d’épargne retraite individuelle, comme le Plan d’Epargne Retraite (PER).
+
+[^2]: organismes de placement collectif
+
+Ces véhicules d'investissement permettent aux particuliers de contribuer à une économie plus durable tout en recherchant une performance financière. Il est recommandé de se rapprocher d'un conseiller pour déterminer le produit le mieux adapté à ses objectifs financiers et à ses valeurs éthiques.
+
+### Comment choisir une entreprise ISR ?
+
+Choisir une entreprise ou un fonds ISR (Investissement Socialement Responsable) nécessite une approche combinant analyses personnelle, financière et extra-financière, cette dernière se concentrant sur les critères ESG (Environnementaux, Sociaux et de Gouvernance)[@comment2021].
+
+Pour choisir efficacement une entreprise ISR, il est crucial de réaliser une analyse à triple volet :
+
+-   **Analyse des motivations personnelles** : Vos convictions personnelles constituent un excellent moyen de choisir le fonds **ISR** qui vous convient le mieux. Elles vous aideront à identifier le type de placement à privilégier et définir par exemple des fonds thématiques, d'exclusion (normatifs[^3] ou sectoriels), Best effort, Best in Class, Best in Universe.
+
+-   **Analyse financière :** Elle permet d'évaluer la performance économique de l'entreprise, sa santé financière, sa capacité à générer des profits et à maintenir une croissance durable. Cette analyse est indispensable pour s'assurer que l'entreprise est non seulement responsable, mais aussi viable et performante à long terme.
+
+-   **Analyse extra-financière (ESG) :** Cette analyse complète l'évaluation financière en examinant comment l'entreprise aborde les défis et saisit les opportunités liées aux critères environnementaux, sociaux et de gouvernance. Cela permet de choisir des fonds intégrant les critères ESG comme les fonds labellisés ISR.
+
+[^3]: Les fonds d'investissement d’exclusion normatifs font référence aux fonds faisant l'objet de plusieurs controverses.
+
+> ::: {#tbl style="background-color : #f3fadc; text-color : black;"}
+> **Label ISR :**
+>
+> Le Label ISR est une certification officielle du ministère de l'économie et des finances français qui garantit que le fonds d’investissement respecte des critères ESG stricts[^4] dans ses choix d'investissement. Il assure également que le fonds investit dans des entreprises qui adhèrent à ces principes, offrant ainsi une couche supplémentaire de confiance pour les investisseurs soucieux de l'impact de leurs placements.
+>
+> Ce label est attribué aux fonds candidats lorsque ceux-ci sont conformes aux exigences du label,classées en 6 catégories, qui constituent les 6 piliers du référentiel [@critèresa].
+> :::
+
+[^4]: cf liste des fonds labellisés [@listede].
