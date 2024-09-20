@@ -2,7 +2,6 @@
 title: "Cheryl KOUADIO"
 ---
 
-# Préambule
 <div class="box">
 Ce site web a été conçu et généré à l'aide de Quarto, dans le but principal d'offrir un soutien aux étudiants de l'ENSAI qui pourraient se trouver face à des défis similaires à ceux que j'ai rencontrés au cours de mon parcours académique, notamment durant mes 2ème et 3ème années d'étude.
 L'intention derrière la création de ce site n'est pas de remplacer les enseignements prodigués par nos estimés professeurs. Au contraire, il vise à compléter leur travail remarquable en partageant mes expériences personnelles et les projets que j'ai réalisés. L'objectif est de fournir une ressource supplémentaire qui peut aider les étudiants à naviguer dans leurs propres projets et défis académiques.
