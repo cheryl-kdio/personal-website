@@ -11,6 +11,40 @@
     border-radius:5px;
   }
 
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Default layout for larger screens */
+.container ul {
+  list-style-type: none;
+  margin-right: 20px;
+  text-align: left;
+}
+
+.container img {
+  width: 250px;
+  height: 250px;
+}
+
+/* Media query for phones (768px and below) */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .container ul {
+    text-align: left;
+    margin-right: 0;
+  }
+  
+  .container img {
+    margin-top: 20px;
+  }
+}
+
 h1,
 h2,
 h3,

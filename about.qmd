@@ -5,7 +5,7 @@ title: "A propos de moi"
 <div class="box">
 <h1 style="display: block;">Cheryl KOUADIO</h1>
 
-<div style="display: flex;align-items: center;">
+<div class="container">
 <ul>
     <li> Etudiante gestion des risques financiers </li>
     <li> École Nationale de la Statistique et de l'analyse de l'information </li>
