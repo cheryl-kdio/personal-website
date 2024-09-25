@@ -8,18 +8,18 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 </div>
 
 ## Analyse financière
-- Construction du bilan d'entreprise ([bilan_entreprise.qmd](3A/bilan_entreprise.qmd){.external target="_blank"})
+- Construction du bilan d'entreprise ([bilan_entreprise.qmd](3A/bilan_entreprise.qmd))
 
 
 ## Reglementation prudentielle
--   Reglementation prudentielle ([reglementation_prudentielle.qmd](3A/reglementation_prudentielle.qmd){.external target="_blank"})
+-   Reglementation prudentielle ([reglementation_prudentielle.qmd](3A/reglementation_prudentielle.qmd))
 
 ## Risques financiers
--   Définition du risque financier ([risque_def.qmd](3A/risque_def.qmd){.external target="_blank"})
+-   Définition du risque financier ([risque_def.qmd](3A/risque_def.qmd))
 -   Value-at-risk (VaR) :
-    -   Définition de la VaR ([var_def.qmd](3A/var_def.qmd){.external target="_blank"})
-    -   Implémentation de la VaR sur python ([var_application.qmd](3A/var_application.qmd){.external target="_blank"})
+    -   Définition de la VaR ([var_def.qmd](3A/var_def.qmd))
+    -   Implémentation de la VaR sur python ([var_application.qmd](3A/var_application.qmd))
 
 
 ## Autres sujets 
--   Investissement socialement responsable ([ISR.qmd](3A/ISR.qmd){.external target="_blank"})
+-   Investissement socialement responsable ([ISR.qmd](3A/ISR.qmd))

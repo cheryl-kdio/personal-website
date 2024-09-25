@@ -8,17 +8,18 @@ L'intention derrière la création de ce site n'est pas de remplacer les enseign
 </div>
 
 # Théorie des valeurs extrêmes
-- Résumé de la théorie des valeurs extrêmes ([EVT_resume.pdf](3A/EVT/EVT_resume.pdf){.external target="_blank"})
+- Résumé de la théorie des valeurs extrêmes ([EVT_resume.pdf](3A/EVT/EVT_resume.pdf))
 
 
 # Microéconometrie appliquée
-- Résumé des méthodes de microéconométrie appliquée enseignée à la promo 2024-2025 Ensai ([applied_micro.pdf](2A/Courses.pdf){.external target="_blank"})
+- Résumé des méthodes de microéconométrie appliquée enseignée à la promo 2024-2025 Ensai ([applied_micro.pdf](2A/Courses.pdf))
 
 # Apprentissage supervisée
 ## Régressions
 
-- Regression linéaire ([regression_lin.qmd](2A/App_sup/reg_lin.qmd){.external target="_blank"})
+- Regression linéaire ([regression_lin.qmd](2A/App_sup/reg_lin.qmd))
+- Regression ridge et lasso ([lasso_ridge.qmd](3A/Apprentisage-stat/Tp1.qmd))
 
 ## Classifications
 
-- Applications des arbres & forêts aléatoires sur un jeu de données ([arbres_&_forets_aleatoires.html](2A/App_sup/arbres_&_forets_aleatoires.html){.external target="_blank"}) </li>
+- Applications des arbres & forêts aléatoires sur un jeu de données ([arbres_&_forets_aleatoires.html](2A/App_sup/arbres_&_forets_aleatoires.html)) </li>
