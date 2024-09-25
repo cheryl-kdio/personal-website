@@ -108,7 +108,7 @@ for idx, alpha in enumerate(lambda_grid):
     bias_theoretical[idx, :] = (-alpha * np.linalg.inv(X.T @ X + alpha * np.eye(d)) @ theta)**2
     variance_theorical[idx,:] = np.diag((1 * np.linalg.inv(alpha * np.eye(d) + X.T @ X)**2 @ (X.T @ X)))
     
-fig,axes = plt.subplots(1,2,figsize=(14,6))
+fig,axes = plt.subplots(1,2,figsize=(8,4))
 
 for i in range(d):
     axes[0].plot(lambda_grid, bias_theoretical[:, i], label=f'theta {i+1}')
