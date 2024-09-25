@@ -76,7 +76,7 @@ for idx,alpha in enumerate(lambda_grid):
 ```
 
 ```{python}
-fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+fig, axes = plt.subplots(1, 2, figsize=(8, 4))
 
 for i in range(d):
     axes[0].plot(lambda_grid, bias_squared[:, i], label=f'theta {i+1}')
@@ -167,7 +167,7 @@ for idx, alpha in enumerate(lambda_grid):
 ```
 
 ```{python}
-fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+fig, axes = plt.subplots(1, 2, figsize=(8, 4))
 
 for i in range(d):
     axes[0].plot(lambda_grid, lasso_bias_squared[:, i],label=f'theta {i+1}')
