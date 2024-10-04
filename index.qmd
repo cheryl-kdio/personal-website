@@ -15,6 +15,9 @@ L'intention derrière la création de ce site n'est pas de remplacer les enseign
 - Résumé des méthodes de microéconométrie appliquée enseignée à la promo 2024-2025 Ensai ([applied_micro.pdf](2A/Courses.pdf))
 
 # Apprentissage supervisée
+
+- Advanced Techniques in Machine Learning: Kernel Trick and Support Vector Machines (SVM) ([kernel_and_svm.qmd](3A/Apprentisage-stat/TP2-correction-CK.qmd))
+
 ## Régressions
 
 - Regression linéaire ([regression_lin.qmd](2A/App_sup/reg_lin.qmd))
