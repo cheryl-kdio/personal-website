@@ -373,21 +373,31 @@ plt.show()
 ### 4. Conclusion
 
 As we can see, the SVM with the gaussian kernel is able to classify the data with a good accuracy. The SVM is able to capture the non-linear relationship between the target variable and the features.
+
 The logistic regression, in this case, is not able to classify the data because the relationship between the target variable and the features is non-linear.
+
 The k-nearest neighbors is able to classify the data with a performance similar to the SVM. The SVM and the KNN are a good choice when we have a non-linear relationship between the target variable and the features.
 
 **Whenever we have a classification problem, it is hence always useful to try the SVM and the KNN.**
 
 ## II. Image dataset
 
-The SVM is also useful for image classification. In this part, we are going to use the famous MNIST dataset to classify the images. The MNIST dataset is composed of 70,000 images of handwritten digits from 0 to 9. Each image is 28x28 pixels. We are going to use the SVM with the gaussian kernel to classify the images.
+The SVM is also useful for image classification. In this part, we are going to use the famous MNIST dataset to classify the images. The MNIST dataset is composed of 20 000 images (10 000 in the training dataset, and 10 000 also in the test dataset) of handwritten digits from 0 to 9. Each image is a resolution 28x28 pixels that is represented by a matrix of shape (28, 28), with each element being the pixel intensity (values from 0 to 255).
+We are going to use the SVM with the gaussian kernel to classify the images.
 
-We will start by normalizing the data and then use the GridSearchCV function from scikit-learn to find the best hyperparameter.
+We will start by normalizing the data to ensure that all the features contribute equally, and then use the GridSearchCV function from scikit-learn to find the best hyperparameter.
 
 ```{python}
 data_train = pd.read_csv("Data/mnist_train_small.csv")
 data_test = pd.read_csv("Data/mnist_test.csv")
 
+print("Description of train dataset : \n")
+data_train.iloc[:,1:].describe()
+data_train["label"].value_counts()
+```
+
+
+```{python}
 # normalize the data
 from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
@@ -397,6 +407,7 @@ y_train = data_train["label"]
 X_test  = scaler.transform(data_test.iloc[:, 1:])
 y_test = data_test["label"]
 ```
+
 
 As we can see from the umap plot, which is a dimensionality reduction technique, the data is not always linearly separable. We are going to use the SVM with the gaussian kernel to classify the images.
 

@@ -5,6 +5,8 @@ sidebar: auto
 
 ---
 
+# TO REWRITE
+
 La réglementation prudentielle a été initiée par le développement des marchés financiers et des chocs alimentés par diverses crises financières. Face à ce constat, les autorités de contrôle bancaire ainsi que les autorités de marché ont pris des décisions pour réguler les marchés. C'est notamment le rôle qu'occupe le Comité de Bâle ou la Commission bancaire, qui ont pour objectif de renforcer la stabilité des marchés financiers. En France, l'ACPR (Autorité de Contrôle Prudentiel et de Résolution) et la Banque de France sont membres du Comité de Bâle et participent à ses travaux et décisions.
 
 Il existe par ailleurs plusieurs textes réglementaires ou documents relatifs au risque de marché. Parmi ces textes, on peut citer le document de référence pour calculer le ratio de solvabilité de la Commission bancaire, intitulé "[Modalités de calcul et de publication des ratios prudentiels dans le cadre de la CRDIV et exigence de MREL](https://acpr.banque-france.fr/sites/default/files/media/2023/07/17/20230711_notice_college.pdf)", actualisé tous les ans par l'ACPR en France.

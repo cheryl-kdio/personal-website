@@ -16,7 +16,9 @@ L'intention derrière la création de ce site n'est pas de remplacer les enseign
 
 # Apprentissage supervisée
 
-- Advanced Techniques in Machine Learning: Kernel Trick and Support Vector Machines (SVM) ([kernel_and_svm.qmd](3A/Apprentisage-stat/TP2-correction-CK.qmd))
+- Advanced Techniques in Machine Learning: Kernel Trick and Support Vector Machines (SVM) ([kernel_and_svm.qmd](3A/Apprentisage-stat/Tp2.qmd))
+- Gradient boosting ([gradient_boosting.qmd](3A/Apprentisage-stat/Tp3.qmd))
+- Features selection ([features_selection.qmd](3A/Apprentisage-stat/Tp4.qmd))
 
 ## Régressions
 

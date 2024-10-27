@@ -5,7 +5,10 @@ project:
     - "*.qmd" # Render all .qmd files
     - "!3A/var_application.qmd" # Ignore a specific file
     - "!ignored-dir/" # Ignore a specific directory
-
+execute:
+  cache: true
+  freeze: true 
+  
 website:
   title: "Cheryl KOUADIO"
   back-to-top-navigation: true
