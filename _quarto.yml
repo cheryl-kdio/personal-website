@@ -10,16 +10,18 @@ execute:
   freeze: true 
   
 website:
-  title: "Cheryl KOUADIO"
+  title: ""
   back-to-top-navigation: true
   navbar:
     left:
-      - href: index.qmd
+      - href: blog.qmd
         text: Accueil
-      - text: Gestion des risques
-        menu:
-          - href: index_gdr.qmd
-            text: Introduction
+      - href: index.qmd
+        text: Modélisation stat.
+      # - text: Gestion des risques
+        # menu:
+      - href: index_gdr.qmd
+        text: Gestion des risques
       - href: about.qmd
         text: À propos
 

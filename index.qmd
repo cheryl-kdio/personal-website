@@ -3,23 +3,22 @@ title: "Cheryl KOUADIO"
 ---
 
 # Théorie des valeurs extrêmes
-- Résumé de la théorie des valeurs extrêmes ([EVT_resume.pdf](3A/EVT/EVT_resume.pdf))
+::: {.blog-section}
+- [Résumé de la théorie des valeurs extrêmes](3A/EVT/EVT_resume.pdf)
+:::
 
+# Microéconométrie appliquée
+::: {.blog-section}
+- [Résumé des méthodes de microéconométrie appliquée enseignées à la promo 2024-2025 ENSAI](2A/Courses.pdf)
+:::
 
-# Microéconometrie appliquée
-- Résumé des méthodes de microéconométrie appliquée enseignée à la promo 2024-2025 Ensai ([applied_micro.pdf](2A/Courses.pdf))
+# Apprentissage supervisé
+::: {.blog-section}
+- [Régression linéaire](2A/App_sup/reg_lin.qmd)
+- [Kernel Trick and Support Vector Machines (SVM)](3A/Apprentisage-stat/Tp2.qmd)
+- [Gradient boosting](3A/Apprentisage-stat/Tp3.qmd)
+- [Feature selection](3A/Apprentisage-stat/Tp4.qmd)
+- [Régression ridge et lasso](3A/Apprentisage-stat/Tp1.qmd)
+- [CART & Random Forest](2A/App_sup/arbres_&_forets_aleatoires.html)
+:::
 
-# Apprentissage supervisée
-
-- Advanced Techniques in Machine Learning: Kernel Trick and Support Vector Machines (SVM) ([kernel_and_svm.qmd](3A/Apprentisage-stat/Tp2.qmd))
-- Gradient boosting ([gradient_boosting.qmd](3A/Apprentisage-stat/Tp3.qmd))
-- Features selection ([features_selection.qmd](3A/Apprentisage-stat/Tp4.qmd))
-
-## Régressions
-
-- Regression linéaire ([regression_lin.qmd](2A/App_sup/reg_lin.qmd))
-- Regression ridge et lasso ([lasso_ridge.qmd](3A/Apprentisage-stat/Tp1.qmd))
-
-## Classifications
-
-- Applications des arbres & forêts aléatoires sur un jeu de données ([arbres_&_forets_aleatoires.html](2A/App_sup/arbres_&_forets_aleatoires.html)) </li>

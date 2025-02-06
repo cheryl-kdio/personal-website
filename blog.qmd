@@ -1,0 +1,11 @@
+---
+title: "Blog"
+listing:
+  contents: 
+    - 3A
+    - 2A
+  type: default
+  sort: "date desc"
+  categories: false
+  filter-ui: true
+---
