@@ -7,19 +7,36 @@ title: "Cheryl KOUADIO"
 Compte tenu de ma spécialisation en gestion des risques, les contenus que je prévois de partager dans cette section dédiée à la 3ème année (3A) porteront principalement sur les enseignements spécifiques à cette spécialisation. Je m'efforcerai de rendre ces partages aussi pertinents et enrichissants que possible, en espérant qu'ils serviront de guide précieux pour ceux qui suivront une voie similaire.
 </div>
 
-## Analyse financière
+### Analyse financière
 - Construction du bilan d'entreprise ([bilan_entreprise.qmd](3A/bilan_entreprise.qmd))
+- Reglementation prudentielle ([reglementation_prudentielle.qmd](3A/reglementation_prudentielle.qmd))
+
+### Risques financiers
+- Définition du risque financier ([risque_def.qmd](3A/risque_def.qmd))
+- Parcours des mesures de risques
+- Value-at-risk (VaR) :
+    - Définition de la VaR ([var_def.qmd](3A/var_def.qmd))
+    - Implémentation de la VaR sur python ([var_application.qmd](3A/var_application.qmd))
+
+### Scoring
+
+### Calibrations de processus stochastique
+- Calibration avec le modèle de black-scholes
+- Calibration du modèle à volatilité stochastique de Taylor
+- Calibration avec le modèle de Heston
+
+### Gestion de portefeuille et pricing
+- Mesures de risques
+- Pricing d'options vanilles
+- Pricing de taux, swap, d'obligations
+- Tracking error
+- Construction de portefeuille markowitz
 
 
-## Reglementation prudentielle
--   Reglementation prudentielle ([reglementation_prudentielle.qmd](3A/reglementation_prudentielle.qmd))
-
-## Risques financiers
--   Définition du risque financier ([risque_def.qmd](3A/risque_def.qmd))
--   Value-at-risk (VaR) :
-    -   Définition de la VaR ([var_def.qmd](3A/var_def.qmd))
-    -   Implémentation de la VaR sur python ([var_application.qmd](3A/var_application.qmd))
-
-
-## Autres sujets 
+### Autres sujets 
 -   Investissement socialement responsable ([ISR.qmd](3A/ISR.qmd))
+
+## Projets et rapports
+- Projet de séries temporelles
+- Projet de scoring
+- Projet de théorie de valeursd extrêmes

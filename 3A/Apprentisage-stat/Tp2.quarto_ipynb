@@ -1,0 +1,748 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: 'Kernel Trick and SVM'\n",
+        "author: \"Cheryl KOUADIO\"\n",
+        "jupyter: python3\n",
+        "---\n",
+        "\n",
+        "\n",
+        "# Activity 1 : Kernel Ridge Regression (KRR)\n",
+        "In regression and classification, we often use linear models to predict the target variable. However, in many cases, the relationship between the target variable and the explanatory variables is non-linear. In such cases, we can use the kernel trick whenever there is a scalar product between the explanatory variables. The kernel trick allows us to transform the data into a higher-dimensional space where the relationship is linear. \n",
+        "\n",
+        "In this first activity, we will explore the kernel trick to transform the data and then use a linear model to predict the target variable.\n",
+        "In particular, we will use Kernel ridge regression (KRR) which is a combination of ridge regression and the kernel trick. \n",
+        "The optimization problem of KRR is given by:\n",
+        "$$\n",
+        "\\hat \\theta = \\min_{\\theta} \\frac{1}{n} \\sum_{i=1}^n (y_i - x_i^T\\theta)  + \\lambda \\sum_{j=1}^d \\theta_j\n",
+        "$$\n",
+        "where $x_i$ is the $i$-th row of the matrix $X$ and $y_i$ is the $i$-th element of the vector $y$. The parameter $\\lambda$ is the regularization parameter. The solution of the optimization problem is given by:\n",
+        "\n",
+        "$$\n",
+        "\\hat \\theta = (X^TX + \\lambda I_d)^{-1}X^Ty = X^T (X X^T + \\lambda I_n)^{-1}y\n",
+        "$$\n",
+        "\n",
+        "where $I_d$ and $I_n$ are the identity matrix.\n",
+        "\n",
+        "In prediction, the target variable is given by:\n",
+        "$$\n",
+        "\\hat{y}(x^*) = X^T \\hat{\\theta} = \\langle x^*, \\hat{\\theta} \\rangle = \\left\\langle x^*, \\sum_{i=1}^{n} \\alpha_i x_i \\right\\rangle = \\sum_{i=1}^{n} \\alpha_i \\langle x_i, x^* \\rangle\n",
+        "$$\n",
+        "where $\\alpha_i = \\sum_{j=1}^{n} \\theta_j x_{ij}$.\n",
+        "We easily see that the prediction is a linear combination of the scalar product between the test point $x^*$ and the training points $x_i$, we can use the kernel trick to transform the data into a higher-dimensional space where the relationship is linear. The prediction becomes:\n",
+        "\n",
+        "$$\n",
+        "\\hat{y}(x^*) = \\sum_{i=1}^{n} \\alpha_i K(x_i, x^*)\n",
+        "$$\n",
+        "\n",
+        "where $K(x_i, x^*)$ is the kernel function.\n",
+        "\n",
+        "##  I. Fit the Kernel Ridge Regression (KRR)\n",
+        "\n",
+        "In problem which involves a distance between point, it is a common practice to normalize the data. In this notebook, we are going to normalize the data by dividing the time by 60 to convert it from minutes to hours (and have values between 0 and 1). We are going to use the `KernelRidge` class from the `sklearn` library to fit the KRR model.\n",
+        "We will start by using the Gaussian/RBF kernel which is defined by:\n",
+        "$$\n",
+        "K(x, x') = \\exp\\left(-\\gamma||x - x'||^2\\right)\n",
+        "$$\n",
+        "where $\\gamma$ is an hyperparameter.\n"
+      ],
+      "id": "44c84ffc"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Libraries\n",
+        "import pandas as pd \n",
+        "from sklearn.kernel_ridge import KernelRidge\n",
+        "from sklearn.model_selection import GridSearchCV\n",
+        "from sklearn.metrics import mean_squared_error\n",
+        "from sklearn.model_selection import train_test_split\n",
+        "import matplotlib.pyplot as plt\n",
+        "from sklearn.linear_model import RidgeCV\n",
+        "from sklearn.neighbors import KNeighborsClassifier\n",
+        "from sklearn.inspection import DecisionBoundaryDisplay\n",
+        "from sklearn.svm import SVC\n",
+        "from sklearn.linear_model import LogisticRegression\n",
+        "from sklearn.metrics import accuracy_score, confusion_matrix, classification_report\n",
+        "#!pip install umap-learn\n",
+        "import umap.umap_ as umap\n",
+        "import numpy as np\n",
+        "import math\n",
+        "import warnings\n",
+        "warnings.filterwarnings(\"ignore\")"
+      ],
+      "id": "2cb6767f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Load the data\n",
+        "mcycle_data = pd.read_csv(\"Data/mcycle.csv\")\n",
+        "mcycle_data[\"times\"] = mcycle_data[\"times\"]/60 \n",
+        "mcycle_data.describe()"
+      ],
+      "id": "7deefaa0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Split the data into train and test sample\n",
+        "X = mcycle_data[[\"times\"]]\n",
+        "y = mcycle_data[[\"accel\"]]\n",
+        "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)"
+      ],
+      "id": "a8d2b1c3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 1. Training and testing RBF kernel ridge regression\n",
+        "\n",
+        "Since we have two hyperparameter ($\\gamma$ and $\\lambda$) to tune, we can use the GridSearchCV function from scikit-learn to find the best hyperparameter.\n"
+      ],
+      "id": "456335d7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "rbf_krr_model = KernelRidge(kernel=\"rbf\")\n",
+        "grid_eval = np.logspace(-2, 4, 50)\n",
+        "param_grid = {\"alpha\": grid_eval, \"gamma\": grid_eval}\n",
+        "rbf_krr_model_cv = GridSearchCV(rbf_krr_model, param_grid).fit(X_train,y_train)\n",
+        "print(f\"Best parameters by CV : {rbf_krr_model_cv.best_params_}\")"
+      ],
+      "id": "7fadadc7",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "best_model = KernelRidge(kernel=\"rbf\", alpha=rbf_krr_model_cv.best_params_[\"alpha\"], gamma=rbf_krr_model_cv.best_params_[\"gamma\"])\n",
+        "best_model.fit(X_train, y_train)\n",
+        "y_pred = best_model.predict(X_test)\n",
+        "\n",
+        "print(f\"Root mean square error: {math.sqrt(mean_squared_error(y_test, y_pred)): .2f}\")"
+      ],
+      "id": "da32bf85",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Sort X_test and corresponding y_pred values\n",
+        "sorted_indices = np.argsort(X_test.values.flatten())\n",
+        "X_test_sorted = X_test.values.flatten()[sorted_indices]\n",
+        "y_pred_sorted = y_pred[sorted_indices]\n",
+        "\n",
+        "plt.scatter(X_test, y_test, color=\"black\", label=\"True values\")\n",
+        "plt.plot(X_test_sorted, y_pred_sorted, color=\"blue\", label=\"Predicted values\")\n",
+        "plt.title(\"Kernel Ridge Regression\")\n",
+        "plt.xlabel(\"Input Feature (X)\")\n",
+        "plt.ylabel(\"Target (y)\")\n",
+        "plt.legend(loc=\"best\")\n",
+        "plt.show()"
+      ],
+      "id": "7f6388e0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## II. Ridge regression\n",
+        "\n",
+        "Now we are going to use the basic ridge regression to predict the target variable. There is only one hyperparameter to tune which is the regularization parameter $\\lambda$.\n"
+      ],
+      "id": "e7119d87"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "ridge_model = RidgeCV(alphas=grid_eval).fit(X_train, y_train)\n",
+        "y_pred_ridge=ridge_model.predict(X_test)\n",
+        "print( f'RMSE Ridge regression : {math.sqrt(mean_squared_error(y_test, y_pred_ridge)) : .2f}')\n",
+        "\n",
+        "# Plot the results\n",
+        "plt.scatter(X_test, y_test, color=\"black\")\n",
+        "plt.plot(X_test, y_pred_ridge, color=\"red\")\n",
+        "plt.title(\"Ridge Regression\")"
+      ],
+      "id": "cb5d79f0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "As we can see, the solelly use of the ridge regression is not enough to predict the target variable. We can try to transform the data by using a sinusoïdal transformation. If we try a transformation of the covariable $x$ by $\\tilde{x} = \\frac{\\sqrt(2)}{\\pi}\\cos(\\pi x) $ and apply the ridge regression, we have a slightly different problem. But still, the performance of the model is not good.\n"
+      ],
+      "id": "047b8474"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# create a function that apply transformation to the features\n",
+        "def apply_cos(x,j):\n",
+        "    pi = np.pi\n",
+        "    return np.sqrt(2)*np.cos(j*pi*x)/(j*pi)\n",
+        "\n",
+        "# perform ridge regression with cosinus modification from j = 1 to 10\n",
+        "X_train_cos = pd.DataFrame()\n",
+        "X_test_cos = pd.DataFrame()\n",
+        "for j in range(1,11):\n",
+        "    X_train_cos[f\"X{j}\"] = X_train[\"times\"].apply(lambda x: apply_cos(x,j))\n",
+        "    X_test_cos[f\"X{j}\"] = X_test[\"times\"].apply(lambda x: apply_cos(x,j))"
+      ],
+      "id": "5fa49107",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Train the Ridge regression model\n",
+        "ridge_model1 = RidgeCV(alphas=grid_eval).fit(X_train_cos[[\"X1\"]], y_train)\n",
+        "y_pred_ridge1 = ridge_model1.predict(X_test_cos[[\"X1\"]])\n",
+        "\n",
+        "rmse_ridge = math.sqrt(mean_squared_error(y_test, y_pred_ridge1))\n",
+        "print(f'RMSE Ridge regression with x tilde: {rmse_ridge:.2f}')\n",
+        "y_pred_ridge1_sorted = y_pred_ridge1[sorted_indices]\n",
+        "\n",
+        "plt.scatter(X_test, y_test, color=\"black\", label=\"True values\", s=50)\n",
+        "plt.plot(X_test_sorted, y_pred_ridge1_sorted, color=\"red\", label=\"Predicted values (Ridge)\", linewidth=2)\n",
+        "plt.title(\"Ridge Regression\")\n",
+        "plt.xlabel(\"Input Feature (X)\")\n",
+        "plt.ylabel(\"Target (y)\")\n",
+        "plt.legend(loc=\"best\")\n",
+        "plt.show()"
+      ],
+      "id": "e2b44ba0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Even though, the only transformation applied is the cosinus transformation, the RMSE is lower than the RMSE of the simple Ridge Regression. This is due to the fact that the cosinus transformation is able to capture a little bit of the periodicity of the data. Let's try to use many sinusoidal transformation to see if we can improve the performance of the model.\n",
+        "We will fit y using $\\tilde{x} = \\left[ \\frac{\\sqrt(2)}{J\\pi}\\cos(J\\pi x)  \\right]_{J=1,\\dots,10}$\n"
+      ],
+      "id": "f099dd0f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# New ridge with many transformated features\n",
+        "ridge_model2 = RidgeCV(alphas=grid_eval).fit(X_train_cos, y_train)\n",
+        "y_pred_ridge2 = ridge_model2.predict(X_test_cos)\n",
+        "y_pred_ridge2_sorted = y_pred_ridge2[sorted_indices]\n",
+        "print( f'RMSE Ridge regression : {math.sqrt(mean_squared_error(y_test, y_pred_ridge2)): .2f}')\n",
+        "\n",
+        "# Plot the results\n",
+        "plt.scatter(X_test, y_test, color=\"black\",label=\"True values\")\n",
+        "plt.plot(X_test_sorted, y_pred_ridge2_sorted,color=\"red\",label=\"Predicted values (Ridge)\")\n",
+        "plt.title(\"Ridge Regression\")\n",
+        "plt.xlabel(\"Input Feature (X)\")\n",
+        "plt.ylabel(\"Target (y)\")\n",
+        "plt.legend(loc=\"best\")\n",
+        "plt"
+      ],
+      "id": "55c95c0e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "We observe that the more we increase the number of transformations, the more the performance of the model is improved and close to the performance of the kernel ridge regression using the gaussian kernel. The performance of the model is similar to the performance of the kernel ridge regression. This is due to the fact that the kernel ridge regression is equivalent to use an infinite number of transformations on the features. It is hence useful to use the kernel trick when we have a non-linear relationship between the target variable and the features.\n",
+        "\n",
+        "## III. Insigths :\n",
+        "\n",
+        "Linear regression with such sinusoidal transformation is equivalent to the kernel ridge regression with a specific kernel : the sobolev kernel. The sobolev kernel is defined by: \n",
+        "$$\n",
+        "K(x, x') = 1 + B_1(x)B_2(x') + \\frac{1}{2}B_2(|x-x'|) = 1 + B_2(\\frac{|x-x'|}{2}) + B_2(\\frac{x+x'}{2})\n",
+        "$$\n",
+        "\n",
+        "where $B_1 = x - 1/2$ and $B_2 = x^2 - x - 1/6$.\n",
+        "\n",
+        "Using the fourier series expansion for $x \\in [0,1]$, we have :\n",
+        "$$\n",
+        "B_2(x) = \\sum_{k=1}^{\\infty} \\frac{\\cos(2k\\pi x)}{(k\\pi)^2}\n",
+        "$$\n",
+        "\n",
+        "### Kernel de sobolev\n"
+      ],
+      "id": "7045bf16"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "def sobolev_kernel(x,y):\n",
+        "    def B2(x):\n",
+        "        return x**2 - x + 1/6\n",
+        "    \n",
+        "    def B1(x):\n",
+        "        return x - 1/2\n",
+        "    \n",
+        "    return 1+ B2(abs(x-y)/2) + B2((x+y)/2)"
+      ],
+      "id": "1e3beeb8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "krr_model_sobolev = KernelRidge(kernel=sobolev_kernel)\n",
+        "param_grid = {\"alpha\": grid_eval}\n",
+        "grid_sobolev = GridSearchCV(krr_model_sobolev, param_grid).fit(X_train,y_train)\n",
+        "grid_sobolev.best_params_"
+      ],
+      "id": "5d5f9099",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# compute rmse\n",
+        "# best_sobolev_krr = KernelRidge(kernel=sobolev_kernel, alpha=grid_sobolev.best_params_[\"alpha\"])\n",
+        "# best_sobolev_krr.fit(X_train, y_train)\n",
+        "y_pred_sobolev = grid_sobolev.predict(X_test)\n",
+        "y_pred_sobolev_sorted = y_pred_sobolev[sorted_indices]\n",
+        "print( f'Root mean square error : {math.sqrt(mean_squared_error(y_test, y_pred_sobolev_sorted)): .2f}')\n",
+        "\n",
+        "\n",
+        "# Plot the results\n",
+        "plt.scatter(X_test, y_test, color=\"black\")\n",
+        "plt.plot(X_test_sorted, y_pred_sobolev_sorted,color=\"red\")\n",
+        "plt.title(\"Sobolev Kernel Ridge Regression\")"
+      ],
+      "id": "5d082ead",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Activity 2 : Support Vector Machine\n",
+        "\n",
+        "The support vector machines (SVM) is a supervised learning algorithm that can be used for classification. The SVM is based on the concept of finding the hyperplane that best separates the data into two classes. In fact, if the problem is **linearly separable**, the SVM finds the hyperplane that maximizes the margin between the two classes. The margin is the distance between the hyperplane and the closest point of each class (support vectors).\n",
+        "\n",
+        "When the problem is non-linearly separable, the SVM uses the same functionnement but allows some points to be misclassified. When the problem is too complex, the SVM uses the kernel trick to transform the data into a higher-dimensional space where the relationship is linear.\n",
+        "\n",
+        "\n",
+        "## I. Toy dataset\n",
+        "\n",
+        "Here is the toy dataset that we are going to use to illustrate the SVM. The dataset is composed of two features and the target variable is binary. As we can see, the dataset is not linearly separable. We are going to use the SVM with a gaussian kernel to classify the data, and compare it to a classic classifier such as the k-nearest neighbors and the logistic regression.\n"
+      ],
+      "id": "e1d0de60"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "two_moon_data = pd.read_csv(\"Data/DataTwoMoons.csv\",header=None)\n",
+        "two_moon_data.columns = [\"X1\",\"X2\",\"y\"]\n",
+        "\n",
+        "plt.scatter(two_moon_data[\"X1\"], two_moon_data[\"X2\"], c=two_moon_data[\"y\"])\n",
+        "plt.title(\"Two moons dataset\")"
+      ],
+      "id": "89f3f6bd",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Split the data into train and test sample\n",
+        "X_train, X_test, y_train, y_test = train_test_split(two_moon_data[[\"X1\",\"X2\"]], two_moon_data[\"y\"], test_size=0.2, random_state=42)"
+      ],
+      "id": "eb30db45",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 1. K-nearest neighbors  \n"
+      ],
+      "id": "16c00510"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# KNN with cross validation\n",
+        "\n",
+        "knn = KNeighborsClassifier()\n",
+        "param_grid = {\"n_neighbors\": np.arange(1, 50)}\n",
+        "knn_cv = GridSearchCV(knn, param_grid).fit(X_train, y_train)\n",
+        "print(f\"Best parameters by CV : {knn_cv.best_params_}\")\n",
+        "\n",
+        "# Compute the accuracy\n",
+        "y_pred = knn_cv.predict(X_test)\n",
+        "accuracy = accuracy_score(y_test, y_pred)\n",
+        "print(f\"Accuracy: {accuracy:.2f}\")\n",
+        "\n",
+        "# Confusion matrix to see detailed classification performance\n",
+        "conf_matrix = confusion_matrix(y_test, y_pred)\n",
+        "print(\"Confusion Matrix:\")\n",
+        "print(conf_matrix)\n",
+        "\n",
+        "# Classification report for detailed metrics\n",
+        "print(\"Classification Report:\")\n",
+        "print(classification_report(y_test, y_pred))"
+      ],
+      "id": "ef2d0b4d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "disp_knn = DecisionBoundaryDisplay.from_estimator(\n",
+        "    knn_cv,\n",
+        "    X_train,\n",
+        "    response_method=\"predict\",\n",
+        "    alpha = 0.3\n",
+        ")\n",
+        "disp_knn.ax_.scatter(two_moon_data[\"X1\"],two_moon_data[\"X2\"], c=two_moon_data[\"y\"])\n",
+        "plt.title(\"KNN Decision Boundary\")\n",
+        "plt.show()"
+      ],
+      "id": "fcde392b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 2. Logistic regression\n"
+      ],
+      "id": "1340880a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# compute logistic regression\n",
+        "log_reg = LogisticRegression(max_iter=1000)\n",
+        "log_reg.fit(X_train, y_train)\n",
+        "y_pred = log_reg.predict(X_test)\n",
+        "\n",
+        "accuracy = accuracy_score(y_test, y_pred)\n",
+        "print(f\"Accuracy: {accuracy:.2f}\")\n",
+        "\n",
+        "# Confusion matrix to see detailed classification performance\n",
+        "conf_matrix = confusion_matrix(y_test, y_pred)\n",
+        "print(\"Confusion Matrix:\")\n",
+        "print(conf_matrix)\n",
+        "\n",
+        "# Classification report for detailed metrics\n",
+        "print(\"Classification Report:\")\n",
+        "print(classification_report(y_test, y_pred))"
+      ],
+      "id": "77257547",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "disp_log_reg = DecisionBoundaryDisplay.from_estimator(\n",
+        "    log_reg,\n",
+        "    X_train,\n",
+        "    response_method=\"predict\",\n",
+        "    alpha = 0.3\n",
+        ")\n",
+        "disp_log_reg.ax_.scatter(two_moon_data[\"X1\"],two_moon_data[\"X2\"], c=two_moon_data[\"y\"], edgecolor=\"k\")\n",
+        "plt.title(\"Logistic Regression Decision Boundary\")\n",
+        "plt.show()"
+      ],
+      "id": "b1829648",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 3. SVM\n"
+      ],
+      "id": "5d03adc7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "grid_eval = np.logspace(-2, 4, 50)\n",
+        "param_grid = {\"C\": grid_eval, \"gamma\": grid_eval}\n",
+        "svm_model = SVC(kernel=\"rbf\")\n",
+        "svm_model_cv = GridSearchCV(svm_model, param_grid).fit(X_train,y_train)\n",
+        "print(f\"Best parameters by CV : {svm_model_cv.best_params_}\")"
+      ],
+      "id": "d524a3d5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Compute the accuracy\n",
+        "y_pred = svm_model_cv.predict(X_test)\n",
+        "accuracy = accuracy_score(y_test, y_pred)\n",
+        "print(f\"Accuracy: {accuracy:.2f}\")\n",
+        "\n",
+        "# Confusion matrix to see detailed classification performance\n",
+        "conf_matrix = confusion_matrix(y_test, y_pred)\n",
+        "print(\"Confusion Matrix:\")\n",
+        "print(conf_matrix)\n",
+        "\n",
+        "# Classification report for detailed metrics\n",
+        "print(\"Classification Report:\")\n",
+        "print(classification_report(y_test, y_pred))"
+      ],
+      "id": "e56849de",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "disp_svm = DecisionBoundaryDisplay.from_estimator(\n",
+        "    svm_model_cv,\n",
+        "    X_train,\n",
+        "    response_method=\"predict\",\n",
+        "    alpha = 0.3\n",
+        ")\n",
+        "disp_svm.ax_.scatter(two_moon_data[\"X1\"],two_moon_data[\"X2\"], c=two_moon_data[\"y\"], edgecolor=\"k\")\n",
+        "plt.title(\"SVM Decision Boundary\")\n",
+        "plt.show()"
+      ],
+      "id": "8ca9947e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 4. Conclusion\n",
+        "\n",
+        "As we can see, the SVM with the gaussian kernel is able to classify the data with a good accuracy. The SVM is able to capture the non-linear relationship between the target variable and the features.\n",
+        "\n",
+        "The logistic regression, in this case, is not able to classify the data because the relationship between the target variable and the features is non-linear.\n",
+        "\n",
+        "The k-nearest neighbors is able to classify the data with a performance similar to the SVM. The SVM and the KNN are a good choice when we have a non-linear relationship between the target variable and the features.\n",
+        "\n",
+        "**Whenever we have a classification problem, it is hence always useful to try the SVM and the KNN.**\n",
+        "\n",
+        "## II. Image dataset\n",
+        "\n",
+        "The SVM is also useful for image classification. In this part, we are going to use the famous MNIST dataset to classify the images. The MNIST dataset is composed of 20 000 images (10 000 in the training dataset, and 10 000 also in the test dataset) of handwritten digits from 0 to 9. Each image is a resolution 28x28 pixels that is represented by a matrix of shape (28, 28), with each element being the pixel intensity (values from 0 to 255).\n",
+        "We are going to use the SVM with the gaussian kernel to classify the images.\n",
+        "\n",
+        "We will start by normalizing the data to ensure that all the features contribute equally, and then use the GridSearchCV function from scikit-learn to find the best hyperparameter.\n"
+      ],
+      "id": "a7085d02"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data_train = pd.read_csv(\"Data/mnist_train_small.csv\")\n",
+        "data_test = pd.read_csv(\"Data/mnist_test.csv\")\n",
+        "\n",
+        "print(\"Description of train dataset : \\n\")\n",
+        "data_train.iloc[:,1:].describe()\n",
+        "data_train[\"label\"].value_counts()"
+      ],
+      "id": "2f9c8633",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# normalize the data\n",
+        "from sklearn.preprocessing import StandardScaler\n",
+        "scaler = StandardScaler()\n",
+        "\n",
+        "X_train  = scaler.fit_transform(data_train.iloc[:, 1:])\n",
+        "y_train = data_train[\"label\"]\n",
+        "X_test  = scaler.transform(data_test.iloc[:, 1:])\n",
+        "y_test = data_test[\"label\"]"
+      ],
+      "id": "28a09241",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "As we can see from the umap plot, which is a dimensionality reduction technique, the data is not always linearly separable. We are going to use the SVM with the gaussian kernel to classify the images.\n"
+      ],
+      "id": "42618496"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# visualize the data with UMAP\n",
+        "reducer = umap.UMAP(random_state=42)\n",
+        "embedding = reducer.fit_transform(X_train)"
+      ],
+      "id": "44cda3f2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "plt.scatter(embedding[:, 0], embedding[:, 1], c=data_train[\"label\"], cmap='Spectral', s=1)\n",
+        "plt.gca().set_aspect('equal', 'datalim')\n",
+        "plt.colorbar()\n",
+        "plt.title('UMAP projection of the MNIST dataset')"
+      ],
+      "id": "5081340c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "svm_model = SVC(kernel=\"rbf\")\n",
+        "from itertools import product\n",
+        "\n",
+        "grid_eval_C = [c * factor for c, factor in product([0.1, 1, 10], [1, 5])]\n",
+        "grid_eval_gamma = [gamma * factor for gamma, factor in product([10**-3, 10**-2, 10**-1], [1, 5])]\n",
+        "\n",
+        "\n",
+        "param_grid = {\"C\": grid_eval_C, \"gamma\": grid_eval_gamma}\n",
+        "svm_model_cv = GridSearchCV(svm_model, param_grid).fit(X_train, y_train)\n",
+        "print(f\"Best parameters by CV : {svm_model_cv.best_params_}\")"
+      ],
+      "id": "b24b4d9f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "As we can see, the model performs well with an accuracy of 0.88 . As expected from the umap visualization, the model is able to separate the classes well, however there are some errors in the classification. The confusion matrix shows that the model has some difficulty to distinguish between some digits such as 4 and 9, 3.\n",
+        "\n",
+        "The SVM is a good choice for image classification, however, the model is not able to capture the complexity of the data. In this case, we can use a deep learning model such as the convolutional neural network (CNN) which is able to capture the complexity of the data.\n"
+      ],
+      "id": "9950a170"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# compute the accuracy\n",
+        "y_pred = svm_model_cv.predict(X_test)\n",
+        "accuracy = accuracy_score(y_test, y_pred)\n",
+        "print(f\"Accuracy: {accuracy:.2f}\")\n",
+        "\n",
+        "# Confusion matrix to see detailed classification performance\n",
+        "conf_matrix = confusion_matrix(y_test, y_pred)\n",
+        "print(\"Confusion Matrix:\")\n",
+        "print(conf_matrix)\n",
+        "\n",
+        "# Classification report for detailed metrics\n",
+        "print(\"Classification Report:\")\n",
+        "print(classification_report(y_test, y_pred))"
+      ],
+      "id": "45f3bf55",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# plot ROC CURVE\n",
+        "from sklearn.metrics import roc_curve, auc\n",
+        "from sklearn.preprocessing import label_binarize\n",
+        "\n",
+        "y_test_bin = label_binarize(y_test, classes=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9])\n",
+        "y_score = svm_model_cv.decision_function(X_test)\n",
+        "fpr = dict()\n",
+        "tpr = dict()\n",
+        "roc_auc = dict()\n",
+        "for i in range(10):\n",
+        "    fpr[i], tpr[i], _ = roc_curve(y_test_bin[:, i], y_score[:, i])\n",
+        "    roc_auc[i] = auc(fpr[i], tpr[i])\n",
+        "\n",
+        "plt.figure()\n",
+        "colors = ['blue', 'red', 'green', 'orange', 'purple', 'brown', 'pink', 'gray', 'olive', 'cyan']\n",
+        "for i, color in zip(range(10), colors):\n",
+        "    plt.plot(fpr[i], tpr[i], color=color, lw=2, label=f'Class {i} (AUC ={roc_auc[i]:.2f})')\n",
+        "plt.plot([0, 1], [0, 1], 'k--', lw=2)\n",
+        "plt.xlim([0.0, 1.0])\n",
+        "plt.ylim([0.0, 1.05])\n",
+        "plt.xlabel('False Positive Rate')\n",
+        "plt.ylabel('True Positive Rate')\n",
+        "plt.title('ROC Curve')\n",
+        "plt.legend(loc=\"lower right\")\n",
+        "plt.show()"
+      ],
+      "id": "0641dc87",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/Users/cherylkouadio/Library/Python/3.9/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

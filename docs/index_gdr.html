@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,12 +35,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-fdf986989e2058d46a90f864900247d8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -94,17 +94,24 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Accueil</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./index_gdr.html" aria-current="page"> 
-<span class="menu-text">Gestion des risques</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-gestion-des-risques" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Gestion des risques</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-gestion-des-risques">    
+        <li>
+    <a class="dropdown-item" href="./index_gdr.html">
+ <span class="dropdown-text">Introduction</span></a>
   </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
-<span class="menu-text">A propos de moi</span></a>
+<span class="menu-text">À propos</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
@@ -121,16 +128,19 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#gestion-des-risques" id="toc-gestion-des-risques" class="nav-link active" data-scroll-target="#gestion-des-risques">Gestion des risques</a>
   <ul class="collapse">
   <li><a href="#analyse-financière" id="toc-analyse-financière" class="nav-link" data-scroll-target="#analyse-financière">Analyse financière</a></li>
-  <li><a href="#reglementation-prudentielle" id="toc-reglementation-prudentielle" class="nav-link" data-scroll-target="#reglementation-prudentielle">Reglementation prudentielle</a></li>
   <li><a href="#risques-financiers" id="toc-risques-financiers" class="nav-link" data-scroll-target="#risques-financiers">Risques financiers</a></li>
+  <li><a href="#scoring" id="toc-scoring" class="nav-link" data-scroll-target="#scoring">Scoring</a></li>
+  <li><a href="#calibrations-de-processus-stochastique" id="toc-calibrations-de-processus-stochastique" class="nav-link" data-scroll-target="#calibrations-de-processus-stochastique">Calibrations de processus stochastique</a></li>
+  <li><a href="#gestion-de-portefeuille-et-pricing" id="toc-gestion-de-portefeuille-et-pricing" class="nav-link" data-scroll-target="#gestion-de-portefeuille-et-pricing">Gestion de portefeuille et pricing</a></li>
   <li><a href="#autres-sujets" id="toc-autres-sujets" class="nav-link" data-scroll-target="#autres-sujets">Autres sujets</a></li>
+  <li><a href="#projets-et-rapports" id="toc-projets-et-rapports" class="nav-link" data-scroll-target="#projets-et-rapports">Projets et rapports</a></li>
   </ul></li>
   </ul>
 </nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -159,22 +169,18 @@ ul.task-list li input[type="checkbox"] {
 <div class="box">
 <p>Compte tenu de ma spécialisation en gestion des risques, les contenus que je prévois de partager dans cette section dédiée à la 3ème année (3A) porteront principalement sur les enseignements spécifiques à cette spécialisation. Je m’efforcerai de rendre ces partages aussi pertinents et enrichissants que possible, en espérant qu’ils serviront de guide précieux pour ceux qui suivront une voie similaire.</p>
 </div>
-<section id="analyse-financière" class="level2">
-<h2 class="anchored" data-anchor-id="analyse-financière">Analyse financière</h2>
+<section id="analyse-financière" class="level3">
+<h3 class="anchored" data-anchor-id="analyse-financière">Analyse financière</h3>
 <ul>
 <li>Construction du bilan d’entreprise (<a href="./3A/bilan_entreprise.html">bilan_entreprise.qmd</a>)</li>
-</ul>
-</section>
-<section id="reglementation-prudentielle" class="level2">
-<h2 class="anchored" data-anchor-id="reglementation-prudentielle">Reglementation prudentielle</h2>
-<ul>
 <li>Reglementation prudentielle (<a href="./3A/reglementation_prudentielle.html">reglementation_prudentielle.qmd</a>)</li>
 </ul>
 </section>
-<section id="risques-financiers" class="level2">
-<h2 class="anchored" data-anchor-id="risques-financiers">Risques financiers</h2>
+<section id="risques-financiers" class="level3">
+<h3 class="anchored" data-anchor-id="risques-financiers">Risques financiers</h3>
 <ul>
 <li>Définition du risque financier (<a href="./3A/risque_def.html">risque_def.qmd</a>)</li>
+<li>Parcours des mesures de risques</li>
 <li>Value-at-risk (VaR) :
 <ul>
 <li>Définition de la VaR (<a href="./3A/var_def.html">var_def.qmd</a>)</li>
@@ -182,10 +188,39 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="autres-sujets" class="level2">
-<h2 class="anchored" data-anchor-id="autres-sujets">Autres sujets</h2>
+<section id="scoring" class="level3">
+<h3 class="anchored" data-anchor-id="scoring">Scoring</h3>
+</section>
+<section id="calibrations-de-processus-stochastique" class="level3">
+<h3 class="anchored" data-anchor-id="calibrations-de-processus-stochastique">Calibrations de processus stochastique</h3>
+<ul>
+<li>Calibration avec le modèle de black-scholes</li>
+<li>Calibration du modèle à volatilité stochastique de Taylor</li>
+<li>Calibration avec le modèle de Heston</li>
+</ul>
+</section>
+<section id="gestion-de-portefeuille-et-pricing" class="level3">
+<h3 class="anchored" data-anchor-id="gestion-de-portefeuille-et-pricing">Gestion de portefeuille et pricing</h3>
+<ul>
+<li>Mesures de risques</li>
+<li>Pricing d’options vanilles</li>
+<li>Pricing de taux, swap, d’obligations</li>
+<li>Tracking error</li>
+<li>Construction de portefeuille markowitz</li>
+</ul>
+</section>
+<section id="autres-sujets" class="level3">
+<h3 class="anchored" data-anchor-id="autres-sujets">Autres sujets</h3>
 <ul>
 <li>Investissement socialement responsable (<a href="./3A/ISR.html">ISR.qmd</a>)</li>
+</ul>
+</section>
+<section id="projets-et-rapports" class="level2">
+<h2 class="anchored" data-anchor-id="projets-et-rapports">Projets et rapports</h2>
+<ul>
+<li>Projet de séries temporelles</li>
+<li>Projet de scoring</li>
+<li>Projet de théorie de valeursd extrêmes</li>
 </ul>
 
 
@@ -372,18 +407,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -415,7 +439,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -423,7 +467,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -432,11 +476,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
-          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -525,7 +564,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

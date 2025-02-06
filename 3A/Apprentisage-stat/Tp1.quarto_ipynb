@@ -1,0 +1,547 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title : Ridge regression vs. Lasso regression\n",
+        "author : \"Cheryl KOUADIO\"\n",
+        "jupyter: python3\n",
+        "---\n",
+        "\n",
+        "\n",
+        "# Activity 1 : Variants of OLS\n",
+        "## 1. Ridge regression\n",
+        "The ridge regression is a variant of the linear regression that is used to prevent multicolinearity coming from the covariables in the dataset and thus prevent overfitting. In fact, when the features are correlated, the matrix $X^TX$ is not invertible and the least square solution is not unique. Hence, the ridge regression is used to stabilize the solution by adding a L2 penalty term to the loss function. It's the reason wwhy the ridge regression is also called a L2 regularization.\n",
+        "\n",
+        "$$\n",
+        "\\theta ^* = argmin_{\\theta} \\left\\{ || Y - X \\theta||_2 + \\lambda ||\\theta||_2^2 \\right\\}\n",
+        "$$\n",
+        "\n",
+        "The penalty term is controlled by a hyperparameter $\\lambda$. It has to be choosed wisely (using a cross-validation method) because it balances the trade-off between the bias and the variance of the model. We are going to see in this activity how the bias and the variance of the ridge regression is affected by the hyperparameter $\\lambda$.\n",
+        "\n",
+        "The bias of an estimator is defined as the difference between the expected value of the estimator and the true value of the parameter being estimated. \n",
+        "In the ridge regression, the bias of the ridge estimator is given by the formula:\n",
+        "\n",
+        "$$\\mathcal{B}(\\theta ^*) = \\lambda (X^{T}X+ \\lambda I_d)^{-1} \\theta^*$$ \n",
+        "\n",
+        "For the variance, it is given by:\n",
+        "\n",
+        "$$\\mathcal{V}(\\theta ^*) = \\sigma^2 (X^{T}X+ \\lambda I_d)^{-2} X^{T}X $$\n",
+        "\n",
+        "where $\\sigma^2$ is the variance of the noise in the data.\n",
+        "\n",
+        "<u>Hint to prove the bias formula</u> : factorize by $\\lambda ( X^TX + \\lambda I_d)^{-1}$\n",
+        "\n",
+        "In this activity, we will numerically check the formula for the bias and the variance by generating random data and calculating the squared bias of the sample mean.\n",
+        "Let's start by create a function to generate the data with a noise $\\varepsilon \\sim \\mathcal{N}(0,\\sigma^2)$.\n"
+      ],
+      "id": "d2766513"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#Q1 : Function that generates data from a linear model\n",
+        "import numpy as np\n",
+        "\n",
+        "def generate_data(X, theta, sigma_squared) :\n",
+        "    n = X.shape[0] # Extract the length of data sample\n",
+        "    noise = np.random.normal(loc=0,scale=np.sqrt(sigma_squared),size=n) # generate the error term /!\\ scale = sd\n",
+        "    y = X.dot(theta) + noise # Y = X+theta + noise\n",
+        "    return y"
+      ],
+      "id": "e88bc982",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Our goal is now to illustrate the squared bias of each coefficient as a function of $\\lambda$ when it varies between 10² and 10⁴ (in the log-domain).\n",
+        "We will then generate a dataset with 100 samples and 10 features and calculate the squared bias of the coefficients and the variance for each value of $\\lambda$. The features will be generated from a normal distribution (not mandatory) and the true coefficients are fixed. We voluntarily put to 0 some coefficients to see the effect of the regularization.\n"
+      ],
+      "id": "6198924a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from sklearn.linear_model import Ridge\n",
+        "import matplotlib.pyplot as plt\n",
+        "\n",
+        "\n",
+        "theta = [10,1,5,2,8,0,0,0,0,0] # Define the true theta\n",
+        "lambda_grid = np.logspace(-2, 4, 50) # Define the grid of lambda values\n",
+        "n, d = 100, 10 # Dimension of dataset\n",
+        "X = np.random.normal(loc=0, scale=1, size=(n, d)) #features"
+      ],
+      "id": "f324f36b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "To compute numerically the bias and the variance of the ridge regression, we will generation 200 datasets. We will then, for each $\\lambda$, store the mean of each coefficients (in order to compute the numerical bias) and the standard deviation (to compute the numerical variance).\n"
+      ],
+      "id": "7732051b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "n_sim=1000\n",
+        "estimated_theta = np.zeros((n_sim,d)) #store the estimated theta for each simulation\n",
+        "bias_squared = np.zeros((len(lambda_grid),d)) #store the squared bias for each lambda\n",
+        "variance = np.zeros((len(lambda_grid),d)) #store the variance for each lambda\n",
+        "\n",
+        "# Iterate over lambda values\n",
+        "for idx,alpha in enumerate(lambda_grid):\n",
+        "    for i in range(n_sim): #start simulation\n",
+        "        y = generate_data(X, theta, 1)\n",
+        "        fit = Ridge(alpha=alpha,fit_intercept=False).fit(X,y) #we do not want the model to fit an intercept\n",
+        "        estimated_theta[i,:]= fit.coef_\n",
+        "    bias_squared[idx,:]=(np.mean(estimated_theta,axis=0)-theta)**2\n",
+        "    variance[idx,:] = np.std(estimated_theta,axis=0)**2"
+      ],
+      "id": "727de5a1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig, axes = plt.subplots(1, 2, figsize=(8, 4))\n",
+        "\n",
+        "for i in range(d):\n",
+        "    axes[0].plot(lambda_grid, bias_squared[:, i], label=f'theta {i+1}')\n",
+        "axes[0].set_xscale('log')\n",
+        "axes[0].set_xlabel('λ (log scale)')\n",
+        "axes[0].set_ylabel('Squared Bias')\n",
+        "axes[0].set_title('Ridge Regression Empirical Squared Bias')\n",
+        "axes[0].legend(loc='best')\n",
+        "\n",
+        "# Plot variance on the second subplot\n",
+        "for i in range(d):\n",
+        "    axes[1].plot(lambda_grid, variance[:, i], label=f'theta {i+1}')\n",
+        "axes[1].set_xscale('log')\n",
+        "axes[1].set_xlabel('λ (log scale)')\n",
+        "axes[1].set_ylabel('Variance')\n",
+        "axes[1].set_title('Ridge Regression Empirical Variance')\n",
+        "\n",
+        "# Show the plots\n",
+        "plt.tight_layout()\n",
+        "plt.show()"
+      ],
+      "id": "d8413d62",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#Plot squared theorical bias : −λ(X^T X + λId) (−1) θ\n",
+        "bias_theoretical = np.zeros((len(lambda_grid), d))\n",
+        "variance_theorical = np.zeros((len(lambda_grid), d))\n",
+        "\n",
+        "for idx, alpha in enumerate(lambda_grid):\n",
+        "    bias_theoretical[idx, :] = (-alpha * np.linalg.inv(X.T @ X + alpha * np.eye(d)) @ theta)**2\n",
+        "    variance_theorical[idx,:] = np.diag((1 * np.linalg.inv(alpha * np.eye(d) + X.T @ X)**2 @ (X.T @ X)))\n",
+        "    \n",
+        "fig,axes = plt.subplots(1,2,figsize=(8,4))\n",
+        "\n",
+        "for i in range(d):\n",
+        "    axes[0].plot(lambda_grid, bias_theoretical[:, i], label=f'theta {i+1}')\n",
+        "axes[0].set_xscale('log')\n",
+        "axes[0].set_xlabel('λ (log scale)')\n",
+        "axes[0].set_ylabel('Squared Bias')\n",
+        "axes[0].set_title('Ridge Regression Empirical Squared Bias')\n",
+        "axes[0].legend(loc='best')\n",
+        "\n",
+        "# Plot variance on the second subplot\n",
+        "for i in range(d):\n",
+        "    axes[1].plot(lambda_grid, variance_theorical[:, i], label=f'theta {i+1}')\n",
+        "axes[1].set_xscale('log')\n",
+        "axes[1].set_xlabel('λ (log scale)')\n",
+        "axes[1].set_ylabel('Variance')\n",
+        "axes[1].set_title('Ridge Regression Empirical Variance')"
+      ],
+      "id": "7f789390",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "As we can see, both in the numerical and theoretical bias, the bias of the coefficients is increasing with the increase of $\\lambda$. This is due to the fact that the regularization term is increasing and the coefficients are getting closer to 0. The variance is also decreasing with the increase of $\\lambda$ but it is not as significant as the bias. This is due to the fact that the variance is not directly affected by the regularization term.\n",
+        "\n",
+        "One can have an idea of this behaviour by looking at the formula of the bias and the variance of the ridge regression, using the gram matrix $\\frac{X^TX}{n}$. \n",
+        "In face, using the large law of numbers, we can see that the bias is proportional to $\\lambda$ and the variance is inversely proportional to $\\lambda$.\n",
+        "\n",
+        "<u><b>Proof</b></u> :\n",
+        "\n",
+        "$\\frac{X^TX}{n} \\rightarrow E(X^TX) = V(X)$, when $n \\rightarrow \\infty$, and $V(X)$ is the covariance matrix of the features. When X is centered and normalized, $V(X) = I_d$.\n",
+        "Using this in the formula of the bias and the variance, we get:\n",
+        "\n",
+        "$$\\mathcal{B}(\\theta ^*) = \\frac{-\\lambda}{n+\\lambda} \\theta^*$$\n",
+        "\n",
+        "$$\\mathcal{V}(\\theta ^*) = \\frac{\\sigma^2}{(n+\\lambda)^2} I_d$$\n",
+        "\n",
+        "## 2. Lasso regression\n",
+        "\n",
+        "If we are interessed in the variaton of the bias and the variance of the lasso regression which is another variants of the linear regression that is mainly used to perform feature selection, we don't have a specific formula defined. However, we can numerically check the bias of the lasso regression by generating random data and calculating the squared bias of the sample mean, as we did for the ridge regression. The lasso regression is a L1 regularization and the loss function is defined as:\n",
+        "\n",
+        "$$\n",
+        "\\theta ^* = argmin_{\\theta} \\left\\{ || Y - X \\theta||_2 + \\lambda ||\\theta||_1 \\right\\}\n",
+        "$$\n"
+      ],
+      "id": "ab268095"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from sklearn.linear_model import Lasso\n",
+        "\n",
+        "lasso_bias_squared = np.zeros((len(lambda_grid), d))\n",
+        "variance_lasso = np.zeros((len(lambda_grid), d))\n",
+        "estimated_theta_lasso = np.zeros((n_sim, d))\n",
+        "\n",
+        "# Iterate over lambda values\n",
+        "for idx, alpha in enumerate(lambda_grid):\n",
+        "        for i in range(n_sim) :\n",
+        "            y = generate_data(X, theta, 1)\n",
+        "            fit = Lasso(alpha=alpha,fit_intercept=False).fit(X,y)\n",
+        "            estimated_theta_lasso[i,:]= fit.coef_\n",
+        "        lasso_bias_squared[idx, :] = (np.mean(estimated_theta_lasso,axis=0)- theta) ** 2\n",
+        "        variance_lasso[idx, :] = np.std(estimated_theta_lasso, axis=0) ** 2"
+      ],
+      "id": "a6a9e18e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "fig, axes = plt.subplots(1, 2, figsize=(8, 4))\n",
+        "\n",
+        "for i in range(d):\n",
+        "    axes[0].plot(lambda_grid, lasso_bias_squared[:, i],label=f'theta {i+1}')\n",
+        "\n",
+        "axes[0].set_xscale('log')\n",
+        "axes[0].set_xlabel('λ')\n",
+        "axes[0].set_ylabel('Squared Bias')\n",
+        "axes[0].set_title('Lasso Empirical Squared Bias')\n",
+        "axes[0].legend(loc='best')\n",
+        "\n",
+        "for i in range(d):\n",
+        "    axes[1].plot(lambda_grid, variance_lasso[:, i],label=f'theta {i+1}')\n",
+        "\n",
+        "axes[1].set_xscale('log')\n",
+        "axes[1].set_xlabel('λ')\n",
+        "axes[1].set_ylabel('Variance')\n",
+        "axes[1].set_title('Lasso Empirical Variance')\n",
+        "plt.tight_layout()\n",
+        "plt.show()"
+      ],
+      "id": "4662dbd4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Activity 2 : Contamination dataset\n",
+        "\n",
+        "We now work with a dataset related to diabetes. The initial data consists of $n$ = 442 patients and $d$ = 10 covariates and the output  variable $Y$ is a score reflecting the disease progressing. During a cyberattack of the hospital housing the data, a bad robot has contaminated the dataset by adding 200 inappropriate exploratory variables. Since simply noising the data was not sufficient for the robot, he also arbitrarily permuted the variables. To complete the picture, the robot has erased any trace of his villainous act and thus we do not know which variables are relevant. The new data set contains $n$ = 442 patients and $d$ = 210 covariates. \n",
+        "\n",
+        "We are trying to resolve the enigma created by the playful machine and retrieve the relevant variables. We will hence use a regularized regression model to select the relevant variables.\n"
+      ],
+      "id": "893b97aa"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import warnings \n",
+        "warnings.filterwarnings('ignore')"
+      ],
+      "id": "3ed689de",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#read data from csv file\n",
+        "import pandas as pd\n",
+        "data = pd.read_csv(\"data_dm3.csv\", sep=\",\", header=None)\n",
+        "\n",
+        "# renommer les 210 premiers colonnes en X1, X2, ..., X210 et la dernière colonne en Y\n",
+        "data.columns = [f'X{i}' for i in range(1, 211)] + ['Y']\n",
+        "data.head()"
+      ],
+      "id": "b331bab3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "First, we will split the dataset into training and test sets. We will use the first 80% of the dataset for training and the remaining 20% for testing.\n"
+      ],
+      "id": "8ddfff11"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# split dataset to train and test\n",
+        "from sklearn.model_selection import train_test_split\n",
+        "\n",
+        "X = data.drop(columns='Y')\n",
+        "y = data['Y']\n",
+        "\n",
+        "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n",
+        "#test if the splitting is effective\n",
+        "n=X.shape[0]\n",
+        "print(f'Train size (proportion) : {X_train.shape[0]/n : .2f} \\nTest size (proportion) : {X_test.shape[0]/n : .2f}')"
+      ],
+      "id": "330c6ac2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## 1. Ridge regression\n",
+        "\n",
+        "On training samples, we will try to fit a linear model using Ridge regression by choosing the regularization parameter $\\lambda$ by cross-validation.\n",
+        "We will use the function `RidgeCV` from the `sklearn` library to perform the cross-validation. Since we didn't center the covariables, we will set the parameter `fit_intercept` to `True` in order to include an intercept in the model.\n",
+        "\n",
+        "    By default, the function that performs the cross validation in ridge regression performs \"leave-one-out\" cross-validation. In fact, leave-one-out cross-validation is a special case of k-fold cross-validation where k is equal to the number of samples. It is computationally expensive, but it is useful for small datasets. However, in ridge regression can be useful since the formula of shermann-morrison-woodbury can be used in order to use the estimator of a single ridge regession in other to compute the estimator of the leave-one-out cross-validation.\n"
+      ],
+      "id": "4d22f5a4"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from sklearn.linear_model import RidgeCV\n",
+        "\n",
+        "lambda_grid = np.logspace(-2, 4, 50)\n",
+        "ridge_cv = RidgeCV(alphas=lambda_grid,fit_intercept=True).fit(X_train, y_train) #to perform cross validation"
+      ],
+      "id": "2393793a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "We might interested in visualizing the path of the coefficients as a function of the regularization parameter λ. This is called regularization path. We can do this by fitting the model for different values of λ and store the coefficients.\n"
+      ],
+      "id": "33acfd30"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# plot the coefficients as a function of lambda\n",
+        "coefs = []\n",
+        "for a in lambda_grid:\n",
+        "    ridge = Ridge(alpha=a, fit_intercept=True).fit(X, y)\n",
+        "    coefs.append(ridge.coef_)"
+      ],
+      "id": "857f9c29",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "plt.figure(figsize=(8, 6))\n",
+        "plt.plot(lambda_grid, coefs)\n",
+        "plt.xscale('log')\n",
+        "plt.xlabel('λ')\n",
+        "plt.ylabel('Coefficients')\n",
+        "plt.axvline(x=ridge_cv.alpha_, color='r', linestyle='--', label=f'λ = {ridge_cv.alpha_:.2f}')\n",
+        "plt.title(\"Ridge path\")\n",
+        "plt.legend(loc='best')\n",
+        "plt.grid(True)\n",
+        "plt.show()"
+      ],
+      "id": "7c63bbc0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "We can hereby see that the ridge regression does not really help to select the 10 relevant variables by shrinking the coefficients of the irrelevant variables.\n",
+        "\n",
+        "Ridge regression tends to favor a model with a higher number of parameters, as it shrinks less important coefficients but keeps them in the model. This is why it is important to choose the regularization parameter $\\lambda$ wisely. However, it includes all the variables in the model, with reduced but non-zero coefficients. \n",
+        "\n",
+        "<i> In our case, it still gives an indication on the 10 variables that were relevant in the initial dataset before the contamination, but is clearly not the best method to select the relevant variables. </i>\n",
+        "\n",
+        "#### a. Check on the intercept value of the model using lambda found by cross validation\n"
+      ],
+      "id": "14ecd234"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(f'Intercept value : {ridge_cv.intercept_}')"
+      ],
+      "id": "557ae90a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "The intercept value of the model is 152.29, which means that the model predicts a value of 152.29 for the response variables when all the features are zero. It can be interpreted as the base value of the model. Taking in account the context of the dataset, we can say that the patients used in the dataset have a score of 152.29 (which might be quite high or not - depending on the scale) of having diabetes independently of the features.\n",
+        "\n",
+        "## 2. Lasso regression\n",
+        "\n",
+        "We will now use the lasso regression to check if it can help use to select the most important variables. We will use the same lambda grid as before and also perform a cross validation.\n",
+        "It is important to perform a cross-validation in order to choose the best value of the regularization parameter $\\lambda$ as we have demonstrated in the first activity.\n",
+        "For the lasso regression, we will use the function `LassoCV` from the `sklearn` library. By default, the function uses the coordinate descent algorithm to fit the model. It is a very efficient algorithm to solve the lasso problem because of the non-smoothness of the L1 norm.\n"
+      ],
+      "id": "8cf9cdfe"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from sklearn.linear_model import LassoCV\n",
+        "\n",
+        "lasso_cv = LassoCV(alphas=lambda_grid,fit_intercept=True).fit(X_train, y_train)"
+      ],
+      "id": "f5d28eea",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#LASSO PATH\n",
+        "coefs_lasso = []\n",
+        "for a in lambda_grid:\n",
+        "    lasso = Lasso(alpha=a, fit_intercept=True)\n",
+        "    lasso.fit(X, y)\n",
+        "    coefs_lasso.append(lasso.coef_)\n",
+        "\n",
+        "plt.figure(figsize=(8, 6))\n",
+        "plt.plot(lambda_grid, coefs_lasso)\n",
+        "plt.xscale('log')\n",
+        "plt.xlabel('λ')\n",
+        "plt.ylabel('Coefficients')\n",
+        "plt.title(\"Lasso path\")\n",
+        "plt.axvline(x=lasso_cv.alpha_, color='r', linestyle='--', label=f'λ = {lasso_cv.alpha_:.2f}')\n",
+        "plt.show()"
+      ],
+      "id": "1e765ca7",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Using the lasso regression, we can see that the coefficients of the irrelevant variables are set to zero. This is why the lasso regression is a good method to perform feature selection. Using the default value of the regularization parameter $\\lambda$ given by cross-validation, we can see that the lasso regression is able to select the 6 relevant variables. However, by changing the value of $\\lambda$, we can select more or less variables.\n",
+        "\n",
+        "``` python\n",
+        "    # check number of variables selected\n",
+        "    np.sum(lasso_cv.coef_ != 0)\n",
+        "```\n",
+        "\n",
+        "#### a. Check on the intercept value of the model using lambda found by cross validation\n",
+        "\n",
+        "We get approximatively the same value for the intercept as the one obtained with Ridge regression.\n"
+      ],
+      "id": "a90c4dcb"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# check value of intercept\n",
+        "print(f'Intercept value : {lasso_cv.intercept_}')"
+      ],
+      "id": "9e7335dd",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## 3. Quality of the models (ridge regression vs lasso regression)\n",
+        "\n",
+        "In linear regression, we evaluate the quality of the model using the quadratic loss function. The quadratic risk is the expected value of the square of the difference between the true value and the predicted value. The mean squared error is then given by the formula:\n",
+        "\n",
+        "$$\\mathcal{R}(\\hat\\theta) =  \\frac{1}{n} \\sum_{i=1}^{n} \\left(y_i - \\hat g(x_i) \\right) ^2$$\n",
+        "\n",
+        "where $\\hat g(x)$ is the predicted value of the output variable y given the input variable x, $\\hat g(x) =\\hat  \\theta_0 + \\sum_{j=0}^d \\hat \\theta_j x_j$.\n"
+      ],
+      "id": "32cf255e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from sklearn.metrics import mean_squared_error\n",
+        "\n",
+        "y_pred_lasso = lasso_cv.predict(X_test)\n",
+        "mse_lasso = mean_squared_error(y_test, y_pred_lasso)\n",
+        "print(f'Mean Squared Error for Lasso: {mse_lasso:.2f}')\n",
+        "\n",
+        "y_pred_ridge = ridge_cv.predict(X_test)\n",
+        "mse_ridge = mean_squared_error(y_test, y_pred_ridge)\n",
+        "print(f'Mean Squared Error for Ridge: {mse_ridge:.2f}')"
+      ],
+      "id": "f58d948f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "As we can see, the MSE of the lasso regression is less than the error of the ridge regression. This is because the lasso regression is more efficient in selecting the relevant variables. The ridge regression is more efficient for numerical stability and for multicollinearity problem in the dataset, but it does not perform variable selection.\n",
+        "\n",
+        "Still, the MSE of both models are quite high, it might be due many facts such as the response variable is not linearly dependent on the features or that the features are not relevant to predict the response variable. We did not also scale the features nor the response variable, which might affect the performance of the model.\n"
+      ],
+      "id": "89f4b200"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/Users/cherylkouadio/Library/Python/3.9/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

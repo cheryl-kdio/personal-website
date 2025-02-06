@@ -1,0 +1,297 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: 'Gradient boosting'\n",
+        "author: \"Cheryl KOUADIO\"\n",
+        "jupyter: python3\n",
+        "---\n",
+        "\n",
+        "\n",
+        "\n",
+        "# Activity 1 : SAMME Algorithm\n",
+        "\n",
+        "\n",
+        "AdaBoost is a popular boosting algorithm that is used to boost the performance of decision trees on binary classification problems. It works by weighting the observations, putting more weight on difficult to classify instances and less on those already handled well. New weak learners are added sequentially that focus their training on the more difficult patterns. The predictions of the weak learners are then combined through a weighted majority vote to make the final prediction.\n",
+        "\n",
+        "Hence, for M weak learners, the final prediction is given by $g(x) = \\sum_{m=1}^{M} \\alpha_m g_m(x)$ where $g_m(x)$ is the m-th weak learner and $\\alpha_m$ is the weight associated with the m-th weak learner. \n",
+        "The optimisation problem of AdaBoost is given by:\n",
+        "\n",
+        "$$ \\underset{\\alpha_m, g_m \\, (m=1,\\dots,M)}{\\arg \\min} \\sum_{i=1}^{N} L\\left(y_i, \\sum_{m=1}^{M} \\alpha_m g_m(x_i)\\right) $$\n",
+        "\n",
+        "Since, this problem is difficult to solve, AdaBoost uses a forward stagewise additive modeling approach, with the loss function $l(y,f(x))=\\exp(-yf(x))$, $y \\in \\{-1,+1\\}$. It adds one weak learner at a time, and at each iteration, it solves the following optimization problem :\n",
+        "\n",
+        "- 1. Initialize the observation weights $w_i^{(1)} = 1/n$ for $i=1,\\dots,n$\n",
+        "- 2. For m=1 to M:\n",
+        "    - a. Fit a weak learner $g_m(x)$ to the training data using weights $w_i^{(m)}$\n",
+        "    - b. Compute the error rate $err_m = \\sum_{i=1}^{N} w_i^{m} 1(y_i \\neq g_m(x_i))$ where $I$ is the indicator function\n",
+        "    - c. Compute the weight $\\alpha_m = \\frac{1}{2} \\log \\left(\\frac{1-err_m}{err_m}\\right)$\n",
+        "    - d. Update the weights $w_i^{(m+1)} = w_i^{(m)} \\exp\\left(\\alpha_m 1(y_i \\neq g_m(x_i))\\right)$\n",
+        " \n",
+        "In this activity, we will implement the SAMME algorithm. SAMME stands for Stagewise Additive Modeling using a Multi-class Exponential loss function. It is a boosting algorithm that is used to boost the performance of decision trees on multi-class classification problems.\n",
+        "It is a generalization of the AdaBoost algorithm to multi-class classification problems. \n",
+        "\n",
+        "To inspect how the errors and the weights vary with the number of iterations, we will the function `make_gaussian_quantiles` from `sklearn`. This function generates a multi-dimensional standard normale distribution with a given number of samples $n$ per class $K$. We will generate a dataset of size $n=2000$ with $K=3$ classes and $d=10$ features. We will then train a SAMME classifier on this dataset and plot the errors and the weights as a function of the number of iterations.\n"
+      ],
+      "id": "b20ff549"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# import make_gaussian_quantiles\n",
+        "\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt\n",
+        "from sklearn.datasets import make_gaussian_quantiles;\n",
+        "from sklearn.model_selection import train_test_split\n",
+        "\n",
+        "# Generate the dataset\n",
+        "X, y = make_gaussian_quantiles(n_samples=2000, n_features=10, n_classes=3)\n",
+        "\n",
+        "# Split the dataset into a training and a testing set\n",
+        "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)"
+      ],
+      "id": "6713f74b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## I. Decision Tree\n"
+      ],
+      "id": "10d5fc82"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from sklearn.ensemble import AdaBoostClassifier\n",
+        "from sklearn.tree import DecisionTreeClassifier\n",
+        "from sklearn.metrics import accuracy_score\n",
+        "from sklearn.metrics import confusion_matrix\n",
+        "import seaborn as sns\n",
+        "\n",
+        "# Fit normal decision tree\n",
+        "model_tree = DecisionTreeClassifier(max_leaf_nodes=8).fit(X_train, y_train)\n",
+        "y_pred_tree = model_tree.predict(X_test)\n",
+        "accuracy_tree = accuracy_score(y_test, y_pred_tree)\n",
+        "print(\"Accuracy: \", accuracy_tree)\n",
+        "\n",
+        "cm_tree = confusion_matrix(y_test, y_pred_tree)\n",
+        "sns.heatmap(cm_tree, annot=True)\n",
+        "plt.title('Decision Tree confusion matrix')\n",
+        "plt.show()"
+      ],
+      "id": "c1d24493",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## II. SAMME Algorithm (Multi-class AdaBoost with Decision Trees)s\n"
+      ],
+      "id": "99c7fce1"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Run adaboost\n",
+        "\n",
+        "\n",
+        "# Create and fit an AdaBoosted decision tree\n",
+        "model_adaboost = AdaBoostClassifier(DecisionTreeClassifier(max_leaf_nodes=8),\n",
+        "                         algorithm=\"SAMME\",\n",
+        "                         n_estimators=300).fit(X_train, y_train)\n",
+        "\n",
+        "# Predict the test set\n",
+        "y_pred = model_adaboost.predict(X_test)\n",
+        "\n",
+        "# Compute the accuracy\n",
+        "accuracy = accuracy_score(y_test, y_pred)\n",
+        "print(\"Accuracy: \", accuracy)\n",
+        "\n",
+        "# Compute the confusion matrix\n",
+        "cm = confusion_matrix(y_test, y_pred)\n",
+        "\n",
+        "#plot with seaborn\n",
+        "sns.heatmap(cm, annot=True)\n",
+        "plt.title('Decision Tree boosting Confusion matrix')\n",
+        "plt.show()\n",
+        "\n",
+        "# run adaboost for decision tree with max leaves = 8 "
+      ],
+      "id": "ecbdccda",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "As we can see, the SAMME algorithm performs well on the dataset, than a single decision tree. In fact, we have an accuracy of 76% for the SAMME algorithm, while we have an accuracy of 52% for a single decision tree.\n",
+        "If we increase the number of iterations, we can see that the accuracy of the SAMME algorithm increases, while the accuracy of the decision tree remains the same.\n"
+      ],
+      "id": "23d9bb7d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# use of staged_predict\n",
+        "accuracy = []\n",
+        "for y_pred in model_adaboost.staged_predict(X_test):\n",
+        "    accuracy.append(accuracy_score(y_test, y_pred))\n",
+        "\n",
+        "plt.plot(range(1, 301), accuracy)\n",
+        "plt.xlabel('Number of trees')\n",
+        "plt.ylabel('Accuracy')\n",
+        "plt.title('Accuracy of AdaBoost as a function of the number of trees')\n",
+        "plt.show()"
+      ],
+      "id": "6d9311d3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Regarding the weights and errors at each iteration, we observe that the weight decreases with the number of iterations, while the error increases. This is due to the fact that at each iteration, the algorithm focuses on the difficult instances to classify. Hence, the weight of the weak learner increases, while the error increases. \n"
+      ],
+      "id": "685afcf3"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Visualize how the weights and errors change with the number of trees\n",
+        "plt.figure(figsize=(10, 5))\n",
+        "plt.subplot(1, 2, 1)\n",
+        "plt.plot(range(1, 301), model_adaboost.estimator_weights_,color='green')\n",
+        "plt.title('Weights of the trees')\n",
+        "plt.xlabel('Number of trees')\n",
+        "plt.ylabel('Weight')\n",
+        "\n",
+        "plt.subplot(1, 2, 2)\n",
+        "plt.plot(range(1, 301), model_adaboost.estimator_errors_,color='orange')\n",
+        "plt.xlabel('Number of trees')\n",
+        "plt.ylabel('Error')\n",
+        "plt.title('Errors of the trees')\n",
+        "plt.show()"
+      ],
+      "id": "93a2cab1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Activity 2 : Boosting with not so weak learners\n",
+        "\n",
+        "As mentioned earlier, the boosting algorithm uses multiple weak learners. This is a crucial aspect of the algorithm, as it allows combining multiple weak learners to create a strong learner. However, we might be interested in using stronger learners instead of weak ones, and we could observe that the algorithm performs poorly.\n",
+        "\n",
+        "For example, let's consider boosting with a linear regression as the base learner. In boosting, we can use the errors in two ways : either grade and reweight in the training, or either train the model on the residuals.\n",
+        "\n",
+        "At the first iteration, we fit a linear regression to the target variable in order to obtain the parameters $\\beta$:\n",
+        "\n",
+        "$$\n",
+        "\\beta_{1}^* = \\underset{\\beta_1}{\\arg \\min} || Y - X\\beta_1 ||^2\n",
+        "$$\n",
+        "\n",
+        "This gives us the first learner $g_1(x) = X\\beta_1$, where $\\beta_1 = (X^TX)^{-1}X^TY$.\n",
+        "\n",
+        "In the following iterations, we fit a linear regression on the residuals to obtain the parameters $\\beta_m$:\n",
+        "\n",
+        "$$\n",
+        "\\beta_m^* = \\underset{\\beta_m}{\\arg \\min} || Y - X\\hat{\\beta}_{m-1} - X\\beta_m ||^2 = \\underset{\\beta}{\\arg \\min} || R_{m-1} - X\\beta_m ||^2\n",
+        "$$\n",
+        "\n",
+        "It's easy to see that the optimal $\\beta_m = 0$, since the residuals are orthogonal to the previous residuals. Therefore, the optimal $\\beta_m = 0$ and the optimal $g_m(x) = 0$.\n",
+        "\n",
+        "For example, when $m=2$, we have the following optimization problem:\n",
+        "\n",
+        "$$\n",
+        "\\beta_2^* = \\underset{\\beta_2}{\\arg \\min} || Y - X\\hat{\\beta}_{1} - X\\beta_2 ||^2 = \\underset{\\beta_2}{\\arg \\min} || R_1 - X\\beta_2 ||^2\n",
+        "$$\n",
+        "\n",
+        "Thus, $\\beta_2 = (X^TX)^{-1}X^TR_1 = (X^TX)^{-1}X^T(Y - X\\hat{\\beta}_1) = \\hat{\\beta}_1 - I_d \\hat{\\beta}_1 = 0$.\n",
+        "\n",
+        "This shows that, at the second iteration, the algorithm fails to improve because the residuals are already orthogonal, meaning the gradient direction leads to no further improvement. Essentially, this explains why using a strong learner such as linear regression in boosting can result in poor performance. In this case, the linear model fits perfectly in the first iteration, leaving no room for further improvement, as the residuals contain no additional information.\n",
+        "\n",
+        "Boosting algorithms like AdaBoost or Gradient Boosting rely on the fact that weak learners make small, incremental improvements, allowing the algorithm to progressively focus on harder-to-classify examples or areas where the model still has room to learn. By using a strong learner that perfectly fits the data in the first round, we lose the incremental learning aspect, which is key to the success of boosting.\n",
+        "\n",
+        "# Activity 3 : Xgboost\n",
+        "\n",
+        "XGBoost (Extreme Gradient Boosting) is an optimized distributed gradient boosting library designed to be highly efficient, flexible, and portable. It implements machine learning algorithms under the Gradient Boosting framework. XGBoost provides a parallel tree boosting (also known as GBDT, GBM) that solve many data science problems in a fast and accurate way. When the dataset is higly correlated, we can still use XGBoost, as it can handle multicollinearity.\n"
+      ],
+      "id": "f91ce109"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import pandas as pd\n",
+        "\n",
+        "data_train = pd.read_csv(\"Data/mnist_train_small.csv\")\n",
+        "data_test = pd.read_csv(\"Data/mnist_test.csv\")\n",
+        "\n",
+        "# normalize the data\n",
+        "X_train  = data_train.iloc[:, 1:]/255\n",
+        "y_train = data_train[\"label\"]\n",
+        "X_test  = data_test.iloc[:, 1:]/255\n",
+        "y_test = data_test[\"label\"]"
+      ],
+      "id": "fc53dd2f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "As we can see, the model performs rather well with an accuracy of 0.87 (quite similar to the one obtained with SVM). However, we can see that the model is not perfect as it makes some mistakes.\n"
+      ],
+      "id": "058e92fb"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Train Xgboost on the data\n",
+        "from xgboost import XGBClassifier\n",
+        "model_xgboost = XGBClassifier(colsample_bylevel=0.1,gamma=0.1).fit(X_train, y_train)\n",
+        "y_pred_xgboost = model_xgboost.predict(X_test)\n",
+        "accuracy_xgboost = accuracy_score(y_test, y_pred_xgboost)\n",
+        "print(\"Accuracy: \", accuracy_xgboost)\n",
+        "\n",
+        "cm_xgboost = confusion_matrix(y_test, y_pred_xgboost)\n",
+        "sns.heatmap(cm_xgboost, annot=True)\n",
+        "plt.title('XGBoost confusion matrix')\n",
+        "plt.show()"
+      ],
+      "id": "65e5c8dc",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/Users/cherylkouadio/Library/Python/3.9/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

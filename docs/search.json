@@ -4,7 +4,7 @@
     "href": "index_gdr.html",
     "title": "Cheryl KOUADIO",
     "section": "",
-    "text": "Compte tenu de ma spécialisation en gestion des risques, les contenus que je prévois de partager dans cette section dédiée à la 3ème année (3A) porteront principalement sur les enseignements spécifiques à cette spécialisation. Je m’efforcerai de rendre ces partages aussi pertinents et enrichissants que possible, en espérant qu’ils serviront de guide précieux pour ceux qui suivront une voie similaire.\n\n\n\n\nConstruction du bilan d’entreprise (bilan_entreprise.qmd)\n\n\n\n\n\nReglementation prudentielle (reglementation_prudentielle.qmd)\n\n\n\n\n\nDéfinition du risque financier (risque_def.qmd)\nValue-at-risk (VaR) :\n\nDéfinition de la VaR (var_def.qmd)\nImplémentation de la VaR sur python (var_application.qmd)\n\n\n\n\n\n\nInvestissement socialement responsable (ISR.qmd)"
+    "text": "Compte tenu de ma spécialisation en gestion des risques, les contenus que je prévois de partager dans cette section dédiée à la 3ème année (3A) porteront principalement sur les enseignements spécifiques à cette spécialisation. Je m’efforcerai de rendre ces partages aussi pertinents et enrichissants que possible, en espérant qu’ils serviront de guide précieux pour ceux qui suivront une voie similaire.\n\n\n\n\nConstruction du bilan d’entreprise (bilan_entreprise.qmd)\nReglementation prudentielle (reglementation_prudentielle.qmd)\n\n\n\n\n\nDéfinition du risque financier (risque_def.qmd)\nParcours des mesures de risques\nValue-at-risk (VaR) :\n\nDéfinition de la VaR (var_def.qmd)\nImplémentation de la VaR sur python (var_application.qmd)\n\n\n\n\n\n\n\n\n\nCalibration avec le modèle de black-scholes\nCalibration du modèle à volatilité stochastique de Taylor\nCalibration avec le modèle de Heston\n\n\n\n\n\nMesures de risques\nPricing d’options vanilles\nPricing de taux, swap, d’obligations\nTracking error\nConstruction de portefeuille markowitz\n\n\n\n\n\nInvestissement socialement responsable (ISR.qmd)\n\n\n\n\n\nProjet de séries temporelles\nProjet de scoring\nProjet de théorie de valeursd extrêmes"
   },
   {
     "objectID": "index_gdr.html#analyse-financière",
@@ -39,7 +39,7 @@
     "href": "about.html",
     "title": "A propos de moi",
     "section": "",
-    "text": "Cheryl KOUADIO\n\n\n\n\nEtudiante gestion des risques financiers\n\n\nÉcole Nationale de la Statistique et de l’analyse de l’information\n\n\n\nEmail : cheryl.s.kouadio@gmail.com\n\n\nCV (Français/English) : cv_cheryl_kouadio_fr.pdf/cv_cheryl_kouadio_en.pdf\n\n\n\n\nIntérêts\n\nJe m’intéresse particulièrement à la modélisation des risques financiers (risques de marché et de crédit) ainsi qu’aux normes et réglementations qui régissent le système bancaire (Bâle III, etc.), à l’audit des modèles quantitatifs et à la validation des méthodes statistiques appliquées à la gestion des risques. Je suis également passionné par l’évolution des approches statistiques, ce qui m’amène à effectuer une veille constante des nouvelles méthodes.\n\n\n\n\n Back to top"
+    "text": "Cheryl KOUADIO\n\n\nEtudiante en gestion des risques financiers\n\n\nEmail : cheryl.s.kouadio@gmail.com\n\n\nCV (Français/English) : cv_cheryl_kouadio_fr.pdf / cv_cheryl_kouadio_en.pdf\n\n\nGithub :  github.com/cheryl-kdio\n\n\nLinkedin : /in/cheryl-kouadio-251815206 \n\n\nMedium :  medium.com/@cheryl.s.kouadio\n\n\n\n\n\nA propos de moi\n\nJe suis Cheryl Kouadio, étudiante en gestion des risques bancaires à l’ENSAI. Je me spécialise dans la modélisation des risques financiers, en particulier les risques de marché et de crédit, ainsi que dans l’étude des normes financières, comptables et réglementaires encadrant le système bancaire (Bâle III, IFRS 9, etc.).\nCe site web, conçu et généré avec Quarto, s’adresse principalement aux étudiants de l’ENSAI et a pour vocation d’offrir un soutien à ceux qui, comme moi, ont été confrontés à des défis académiques au cours de leur formation, notamment en deuxième et troisième année. Il ne prétend en aucun cas se substituer à l’enseignement dispensé par nos professeurs, dont la rigueur et l’expertise sont essentielles. Son objectif est plutôt de compléter leur travail en partageant mes expériences personnelles et les projets que j’ai réalisés.\nAu-delà de son utilité pour les étudiants, ce site constitue également une ressource précieuse pour les professionnels souhaitant revisiter certains concepts clés en gestion des risques ou même en statistiques. Il propose des exemples concrets et des pistes de réflexion adaptées aux problématiques actuelles, afin d’aider chacun à mieux appréhender ses projets et à relever ses propres défis académiques et professionnels.\n\n\n\n\n Back to top"
   },
   {
     "objectID": "3A/risque_def.html",
@@ -361,7 +361,7 @@
     "href": "index.html",
     "title": "Cheryl KOUADIO",
     "section": "",
-    "text": "Ce site web a été conçu et généré à l’aide de Quarto, dans le but principal d’offrir un soutien aux étudiants de l’ENSAI qui pourraient se trouver face à des défis similaires à ceux que j’ai rencontrés au cours de mon parcours académique, notamment durant mes 2ème et 3ème années d’étude. L’intention derrière la création de ce site n’est pas de remplacer les enseignements prodigués par nos estimés professeurs. Au contraire, il vise à compléter leur travail remarquable en partageant mes expériences personnelles et les projets que j’ai réalisés. L’objectif est de fournir une ressource supplémentaire qui peut aider les étudiants à naviguer dans leurs propres projets et défis académiques."
+    "text": "Résumé de la théorie des valeurs extrêmes (EVT_resume.pdf)"
   },
   {
     "objectID": "index.html#régressions",
@@ -376,5 +376,19 @@
     "title": "Cheryl KOUADIO",
     "section": "Classifications",
     "text": "Classifications\n\nApplications des arbres & forêts aléatoires sur un jeu de données (arbres_&_forets_aleatoires.html)"
+  },
+  {
+    "objectID": "index_gdr.html#projets-et-rapport",
+    "href": "index_gdr.html#projets-et-rapport",
+    "title": "Cheryl KOUADIO",
+    "section": "",
+    "text": "Projet de séries temporelles\nProjet de scoring\nProjet de théorie de valeursd extrêmes"
+  },
+  {
+    "objectID": "index_gdr.html#projets-et-rapports",
+    "href": "index_gdr.html#projets-et-rapports",
+    "title": "Cheryl KOUADIO",
+    "section": "",
+    "text": "Projet de séries temporelles\nProjet de scoring\nProjet de théorie de valeursd extrêmes"
   }
 ]
