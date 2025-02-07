@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.554">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -35,12 +35,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-fdf986989e2058d46a90f864900247d8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,20 +79,19 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Cheryl KOUADIO</span>
-    </a>
-  </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./blog.html"> 
 <span class="menu-text">Accueil</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Modélisation stat.</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./index_gdr.html"> 
@@ -100,11 +99,11 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
-<span class="menu-text">A propos de moi</span></a>
+<span class="menu-text">À propos</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
@@ -119,18 +118,14 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#théorie-des-valeurs-extrêmes" id="toc-théorie-des-valeurs-extrêmes" class="nav-link active" data-scroll-target="#théorie-des-valeurs-extrêmes">Théorie des valeurs extrêmes</a></li>
-  <li><a href="#microéconometrie-appliquée" id="toc-microéconometrie-appliquée" class="nav-link" data-scroll-target="#microéconometrie-appliquée">Microéconometrie appliquée</a></li>
-  <li><a href="#apprentissage-supervisée" id="toc-apprentissage-supervisée" class="nav-link" data-scroll-target="#apprentissage-supervisée">Apprentissage supervisée</a>
-  <ul class="collapse">
-  <li><a href="#régressions" id="toc-régressions" class="nav-link" data-scroll-target="#régressions">Régressions</a></li>
-  <li><a href="#classifications" id="toc-classifications" class="nav-link" data-scroll-target="#classifications">Classifications</a></li>
-  </ul></li>
+  <li><a href="#microéconométrie-appliquée" id="toc-microéconométrie-appliquée" class="nav-link" data-scroll-target="#microéconométrie-appliquée">Microéconométrie appliquée</a></li>
+  <li><a href="#apprentissage-supervisé" id="toc-apprentissage-supervisé" class="nav-link" data-scroll-target="#apprentissage-supervisé">Apprentissage supervisé</a></li>
   </ul>
 </nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -154,44 +149,36 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="box">
-<p>Ce site web a été conçu et généré à l’aide de Quarto, dans le but principal d’offrir un soutien aux étudiants de l’ENSAI qui pourraient se trouver face à des défis similaires à ceux que j’ai rencontrés au cours de mon parcours académique, notamment durant mes 2ème et 3ème années d’étude. L’intention derrière la création de ce site n’est pas de remplacer les enseignements prodigués par nos estimés professeurs. Au contraire, il vise à compléter leur travail remarquable en partageant mes expériences personnelles et les projets que j’ai réalisés. L’objectif est de fournir une ressource supplémentaire qui peut aider les étudiants à naviguer dans leurs propres projets et défis académiques.</p>
-</div>
 <section id="théorie-des-valeurs-extrêmes" class="level1">
 <h1>Théorie des valeurs extrêmes</h1>
+<div class="blog-section">
 <ul>
-<li>Résumé de la théorie des valeurs extrêmes (<a href="3A/EVT/EVT_resume.pdf">EVT_resume.pdf</a>)</li>
+<li><a href="3A/EVT/EVT_resume.pdf">Résumé de la théorie des valeurs extrêmes</a></li>
 </ul>
+</div>
 </section>
-<section id="microéconometrie-appliquée" class="level1">
-<h1>Microéconometrie appliquée</h1>
+<section id="microéconométrie-appliquée" class="level1">
+<h1>Microéconométrie appliquée</h1>
+<div class="blog-section">
 <ul>
-<li>Résumé des méthodes de microéconométrie appliquée enseignée à la promo 2024-2025 Ensai (<a href="2A/Courses.pdf">applied_micro.pdf</a>)</li>
+<li><a href="2A/Courses.pdf">Résumé des méthodes de microéconométrie appliquée enseignées à la promo 2024-2025 ENSAI</a></li>
 </ul>
+</div>
 </section>
-<section id="apprentissage-supervisée" class="level1">
-<h1>Apprentissage supervisée</h1>
+<section id="apprentissage-supervisé" class="level1">
+<h1>Apprentissage supervisé</h1>
+<div class="blog-section">
 <ul>
-<li>Advanced Techniques in Machine Learning: Kernel Trick and Support Vector Machines (SVM) (<a href="./3A/Apprentisage-stat/Tp2.html">kernel_and_svm.qmd</a>)</li>
-<li>Gradient boosting (<a href="./3A/Apprentisage-stat/Tp3.html">gradient_boosting.qmd</a>)</li>
-<li>Features selection (<a href="./3A/Apprentisage-stat/Tp4.html">features_selection.qmd</a>)</li>
+<li><a href="./2A/App_sup/reg_lin.html">Régression linéaire</a></li>
+<li><a href="./3A/Apprentisage-stat/Tp2.html">Kernel Trick and Support Vector Machines (SVM)</a></li>
+<li><a href="./3A/Apprentisage-stat/Tp3.html">Gradient boosting</a></li>
+<li><a href="./3A/Apprentisage-stat/Tp4.html">Feature selection</a></li>
+<li><a href="./3A/Apprentisage-stat/Tp1.html">Régression ridge et lasso</a></li>
+<li><a href="2A/App_sup/arbres_&amp;_forets_aleatoires.html">CART &amp; Random Forest</a></li>
 </ul>
-<section id="régressions" class="level2">
-<h2 class="anchored" data-anchor-id="régressions">Régressions</h2>
-<ul>
-<li>Regression linéaire (<a href="./2A/App_sup/reg_lin.html">regression_lin.qmd</a>)</li>
-<li>Regression ridge et lasso (<a href="./3A/Apprentisage-stat/Tp1.html">lasso_ridge.qmd</a>)</li>
-</ul>
-</section>
-<section id="classifications" class="level2">
-<h2 class="anchored" data-anchor-id="classifications">Classifications</h2>
-<ul>
-<li>Applications des arbres &amp; forêts aléatoires sur un jeu de données (<a href="2A/App_sup/arbres_&amp;_forets_aleatoires.html">arbres_&amp;_forets_aleatoires.html</a>)
-</li>
-</ul>
+</div>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -374,18 +361,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -417,7 +393,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/cheryl-kdio\.github\.io\/personal-website\/");
@@ -425,7 +421,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -434,11 +430,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
-          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -527,7 +518,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

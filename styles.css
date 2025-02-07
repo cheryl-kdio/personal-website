@@ -1,4 +1,8 @@
 /* css styles */
+body {
+  font-family: "Times New Roman", Times, serif;
+}
+
 .quarto-title > h1.title {
     opacity: 0 !important;
   }
@@ -65,4 +69,22 @@ h3 {
   font-size: 1rem;
   padding-left: 40px;
 }
+
+.blog-section {
+  background-color: rgba(183, 182, 182, 0.342);  /* Fond légèrement gris */
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border-left: 5px solid #007bff; /* Barre colorée pour différencier les sections */
+}
+
+.blog-section a {
+  color: black; /* Liens en bleu */
+  text-decoration: none;
+}
+
+.blog-section a:hover {
+  text-decoration: underline;
+}
+
 
