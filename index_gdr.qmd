@@ -16,7 +16,6 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 ### Risques financiers
 ::: {.blog-section}
 - [Définition du risque financier](3A/risque_def.qmd)
-- [Mesures de risques]()
 - [Value-at-risk (VaR)](3A/var_def.qmd) :
     - [Définition de la VaR](3A/var_def.qmd)
     - [Implémentation de la VaR sur python](3A/var_application.qmd)
@@ -37,6 +36,7 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 
 ### Gestion de portefeuille et pricing
 ::: {.blog-section}
+- [Mesures de gestion de portefeuille](3A/gestion_actifs/mesures_rsq.qmd)
 - [Pricing d'options vanilles]()
 - [Pricing de taux, swap, d'obligations]()
 - [Tracking error]()
