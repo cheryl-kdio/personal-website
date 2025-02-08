@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Blog</title>
+<title>Cheryl KOUADIO</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<link href="./img/logo-bg.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -41,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-6bd9cfa162949bde0a231f530c97869d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-79108a0fc1995748cbd19a5b0e3e3e7c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark-fdf986989e2058d46a90f864900247d8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -70,65 +69,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -139,6 +80,11 @@ window.Quarto = {
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./img/logo-bg.png" alt="" class="navbar-logo">
+    </a>
+  </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
@@ -146,11 +92,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./blog.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Accueil</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link active" href="./index_stat.html" aria-current="page"> 
 <span class="menu-text">Modélisation stat.</span></a>
   </li>  
   <li class="nav-item">
@@ -170,26 +116,34 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sommaire</h2>
+   
+  <ul>
+  <li><a href="#théorie-des-valeurs-extrêmes" id="toc-théorie-des-valeurs-extrêmes" class="nav-link active" data-scroll-target="#théorie-des-valeurs-extrêmes">Théorie des valeurs extrêmes</a></li>
+  <li><a href="#microéconométrie-appliquée" id="toc-microéconométrie-appliquée" class="nav-link" data-scroll-target="#microéconométrie-appliquée">Microéconométrie appliquée</a></li>
+  <li><a href="#apprentissage-supervisé" id="toc-apprentissage-supervisé" class="nav-link" data-scroll-target="#apprentissage-supervisé">Apprentissage supervisé</a></li>
+  </ul>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Blog</h1>
+<h1 class="title">Cheryl KOUADIO</h1>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -201,323 +155,39 @@ window.Quarto = {
 </header>
 
 
+<section id="théorie-des-valeurs-extrêmes" class="level1">
+<h1>Théorie des valeurs extrêmes</h1>
+<div class="blog-section">
+<ul>
+<li><a href="3A/EVT/EVT_resume.pdf">Résumé de la théorie des valeurs extrêmes</a></li>
+</ul>
+</div>
+</section>
+<section id="microéconométrie-appliquée" class="level1">
+<h1>Microéconométrie appliquée</h1>
+<div class="blog-section">
+<ul>
+<li><a href="2A/Courses.pdf">Résumé des méthodes de microéconométrie appliquée enseignées à la promo 2024-2025 ENSAI</a></li>
+</ul>
+</div>
+</section>
+<section id="apprentissage-supervisé" class="level1">
+<h1>Apprentissage supervisé</h1>
+<div class="blog-section">
+<ul>
+<li><a href="./2A/App_sup/reg_lin.html">Régression linéaire</a></li>
+<li><a href="./3A/Apprentisage-stat/Tp2.html">Kernel Trick and Support Vector Machines (SVM)</a></li>
+<li><a href="./3A/Apprentisage-stat/Tp3.html">Gradient boosting</a></li>
+<li><a href="./3A/Apprentisage-stat/Tp4.html">Feature selection</a></li>
+<li><a href="./3A/Apprentisage-stat/Tp1.html">Régression ridge et lasso</a></li>
+<li><a href="2A/App_sup/arbres_&amp;_forets_aleatoires.html">CART &amp; Random Forest</a></li>
+</ul>
+</div>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="listing-actions-group">
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1738413165364" data-listing-reading-time-sort="12" data-listing-word-count-sort="2353">
-<div class="thumbnail">
-<p><a href="./3A/Apprentisage-stat/Tp1.html" class="no-external"></a></p><a href="./3A/Apprentisage-stat/Tp1.html" class="no-external">
-<p class="card-img-top"><img src="3A/Apprentisage-stat/Tp1_files/figure-html/cell-5-output-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./3A/Apprentisage-stat/Tp1.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./3A/Apprentisage-stat/Tp1.html" class="no-external">Ridge regression vs.&nbsp;Lasso regression</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./3A/Apprentisage-stat/Tp1.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./3A/Apprentisage-stat/Tp1.html" class="no-external">The ridge regression is a variant of the linear regression that is used to prevent multicolinearity coming from the covariables in the dataset and thus prevent overfitting.…<span class="math inline"></span></a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./3A/Apprentisage-stat/Tp1.html" class="no-external"></a></p><a href="./3A/Apprentisage-stat/Tp1.html" class="no-external">
-<div class="listing-author">
-Cheryl KOUADIO
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1738413165364" data-listing-reading-time-sort="11" data-listing-word-count-sort="2115">
-<div class="thumbnail">
-<p><a href="./3A/Apprentisage-stat/Tp2.html" class="no-external"></a></p><a href="./3A/Apprentisage-stat/Tp2.html" class="no-external">
-<p class="card-img-top"><img src="3A/Apprentisage-stat/Tp2_files/figure-html/cell-7-output-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./3A/Apprentisage-stat/Tp2.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./3A/Apprentisage-stat/Tp2.html" class="no-external">Kernel Trick and SVM</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./3A/Apprentisage-stat/Tp2.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./3A/Apprentisage-stat/Tp2.html" class="no-external">In regression and classification, we often use linear models to predict the target variable. However, in many cases, the relationship between the target variable and the…</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./3A/Apprentisage-stat/Tp2.html" class="no-external"></a></p><a href="./3A/Apprentisage-stat/Tp2.html" class="no-external">
-<div class="listing-author">
-Cheryl KOUADIO
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-file-modified-sort="1738413165364" data-listing-reading-time-sort="7" data-listing-word-count-sort="1274">
-<div class="thumbnail">
-<p><a href="./3A/Apprentisage-stat/Tp3.html" class="no-external"></a></p><a href="./3A/Apprentisage-stat/Tp3.html" class="no-external">
-<p class="card-img-top"><img src="3A/Apprentisage-stat/Tp3_files/figure-html/cell-3-output-2.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./3A/Apprentisage-stat/Tp3.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./3A/Apprentisage-stat/Tp3.html" class="no-external">Gradient boosting</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./3A/Apprentisage-stat/Tp3.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./3A/Apprentisage-stat/Tp3.html" class="no-external">AdaBoost is a popular boosting algorithm that is used to boost the performance of decision trees on binary classification problems. It works by weighting the observations…</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./3A/Apprentisage-stat/Tp3.html" class="no-external"></a></p><a href="./3A/Apprentisage-stat/Tp3.html" class="no-external">
-<div class="listing-author">
-Cheryl KOUADIO
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-file-modified-sort="1738413165364" data-listing-reading-time-sort="11" data-listing-word-count-sort="2123">
-<div class="thumbnail">
-<p><a href="./3A/Apprentisage-stat/Tp4.html" class="no-external"></a></p><a href="./3A/Apprentisage-stat/Tp4.html" class="no-external">
-<p class="card-img-top"><img src="3A/Apprentisage-stat/Tp4_files/figure-html/cell-3-output-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./3A/Apprentisage-stat/Tp4.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./3A/Apprentisage-stat/Tp4.html" class="no-external">Features selection</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./3A/Apprentisage-stat/Tp4.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./3A/Apprentisage-stat/Tp4.html" class="no-external">Feature selection is a process where you automatically or manually select those features which contribute most to your prediction variable or output in which you are…</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./3A/Apprentisage-stat/Tp4.html" class="no-external"></a></p><a href="./3A/Apprentisage-stat/Tp4.html" class="no-external">
-<div class="listing-author">
-Cheryl KOUADIO
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-listing-file-modified-sort="1738413165370" data-listing-reading-time-sort="6" data-listing-word-count-sort="1093">
-<div class="thumbnail">
-<p><a href="./3A/ISR.html" class="no-external"></a></p><a href="./3A/ISR.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./3A/ISR.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./3A/ISR.html" class="no-external">Investissement Socialement Responsable (ISR): De quoi parle-t-on ?</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./3A/ISR.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./3A/ISR.html" class="no-external">L’Investissement Socialement Responsable (ISR) représente une approche d’investissement qui privilégie l’intégration de critères extra-financiers, notamment les critères ESG…</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./3A/ISR.html" class="no-external"></a></p><a href="./3A/ISR.html" class="no-external">
-<div class="listing-author">
-Cheryl Kouadio
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-listing-file-modified-sort="1738413165370" data-listing-reading-time-sort="27" data-listing-word-count-sort="5398">
-<div class="thumbnail">
-<p><a href="./3A/bilan_entreprise.html" class="no-external"></a></p><a href="./3A/bilan_entreprise.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./3A/bilan_entreprise.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./3A/bilan_entreprise.html" class="no-external">Comment fonctionne le bilan et le compte de résultat d’une entreprise</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./3A/bilan_entreprise.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./3A/bilan_entreprise.html" class="no-external">L’analyse financière constitue l’ensemble des outils permettant de donner un avis objectif d’une organisation (entreprises, fondations, etc.) sur la santé finanière et les…</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./3A/bilan_entreprise.html" class="no-external"></a></p><a href="./3A/bilan_entreprise.html" class="no-external">
-<div class="listing-author">
-Cheryl Kouadio
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-listing-file-modified-sort="1739023834682" data-listing-reading-time-sort="7" data-listing-word-count-sort="1385">
-<div class="thumbnail">
-<p><a href="./3A/gestion_actifs/mesures_rsq.html" class="no-external"></a></p><a href="./3A/gestion_actifs/mesures_rsq.html" class="no-external">
-<p class="card-img-top"><img src="3A/gestion_actifs/mesures_rsq_files/figure-html/cell-10-output-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./3A/gestion_actifs/mesures_rsq.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./3A/gestion_actifs/mesures_rsq.html" class="no-external">Gestion de risques de portefeuille</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./3A/gestion_actifs/mesures_rsq.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./3A/gestion_actifs/mesures_rsq.html" class="no-external">Pour gérer les risques, on procède en trois étapes : 1. Identification : Nous avons un portefeuille d’action, donc le risque auquel on fait face est le risque de marché…</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./3A/gestion_actifs/mesures_rsq.html" class="no-external"></a></p><a href="./3A/gestion_actifs/mesures_rsq.html" class="no-external">
-<div class="listing-author">
-Cheryl Kouadio
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-listing-file-modified-sort="1739023823124" data-listing-reading-time-sort="20" data-listing-word-count-sort="3932">
-<div class="thumbnail">
-<p><a href="./3A/gestion_actifs/profil_liquid.html" class="no-external"></a></p><a href="./3A/gestion_actifs/profil_liquid.html" class="no-external">
-<p class="card-img-top"><img src="3A/gestion_actifs/profil_liquid_files/figure-html/cell-15-output-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./3A/gestion_actifs/profil_liquid.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./3A/gestion_actifs/profil_liquid.html" class="no-external">Profil d’écoulement/ de liquidation de portefeuille</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./3A/gestion_actifs/profil_liquid.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./3A/gestion_actifs/profil_liquid.html" class="no-external">Nous souhaitons calculer le profil d’écoulement/liquidation dans les scénarios suivants :</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./3A/gestion_actifs/profil_liquid.html" class="no-external"></a></p><a href="./3A/gestion_actifs/profil_liquid.html" class="no-external">
-<div class="listing-author">
-Cheryl Kouadio
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="8" data-listing-file-modified-sort="1738413165370" data-listing-reading-time-sort="10" data-listing-word-count-sort="1869">
-<div class="thumbnail">
-<p><a href="./3A/reglementation_prudentielle.html" class="no-external"></a></p><a href="./3A/reglementation_prudentielle.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./3A/reglementation_prudentielle.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./3A/reglementation_prudentielle.html" class="no-external">La réglementation prudentielle</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./3A/reglementation_prudentielle.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./3A/reglementation_prudentielle.html" class="no-external">La réglementation prudentielle a été initiée par le développement des marchés financiers et des chocs alimentés par diverses crises financières. Face à ce constat, les…</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./3A/reglementation_prudentielle.html" class="no-external"></a></p><a href="./3A/reglementation_prudentielle.html" class="no-external">
-<div class="listing-author">
-Cheryl Kouadio
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="9" data-listing-file-modified-sort="1738413165370" data-listing-reading-time-sort="7" data-listing-word-count-sort="1385">
-<div class="thumbnail">
-<p><a href="./3A/risque_def.html" class="no-external"></a></p><a href="./3A/risque_def.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./3A/risque_def.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./3A/risque_def.html" class="no-external">Le risque, qu’est ce que c’est ?</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./3A/risque_def.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./3A/risque_def.html" class="no-external">En finance, le risque peut être défini comme la survenance d’un événement incertain qui peut avoir des conséquences négatives sur le bilan, ou le compte de résultat d’une…</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./3A/risque_def.html" class="no-external"></a></p><a href="./3A/risque_def.html" class="no-external">
-<div class="listing-author">
-Cheryl Kouadio
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="10" data-listing-file-modified-sort="1738413165371" data-listing-reading-time-sort="20" data-listing-word-count-sort="3932">
-<div class="thumbnail">
-<p><a href="./3A/var_def.html" class="no-external"></a></p><a href="./3A/var_def.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./3A/var_def.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./3A/var_def.html" class="no-external">La VaR</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./3A/var_def.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./3A/var_def.html" class="no-external">La mesure de risque réglementaire correspond à la valeur en risque ou value at-risk (VaR) qui est le quantile de perte (ou perte maximale subie). Il s’agit dans cette…</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./3A/var_def.html" class="no-external"></a></p><a href="./3A/var_def.html" class="no-external">
-<div class="listing-author">
-Cheryl Kouadio
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="11" data-listing-file-modified-sort="1738710872453" data-listing-reading-time-sort="7" data-listing-word-count-sort="1288">
-<div class="thumbnail">
-<p><a href="./2A/App_sup/reg_lin.html" class="no-external"></a></p><a href="./2A/App_sup/reg_lin.html" class="no-external">
-<p class="card-img-top"><img src="2A/App_sup/reg_lin_files/figure-html/unnamed-chunk-1-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./2A/App_sup/reg_lin.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./2A/App_sup/reg_lin.html" class="no-external">La régression linéaire</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./2A/App_sup/reg_lin.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./2A/App_sup/reg_lin.html" class="no-external">La régression linéaire est une méthode d’apprentissage supervisé qui vise à évaluer, lorsqu’il existe, la relation linéaire entre une variable d’intérêt et des variables…</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./2A/App_sup/reg_lin.html" class="no-external"></a></p><a href="./2A/App_sup/reg_lin.html" class="no-external">
-<div class="listing-author">
-Cheryl Kouadio
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

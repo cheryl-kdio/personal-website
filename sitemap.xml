@@ -1,51 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/index_gdr.html</loc>
-    <lastmod>2025-02-08T14:23:12.527Z</lastmod>
+    <loc>https://cheryl-kdio.github.io/personal-website/index_stat.html</loc>
+    <lastmod>2025-02-06T19:45:01.302Z</lastmod>
   </url>
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/blog.html</loc>
-    <lastmod>2025-02-06T19:58:57.472Z</lastmod>
+    <loc>https://cheryl-kdio.github.io/personal-website/index.html</loc>
+    <lastmod>2025-02-08T15:04:51.721Z</lastmod>
   </url>
   <url>
     <loc>https://cheryl-kdio.github.io/personal-website/3A/var_def.html</loc>
     <lastmod>2025-02-01T12:32:45.371Z</lastmod>
   </url>
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/reglementation_prudentielle.html</loc>
-    <lastmod>2025-02-01T12:32:45.370Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/gestion_actifs/mesures_rsq.html</loc>
-    <lastmod>2025-02-08T14:10:34.682Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/ISR.html</loc>
-    <lastmod>2025-02-01T12:32:45.370Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/Apprentisage-stat/Tp3.html</loc>
-    <lastmod>2025-02-01T12:32:45.364Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/Apprentisage-stat/Tp1.html</loc>
-    <lastmod>2025-02-01T12:32:45.364Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/2A/App_sup/reg_lin.html</loc>
-    <lastmod>2025-02-04T23:14:32.453Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/Apprentisage-stat/Tp2.html</loc>
-    <lastmod>2025-02-01T12:32:45.364Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/Apprentisage-stat/Tp4.html</loc>
-    <lastmod>2025-02-01T12:32:45.364Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/bilan_entreprise.html</loc>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/risque_def.html</loc>
     <lastmod>2025-02-01T12:32:45.370Z</lastmod>
   </url>
   <url>
@@ -53,15 +21,51 @@
     <lastmod>2025-02-08T14:10:23.124Z</lastmod>
   </url>
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/risque_def.html</loc>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/bilan_entreprise.html</loc>
     <lastmod>2025-02-01T12:32:45.370Z</lastmod>
   </url>
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/about.html</loc>
-    <lastmod>2025-02-06T19:12:03.304Z</lastmod>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/Apprentisage-stat/Tp4.html</loc>
+    <lastmod>2025-02-01T12:32:45.364Z</lastmod>
   </url>
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/index.html</loc>
-    <lastmod>2025-02-06T19:45:01.302Z</lastmod>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/Apprentisage-stat/Tp2.html</loc>
+    <lastmod>2025-02-01T12:32:45.364Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/2A/App_sup/reg_lin.html</loc>
+    <lastmod>2025-02-04T23:14:32.453Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/Apprentisage-stat/Tp1.html</loc>
+    <lastmod>2025-02-01T12:32:45.364Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/Apprentisage-stat/Tp3.html</loc>
+    <lastmod>2025-02-01T12:32:45.364Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/ISR.html</loc>
+    <lastmod>2025-02-01T12:32:45.370Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/gestion_actifs/mesures_rsq.html</loc>
+    <lastmod>2025-02-08T14:10:34.682Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/reglementation_prudentielle.html</loc>
+    <lastmod>2025-02-01T12:32:45.370Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/var_application.html</loc>
+    <lastmod>2025-02-08T15:38:03.630Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/about.html</loc>
+    <lastmod>2025-02-08T15:33:01.873Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/index_gdr.html</loc>
+    <lastmod>2025-02-08T14:23:12.527Z</lastmod>
   </url>
 </urlset>
