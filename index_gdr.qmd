@@ -36,7 +36,8 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 
 ### Gestion de portefeuille et pricing
 ::: {.blog-section}
-- [Mesures de gestion de portefeuille](3A/gestion_actifs/mesures_rsq.qmd)
+- [Gestion de risques d'un portefeuille d'actifs](3A/gestion_actifs/mesures_rsq.qmd)
+- [Profil d'écoulement de portefeuille](3A/gestion_actifs/profil_liquid.qmd)
 - [Pricing d'options vanilles]()
 - [Pricing de taux, swap, d'obligations]()
 - [Tracking error]()

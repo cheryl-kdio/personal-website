@@ -1,5 +1,5 @@
 ---
-title: Gestion de portefeuille
+title: Gestion de risques de portefeuille
 author : Cheryl Kouadio
 jupyter: python3
 ---
