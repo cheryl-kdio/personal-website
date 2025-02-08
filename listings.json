@@ -2,6 +2,9 @@
   {
     "listing": "/index.html",
     "items": [
+      "/3A/proc_stochastique/modele_log_sv-part2.html",
+      "/3A/proc_stochastique/modele_heston.html",
+      "/3A/spearman-pearson.html",
       "/3A/Apprentisage-stat/Tp1.html",
       "/3A/Apprentisage-stat/Tp2.html",
       "/3A/Apprentisage-stat/Tp3.html",
@@ -10,6 +13,8 @@
       "/3A/bilan_entreprise.html",
       "/3A/gestion_actifs/mesures_rsq.html",
       "/3A/gestion_actifs/profil_liquid.html",
+      "/3A/proc_stochastique/modele_bs.html",
+      "/3A/proc_stochastique/modele_log_sv-part1.html",
       "/3A/reglementation_prudentielle.html",
       "/3A/risque_def.html",
       "/3A/var_application.html",
