@@ -1,0 +1,12 @@
+{
+  "hash": "163307f42aaf1d31b3b225f5ff4ba7e2",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: Corrélation de Spearman vs corrélation de Pearson\nauthor: Cheryl Kouadio\ndate: '2025-02-07'\noutput: html_document\njupyter: python3\n---\n\n",
+    "supporting": [
+      "spearman-pearson_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

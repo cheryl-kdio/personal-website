@@ -47,6 +47,7 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 ### Autres sujets 
 ::: {.blog-section}
 -   [Investissement socialement responsable](3A/ISR.qmd)
+-   [Corrélation de spearman vs Corrélation de pearson](3A/spearman-pearson.html)
 :::
 
 ## Projets et applications déployées
