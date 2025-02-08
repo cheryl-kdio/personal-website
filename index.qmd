@@ -1,5 +1,5 @@
 ---
-title: "Blog"
+title: "Cheryl KOUADIO"
 listing:
   contents: 
     - 3A/**/*.qmd
