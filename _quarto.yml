@@ -1,9 +1,9 @@
 project:
   type: website
   output-dir: docs
+  resources: img
   render:
     - "*.qmd" # Render all .qmd files
-    - "!3A/var_application.qmd" # Ignore a specific file
     - "!ignored-dir/" # Ignore a specific directory
 execute:
   cache: true
@@ -11,12 +11,14 @@ execute:
   
 website:
   title: ""
+  favicon: img/logo-bg.png
   back-to-top-navigation: true
   navbar:
+    logo: img/logo-bg.png
     left:
-      - href: blog.qmd
-        text: Accueil
       - href: index.qmd
+        text: Accueil
+      - href: index_stat.qmd
         text: Modélisation stat.
       # - text: Gestion des risques
         # menu:
@@ -29,8 +31,9 @@ website:
 
 format:
   html:
+    page-layout: full
     theme:
-      light: cosmo
+      light: flat
       dark: superhero
     css: styles.css
     toc: true

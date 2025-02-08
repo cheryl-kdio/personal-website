@@ -1,5 +1,6 @@
 ---
 title: "A propos de moi"
+page-layout: article
 ---
 
 <div class="box">
@@ -27,7 +28,7 @@ title: "A propos de moi"
 
 
 
-<img src="cheryl_kdio.jpeg"  style="width: 250px; height: 250px;">
+<img src="img/cheryl_kdio.jpeg"  style="width: 250px; height: 250px;">
 </div>
 
 <h2 style="display: block;"> A propos de moi </h2>

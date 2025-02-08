@@ -1,24 +1,13 @@
 ---
-title: "Cheryl KOUADIO"
+title: "Blog"
+listing:
+  contents: 
+    - 3A/**/*.qmd
+    - 2A/**/*.qmd
+  type: grid
+  sort: "date"
+  image-placeholder: img/placeholder.jpg
+  fields: [image, date, title, author, reading-time,description]
+  categories: false
+  filter-ui: true
 ---
-
-# Théorie des valeurs extrêmes
-::: {.blog-section}
-- [Résumé de la théorie des valeurs extrêmes](3A/EVT/EVT_resume.pdf)
-:::
-
-# Microéconométrie appliquée
-::: {.blog-section}
-- [Résumé des méthodes de microéconométrie appliquée enseignées à la promo 2024-2025 ENSAI](2A/Courses.pdf)
-:::
-
-# Apprentissage supervisé
-::: {.blog-section}
-- [Régression linéaire](2A/App_sup/reg_lin.qmd)
-- [Kernel Trick and Support Vector Machines (SVM)](3A/Apprentisage-stat/Tp2.qmd)
-- [Gradient boosting](3A/Apprentisage-stat/Tp3.qmd)
-- [Feature selection](3A/Apprentisage-stat/Tp4.qmd)
-- [Régression ridge et lasso](3A/Apprentisage-stat/Tp1.qmd)
-- [CART & Random Forest](2A/App_sup/arbres_&_forets_aleatoires.html)
-:::
-

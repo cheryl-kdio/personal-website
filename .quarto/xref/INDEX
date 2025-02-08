@@ -55,5 +55,11 @@
   },
   "3A/spearman-pearson.qmd": {
     "spearman-pearson.html": "9a3bdd6e"
+  },
+  "index_stat.qmd": {
+    "index_stat.html": "470de270"
+  },
+  "3A/var_application.qmd": {
+    "var_application.html": "31d05e8a"
   }
 }

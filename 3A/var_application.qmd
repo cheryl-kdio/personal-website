@@ -3,12 +3,11 @@ title: Application de la VaR
 sidebar: auto
 author:
   - Cheryl Kouadio
-draft: true
 ---
 
 # Introduction  
 
-Nous allons ici nous intéresser aux applications de la Value at Risk (VaR) en finance. La VaR est une mesure de risque qui permet d'estimer les pertes maximales potentielles d'un portefeuille  d'actifs financiers sur un horizon de temps donné, à un certain niveau de confiance. Elle est largement utilisée par les institutions financières pour évaluer et gérer les risques de marché, de crédit et de liquidité (cf. [Value at-Risk](var.qmd#sec-var-def)).
+Nous allons ici nous intéresser aux applications de la Value at Risk (VaR) en finance. La VaR est une mesure de risque qui permet d'estimer les pertes maximales potentielles d'un portefeuille  d'actifs financiers sur un horizon de temps donné, à un certain niveau de confiance. Elle est largement utilisée par les institutions financières pour évaluer et gérer les risques de marché, de crédit et de liquidité (cf. [Value at-Risk](var_def.qmd#sec-var-def)).
 
 Nous verrons ainsi les applications des VaR analytique, historique et Monte Carlo.
 
