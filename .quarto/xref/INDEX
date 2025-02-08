@@ -61,5 +61,17 @@
   },
   "3A/var_application.qmd": {
     "var_application.html": "31d05e8a"
+  },
+  "3A/proc_stochastique/modele_log_sv-part2.qmd": {
+    "modele_log_sv-part2.html": "130c958d"
+  },
+  "3A/proc_stochastique/modele_heston.qmd": {
+    "modele_heston.html": "0cb607aa"
+  },
+  "3A/proc_stochastique/modele_log_sv-part1.qmd": {
+    "modele_log_sv-part1.html": "38ded60f"
+  },
+  "3A/proc_stochastique/modele_bs.qmd": {
+    "modele_bs.html": "ac31001b"
   }
 }

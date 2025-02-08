@@ -32,6 +32,8 @@ website:
 format:
   html:
     page-layout: full
+    code-fold: false
+    code-summary: "Show the code"
     theme:
       light: flat
       dark: superhero

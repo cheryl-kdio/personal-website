@@ -3,14 +3,17 @@ title: "Cheryl KOUADIO"
 ---
 
 # Gestion des risques
-<div class="box">
+
+
+::: {.callout-note}
 Compte tenu de ma spécialisation en gestion des risques, les contenus que je prévois de partager dans cette section dédiée à la 3ème année (3A) porteront principalement sur les enseignements spécifiques à cette spécialisation. Je m'efforcerai de rendre ces partages aussi pertinents et enrichissants que possible, en espérant qu'ils serviront de guide précieux pour ceux qui suivront une voie similaire.
-</div>
+:::
+
 
 ### Analyse financière
 ::: {.blog-section}
 - [Construction du bilan d'entreprise](3A/bilan_entreprise.qmd)
-- [Reglementation prudentielle](3A/reglementation_prudentielle.qmd)
+- [Reglementation prudentielle   **TO REWRITE**](3A/reglementation_prudentielle.qmd)
 :::
 
 ### Risques financiers
@@ -28,26 +31,26 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 
 ### Calibrations de processus stochastique
 ::: {.blog-section}
-- [Calibration avec le modèle de black-scholes]()
-- [Calibration du modèle à volatilité stochastique de Taylor - partie 1]()
-- [Calibration du modèle à volatilité stochastique de Taylor - partie 2](3A/proc_stochastique/modele_log_sv-part2.html)
-- [Calibration avec le modèle de Heston](3A/proc_stochastique/modele_heston.html)
+- [Calibration avec le modèle de black-scholes](3A/proc_stochastique/modele_bs.qmd)
+- [Calibration du modèle à volatilité stochastique de Taylor - Filtre de Kalman](3A/proc_stochastique/modele_log_sv-part1.qmd)
+- [Calibration du modèle à volatilité stochastique de Taylor - Filtre particulaire bootstrap](3A/proc_stochastique/modele_log_sv-part2.qmd)
+- [Calibration avec le modèle de Heston](3A/proc_stochastique/modele_heston.qmd)
 :::
 
 ### Gestion de portefeuille et pricing
 ::: {.blog-section}
 - [Gestion de risques d'un portefeuille d'actifs](3A/gestion_actifs/mesures_rsq.qmd)
 - [Profil d'écoulement de portefeuille](3A/gestion_actifs/profil_liquid.qmd)
-- [Pricing d'options vanilles]()
-- [Pricing de taux, swap, d'obligations]()
-- [Tracking error]()
-- [Construction de portefeuille markowitz]()
+- [Pricing d'options vanilles  **TO DO**]()
+- [Pricing de taux, swap, d'obligations  **TO DO**]()
+- [Tracking error  **TO DO**]()
+- [Construction de portefeuille markowitz  **TO DO**]()
 :::
 
 ### Autres sujets 
 ::: {.blog-section}
 -   [Investissement socialement responsable](3A/ISR.qmd)
--   [Corrélation de spearman vs Corrélation de pearson](3A/spearman-pearson.html)
+-   [Corrélation de spearman vs Corrélation de pearson](3A/spearman-pearson.qmd)
 :::
 
 ## Projets et applications déployées

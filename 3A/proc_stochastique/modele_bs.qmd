@@ -1,0 +1,261 @@
+---
+title: 'Calibration du modèle Black-Scholes'
+jupyter: python3
+---
+
+
+# Calibration du modèle Black-Scholes
+Le modèle de Black-Scholes est un modèle mathématique qui permet de déterminer le prix d'une option à partir de plusieurs paramètres. Il est basé sur l'hypothèse que le prix de l'actif sous-jacent suit un mouvement brownien géométrique :
+
+$$
+dS_t = \mu S_t dt + \sigma S_t dW_t 
+$$
+
+Avec $S_t$ le prix de l'actif, $\mu$ le taux de rendement moyen, $\sigma$ la volatilité et $W_t$ un mouvement brownien.
+
+De ce fait, le prix d'une option européenne peut être calculé par la formule de Black-Scholes :
+
+$$
+C(S_t, K, T, r, \sigma) = S_t N(d_1) - K e^{-rT} N(d_2)
+$$
+
+Avec $C$ le prix de l'option, $S_t$ le prix de l'actif sous-jacent, $K$ le prix d'exercice de l'option, $T$ la maturité de l'option, $r$ le taux d'intérêt sans risque, $\sigma$ la volatilité de l'actif, $N$ la fonction de répartition de la loi normale centrée réduite, et :
+
+$$
+d_1 = \frac{1}{\sigma \sqrt{T}} \left( \ln \left( \frac{S_t}{K} \right) + \left( r + \frac{\sigma^2}{2} \right) T \right)
+$$
+
+$$
+d_2 = d_1 - \sigma \sqrt{T}
+$$
+
+
+## 1. Calcul d'un call
+
+```{python}
+# Calcul d'un call
+from scipy.stats import norm
+import numpy as np
+from scipy.optimize import minimize
+
+def FormulaBS(S,K,r,tau,sigma):
+    d1 = (np.log(S/K) + (r + 0.5 *sigma**2)*tau ) / (sigma * np.sqrt(tau))
+    d2 = d1 - sigma * np.sqrt(tau)
+    call = S*norm.cdf(d1) - K* np.exp( - tau * r) * norm.cdf(d2)
+    return call
+```
+
+Lorsqu'on a pas accès à une formule analytique pour le prix d'une option, on peut utiliser la méthode de Monte-Carlo pour estimer ce prix. Pour cela, on simule un grand nombre de trajectoires du prix de l'actif sous-jacent, et on calcule la valeur de l'option à chaque date de maturité. On fait ensuite la moyenne de ces valeurs pour obtenir une estimation du prix de l'option.
+
+Le prix de l'actif sous-jacent suit un mouvement brownien géométrique, et on peut simuler ce mouvement en utilisant la formule d'Ito :
+
+$$
+S_t = S_0 e^{(\mu - \frac{\sigma^2}{2})t + \sigma W_t}
+$$
+
+```{python}
+def FormulaBSMC(K,r,tau,sigma,M, S0) :
+    # Simulation du M mouvement brownien de loi N(0, sigma*sqrt(T))
+    var_brown = sigma * np.sqrt(tau)
+    W_T= np.random.normal(0,var_brown,M)
+
+    S_T = S0 * np.exp((r - 0.5 * sigma**2) * tau + W_T)
+    payoff = np.maximum(S_T - K, 0)
+
+    call = np.exp(-r*tau) * np.mean(payoff)
+    return call
+```
+
+```{python}
+# Calcul du prix d'un call lors t=O, T=6mois, S0= 42, K=40, r=10%, sigma=20%
+S0 = 42
+K = 40
+r = 0.1
+tau = 6
+sigma = 0.2
+
+call_BS = FormulaBS(S0,K,r,tau,sigma)
+print(f"Le prix d'un call est de maturité {tau}mois et de strike {K} est de {call_BS}")
+```
+
+```{python}
+M_values = [500, 5000, 50000]
+for M in M_values:
+	call_BSMC = FormulaBSMC(K, r, tau, sigma, M, S0)
+	print(f"Le prix d'un call avec M={M}, de maturité {tau}mois et de strike {K} est de {call_BSMC}")
+```
+
+```{python}
+# Calcul du prix d'un call lors t=O, T=3mois, S0= 42, K=40, r=10%, sigma=20%
+tau = 3
+call_BS = FormulaBS(S0,K,r,tau,sigma)
+
+print(f"Le prix d'un call est de maturité {tau}mois et de strike {K} est de {call_BS}")
+
+for M in M_values:
+    call_BSMC = FormulaBSMC(K, r, tau, sigma, M, S0)
+    print(f"Le prix d'un call avec M={M}, de maturité {tau}mois et de strike {K} est de {call_BSMC}")
+```
+
+Comme nous pouvons le constater, les deux méthodes permettent d'avoir des résultats similaires. De plus, plus le nombre de simulations est grand, plus la précision de l'estimation est grande.
+
+### 1.1. Calcul des greeks
+
+Les greeks sont des indicateurs qui permettent de mesurer la sensibilité du prix d'une option à différents paramètres. Les principaux greeks sont :
+
+- Delta : mesure la sensibilité du prix de l'option par rapport au prix de l'actif sous-jacent
+$$
+\Delta = \frac{\partial C}{\partial S}
+$$
+- Gamma : mesure la sensibilité du delta par rapport au prix de l'actif sous-jacent
+$$
+\Gamma = \frac{\partial^2 C}{\partial S^2}
+$$
+- Vega : mesure la sensibilité du prix de l'option par rapport à la volatilité de l'actif
+$$
+Vega = \frac{\partial C}{\partial \sigma}
+$$
+
+Il en existe d'autres, mais ces trois-là sont les plus couramment utilisés.
+
+Avec le modèle de Black-Scholes, on peut calculer ces greeks de manière analytique :
+
+$$
+\Delta = N(d_1)
+$$
+
+$$
+\Gamma = \frac{N(d_1)}{S_t \sigma \sqrt{T}}
+$$
+
+$$
+Vega = S_t \sqrt{T} N(d_1)
+$$
+
+Cependant, lorsqu'on a pas accès à une formule analytique pour le prix de l'option, on peut utiliser la méthode de Monte-Carlo pour estimer ces greeks. Pour cela, on calcule le prix de l'option pour une petite variation de chaque paramètre, et on fait la différence entre ces deux prix pour obtenir une estimation du greek. On peut également utiliser la méthode des différences finies pour calculer ces greeks.
+
+```{python}
+def FormulaBSGreeks(S,K,r,tau,sigma):
+    d1 = (np.log(S/K) + (r + 0.5 *sigma**2)*tau ) / (sigma * np.sqrt(tau))
+    # d2 = d1 - sigma * np.sqrt(tau)
+
+    delta = norm.cdf(d1)
+    gamma = (1/(S*sigma*np.sqrt(tau))) * norm.pdf(d1)
+    vega = S * np.sqrt(tau) * norm.pdf(d1)
+
+    return delta, gamma, vega
+```
+
+```{python}
+S = 100
+K = 110
+r = 0.1
+tau = 0.5
+sigma = 0.2
+
+delta, gamma, vega = FormulaBSGreeks(S=S,K=K,r=r,tau=tau,sigma=sigma)
+print(f"Les greeks d'un call sont de maturité {tau}mois et de strike {K} sont delta={delta}, gamma={gamma}, vega={vega}")
+```
+
+```{python}
+# Supposons qu'on a pas la formule des greeks
+# comment calculer les greeks
+# Approche montecarlo 
+
+def FormulaBSGreeksMC(K,r,tau,sigma,M, S0) :
+    d1 = (np.log(S/K) + (r + 0.5 *sigma**2)*tau) / (sigma * np.sqrt(tau))
+    # Simulation du M mouvement brownien de loi N(0, sigma*sqrt(T))
+    var_brown = sigma * np.sqrt(tau)
+    W_T= np.random.normal(0,var_brown,M)
+
+    S_T = S0 * np.exp((r - 0.5 * sigma**2) * tau + W_T)
+
+    delta = np.exp(-r*tau) * np.mean((S_T > K) * S_T / S0)
+    gamma = norm.pdf(d1)/(S0 * sigma * np.sqrt(tau))
+    vega = np.exp(-r*tau) * np.mean((S_T > K) * (S_T/sigma) *(np.log(S_T/S0) - (r + 0.5 * sigma**2)*tau))
+
+    return delta, gamma, vega
+
+delta, gamma, vega = FormulaBSGreeksMC(K,r,tau,sigma,500, S)
+print(f"Les greeks d'un call sont de maturité {tau}mois et de strike {K} sont delta={delta}, gamma={gamma}, vega={vega}")
+```
+
+```{python}
+# Mérhode de différencee finie basé sur la méthode de Taylor
+def FormulaBSGreeks_FD_num(S, K, r, tau, sigma, delta_S=1e-5):
+    """
+    Calcule les Grecs (Delta, Gamma, Vega) pour une option call
+    par différences finies.
+
+    Paramètres:
+    S : float - Prix actuel de l'actif sous-jacent
+    K : float - Prix d'exercice de l'option (strike)
+    r : float - Taux d'intérêt sans risque (annualisé)
+    tau : float - Temps jusqu'à la maturité (en années)
+    sigma : float - Volatilité de l'actif sous-jacent (annualisée)
+    epsilon : float - Petit incrément pour les différences finies
+
+    Retour:
+    tuple - (Delta, Gamma, Vega)
+    """
+    # Delta
+    delta = (FormulaBS(S + delta_S, K, r, tau, sigma) - FormulaBS(S - delta_S, K, r, tau, sigma)) / (2 * delta_S)
+
+    # Gamma
+    gamma = (FormulaBS(S + delta_S, K, r, tau, sigma) - 2 * FormulaBS(S, K, r, tau, sigma) + FormulaBS(S - delta_S, K, r, tau, sigma)) / (delta_S**2)
+
+    # Vega
+    vega = (FormulaBS(S, K, r, tau, sigma + delta_S) - FormulaBS(S, K, r, tau, sigma - delta_S)) / (2 * delta_S)
+
+    return delta, gamma, vega
+
+delta, gamma, vega = FormulaBSGreeks_FD_num(S,K,r,tau,sigma)
+print(f"Les greeks d'un call sont de maturité {tau}mois et de strike {K} sont delta={delta}, gamma={gamma}, vega={vega}")
+```
+
+### 1.2 Calibration du modèle BS : calcul de la volatilité implicite
+
+L'intérêt du modèle de Black-Scholes est qu'il permet de calculer la volatilité implicite d'un actif à partir du prix de l'option. En effet, si on connait le prix de l'option, le prix de l'actif sous-jacent, le prix d'exercice de l'option, la maturité de l'option et le taux d'intérêt sans risque, on peut calculer la volatilité implicite en résolvant l'équation de Black-Scholes pour $\sigma$ :
+
+$$
+C(S_t, K, T, r, \sigma) = S_t N(d_1) - K e^{-rT} N(d_2)
+$$
+
+```{python}
+def ImpliedVolBS(S,K,r,tau, Call):
+    # optim function
+    def obj_func(sigma):
+        return (Call - FormulaBS(S,K,r,tau,sigma))**2
+    
+    res = minimize(obj_func, 0.2)
+    sigma = res.x[0]
+    return sigma
+    
+```
+
+```{python}
+# Calcul de la volatilité d'une option d'achat à la monnaie de maturité 3 mois et de strike K=S=4.58 sachant que S0=100; r=5%
+
+S = 100
+K = 100
+r = 0.05
+tau = 3/12
+Call = 4.58
+sigma = ImpliedVolBS(S,K,r,tau, Call)
+
+print(f"La volatilité implicite d'un call est de maturité {tau}mois et de strike {K} est de {sigma}")
+```
+
+```{python}
+# Calcul de la volatilité d'une option d'achat à la monnaie de maturité 6 mois et de strike K=S=5.53 sachant que S0=100; r=5%
+
+S = 100
+K = 100
+r = 0.05
+tau = 0.5
+Call = 5.53
+sigma = ImpliedVolBS(S,K,r,tau, Call)
+
+print(f"La volatilité implicite d'un call est de maturité {tau}mois et de strike {K} est de {sigma}")
+```
+

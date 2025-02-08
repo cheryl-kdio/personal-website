@@ -1,0 +1,291 @@
+---
+title: "Calibration avec le modèle d'Heston"
+format: html
+author: "Cheryl KOUADIO"
+date: "2025-02-06"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Le but de ce TP est de calculer des prix d’options sous le modèle d’Heston puis de calibrer ce modèle par filtrage. On considère le modèle suivant :
+
+$$
+\begin{cases}
+dS_s = S_s \left( rds + \sqrt{v_s} dW_s^1 \right) \\
+dv_s = \kappa (\beta - v_s) ds + \sigma \sqrt{v_s} dW_s^2 \\
+dW_s^1 dW_s^2 = \rho ds
+\end{cases}
+\quad (1)
+$$
+
+où $W_s^1$ et $W_s^2$ sont deux mouvements browniens et $r$ est le taux sans risque. Pour ce modèle, les rendements sont modélisés par un mouvement brownien géométrique avec une variance stochastique.
+
+La volatilité non observée $v_t$ est déterminée par un processus stochastique de retour à la moyenne (1) introduit en 1985 par Cox, Ingersoll et Ross pour la modélisation des taux d’intérêt à court terme.
+
+Le paramètre $\kappa$ est le paramètre de retour à la moyenne positive, $\beta$ est le paramètre positif à long terme et $\eta$ la volatilité positive du paramètre de variance. De plus, Heston a introduit une corrélation entre les deux mouvements browniens $W_s^1$ et $W_s^2$, représentée par le paramètre $\rho$ appartenant à $[-1,1]$.
+
+# Pricing d'un call
+
+## Avec la forme close
+
+Soit un Call de strike K et à échéance $\tau$ sous le modèle (1) avec les paramètres suivants : $\kappa$ = 4,$\beta$ = 0.03,$\sigma$ = 0.4,r =0.05,$\rho$=−0.5,$\tau$ = 1, $S_0$ = K=100,$v_0$ = $\beta$.
+
+Pour calculer le prix d'un Call, on peut utiliser la formule close de Heston (Heston 1993) :
+
+$$
+C(S_0, K, \tau) = S_0 P_1 - K e^{-r \tau} P_2
+$$
+
+avec :
+
+$$
+P_j(x, \nu, T, \ln(K)) = \frac{1}{2} + \frac{1}{\pi} \int_0^\infty \Re \left( \frac{e^{-i \ln(K) u} f_j(x,\nu,t,u)}{i u} \right) du
+$$
+
+où :
+
+$$
+x = \ln(S_t), \quad f(x,\nu,t,u) = \exp(C(t,u) + D(t,u) \nu + i \phi x)
+$$
+
+et :
+
+$$
+C(T-t = \tau, \phi) = r i \phi t + \frac{a}{\sigma^2} \left( (bj - \rho \sigma \phi i + d)\tau - 2 \ln \left( \frac{1 - g e^{d \tau}}{1 - g} \right) \right)
+$$
+
+$$
+D(T-t = \tau, \phi) = \left( \frac{bj - \rho \sigma \phi i + d}{\sigma^2} \right) \left( \frac{1 - e^{d \tau}}{1 - g e^{d \tau}} \right)
+$$
+
+$$
+g = \frac{bj - \rho \sigma \phi i + d}{bj - \rho \sigma \phi i - d}
+$$
+
+$$
+d = \sqrt{(\rho \sigma \phi i - bj)^2 - \sigma^2 (2 u_j \phi i - \phi^2)}
+$$
+
+$$
+u_1 = 1/2, \quad u_2 = -1/2, a = \lambda, b = \kappa \beta, \quad t_1 = \kappa - \rho \sigma, \quad t_2 = \kappa
+$$
+
+Pour ce faire, nous allons utiliser la fonction `Heston_Call_Function.R` qui permet de calculer le prix d'un Call sous le modèle d'Heston avec la formule close.
+
+```{r}
+# Paramètres
+kappa <- 4
+beta <- 0.03
+sigma <- 0.4
+r <- 0.05
+rho <- -0.5
+tau <- 1
+S0<- 100
+K <- 100
+v0 <- beta
+
+# Import Heston_Call_Function.R
+source("data/Heston_Call_Function.R")
+
+# Calcul du prix du Call
+Call_Heston <- HestonCallClosedForm(lambda = kappa, vbar = beta, eta = sigma, rho = rho, v0 = v0, r = r, tau = tau, S0 = S0, K = K)
+cat("Le prix du Call est de ", Call_Heston)
+```
+
+## Avec la méthode de Monte Carlo (Schéma d'Euler)
+
+Lorsqu'on a pas accès à la formule close, on peut utiliser la méthode de Monte Carlo pour calculer le prix d'un Call. Il s'agit de simuler le modèle (1) et de calculer le prix du Call à partir des simulations. Pour simuler le modèle (1), on peut utiliser la discrétisation d'Euler du modèle de Heston (Euler and Milstein Discretization, Fabrice Douglas Rouah) ou utiliser la formule de Ito pour le modèle de Heston.
+
+Dans notre cas, nous allons utiliser la discrétisation d'Euler du modèle de Heston pour simuler le modèle (1) comme suit : 
+$$
+\begin{cases}
+S_t = S_{t-1} \left(1 + r \Delta + \sqrt{\Delta v_t} W_t^1 \right) \\[10pt]
+v_t = \left| v_{t-1} + \kappa \Delta (\beta - v_{t-1}) + \sigma \sqrt{v_{t-1}} \Delta W_t^2 \right| \\[10pt]
+\text{Cov}(W_t^1, W_t^2) = \rho
+\end{cases}
+$$
+
+avec $W_t^1$ et $W_t^2$ des variables aléatoires gaussiennes centrées réduites et corrélées entre elles telles que $\text{Cov}(W_t^1, W_t^2) = \rho$. De plus, $\Delta = \frac{\tau}{n}$ est le pas de discrétisation, avec $n$ le nombre de pas de discrétisation.
+
+Dans notre cas, on définit $n = 100$ et on simule $M = 1000$ modèle (1) pour calculer le prix d'un Call.
+
+```{r}
+HestonCallMC <- function(M, N, lambda, vbar, eta, rho, v0, r, tau, S0, K){
+  # M: Number of Monte Carlo simulations
+  # N: Number of time steps
+  
+  set.seed(123)
+  dt <- tau / N  # Time step
+
+  # Store final stock prices
+  ST <- numeric(M)
+  
+  for (i in 1:M){
+    S <- numeric(N+1)
+    v <- numeric(N+1)
+    
+    S[1] <- S0
+    v[1] <- v0
+    
+    for (t in 1:N){
+      # Generate correlated Brownian motions
+      W1 <- rnorm(1)
+      W2 <- rho * W1 + sqrt(1 - rho^2) * rnorm(1)
+      
+      # Euler discretization of variance process (ensure non-negativity)
+      v[t+1] <- abs(v[t] + lambda * (vbar - v[t]) * dt + eta * sqrt(v[t] * dt) * W1)
+      
+      # Euler discretization of the stock price process (log-normal form)
+      S[t+1] <- S[t] * exp((r - 0.5 * v[t]) * dt + sqrt(v[t] * dt) * W2)
+    }
+    
+    # Store final stock price
+    ST[i] <- S[N+1]
+  }
+
+  # Compute Call option price using Monte Carlo method
+  Call <- exp(-r * tau) * mean(pmax(ST - K, 0), na.rm=TRUE)
+  
+  return(Call)
+}
+
+M <- 1000
+N <- 100
+Call_Heston <-HestonCallMC(M,N, kappa, beta, sigma, rho, v0, r, tau, S0, K)
+cat("Le prix du Call est de ", Call_Heston)
+```
+
+# Calibration du modèle d'Heston avec les prix d'options
+
+On souhaite désormais calibrer la volatilité sous le modèle d’Heston à partir de prix d’options. Pour cela, nous considérons la version discrétisée par un schéma d’Euler (modifié) de (1). Plus précisément, soit :
+
+$$
+\begin{cases}
+y_t = C(t, \theta, v_t, S_t, K, \tau) + \sigma_\varepsilon \varepsilon_t \\[10pt]
+S_t = S_{t-1} \left(1 + r \Delta + \sqrt{\Delta v_t} Z_t^1 \right) \\[10pt]
+v_t = \left| v_{t-1} + \lambda \Delta (\bar{v} - v_{t-1}) + \eta \sqrt{v_{t-1}} \Delta Z_t^2 \right| \\[10pt]
+\text{Cov}(Z_t^1, Z_t^2) = \rho
+\end{cases}
+$$
+
+```{r}
+# Importation des données
+rm(list=ls())
+y <- read.csv("data/dataP_B.csv")
+S <- read.csv("data/dataS.csv")
+v <- read.csv("data/dataV.csv")
+```
+
+```{r}
+plot(y$HestonPB, type="l", col="blue",  main="Prix des Calls")
+```
+
+```{r}
+plot(S$Sous_jacent, type="l", col="red",main="Prix du sous-jacent")
+```
+
+```{r}
+plot(v$Var, type="l", col="green", main="Volatilité obs.")
+```
+
+Prenons $\theta = (\kappa = 4, \sigma = 0.4, \beta = 0.03, \rho = -0.5)$, $\sigma_\varepsilon = 0.1$, $\tau=1$ et $K=100$. Pour estimer la volatilité, nous allons utiliser un filtre particulaire bootstrap. Il est défini comme suit :
+
+![Filtre bootstrap particulaire](data/bootstrap_filter.png)
+
+La loi stationnaire de $v_t$ est une loi gamma de paramètres $\alpha_1 = \frac{2 \kappa \beta}{\sigma^2}$ et $\alpha_2 = \frac{\sigma^2}{2 \kappa}$.
+
+De plus, la densité de transition de $v_t | v_{t-1}$ est une loi normale de moyenne $v_{t-1} + \kappa (\beta - v_{t-1}) \tau$ et de variance $\sigma \sqrt{v_{t-1} \tau}$. En effet, nous utilisons le schéma d'Euler pour simuler $v_t$.
+
+En ce qui concerne la loi de $y_t | v_t$, on suppose que $y_t$ suit une loi normale de moyenne $C(t, \theta, v_t, S_t, K, \tau)$ et de variance $\sigma_\varepsilon^2$.
+
+Ainsi, nous initialisons les particules $v_0$ selon la loi stationnaire de $v_t$ et nous utilisons le schéma d'Euler pour simuler $v_t$ et $S_t$. Ensuite, nous calculons les poids des particules en utilisant la vraisemblance de l'observation $y_t$ et nous rééchantillonnons les particules selon leurs poids. Enfin, nous estimons la volatilité $v_t$ à l'instant $t$ en utilisant les particules rééchantillonnées.
+
+```{r}
+# Definition des variables
+y <- y$HestonPB
+S <- S$Sous_jacent
+v<- v$Var
+```
+
+```{r}
+set.seed(123)  # Pour rendre les simulations reproductibles
+
+# Définition des paramètres theta
+kappa <- 4
+sigma <- 0.4
+beta <- 0.03
+rho <- -0.5
+sigma_epsilon <- 0.1
+tau <- 1
+K <- 100
+r <- 0.05
+
+# Import Heston_Call_Function.R
+source("data/Heston_Call_Function.R")
+
+
+# Paramètres loi stationnaire de v
+alpha1 <- (2*kappa*beta)/(sigma^2)
+alpha2 <- (sigma^2)/(2*kappa)
+
+# Initialisation des paramètres
+n <- length(y)  # Nombre d'observations
+M <- 1000      # Nombre de particules
+
+# Initialisation des matrices et vecteurs
+v_hat <- numeric(n)                   # Estimation de x
+v_particle <- matrix(nrow = n, ncol = M)  # Particules
+w <- matrix(nrow = n, ncol = M)        # Poids des particules
+w_normalized <- matrix(nrow = n, ncol = M) # Poids normalisés
+
+# Filtre particulaire bootstrap
+for (t in 1:n) {
+  if (t == 1) {
+    # Initialisation des particules à t = 0
+    v_particle[t, ] <- rgamma(M, shape = alpha1, rate = 1/alpha2)
+    
+    # Poids initiaux (basés sur la distribution de l'état initial)
+    w[t, ] <- dgamma(v_particle[t, ], shape = alpha1, rate = 1/alpha2)
+    
+    # Normalisation des poids
+    w_normalized[t, ] <- w[t, ] / sum(w[t, ])
+    
+    # Estimation initiale
+    v_hat[t] <- sum(w_normalized[t, ] * v_particle[t, ])
+  } else {
+    #  Étape de prédiction (échantillonnage de nouvelles particules)
+    v_particle[t,] <- abs(rnorm(M, mean = v_particle[t-1, ] + kappa * (beta - v_particle[t-1, ]) * tau, sd = sigma * sqrt(v_particle[t-1, ] * tau)))
+    
+    #  Calcul du prix du Call pour chaque particule
+    C <- numeric(M)
+    for (i in 1:M) {
+      C[i] <- HestonCallClosedForm(lambda = kappa, vbar = beta, eta = sigma, rho = rho, v0 = v_particle[t,i], r = r, tau = tau, S0 = S[t], K = K)
+    }
+    
+    #  Mise à jour des poids avec la vraisemblance de l'observation
+    w[t, ] <- dnorm(y[t], mean = C , sd = sqrt(sigma_epsilon))
+    
+    #  Normalisation des poids
+    w_normalized[t, ] <- w[t, ] / sum(w[t, ])
+    
+    #  Rééchantillonnage des particules selon leurs poids
+    index <- sample(1:M, size = M, prob = w_normalized[t, ], replace = TRUE)
+    v_particle[t, ] <- v_particle[t, index]
+    
+    # Réinitialisation des poids après rééchantillonnage (uniforme)
+    w_normalized[t, ] <- 1 / M
+    
+    #  Estimation de x à l'instant t (pondérée)
+    v_hat[t] <- sum(w_normalized[t, ] * v_particle[t, ])
+  }
+}
+```
+
+```{r}
+plot(v, type = "l", col = "black",  main = "Estimation de la volatilité avec un filtre bootstrap",xlab = "Temps", ylab = "Volatilité")
+lines(v_hat, type = "l", col = "red")
+
+legend("topright", legend = c("Vol. obs.", "Vol. est."), col = c("black", "red"), lty = 1)
+```
