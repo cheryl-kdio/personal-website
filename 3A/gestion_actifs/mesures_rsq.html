@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Cheryl Kouadio">
+<meta name="dcterms.date" content="2025-01-27">
 
-<title>Gestion de portefeuille</title>
+<title>Gestion de risques de portefeuille</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -206,7 +207,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Gestion de portefeuille</h1>
+<h1 class="title">Gestion de risques de portefeuille</h1>
 </div>
 
 
@@ -220,6 +221,12 @@ window.Quarto = {
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 27, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -235,7 +242,7 @@ window.Quarto = {
 <li><p>Encadrement</p></li>
 </ol>
 <p>Dans notre cas, on va constituer le portefeuille avec 10 actifs du CAC 40 de notre choix et leur allouer des poids aléatoires :</p>
-<div id="dac287ac" class="cell" data-execution_count="1">
+<div id="dac287ac" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ! pip install yfinance</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime, timedelta</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yfinance <span class="im">as</span> yf </span>
@@ -244,7 +251,7 @@ window.Quarto = {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cc650aba" class="cell" data-execution_count="2">
+<div id="cc650aba" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_data(start_date, end_date, index_ticker, tickers):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Extraction de données de cours d'actions</span></span>
@@ -266,7 +273,7 @@ window.Quarto = {
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"benchmark_data"</span>: index,</span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="10ca6475" class="cell" data-execution_count="3">
+<div id="10ca6475" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>end_date <span class="op">=</span> datetime.now()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>start_date <span class="op">=</span> end_date <span class="op">-</span> timedelta(days<span class="op">=</span><span class="dv">2</span><span class="op">*</span><span class="dv">365</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -293,7 +300,7 @@ window.Quarto = {
 [*********************100%***********************]  1 of 1 completed</code></pre>
 </div>
 </div>
-<div id="fdd2cda7" class="cell" data-execution_count="4">
+<div id="fdd2cda7" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>portfolio_data <span class="op">=</span> data[<span class="st">"portfolio_data"</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>portfolio_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
@@ -401,7 +408,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="2de9898d" class="cell" data-execution_count="5">
+<div id="2de9898d" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>benchmark_data <span class="op">=</span> data[<span class="st">"benchmark_data"</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>benchmark_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
@@ -446,7 +453,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="7c1c96b2" class="cell" data-execution_count="6">
+<div id="7c1c96b2" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># On attribue des poids équitables pour chaque action</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>weights_by_asset <span class="op">=</span> {ticker: <span class="dv">1</span> <span class="op">/</span> <span class="bu">len</span>(assets_ticker) <span class="cf">for</span> ticker <span class="kw">in</span> assets_ticker}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -454,13 +461,13 @@ window.Quarto = {
 <p><span class="math display">\[
 AUM(T_n) = \sum_{i=1}^{10} \omega_i \times P_i(T_n)
 \]</span></p>
-<div id="3636a18b" class="cell" data-execution_count="7">
+<div id="3636a18b" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>aum_series <span class="op">=</span> portfolio_data.<span class="bu">apply</span>(<span class="kw">lambda</span> row: <span class="bu">sum</span>(weights_by_asset[ticker] <span class="op">*</span> row[ticker] <span class="cf">for</span> ticker <span class="kw">in</span> weights_by_asset), axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>aum_series</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>AUM <span class="op">=</span> pd.DataFrame(aum_series, columns<span class="op">=</span>[<span class="st">"AUM"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="251b1d4b" class="cell" data-execution_count="8">
+<div id="251b1d4b" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>AUM.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <div>
@@ -504,7 +511,7 @@ AUM(T_n) = \sum_{i=1}^{10} \omega_i \times P_i(T_n)
 </div>
 </div>
 </div>
-<div id="882dbfe7" class="cell" data-execution_count="9">
+<div id="882dbfe7" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Evolution de la valeur totale du portefeuille</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -525,7 +532,7 @@ AUM(T_n) = \sum_{i=1}^{10} \omega_i \times P_i(T_n)
 </div>
 </div>
 </div>
-<div id="52c96992" class="cell" data-execution_count="10">
+<div id="52c96992" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># On s'interesse aux variations/rendements de l'AUM</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>AUM[<span class="st">"Variation"</span>] <span class="op">=</span> AUM[<span class="st">"AUM"</span>].pct_change()</span>
@@ -544,7 +551,7 @@ Name: Variation, dtype: float64</code></pre>
 <h3 class="anchored" data-anchor-id="estimation-de-la-volatilité">Estimation de la volatilité</h3>
 <p>Pour estimer la volatilité du portefeuille, on peut calculer l’écart-type des variations de l’AUM. On fait le choix de calculer une volatilité ex-ante en se basant sur les variation historiques des prix des actifs avec une profondeur historique de 2 ans. Vu qu’on a une volatilité quotidienne, on va l’annualiser en multipliant par <span class="math inline">\(\sqrt{252}\)</span>.</p>
 <p>En général, sur le marché action, la volatilité quotidienne est environ de 1% et la volatilité annuelle est entre 10% et 20%.</p>
-<div id="9c7ff12b" class="cell" data-execution_count="11">
+<div id="9c7ff12b" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la volatilité du portefeuille</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>volatility_portfolio <span class="op">=</span> np.std(AUM[<span class="st">"Variation"</span>])</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>annualized_volatility_portfolio <span class="op">=</span> volatility_portfolio <span class="op">*</span> np.sqrt(<span class="dv">252</span>)</span>
@@ -555,7 +562,7 @@ Name: Variation, dtype: float64</code></pre>
 Volatilité de la performance annuelle :  13.80%</code></pre>
 </div>
 </div>
-<div id="4a88bc64" class="cell" data-execution_count="12">
+<div id="4a88bc64" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la volatilité de l'indice CAC 40</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>benchmark_data[<span class="st">"Variation"</span>] <span class="op">=</span> benchmark_data[<span class="st">"^FCHI"</span>].pct_change()</span>
@@ -579,7 +586,7 @@ TE = \sqrt{Var(R_p - R_b)}
 \]</span></p>
 <p>La tracking error mesure l’incercitude du portefeuille par rapport à l’indice de référence, c’est une mesure relative. Plus la tracking error est élevée, plus le portefeuille est risqué. On ne souhaite sous ou sur-performer l’indice de référence. On souhaite suivre véritablement l’indice de référence.</p>
 <p>Pour l’annualiser, on multiplie par <span class="math inline">\(\sqrt{252}\)</span> en supposant que les performances quotidiennes sont indépendantes et donc un utilise l’additivité des variances.</p>
-<div id="e7e2999e" class="cell" data-execution_count="13">
+<div id="e7e2999e" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>performance_relative <span class="op">=</span> AUM[<span class="st">"Variation"</span>] <span class="op">-</span> benchmark_data[<span class="st">"Variation"</span>]</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
@@ -598,7 +605,7 @@ TE = \sqrt{Var(R_p - R_b)}
 </div>
 </div>
 </div>
-<div id="f054f7b5" class="cell" data-execution_count="14">
+<div id="f054f7b5" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la tracking error</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>TE <span class="op">=</span> np.std(AUM[<span class="st">"Variation"</span>] <span class="op">-</span> benchmark_data[<span class="st">"Variation"</span>]) </span>
@@ -619,7 +626,7 @@ Tracking error annualisé :  8.20%</code></pre>
 <p>On peut également raisonner en terme de gain, i.e.&nbsp;Profit and Loss (PnL).</p>
 <p><span class="math display">\[P(\text{PnL} &gt; - \text{VaR}) = \alpha.\]</span></p>
 <p>La VaR peut se calculer suivant trois approches : 1. <strong>Approche historique</strong> : On se base sur les rendements passés selon l’horizon fixé pour estimer la VaR, à l’aide d’un quantile empirique d’ordre <span class="math inline">\(\alpha\)</span>. Autrement, on peut se baser sur les rendements journaliers et utiliser la méthode de <strong>rescaling</strong>, i.e.&nbsp;<span class="math inline">\(VaR = \sigma \times \Phi^{-1}(\alpha)\)</span>. 2. <strong>Approche paramétrique</strong> : On suppose que les rendements suivent une loi normale. 3. <strong>Approche Monte Carlo</strong> : On simule les rendements futurs.</p>
-<div id="641fda36" class="cell" data-execution_count="15">
+<div id="641fda36" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># VaR historique</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>seuil <span class="op">=</span> <span class="dv">99</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -641,7 +648,7 @@ VaR historique sur l'indice CAC 40 :  2.13%
 VaR historique sur 20 jours sur l'indice CAC 40 :  9.51%</code></pre>
 </div>
 </div>
-<div id="932e1726" class="cell" data-execution_count="16">
+<div id="932e1726" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># VaR paramétrique</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># PnL ~ N(mu, sigma) ==&gt; PnL = mu + sigma * Z, où Z ~ N(0,1)</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># P(PnL &gt; -VaR) = alpha &lt;=&gt; P(mu + sigma * Z &gt; -VaR) = alpha &lt;=&gt; P(Z &lt; (-VaR - mu) / sigma) = 1 - alpha</span></span>
@@ -685,7 +692,7 @@ VaR paramétrique sur 20 jours sur le portefeuille :  8.63%</code></pre>
 </div>
 </div>
 <p>La VaR relative suit une philosophie proche du tracking error. Elle se calcule sur les écarts entre le portefeuille et le benchmark. Elle sert à mesurer de combien mon portefeuille sous-performe par rapport à l’indice de référence.</p>
-<div id="e2b7f657" class="cell" data-execution_count="17">
+<div id="e2b7f657" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>performance_relative</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -724,7 +731,7 @@ VaR paramétrique relative sur 20 jours :  5.39%</code></pre>
 <li>Stress test hypothétique : On joue un scénario qui ne s’est jamais réalisé. Exemple, si les actions chutent de 40%, notre portefeuille d’action chute de 40%.</li>
 </ol>
 <p><em>Note : <strong>bp</strong> = 0,01%</em></p>
-<div id="2bf4b27c" class="cell" data-execution_count="18">
+<div id="2bf4b27c" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recuperons les prix des actifs le 19/02/2020 et le 18/03/2020</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># On va valoriser notre portefeuille à ces dates et calculer les performances</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A ces dates, le CAC 40 a connu de fortes pertes pendant la COVID-19</span></span>
@@ -756,7 +763,7 @@ VaR paramétrique relative sur 20 jours :  5.39%</code></pre>
 [*********************100%***********************]  1 of 1 completed</code></pre>
 </div>
 </div>
-<div id="c02523c3" class="cell" data-execution_count="19">
+<div id="c02523c3" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stress test covid sur le portefeuille</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>aum_series_stress <span class="op">=</span> portfolio_data_stress.<span class="bu">apply</span>(<span class="kw">lambda</span> row: <span class="bu">sum</span>(weights_by_asset[ticker] <span class="op">*</span> row[ticker] <span class="cf">for</span> ticker <span class="kw">in</span> weights_by_asset), axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -798,7 +805,7 @@ VaR paramétrique relative sur 20 jours :  5.39%</code></pre>
 </div>
 </div>
 </div>
-<div id="b7008256" class="cell" data-execution_count="20">
+<div id="b7008256" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>benchmark_data_stress[<span class="st">"Variation"</span>]<span class="op">=</span>benchmark_data_stress[<span class="st">"^FCHI"</span>].pct_change()</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>benchmark_data_stress</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="40">
