@@ -2,6 +2,7 @@
 title: "Calibration du modèle à volatilité stochastique de Taylor : Filtre de Kalman"
 author: Cheryl KOUADIO
 jupyter: python3
+date: "2025-01-14"
 ---
 
 

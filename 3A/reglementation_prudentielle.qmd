@@ -2,7 +2,7 @@
 title: "La réglementation prudentielle"
 author: "Cheryl Kouadio"
 sidebar: auto
-
+date: "2024-07-01"
 ---
 
 # TO REWRITE

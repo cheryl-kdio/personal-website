@@ -2,6 +2,7 @@
 title: 'Features selection'
 author: "Cheryl KOUADIO"
 jupyter: python3
+date: "2024-10-19"
 ---
 
 

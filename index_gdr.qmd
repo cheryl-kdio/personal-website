@@ -19,9 +19,12 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 ### Risques financiers
 ::: {.blog-section}
 - [Définition du risque financier](3A/risque_def.qmd)
-- [Value-at-risk (VaR)](3A/var_def.qmd) :
-    - [Définition de la VaR](3A/var_def.qmd)
-    - [Implémentation de la VaR sur python](3A/var_application.qmd)
+- [Value-at-risk (VaR)](3A/value-at-risk/var_def.qmd) :
+    - [Définition de la VaR](3A/value-at-risk/var_def.qmd)
+    - [Implémentation de la VaR sur python](3A/value-at-risk/var_application.qmd)
+    - [TP1 : Méthodes traditionnelles de calcul de la VaR et Expected Shortfall (ES)](3A/value-at-risk/var_classiques.qmd)
+    - [TP2 : Méthodes basées sur la théorie des valeurs extrêmes](3A/value-at-risk/var_evt.qmd.qmd)
+    - [TP3 : Méthodes d'une calcul d'une VaR dynamique (basé sur GARCH)](3A/value-at-risk/var_garch.qmd.qmd)
 :::
 
 ### Scoring
@@ -34,7 +37,10 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 - [Calibration avec le modèle de black-scholes](3A/proc_stochastique/modele_bs.qmd)
 - [Calibration du modèle à volatilité stochastique de Taylor - Filtre de Kalman](3A/proc_stochastique/modele_log_sv-part1.qmd)
 - [Calibration du modèle à volatilité stochastique de Taylor - Filtre particulaire bootstrap](3A/proc_stochastique/modele_log_sv-part2.qmd)
-- [Calibration avec le modèle de Heston](3A/proc_stochastique/modele_heston.qmd)
+- [Modèle de Heston](3A/proc_stochastique/modele_heston.qmd) :
+    - [Estimation de la volatilité avec le filtre boostrap](3A/proc_stochastique/modele_heston.qmd)
+    - [Comparaison du filtre bootstrap au filtre particulaire auxiliaire (APF) **TO DO**]()
+
 :::
 
 ### Gestion de portefeuille et pricing

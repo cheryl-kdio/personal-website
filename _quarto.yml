@@ -42,3 +42,4 @@ format:
     toc-location: left
     toc-title: "Sommaire"
     df-print: kable    
+  # ipynb: default

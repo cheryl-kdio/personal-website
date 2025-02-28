@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Cheryl KOUADIO">
+<meta name="dcterms.date" content="2024-10-19">
 
 <title>Features selection</title>
 <style>
@@ -223,6 +224,12 @@ window.Quarto = {
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 19, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -242,7 +249,7 @@ window.Quarto = {
 <p>In order to have confidence in this measure, we will consider a bivariate gaussian variable <span class="math inline">\(Z=(X,Y)\)</span> with mean <span class="math inline">\(\mu = (0,0)\)</span> and covariance matrix <span class="math inline">\(\Sigma = \begin{pmatrix} \sigma^2_X &amp; \rho \sigma_X \sigma_X \\  \rho \sigma_X \sigma_X &amp; \sigma^2_Y \end{pmatrix}\)</span>. We will compute the mutual information between X and Y for a grid a <span class="math inline">\(\rho\)</span> between 0.01 and 0.99 using 1000 size samples repeated 100 times and see how the mutual information behaves and compare it the theorical value of the mutual information which is equal to <span class="math inline">\(-\frac{1}{2} \log(1-\rho^2)\)</span>.</p>
 <section id="accuracy-of-mutual-information-estimation" class="level2">
 <h2 class="anchored" data-anchor-id="accuracy-of-mutual-information-estimation">1. Accuracy of mutual information estimation</h2>
-<div id="5ed8bad8" class="cell" data-execution_count="1">
+<div id="d44dee63" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
@@ -264,7 +271,7 @@ window.Quarto = {
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> true_mutual_information(rho):</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="fl">0.5</span> <span class="op">*</span> np.log(<span class="dv">1</span> <span class="op">-</span> rho<span class="op">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="da26e1f9" class="cell" data-execution_count="2">
+<div id="eae26024" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize parameters</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">1000</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>n_repeats <span class="op">=</span> <span class="dv">100</span></span>
@@ -317,7 +324,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="comparison-between-mutual-information-and-correlation-tests">2. Comparison between mutual information and correlation tests</h2>
 <p>We will use a simulate dataset where we know the relationship between the variables and see how the pearson, spearman an mutual information perform. We will consider a dataset where the 15 first variables are normal <span class="math inline">\(X_{i = 1,\dots,15} \sim \mathcal{N}(0,1)\)</span> and the 5 last variables are uniform <span class="math inline">\(X_{i = 16,\dots,20} \sim \mathcal{U}(0,1)\)</span>. We will consider the target variable <span class="math inline">\(Y\)</span> as a linear combination of some variables :</p>
 <p><span class="math display">\[ Y = 2X_1 + X_7^2 + X_4^3 + 3 X_2 X_{11} + 2 \sin(2\pi X_{19}) + 3X_6^2\cos(2\pi X_{17})\]</span></p>
-<div id="3b562580" class="cell" data-execution_count="3">
+<div id="432f2d1a" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to generate data</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_data(n):</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> pd.DataFrame()</span>
@@ -332,7 +339,7 @@ window.Quarto = {
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                </span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="2da438d4" class="cell" data-execution_count="4">
+<div id="43b08659" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the correlation between each feature and the target</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> pearsonr, spearmanr</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -346,7 +353,7 @@ window.Quarto = {
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    concat_spearman.append(np.<span class="bu">abs</span>(spearman_corr))</span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    concat_pearson.append(np.<span class="bu">abs</span>(pearson_corr))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="f415df59" class="cell" data-execution_count="5">
+<div id="d0baca8b" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>feature_names <span class="op">=</span> data.columns[:<span class="op">-</span><span class="dv">1</span>]  <span class="co"># Get feature names from the dataset</span></span>
@@ -370,7 +377,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="3c3eb825" class="cell" data-execution_count="6">
+<div id="94555720" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pearson correlations</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>pearson_df)</span>
@@ -388,7 +395,7 @@ window.Quarto = {
 </div>
 </div>
 <p>As we can see, the spearman and pearson correlation can not identify all the relevant features, in fact, they are only able to identify the relevant variables <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_4\)</span> and <span class="math inline">\(X_{19}\)</span> related to the target variable <span class="math inline">\(Y\)</span>. If we are interested in selecting the relevant features using the mutual information, we can identify more relevant features such as <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_4\)</span>, <span class="math inline">\(X_6\)</span>, <span class="math inline">\(X_7\)</span>, and <span class="math inline">\(X_{19}\)</span>, however some irrelevant features are also selected such as <span class="math inline">\(X_2\)</span> and <span class="math inline">\(X_{11}\)</span>.</p>
-<div id="ad2648b5" class="cell" data-execution_count="7">
+<div id="2c230ace" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mutual_info <span class="op">=</span> []</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sim <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):</span>
@@ -418,7 +425,7 @@ window.Quarto = {
 <section id="what-about-feature-selection-with-lasso-regression" class="level3">
 <h3 class="anchored" data-anchor-id="what-about-feature-selection-with-lasso-regression">What about feature selection with lasso regression?</h3>
 <p>We might be interested in the behavior of the lasso regression in the same dataset. We will use the <code>Lasso</code> class from the <code>sklearn.linear_model</code> module to fit the lasso regression on the dataset and see how it performs in selecting the relevant features. We will use the <code>LassoCV</code> class to select the best value of the regularization parameter <span class="math inline">\(\alpha\)</span> using cross-validation.</p>
-<div id="707d97c6" class="cell" data-execution_count="8">
+<div id="1f88d37f" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LassoCV</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -441,7 +448,7 @@ window.Quarto = {
 <span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    selected_features[sim, :] <span class="op">=</span> (lasso.coef_ <span class="op">!=</span> <span class="dv">0</span>).astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="3081e229" class="cell" data-execution_count="9">
+<div id="efee6399" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Frequency of selection for each feature</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>selection_frequency <span class="op">=</span> np.mean(selected_features, axis<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -483,7 +490,7 @@ window.Quarto = {
 <p><span class="math display">\[HSIC(X,Y) = \frac{1}{n^2} \text{tr}(KHLH)\]</span></p>
 <p>where <span class="math inline">\(K\)</span> is the kernel matrix of X and <span class="math inline">\(L\)</span> is the kernel matrix of Y and H is the centering matrix <span class="math inline">\(H = I - \frac{1}{n} \mathbf{1} \mathbf{1}^T\)</span>. Since the HSIC is not implemented in the mainstream libraries, we will implement it ourselves using the sobolev kernel for X and Y with :</p>
 <p><span class="math display">\[k(x,x') = 1 + (z_i - 0.5) (z_j - 0.5) + \frac{1}{2} ((z_i-z_j)^2 - |z_i -z_j| +1/6)\]</span></p>
-<div id="633c3b3e" class="cell" data-execution_count="10">
+<div id="e85cffe8" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sobolev_kernel(x,y):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">+</span> (x <span class="op">-</span> <span class="fl">0.5</span>)<span class="op">*</span>(y <span class="op">-</span> <span class="fl">0.5</span>) <span class="op">+</span> (<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>( (x<span class="op">-</span>y)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> np.<span class="bu">abs</span>(x<span class="op">-</span>y) <span class="op">+</span> <span class="dv">1</span><span class="op">/</span><span class="dv">6</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -504,7 +511,7 @@ window.Quarto = {
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    hsic_value <span class="op">=</span> (<span class="dv">1</span> <span class="op">/</span> (n <span class="op">-</span> <span class="dv">1</span>) <span class="op">**</span> <span class="dv">2</span>) <span class="op">*</span> np.trace(K <span class="op">@</span> H <span class="op">@</span> L <span class="op">@</span> H)</span>
 <span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> hsic_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="82dee877" class="cell" data-execution_count="11">
+<div id="f4028326" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>hsic_values <span class="op">=</span> []</span>
@@ -518,7 +525,7 @@ window.Quarto = {
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>hsic_df <span class="op">=</span> pd.DataFrame(hsic_values, columns<span class="op">=</span>feature_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="10b88fcb" class="cell" data-execution_count="12">
+<div id="eeca8124" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting boxplots for Spearman correlations</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data<span class="op">=</span>hsic_df)</span>
@@ -530,7 +537,7 @@ window.Quarto = {
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Tp4_files/figure-html/cell-13-output-1.png" width="697" height="389" class="figure-img"></p>
+<p><img src="Tp4_files/figure-html/cell-13-output-1.png" width="689" height="389" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -539,7 +546,7 @@ window.Quarto = {
 <section id="threshold-selection-for-mutual-information-and-hsic" class="level2">
 <h2 class="anchored" data-anchor-id="threshold-selection-for-mutual-information-and-hsic">Threshold selection for mutual information and HSIC</h2>
 <p>The hilbert-schmidt independence criterion, the mutual information are able to capture the relationship between the variables, no matter what type of variables they are. However, it needs a definition of a threshold to select the relevant features in a dataset. As for correlation tests like pearson or speaman, we might use statistical tests to select the relevant features in a dataset. However, for mutual information and HSIC, we use the permutation test where the test statistic distribution under the null hypothesis (X and Y are independent), is estimated with several data permutations. The p-value is then computed as the proportion of test statistics that are more extreme than the observed test statistic.</p>
-<div id="62a3148f" class="cell" data-execution_count="13">
+<div id="30ec878c" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.utils <span class="im">import</span> resample</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> generate_data(<span class="dv">500</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -570,7 +577,7 @@ window.Quarto = {
 <span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>p_values_mi <span class="op">=</span> np.mean(mi_train <span class="op">&lt;</span> all_miXYindep, axis<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="d579c2ec" class="cell" data-execution_count="14">
+<div id="68241b91" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>plt.plot(p_values_mi, <span class="st">'o'</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Mutual Information p-value'</span>)</span>
@@ -587,10 +594,10 @@ window.Quarto = {
 </div>
 </div>
 <p>Depending on the pvalues, we can select the relevant features in a dataset. Using the mutual information, the variables selected are listed below :</p>
-<div id="35658909" class="cell" data-execution_count="15">
+<div id="65bb3cf1" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Selected variables with MI p-values </span><span class="sc">%s</span><span class="st"> "</span> <span class="op">%</span> np.where(p_values_mi <span class="op">&lt;</span> <span class="fl">0.05</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Selected variables with MI p-values [0 2 3 5 8] </code></pre>
+<pre><code>Selected variables with MI p-values [ 0  3  5  6  9 18] </code></pre>
 </div>
 </div>
 

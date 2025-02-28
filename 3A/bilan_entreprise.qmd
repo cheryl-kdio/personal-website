@@ -2,7 +2,11 @@
 title: "Comment fonctionne le bilan et le compte de résultat d'une entreprise"
 sidebar: auto
 author:
-  - Cheryl Kouadio
+  name: Cheryl KOUADIO
+  # position: Étudiante en 3A
+  # url: https://www.linkedin.com/in/cheryl-kouadio-7b1b3b1b3/
+  # image: img/cheryl-kouadio.jpg
+date: "2024-05-15"
 ---
 
 L'analyse financière constitue l'ensemble des outils permettant de donner un avis objectif d'une organisation (entreprises, fondations, etc.) sur la santé finanière et les risques financiers auxquels elle sera confrontée. Il s'agit de determiner quels sont les critères d'une santé financière, qu'est le risque, comment formalise-t-on le risque, comment le mesure-t-on et comment le gère-t-on.

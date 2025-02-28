@@ -5,7 +5,7 @@ listing:
     - 3A/**/*.qmd
     - 2A/**/*.qmd
   type: grid
-  sort: "date"
+  sort: "date desc"
   image-placeholder: img/placeholder.jpg
   fields: [image, date, title, author, reading-time,description]
   categories: false

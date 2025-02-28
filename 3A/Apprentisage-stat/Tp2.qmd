@@ -2,6 +2,7 @@
 title: 'Kernel Trick and SVM'
 author: "Cheryl KOUADIO"
 jupyter: python3
+date: "2024-10-04"
 ---
 
 # Activity 1 : Kernel Ridge Regression (KRR)

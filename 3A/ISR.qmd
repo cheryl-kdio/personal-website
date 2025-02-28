@@ -1,6 +1,7 @@
 ---
 title: "Investissement Socialement Responsable (ISR): De quoi parle-t-on ?"
 sidebar: auto
+date: "2024-06-28"
 author:
   - Cheryl Kouadio
 ---

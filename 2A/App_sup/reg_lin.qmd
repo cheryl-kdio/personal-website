@@ -2,7 +2,7 @@
 title: La régression linéaire
 author:
   - Cheryl Kouadio
-  
+date: "2024-06-14"
 ---
 
 # Introduction

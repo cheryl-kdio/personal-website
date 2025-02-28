@@ -82,7 +82,8 @@ ul.task-list li input[type="checkbox"] {
 
     const options = {
       valueNames: ['listing-image','listing-date','listing-title','listing-author','listing-reading-time','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
+      page: 18,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
       searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
     };
 
@@ -217,59 +218,85 @@ window.Quarto = {
     </div>
 </div>
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-date-sort="1737414000000" data-listing-file-modified-sort="1739039951192" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2870">
-<a href="./3A/proc_stochastique/modele_log_sv-part2.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="0" data-listing-date-sort="1740697200000" data-listing-file-modified-sort="1740778475854" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="37" data-listing-word-count-sort="7329">
+<a href="./3A/value-at-risk/var_classiques.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="3A/proc_stochastique/modele_log_sv-part2_files/figure-html/unnamed-chunk-2-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img src="3A/value-at-risk/var_classiques_files/figure-html/cell-9-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
-Calibration du modèle à volatilité stochastique de Taylor : Filtre particulaire
+TP1:Méthodes traditionnelles de calcul de la VaR et Expected Shortfall (ES)
 </h5>
 <div class="listing-reading-time card-text text-muted">
-15 min
+37 min
 </div>
 <div class="card-text listing-description">
-Le modèle classique de volatilité stochastique est défini par les équations suivantes :
+Ce TP est fait dans le but de modéliser la Value at Risk qui est une mesure de risque financier. La Value at Risk (VaR) est une mesure essentielle du risque de marché qui…<span class="math inline"></span>
 </div>
 <div class="card-attribution card-text-small justify">
 <div class="listing-author">
-Cheryl Kouadio
+
 </div>
 <div class="listing-date">
-Jan 21, 2025
+Feb 28, 2025
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-listing-date-sort="1738796400000" data-listing-file-modified-sort="1739038745616" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1771">
-<a href="./3A/proc_stochastique/modele_heston.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="1" data-listing-date-sort="1740697200000" data-listing-file-modified-sort="1740778492040" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3211">
+<a href="./3A/value-at-risk/var_evt.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="3A/proc_stochastique/modele_heston_files/figure-html/unnamed-chunk-4-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img src="3A/value-at-risk/var_evt_files/figure-html/cell-5-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
-Calibration avec le modèle d’Heston
+TP2:Méthodes basées sur la théorie des valeurs extrêmes
 </h5>
 <div class="listing-reading-time card-text text-muted">
-9 min
+17 min
 </div>
 <div class="card-text listing-description">
-Le but de ce TP est de calculer des prix d’options sous le modèle d’Heston puis de calibrer ce modèle par filtrage. On considère le modèle suivant :
+Ce TP est une continuité du TP-1 dans lequel on souhaitait implémenter la VaR (Value at Risk) et l’ES (Expected Shortfall) en utilisant les méthodes classiques proposées…
 </div>
 <div class="card-attribution card-text-small justify">
 <div class="listing-author">
-Cheryl KOUADIO
+
 </div>
 <div class="listing-date">
-Feb 6, 2025
+Feb 28, 2025
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="2" data-listing-date-sort="1738882800000" data-listing-file-modified-sort="1739037891283" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="647">
+<div class="g-col-1" data-index="2" data-listing-date-sort="1740697200000" data-listing-file-modified-sort="1740778493816" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="20" data-listing-word-count-sort="3970">
+<a href="./3A/value-at-risk/var_garch.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="3A/value-at-risk/var_garch_files/figure-html/cell-5-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+TP3:Méthodes d’une calcul d’une VaR dynamique (basé sur GARCH)
+</h5>
+<div class="listing-reading-time card-text text-muted">
+20 min
+</div>
+<div class="card-text listing-description">
+Ce TP est une continuité du TP-1 et du TP-2 dans lequel on souhaitait implémenter la VaR (Value at Risk) et l’ES (Expected Shortfall) en utilisant les méthodes classiques…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Feb 28, 2025
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="3" data-listing-date-sort="1738882800000" data-listing-file-modified-sort="1739037891283" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="647">
 <a href="./3A/spearman-pearson.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="3A/spearman-pearson_files/figure-html/unnamed-chunk-1-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -295,145 +322,33 @@ Feb 7, 2025
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="3" data-listing-file-modified-sort="1738413165364" data-listing-reading-time-sort="12" data-listing-word-count-sort="2353">
-<a href="./3A/Apprentisage-stat/Tp1.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="4" data-listing-date-sort="1738796400000" data-listing-file-modified-sort="1739038745616" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1771">
+<a href="./3A/proc_stochastique/modele_heston.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="3A/Apprentisage-stat/Tp1_files/figure-html/cell-5-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img src="3A/proc_stochastique/modele_heston_files/figure-html/unnamed-chunk-4-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
-Ridge regression vs.&nbsp;Lasso regression
+Calibration avec le modèle d’Heston
 </h5>
 <div class="listing-reading-time card-text text-muted">
-12 min
+9 min
 </div>
 <div class="card-text listing-description">
-The ridge regression is a variant of the linear regression that is used to prevent multicolinearity coming from the covariables in the dataset and thus prevent overfitting.…<span class="math inline"></span>
+Le but de ce TP est de calculer des prix d’options sous le modèle d’Heston puis de calibrer ce modèle par filtrage. On considère le modèle suivant :
 </div>
-<div class="card-attribution card-text-small start">
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Cheryl KOUADIO
 </div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="4" data-listing-file-modified-sort="1738413165364" data-listing-reading-time-sort="11" data-listing-word-count-sort="2115">
-<a href="./3A/Apprentisage-stat/Tp2.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="3A/Apprentisage-stat/Tp2_files/figure-html/cell-7-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Kernel Trick and SVM
-</h5>
-<div class="listing-reading-time card-text text-muted">
-11 min
-</div>
-<div class="card-text listing-description">
-In regression and classification, we often use linear models to predict the target variable. However, in many cases, the relationship between the target variable and the…
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-Cheryl KOUADIO
+<div class="listing-date">
+Feb 6, 2025
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="5" data-listing-file-modified-sort="1738413165364" data-listing-reading-time-sort="7" data-listing-word-count-sort="1274">
-<a href="./3A/Apprentisage-stat/Tp3.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="3A/Apprentisage-stat/Tp3_files/figure-html/cell-3-output-2.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Gradient boosting
-</h5>
-<div class="listing-reading-time card-text text-muted">
-7 min
-</div>
-<div class="card-text listing-description">
-AdaBoost is a popular boosting algorithm that is used to boost the performance of decision trees on binary classification problems. It works by weighting the observations…
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-Cheryl KOUADIO
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="6" data-listing-file-modified-sort="1738413165364" data-listing-reading-time-sort="11" data-listing-word-count-sort="2123">
-<a href="./3A/Apprentisage-stat/Tp4.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="3A/Apprentisage-stat/Tp4_files/figure-html/cell-3-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Features selection
-</h5>
-<div class="listing-reading-time card-text text-muted">
-11 min
-</div>
-<div class="card-text listing-description">
-Feature selection is a process where you automatically or manually select those features which contribute most to your prediction variable or output in which you are…
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-Cheryl KOUADIO
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="7" data-listing-file-modified-sort="1738413165370" data-listing-reading-time-sort="6" data-listing-word-count-sort="1093">
-<a href="./3A/ISR.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="img/placeholder.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Investissement Socialement Responsable (ISR): De quoi parle-t-on ?
-</h5>
-<div class="listing-reading-time card-text text-muted">
-6 min
-</div>
-<div class="card-text listing-description">
-L’Investissement Socialement Responsable (ISR) représente une approche d’investissement qui privilégie l’intégration de critères extra-financiers, notamment les critères ESG…
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-Cheryl Kouadio
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="8" data-listing-file-modified-sort="1738413165370" data-listing-reading-time-sort="27" data-listing-word-count-sort="5398">
-<a href="./3A/bilan_entreprise.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="img/placeholder.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Comment fonctionne le bilan et le compte de résultat d’une entreprise
-</h5>
-<div class="listing-reading-time card-text text-muted">
-27 min
-</div>
-<div class="card-text listing-description">
-L’analyse financière constitue l’ensemble des outils permettant de donner un avis objectif d’une organisation (entreprises, fondations, etc.) sur la santé finanière et les…
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-Cheryl Kouadio
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="9" data-listing-file-modified-sort="1739023834682" data-listing-reading-time-sort="7" data-listing-word-count-sort="1385">
+<div class="g-col-1" data-index="5" data-listing-date-sort="1737932400000" data-listing-file-modified-sort="1740777643798" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1385">
 <a href="./3A/gestion_actifs/mesures_rsq.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="3A/gestion_actifs/mesures_rsq_files/figure-html/cell-10-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -447,16 +362,19 @@ Gestion de risques de portefeuille
 <div class="card-text listing-description">
 Pour gérer les risques, on procède en trois étapes : 1. Identification : Nous avons un portefeuille d’action, donc le risque auquel on fait face est le risque de marché…
 </div>
-<div class="card-attribution card-text-small start">
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Cheryl Kouadio
+</div>
+<div class="listing-date">
+Jan 27, 2025
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="10" data-listing-file-modified-sort="1739023823124" data-listing-reading-time-sort="20" data-listing-word-count-sort="3932">
+<div class="g-col-1" data-index="6" data-listing-date-sort="1737932400000" data-listing-file-modified-sort="1740777652237" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="20" data-listing-word-count-sort="3932">
 <a href="./3A/gestion_actifs/profil_liquid.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="3A/gestion_actifs/profil_liquid_files/figure-html/cell-15-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -470,39 +388,45 @@ Profil d’écoulement/ de liquidation de portefeuille
 <div class="card-text listing-description">
 Nous souhaitons calculer le profil d’écoulement/liquidation dans les scénarios suivants :
 </div>
-<div class="card-attribution card-text-small start">
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Cheryl Kouadio
 </div>
+<div class="listing-date">
+Jan 27, 2025
+</div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="11" data-listing-file-modified-sort="1739040517776" data-listing-reading-time-sort="8" data-listing-word-count-sort="1449">
-<a href="./3A/proc_stochastique/modele_bs.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="7" data-listing-date-sort="1737414000000" data-listing-file-modified-sort="1739039951192" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2870">
+<a href="./3A/proc_stochastique/modele_log_sv-part2.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="img/placeholder.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img src="3A/proc_stochastique/modele_log_sv-part2_files/figure-html/unnamed-chunk-2-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
-Calibration du modèle Black-Scholes
+Calibration du modèle à volatilité stochastique de Taylor : Filtre particulaire
 </h5>
 <div class="listing-reading-time card-text text-muted">
-8 min
+15 min
 </div>
 <div class="card-text listing-description">
-Le modèle de Black-Scholes est un modèle mathématique qui permet de déterminer le prix d’une option à partir de plusieurs paramètres. Il est basé sur l’hypothèse que le prix…
+Le modèle classique de volatilité stochastique est défini par les équations suivantes :
 </div>
-<div class="card-attribution card-text-small start">
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
-
+Cheryl Kouadio
+</div>
+<div class="listing-date">
+Jan 21, 2025
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="12" data-listing-file-modified-sort="1739039948074" data-listing-reading-time-sort="8" data-listing-word-count-sort="1500">
+<div class="g-col-1" data-index="8" data-listing-date-sort="1736809200000" data-listing-file-modified-sort="1740778189139" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1500">
 <a href="./3A/proc_stochastique/modele_log_sv-part1.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="3A/proc_stochastique/modele_log_sv-part1_files/figure-html/cell-3-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -516,16 +440,201 @@ Calibration du modèle à volatilité stochastique de Taylor : Filtre de Kalman
 <div class="card-text listing-description">
 Le modèle à volatilité stochastique de Taylor est un modèle de volatilité stochastique qui est utilisé pour modéliser la volatilité des actifs financiers. Le modèle est…
 </div>
-<div class="card-attribution card-text-small start">
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Cheryl KOUADIO
+</div>
+<div class="listing-date">
+Jan 14, 2025
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="13" data-listing-file-modified-sort="1738413165370" data-listing-reading-time-sort="10" data-listing-word-count-sort="1869">
+<div class="g-col-1" data-index="9" data-listing-date-sort="1736118000000" data-listing-file-modified-sort="1740778210129" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1449">
+<a href="./3A/proc_stochastique/modele_bs.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="img/placeholder.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Calibration du modèle Black-Scholes
+</h5>
+<div class="listing-reading-time card-text text-muted">
+8 min
+</div>
+<div class="card-text listing-description">
+Le modèle de Black-Scholes est un modèle mathématique qui permet de déterminer le prix d’une option à partir de plusieurs paramètres. Il est basé sur l’hypothèse que le prix…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Jan 6, 2025
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="10" data-listing-date-sort="1729288800000" data-listing-file-modified-sort="1740778364134" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2123">
+<a href="./3A/Apprentisage-stat/Tp4.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="3A/Apprentisage-stat/Tp4_files/figure-html/cell-3-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Features selection
+</h5>
+<div class="listing-reading-time card-text text-muted">
+11 min
+</div>
+<div class="card-text listing-description">
+Feature selection is a process where you automatically or manually select those features which contribute most to your prediction variable or output in which you are…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Cheryl KOUADIO
+</div>
+<div class="listing-date">
+Oct 19, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="11" data-listing-date-sort="1729202400000" data-listing-file-modified-sort="1740778360337" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1274">
+<a href="./3A/Apprentisage-stat/Tp3.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="3A/Apprentisage-stat/Tp3_files/figure-html/cell-3-output-2.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Gradient boosting
+</h5>
+<div class="listing-reading-time card-text text-muted">
+7 min
+</div>
+<div class="card-text listing-description">
+AdaBoost is a popular boosting algorithm that is used to boost the performance of decision trees on binary classification problems. It works by weighting the observations…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Cheryl KOUADIO
+</div>
+<div class="listing-date">
+Oct 18, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="12" data-listing-date-sort="1727992800000" data-listing-file-modified-sort="1740778351384" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2115">
+<a href="./3A/Apprentisage-stat/Tp2.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="3A/Apprentisage-stat/Tp2_files/figure-html/cell-7-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Kernel Trick and SVM
+</h5>
+<div class="listing-reading-time card-text text-muted">
+11 min
+</div>
+<div class="card-text listing-description">
+In regression and classification, we often use linear models to predict the target variable. However, in many cases, the relationship between the target variable and the…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Cheryl KOUADIO
+</div>
+<div class="listing-date">
+Oct 4, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="13" data-listing-date-sort="1727215200000" data-listing-file-modified-sort="1740778347732" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2353">
+<a href="./3A/Apprentisage-stat/Tp1.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="3A/Apprentisage-stat/Tp1_files/figure-html/cell-5-output-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Ridge regression vs.&nbsp;Lasso regression
+</h5>
+<div class="listing-reading-time card-text text-muted">
+12 min
+</div>
+<div class="card-text listing-description">
+The ridge regression is a variant of the linear regression that is used to prevent multicolinearity coming from the covariables in the dataset and thus prevent overfitting.…<span class="math inline"></span>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Cheryl KOUADIO
+</div>
+<div class="listing-date">
+Sep 25, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="14" data-listing-date-sort="1722117600000" data-listing-file-modified-sort="1740777546326" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1959">
+<a href="./3A/value-at-risk/var_application.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="3A/value-at-risk/var_application_files/figure-html/cell-4-output-2.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Application de la VaR
+</h5>
+<div class="listing-reading-time card-text text-muted">
+10 min
+</div>
+<div class="card-text listing-description">
+Nous allons ici nous intéresser aux applications de la Value at Risk (VaR) en finance. La VaR est une mesure de risque qui permet d’estimer les pertes maximales potentielles…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Cheryl Kouadio
+</div>
+<div class="listing-date">
+Jul 28, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="15" data-listing-date-sort="1722031200000" data-listing-file-modified-sort="1740777540109" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="20" data-listing-word-count-sort="3932">
+<a href="./3A/value-at-risk/var_def.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img src="img/placeholder.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+La VaR
+</h5>
+<div class="listing-reading-time card-text text-muted">
+20 min
+</div>
+<div class="card-text listing-description">
+La mesure de risque réglementaire correspond à la valeur en risque ou value at-risk (VaR) qui est le quantile de perte (ou perte maximale subie). Il s’agit dans cette…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Cheryl Kouadio
+</div>
+<div class="listing-date">
+Jul 27, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="16" data-listing-date-sort="1719784800000" data-listing-file-modified-sort="1740777568973" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1869">
 <a href="./3A/reglementation_prudentielle.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="img/placeholder.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
@@ -539,19 +648,48 @@ La réglementation prudentielle
 <div class="card-text listing-description">
 La réglementation prudentielle a été initiée par le développement des marchés financiers et des chocs alimentés par diverses crises financières. Face à ce constat, les…
 </div>
-<div class="card-attribution card-text-small start">
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Cheryl Kouadio
+</div>
+<div class="listing-date">
+Jul 1, 2024
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="14" data-listing-file-modified-sort="1738413165370" data-listing-reading-time-sort="7" data-listing-word-count-sort="1385">
-<a href="./3A/risque_def.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="17" data-listing-date-sort="1719525600000" data-listing-file-modified-sort="1740777590324" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1093">
+<a href="./3A/ISR.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top"><img src="img/placeholder.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Investissement Socialement Responsable (ISR): De quoi parle-t-on ?
+</h5>
+<div class="listing-reading-time card-text text-muted">
+6 min
+</div>
+<div class="card-text listing-description">
+L’Investissement Socialement Responsable (ISR) représente une approche d’investissement qui privilégie l’intégration de critères extra-financiers, notamment les critères ESG…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Cheryl Kouadio
+</div>
+<div class="listing-date">
+Jun 28, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="18" data-listing-date-sort="1719266400000" data-listing-file-modified-sort="1740777580543" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1385">
+<a href="./3A/risque_def.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img data-src="img/placeholder.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 Le risque, qu’est ce que c’est ?
@@ -562,65 +700,22 @@ Le risque, qu’est ce que c’est ?
 <div class="card-text listing-description">
 En finance, le risque peut être défini comme la survenance d’un événement incertain qui peut avoir des conséquences négatives sur le bilan, ou le compte de résultat d’une…
 </div>
-<div class="card-attribution card-text-small start">
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Cheryl Kouadio
+</div>
+<div class="listing-date">
+Jun 25, 2024
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="15" data-listing-file-modified-sort="1739040761437" data-listing-reading-time-sort="10" data-listing-word-count-sort="1959">
-<a href="./3A/var_application.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="3A/var_application_files/figure-html/cell-4-output-2.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Application de la VaR
-</h5>
-<div class="listing-reading-time card-text text-muted">
-10 min
-</div>
-<div class="card-text listing-description">
-Nous allons ici nous intéresser aux applications de la Value at Risk (VaR) en finance. La VaR est une mesure de risque qui permet d’estimer les pertes maximales potentielles…
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-Cheryl Kouadio
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="16" data-listing-file-modified-sort="1738413165371" data-listing-reading-time-sort="20" data-listing-word-count-sort="3932">
-<a href="./3A/var_def.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="img/placeholder.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-La VaR
-</h5>
-<div class="listing-reading-time card-text text-muted">
-20 min
-</div>
-<div class="card-text listing-description">
-La mesure de risque réglementaire correspond à la valeur en risque ou value at-risk (VaR) qui est le quantile de perte (ou perte maximale subie). Il s’agit dans cette…
-</div>
-<div class="card-attribution card-text-small start">
-<div class="listing-author">
-Cheryl Kouadio
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="17" data-listing-file-modified-sort="1738710872453" data-listing-reading-time-sort="7" data-listing-word-count-sort="1288">
+<div class="g-col-1" data-index="19" data-listing-date-sort="1718316000000" data-listing-file-modified-sort="1740778325717" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1288">
 <a href="./2A/App_sup/reg_lin.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top"><img src="2A/App_sup/reg_lin_files/figure-html/unnamed-chunk-1-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img data-src="2A/App_sup/reg_lin_files/figure-html/unnamed-chunk-1-1.png" style="height: 150px;"  class="thumbnail-image card-img"/></p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
 La régression linéaire
@@ -631,9 +726,38 @@ La régression linéaire
 <div class="card-text listing-description">
 La régression linéaire est une méthode d’apprentissage supervisé qui vise à évaluer, lorsqu’il existe, la relation linéaire entre une variable d’intérêt et des variables…
 </div>
-<div class="card-attribution card-text-small start">
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 Cheryl Kouadio
+</div>
+<div class="listing-date">
+Jun 14, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="20" data-listing-date-sort="1715724000000" data-listing-file-modified-sort="1740778290079" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="27" data-listing-word-count-sort="5398">
+<a href="./3A/bilan_entreprise.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top"><img data-src="img/placeholder.jpg" style="height: 150px;"  class="thumbnail-image card-img"/></p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Comment fonctionne le bilan et le compte de résultat d’une entreprise
+</h5>
+<div class="listing-reading-time card-text text-muted">
+27 min
+</div>
+<div class="card-text listing-description">
+L’analyse financière constitue l’ensemble des outils permettant de donner un avis objectif d’une organisation (entreprises, fondations, etc.) sur la santé finanière et les…
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Cheryl KOUADIO
+</div>
+<div class="listing-date">
+May 15, 2024
 </div>
 </div>
 </div>
@@ -644,6 +768,9 @@ Cheryl Kouadio
 <div class="listing-no-matching d-none">
 No matching items
 </div>
+<nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
+  <ul class="pagination"></ul>
+</nav>
 </div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

@@ -1,6 +1,7 @@
 ---
 title: "Le risque, qu'est ce que c'est ?"
 sidebar: auto
+date: "2024-06-25"
 author:
   - Cheryl Kouadio
 ---

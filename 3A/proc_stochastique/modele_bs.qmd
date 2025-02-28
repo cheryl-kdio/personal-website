@@ -1,6 +1,7 @@
 ---
 title: 'Calibration du modèle Black-Scholes'
 jupyter: python3
+date: "2025-01-06"
 ---
 
 

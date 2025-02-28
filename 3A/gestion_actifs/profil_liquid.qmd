@@ -2,6 +2,7 @@
 title: Profil d'écoulement/ de liquidation de portefeuille
 author : Cheryl Kouadio
 jupyter: python3
+date: "2025-01-27"
 ---
 
 

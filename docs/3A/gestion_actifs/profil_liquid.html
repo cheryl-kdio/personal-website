@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Cheryl Kouadio">
+<meta name="dcterms.date" content="2025-01-27">
 
 <title>Profil d’écoulement/ de liquidation de portefeuille</title>
 <style>
@@ -222,6 +223,12 @@ window.Quarto = {
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 27, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -246,7 +253,7 @@ window.Quarto = {
 <li>Pour obtenir un portefeuille ni trop liquide, ni trop illiquide, on prendra : <span class="math inline">\(1.5 \times randn() \times \text{ADV 3M}\)</span>, où randn()randn() génère une variable aléatoire selon une distribution normale.</li>
 <li>Calcul du profil de liquidation.</li>
 </ol>
-<div id="da89ad15" class="cell" data-execution_count="1">
+<div id="da89ad15" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ! pip install yfinance</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime, timedelta</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yfinance <span class="im">as</span> yf </span>
@@ -260,7 +267,7 @@ window.Quarto = {
   warnings.warn(</code></pre>
 </div>
 </div>
-<div id="41bfd5c4" class="cell" data-execution_count="2">
+<div id="41bfd5c4" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_data(start_date, end_date, index_ticker, tickers, column<span class="op">=</span><span class="st">"Close"</span>):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Extraction de données de cours d'actions</span></span>
@@ -338,7 +345,7 @@ window.Quarto = {
 [*********************100%***********************]  1 of 1 completed</code></pre>
 </div>
 </div>
-<div id="5c046328" class="cell" data-execution_count="3">
+<div id="5c046328" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>portfolio_data <span class="op">=</span> data[<span class="st">"portfolio_data"</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>portfolio_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -524,7 +531,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="43d4de5d" class="cell" data-execution_count="4">
+<div id="43d4de5d" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>portfolio_data.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>DatetimeIndex(['2024-11-07', '2024-11-08', '2024-11-11', '2024-11-12',
@@ -547,7 +554,7 @@ window.Quarto = {
               dtype='datetime64[ns]', name='Date', freq=None)</code></pre>
 </div>
 </div>
-<div id="d380108d" class="cell" data-execution_count="5">
+<div id="d380108d" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul des ADV 3Mois</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>adv_3m <span class="op">=</span> {portfolio_data[ticker].mean() <span class="cf">for</span> ticker <span class="kw">in</span> assets_ticker}</span>
@@ -593,7 +600,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="46c30078" class="cell" data-execution_count="6">
+<div id="46c30078" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Génération des quantités</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ADV[<span class="st">"Quantity"</span>] <span class="op">=</span>  <span class="bu">round</span>(<span class="fl">1.5</span> <span class="op">*</span> np.random.rand(<span class="bu">len</span>(ADV[<span class="st">"ADV"</span>])) <span class="op">*</span> ADV[<span class="st">"ADV"</span>])</span>
@@ -643,7 +650,7 @@ window.Quarto = {
 </div>
 </div>
 <p>On fait l’hypothèse que la profondeur de marché est de 20%. Celà signifie que l’on peut vendre 20% de la quantité sans impacter le prix de façon considérable. Au delà, le prix est impacté. Cette profondeur est ce qui est observé en pratique dans les carnets d’ordre à tel point que l’AMF le recommande.</p>
-<div id="3e2bef1e" class="cell" data-execution_count="7">
+<div id="3e2bef1e" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>market_depth <span class="op">=</span> <span class="dv">20</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ADV[<span class="st">"Quantity in 1day"</span>] <span class="op">=</span> <span class="bu">round</span>(ADV[<span class="st">"Quantity"</span>] <span class="op">*</span> market_depth)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ADV.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -697,7 +704,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="dd57258f" class="cell" data-execution_count="8">
+<div id="dd57258f" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul du nombre de jours de liquidation</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ADV[<span class="st">"Days of liquidation"</span>] <span class="op">=</span> ADV[<span class="st">"Quantity"</span>]<span class="op">/</span>ADV[<span class="st">"Quantity in 1day"</span>]</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -760,7 +767,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="f70d98f8" class="cell" data-execution_count="9">
+<div id="f70d98f8" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Temps de liquidation du portefeuille : </span><span class="sc">{</span>ADV[<span class="st">'Days of liquidation'</span>]<span class="sc">.</span><span class="bu">max</span>()<span class="sc">}</span><span class="ss"> jours"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Temps de liquidation du portefeuille : 5 jours</code></pre>
@@ -772,7 +779,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="sous-conditions-normales-avec-déformation-waterfall-liquidation">Sous conditions normales avec déformation (waterfall liquidation)</h3>
 <p>On peut être également interessé par la quantité de liquidation sur plusieurs jours. Pour celà, on fait l’hypothèse qu’on liquide les prochains jours aux prix observés aujourd’hui. Ce que je peux véritablement liquider en 1 jour est donc la quantité que je peux vendre sans impacter le prix, i.e.&nbsp;min(quantité liquidable en 1 jour, quantité restant dans le portefeuille).</p>
 <p>On peut calculer la valeur du portefeuille initiale et sur les jours de liquidation désirée. On l’exprime généraleent en pourcentage des encours totaux. On peut également calculer le cumul du pourcentage liquidé sur les jours de liquidation désirée. Cela nous permet d’obtenir le profil d’écoulement.</p>
-<div id="df7146fd" class="cell" data-execution_count="10">
+<div id="df7146fd" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialisation d'une colonne pour suivre les quantités liquidées</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ADV[<span class="st">"Quantity liquidated"</span>] <span class="op">=</span> <span class="dv">0</span>  <span class="co"># Initialement, rien n'est liquidé</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -875,7 +882,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="203a824d" class="cell" data-execution_count="11">
+<div id="203a824d" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>end_date <span class="op">=</span> datetime.now()</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>start_date <span class="op">=</span> end_date <span class="op">-</span> timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>price_data <span class="op">=</span> get_data(start_date, end_date, index, assets_ticker, column<span class="op">=</span><span class="st">"Close"</span>)</span>
@@ -887,7 +894,7 @@ window.Quarto = {
 [*********************100%***********************]  1 of 1 completed</code></pre>
 </div>
 </div>
-<div id="e0c5ed9d" class="cell" data-execution_count="12">
+<div id="e0c5ed9d" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Valeur liquide des actions par jour de liquidation</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>market_value <span class="op">=</span>[</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    price_dict[ticker] <span class="op">*</span> liquidation_df.loc[ticker]</span>
@@ -976,7 +983,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="9370f4f0" class="cell" data-execution_count="13">
+<div id="9370f4f0" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la valeur de marché initiale et totale</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>market_value_0 <span class="op">=</span> market_value.iloc[:, <span class="dv">0</span>]</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>total_market_value_0 <span class="op">=</span> market_value_0.<span class="bu">sum</span>()</span>
@@ -1073,7 +1080,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="9fc7c048" class="cell" data-execution_count="14">
+<div id="9fc7c048" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialiser le graphique</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1105,7 +1112,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Pour un fond de droit français reglementé, on a pas le droit d’investir plus de 5% du portefeuille dans une société. Exceptionnellement, pour certains titre, on a le droit d’investir jusqu’à 10% du portefeuille, à condition que les titres qui sont exposées à plus de 5% du portefeuille ne dépassent pas 40% du portefeuille. C’est la règle des 5/10/40. C’est un ratio réglementaire pour les OPC. Toutes les pertes réalisées en raison du défaut de ce ratio doivent être supportées par la société de gestion. Ces depassements doivent être déclarés à l’AMF. Dans notre cas, ce ratio n’est pas respecté, l’équilibre du portefeuille est chamboulé.</p>
-<div id="c776a47e" class="cell" data-execution_count="15">
+<div id="c776a47e" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Valeur liquide du portefeuille</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>market_value_df <span class="op">=</span> pd.DataFrame()</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1131,7 +1138,7 @@ window.Quarto = {
 7  0.000000e+00    0.000000e+00               1.0</code></pre>
 </div>
 </div>
-<div id="c8d27dc4" class="cell" data-execution_count="16">
+<div id="c8d27dc4" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>market_value_df <span class="op">=</span> market_value_df.iloc[<span class="dv">1</span>:]</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1167,7 +1174,7 @@ window.Quarto = {
 </div>
 <p>Pour voir ce qui arrive au profil d’écoulement lorsque les quantités varient, on va utiliser un facteur de modulation de la quantité. Cela permet de déterminer quelle est la taille cible du portefeuille qui permet d’avoir la liquidité pour un certain niveau en nombre de jours qu’on se fixe. Cet exercice est fait une seule fois à l’initialisation du portefeuille.</p>
 <p><strong>La liquidité d’un portefeuille dépend de la liquidité intrinsèque des titres et la quantité de titres.</strong></p>
-<div id="3b1f93f7" class="cell" data-execution_count="17">
+<div id="3b1f93f7" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1274,7 +1281,7 @@ window.Quarto = {
 <span id="cb23-104"><a href="#cb23-104" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
 <span id="cb23-105"><a href="#cb23-105" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> market_value_df, market_value, weights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="0ea315a8" class="cell" data-execution_count="18">
+<div id="0ea315a8" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fact_modulation<span class="op">=</span><span class="fl">0.5</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>nb_liquidation<span class="op">=</span><span class="dv">6</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1294,7 +1301,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="0afe130d" class="cell" data-execution_count="19">
+<div id="0afe130d" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>new_market_value.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <div>
@@ -1374,7 +1381,7 @@ window.Quarto = {
 <section id="sous-conditions-stressées-avec-déformation" class="level3">
 <h3 class="anchored" data-anchor-id="sous-conditions-stressées-avec-déformation">Sous conditions stressées avec déformation</h3>
 <p>Pour avoir des conditions stressées, on joue sur la quantité liquidable en un jour et de fait sur la profondeur de marché. Pour des conditions stressées à la baisse, on divise la profondeur de marché par 2. Pour des conditions stressées à la hausse, on multiplie la profondeur de marché par 2.</p>
-<div id="37a557cc" class="cell" data-execution_count="20">
+<div id="37a557cc" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul des ADV 3Mois</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>adv_3m <span class="op">=</span> {portfolio_data[ticker].mean() <span class="cf">for</span> ticker <span class="kw">in</span> assets_ticker}</span>
@@ -1400,7 +1407,7 @@ window.Quarto = {
 <pre><code>Temps de liquidation du portefeuille : 10 jours</code></pre>
 </div>
 </div>
-<div id="a8ce14eb" class="cell" data-execution_count="21">
+<div id="a8ce14eb" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fact_modulation<span class="op">=</span><span class="dv">1</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>nb_liquidation<span class="op">=</span><span class="dv">12</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1427,7 +1434,7 @@ window.Quarto = {
 <p>L’objectif est de conserver la distribution du portefeuille à mesure qu’il se liquide. Tout d’abord, on estime la quantité liquidable à un jour de chacun des titres comme fait précédemment. Celà permet d’avoir le pourcentage liquidable en un jour.</p>
 <p>Si on veut que le portefeuille se liquide à la même vitesse, il faut aller à la vitesse du titre le plus lent. On peut calculer le pourcentage liquidable en un jour pour chaque titre. On prendra le minimum de ces pourcentages pour déterminer le pourcentage liquidable en un jour du portefeuille.</p>
 <p>Le portefeuille prend ainsi plus de temps à se liquider et fatalement, le portefeuille finit par se déformer.</p>
-<div id="17d35303" class="cell" data-execution_count="22">
+<div id="17d35303" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1535,7 +1542,7 @@ window.Quarto = {
 <span id="cb29-105"><a href="#cb29-105" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
 <span id="cb29-106"><a href="#cb29-106" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> market_value_df, market_value, weights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="d188af12" class="cell" data-execution_count="23">
+<div id="d188af12" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>fact_modulation<span class="op">=</span><span class="dv">1</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>nb_liquidation<span class="op">=</span><span class="dv">10</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
