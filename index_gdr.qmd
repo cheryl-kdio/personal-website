@@ -61,9 +61,16 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 
 ## Projets et applications déployées
 ::: {.blog-section}
+
+**Projets**
+
 - [Projet de séries temporelles](3A/rapports/rapport_series_temporelles.pdf)
 - [Projet de scoring]()
-- [App de prédiction du cours du CAC40](https://cac40forecast.streamlit.app/)
 - [Projet de théorie de valeurs extrêmes 1](3A/rapports/projet_EVT_Kouadio_Kougoum_Ouyassin.pdf)
 - [Projet de théorie de valeurs extrêmes 2](3A/rapports/projet_EVT_Wane_Kouadio.pdf)
+
+**Applications déployées**
+
+- [Stock price prediction : CAC40](https://cac40forecast.streamlit.app/)
+- [Asset pricing and management](https://github.com/Niyo-D-JC/Asset-Pricing-and-Management)
 :::
