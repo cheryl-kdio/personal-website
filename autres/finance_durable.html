@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Cheryl Kouadio">
-<meta name="dcterms.date" content="2025-02-07">
+<meta name="dcterms.date" content="2025-03-02">
 
-<title>Corrélation de Spearman vs corrélation de Pearson</title>
+<title>Investissement responsable</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,40 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -106,35 +72,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -188,10 +125,18 @@ window.Quarto = {
     <h2 id="toc-title">Sommaire</h2>
    
   <ul>
-  <li><a href="#corrélation-de-spearman-vs-corrélation-de-pearson" id="toc-corrélation-de-spearman-vs-corrélation-de-pearson" class="nav-link active" data-scroll-target="#corrélation-de-spearman-vs-corrélation-de-pearson">Corrélation de Spearman vs corrélation de Pearson</a>
+  <li><a href="#le-cadre-de-la-finance-durable" id="toc-le-cadre-de-la-finance-durable" class="nav-link active" data-scroll-target="#le-cadre-de-la-finance-durable">Le cadre de la finance durable</a></li>
+  <li><a href="#la-finance-durable-appliquée-à-linvestissement" id="toc-la-finance-durable-appliquée-à-linvestissement" class="nav-link" data-scroll-target="#la-finance-durable-appliquée-à-linvestissement">La finance durable appliquée à l’investissement</a>
   <ul class="collapse">
-  <li><a href="#quest-ce-quune-mesure-de-concordance" id="toc-quest-ce-quune-mesure-de-concordance" class="nav-link" data-scroll-target="#quest-ce-quune-mesure-de-concordance">Qu’est ce qu’une mesure de concordance ?</a></li>
-  <li><a href="#exemple" id="toc-exemple" class="nav-link" data-scroll-target="#exemple">Exemple :</a></li>
+  <li><a href="#les-stratégies-dinvestissement-responsable" id="toc-les-stratégies-dinvestissement-responsable" class="nav-link" data-scroll-target="#les-stratégies-dinvestissement-responsable">Les stratégies d’investissement responsable</a></li>
+  <li><a href="#limportance-des-données-esg" id="toc-limportance-des-données-esg" class="nav-link" data-scroll-target="#limportance-des-données-esg">L’importance des données ESG</a></li>
+  </ul></li>
+  <li><a href="#prise-en-compte-du-risque-climatique-dans-la-gestion-dactifs" id="toc-prise-en-compte-du-risque-climatique-dans-la-gestion-dactifs" class="nav-link" data-scroll-target="#prise-en-compte-du-risque-climatique-dans-la-gestion-dactifs">Prise en compte du risque climatique dans la gestion d’actifs</a>
+  <ul class="collapse">
+  <li><a href="#impact-du-risque-climatique-sur-les-actifs-financiers" id="toc-impact-du-risque-climatique-sur-les-actifs-financiers" class="nav-link" data-scroll-target="#impact-du-risque-climatique-sur-les-actifs-financiers">Impact du risque climatique sur les actifs financiers</a></li>
+  <li><a href="#mesure-et-gestion-des-risques-climatiques-en-finance" id="toc-mesure-et-gestion-des-risques-climatiques-en-finance" class="nav-link" data-scroll-target="#mesure-et-gestion-des-risques-climatiques-en-finance">Mesure et gestion des risques climatiques en finance</a></li>
+  <li><a href="#outils-de-gestion-des-risques" id="toc-outils-de-gestion-des-risques" class="nav-link" data-scroll-target="#outils-de-gestion-des-risques">Outils de gestion des risques :</a></li>
+  <li><a href="#raisons-pour-intégrer-les-scénarios-climatiques-en-gestion-de-portefeuille" id="toc-raisons-pour-intégrer-les-scénarios-climatiques-en-gestion-de-portefeuille" class="nav-link" data-scroll-target="#raisons-pour-intégrer-les-scénarios-climatiques-en-gestion-de-portefeuille">Raisons pour intégrer les scénarios climatiques en gestion de portefeuille ?</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -205,7 +150,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Corrélation de Spearman vs corrélation de Pearson</h1>
+<h1 class="title">Investissement responsable</h1>
 </div>
 
 
@@ -222,7 +167,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 7, 2025</p>
+      <p class="date">March 2, 2025</p>
     </div>
   </div>
   
@@ -234,119 +179,110 @@ window.Quarto = {
 </header>
 
 
-<section id="corrélation-de-spearman-vs-corrélation-de-pearson" class="level1">
-<h1>Corrélation de Spearman vs corrélation de Pearson</h1>
-<p>La corrélation de Spearman est une mesure de corrélation non paramétrique qui permet de mesurer la relation monotone entre deux variables. Elle est souvent utilisée pour mesurer la dépendance entre les variables aléatoires. La corrélation de Spearman est basée sur les rangs des observations et est moins sensible aux valeurs extrêmes que la corrélation de Pearson. Elle est donc plus robuste et plus adaptée pour mesurer la dépendance entre les variables aléatoires.</p>
-<p>La corrélation de Pearson, quant à elle, ne permet de comparer les dépendances <strong>linéaires</strong> des variables. De plus, elle ne permet de comparer les corrélation que lorsque les variables aléatoires sont normales. En effet, soit (<span class="math inline">\(X_1,X_2,X_3\)</span>), si <span class="math inline">\(\rho(X_1,X_2) &gt; \rho(X_1,X_3)\)</span>, cela ne veut dire que la corrélation entre <span class="math inline">\(X_1\)</span> et <span class="math inline">\(X_2\)</span> est plus forte que celle entre <span class="math inline">\(X_1\)</span> et <span class="math inline">\(X_3\)</span> que si ces variables sont gaussiennes.</p>
-<p>Nous verrons dans la suite de ce document que la corrélation de Spearman est plus adaptée pour mesurer la dépendance entre les variables aléatoires, car elle est une <strong>mesure de concordance</strong>. De ce fait, elle est définit par une copule. Il n’en est pas ainsi pour la corrélation de Pearson.</p>
-<section id="quest-ce-quune-mesure-de-concordance" class="level3">
-<h3 class="anchored" data-anchor-id="quest-ce-quune-mesure-de-concordance">Qu’est ce qu’une mesure de concordance ?</h3>
-<p>Une mesure de concordance est une mesure qui permet de quantifier la relation entre deux variables aléatoires. Cinq propriétés sont généralement attribuées à une mesure de concordance :</p>
+<section id="le-cadre-de-la-finance-durable" class="level1">
+<h1>Le cadre de la finance durable</h1>
+<p>La finance durable vise à concilier rentabilité financière et prise en compte des enjeux environnementaux, sociaux et de gouvernance (ESG). Elle repose sur trois grands objectifs :</p>
+<ol type="1">
+<li>Réorienter les flux de capitaux vers des investissements responsables.</li>
+<li>Gérer les risques financiers liés aux critères ESG (changement climatique, violations des droits humains, mauvaise gouvernance).</li>
+<li>Favoriser la transparence et une vision à long terme grâce aux nouvelles régulations.</li>
+</ol>
+<p>Pour structurer cette transition, plusieurs outils ont été mis en place :</p>
 <ul>
-<li><p><strong>Symétrie</strong> : la mesure de concordance entre X et Y est la même que celle entre Y et X.</p></li>
-<li><p><strong>Normalisation</strong> : la mesure de concordance est comprise entre -1 et 1.</p></li>
-<li><p><span class="math inline">\(\delta(X_1, X_2) = 1 \Leftrightarrow (X_1,X_2) \overset{\mathcal{L}}{=}  \left( F_1^{-1}(U),F_2^{-1}(U) \right)\)</span></p></li>
-<li><p><span class="math inline">\(\delta(X_1, X_2) = -1 \Leftrightarrow (X_1,X_2) \overset{\mathcal{L}}{=}  \left( F_1^{-1}(U),F_2^{-1}(1-U) \right)\)</span></p></li>
-<li><p><span class="math inline">\(\delta(f(X_1), X_2) = \delta(X_1, X_2)\)</span> si <span class="math inline">\(f\)</span> est croissante; <span class="math inline">\(\delta(f(X_1), X_2) = -\delta(X_1, X_2)\)</span> si <span class="math inline">\(f\)</span> est décroissante.</p></li>
+<li>Les critères ESG, qui permettent d’évaluer la durabilité d’un investissement.</li>
+<li>La Taxonomie Européenne, qui définit quelles activités économiques sont réellement durables. Il a 6 objectifs principaux.</li>
+<li>Les labels ISR (pour des investissements prenant en compte les critères ESG), Greenfin (pour des projects plus verts, excluant les énergies fossiles) et Finansol (une finance solidaire pour prendre en compte l’aspect «social»), qui garantissent des investissements alignés avec la finance responsable.</li>
+<li>Les obligations réglementaires (SFDR - Règlement, CSRD - Directive), qui imposent un reporting extra-financier aux entreprises et investisseurs.</li>
 </ul>
-<p>En raison des propriétés 3 et 4, la corrélation de pearson n’est pas une mesure de concordance lorsque les variables aléatoires ne sont pas gaussiennes. En effet, la corrélation de pearson ne vérifie pas la propriété 3. C’est pourquoi, la corrélation de spearman est plus adaptée pour mesurer la dépendance entre les variables aléatoires. Une mesure encore plus appropriée est la copule. La corrélation de spearman, quant à elle, est une mesure de concordance.</p>
+<p>Cependant, des défis subsistent, comme le greenwashing, le manque d’uniformisation des notations ESG et la crainte d’un impact négatif sur la performance financière. Malgré cela, la finance durable est devenue un levier incontournable pour assurer une économie plus résiliante et éthique. La finance durable n’est plus une option mais une nécessité pour répondre aux défis climatiques et sociaux tout en maintenant la stabilité du système financier mondial.</p>
 </section>
-<section id="exemple" class="level3">
-<h3 class="anchored" data-anchor-id="exemple">Exemple :</h3>
-<p>Soit un vecteur gaussien X = (<span class="math inline">\(X_1, X_2, X_3\)</span>) suivant une loi N(0,<span class="math inline">\(\Sigma\)</span>) avec :</p>
-<p><span class="math display">\[
-\Sigma = \begin{pmatrix}
-1 &amp; 0.4 &amp; 0.2 \\
-0.4 &amp; 1 &amp; -0.8 \\
-0.2 &amp; -0.8 &amp; 1
-\end{pmatrix}
-\]</span></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="fl">0.4</span>,<span class="fl">0.2</span>,<span class="fl">0.4</span>,<span class="dv">1</span>,<span class="sc">-</span><span class="fl">0.8</span>,<span class="fl">0.2</span>,<span class="sc">-</span><span class="fl">0.8</span>,<span class="dv">1</span>), <span class="at">nrow=</span><span class="dv">3</span>, <span class="at">ncol=</span><span class="dv">3</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">mvrnorm</span>(n,<span class="at">mu=</span><span class="fu">rep</span>(<span class="dv">0</span>,m),<span class="at">Sigma=</span>sigma)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs.panels</span>(X,<span class="at">method=</span><span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="spearman-pearson_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<section id="la-finance-durable-appliquée-à-linvestissement" class="level1">
+<h1>La finance durable appliquée à l’investissement</h1>
+<p>La finance durable ne se limite pas à des principes théoriques ; elle se traduit par des stratégies d’investissement concrètes visant à intégrer les critères ESG dans la gestion des actifs financiers. Pour cela, plusieurs approches existent.</p>
+<section id="les-stratégies-dinvestissement-responsable" class="level3">
+<h3 class="anchored" data-anchor-id="les-stratégies-dinvestissement-responsable">Les stratégies d’investissement responsable</h3>
+<ul>
+<li>L’Exclusion : Éliminer certains secteurs ou entreprises jugés non responsables (ex : tabac, énergies fossiles, armement).</li>
+<li>Le Best-in-Class : Sélectionner les entreprises ayant les meilleures pratiques ESG dans chaque secteur, sans exclure de domaines spécifiques.</li>
+<li>L’Engagement actionnarial : Influer sur les entreprises en tant qu’actionnaire via le vote en assemblée générale et le dialogue.</li>
+<li>L’Impact Investing : Financer directement des entreprises ou projets ayant un impact environnemental ou social positif mesurable. Les stratégies les plus actives et efficaces sont l’Engagement Actionnarial et l’Impact Investing, car elles permettent d’influencer directement les pratiques ESG et de créer un impact mesurable sur l’économie.</li>
+</ul>
+</section>
+<section id="limportance-des-données-esg" class="level3">
+<h3 class="anchored" data-anchor-id="limportance-des-données-esg">L’importance des données ESG</h3>
+<p>L’investissement responsable repose sur des données ESG fiables pour évaluer la performance extra-financière des entreprises. Cependant, plusieurs limites persistent : - Manque de standardisation : Chaque fournisseur (MSCI, Sustainalytics, Moody’s ESG) utilise des méthodologies différentes, rendant les comparaisons complexes. - Risque de biais et greenwashing : Certaines entreprises embellissent leurs rapports ESG pour obtenir de meilleures notes. - Absence de transparence : Les investisseurs doivent analyser minutieusement les sources de données avant de prendre des décisions.</p>
+<p>Des solutions existent pour améliorer la fiabilité des notations ESG : - Harmonisation des standards via des régulations comme la directive CSRD. - Audit indépendant des données ESG pour éviter les manipulations. - Utilisation de l’IA et du Big Data pour analyser des sources plus diversifiées et détecter les incohérences.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
 </div>
 </div>
-</div>
-<p>On crée ensuite un vecteur Z constitué des fonctions de répartition des éléments de X. On constate que la corrélation de Spearman entre les éléments de Z ne change pas. Celà s’explique par le fait que nous appliquons une fonction croissante à chaque élément de X. Cependant, la distribution de Z est différente de celle de X. En effet, les composantes de Z suivent une loi uniforme <span class="math inline">\(\mathcal{U}(0,1)\)</span>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(X, <span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs.panels</span>(Z,<span class="at">method=</span><span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="spearman-pearson_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="callout-body-container callout-body">
+<p>L’intégration de l’ESG est une approche dynamique et évolutive, qui dépend du niveau d’engagement souhaité par l’investisseur.L’Engagement actionnarial et l’Impact Investing sont les stratégies les plus efficaces, car elles permettent d’influencer l’économie de manière proactive. La fiabilité des données ESG doit encore être renforcée pour garantir une transparence totale dans la finance durable.</p>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs.panels</span>(Z,<span class="at">method=</span><span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="spearman-pearson_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+</section>
+</section>
+<section id="prise-en-compte-du-risque-climatique-dans-la-gestion-dactifs" class="level1">
+<h1>Prise en compte du risque climatique dans la gestion d’actifs</h1>
+<p>Le changement climatique est devenu un facteur clé dans la gestion d’actifs. Les investisseurs doivent intégrer ces risques pour protéger leurs portefeuilles, se conformer aux régulations et capter les opportunités de la transition énergétique.</p>
+<section id="impact-du-risque-climatique-sur-les-actifs-financiers" class="level3">
+<h3 class="anchored" data-anchor-id="impact-du-risque-climatique-sur-les-actifs-financiers">Impact du risque climatique sur les actifs financiers</h3>
+<p>Deux types de risques à prendre en compte :</p>
+<ul>
+<li>Risque physique → Catastrophes naturelles (ouragans, inondations, sécheresses) qui endommagent les infrastructures et réduisent la valeur des actifs.</li>
+<li>Risque de transition → Régulations environnementales et évolutions du marché qui dévalorisent les industries polluantes (pétrole, charbon, transport intensif, etc.). Exemple : L’immobilier en zone inondable peut perdre de la valeur, et les entreprises pétrolières risquent de voir leurs coûts augmenter avec la taxe carbone.</li>
+</ul>
+</section>
+<section id="mesure-et-gestion-des-risques-climatiques-en-finance" class="level3">
+<h3 class="anchored" data-anchor-id="mesure-et-gestion-des-risques-climatiques-en-finance">Mesure et gestion des risques climatiques en finance</h3>
+<p>Indicateurs utilisés : - Score ESG → Évaluation des critères environnementaux, sociaux et de gouvernance. - Émissions de GES (Scope 1, 2, 3) → Mesure l’empreinte carbone d’une entreprise ou d’un portefeuille. - Alignement 2°C → Vérifie si un investissement est compatible avec les objectifs climatiques de l’Accord de Paris. - Stress-tests climatiques → Simulent l’impact des scénarios climatiques sur les portefeuilles d’investissement.</p>
+</section>
+<section id="outils-de-gestion-des-risques" class="level3">
+<h3 class="anchored" data-anchor-id="outils-de-gestion-des-risques">Outils de gestion des risques :</h3>
+<ul>
+<li>Diversification des actifs → Réduire l’exposition aux secteurs vulnérables au climat.</li>
+<li>Exclusion des industries polluantes → Éviter les investissements dans le charbon et le pétrole.</li>
+<li>Investissement dans des actifs verts (Green Bonds, infrastructures bas carbone) → Financer la transition énergétique.</li>
+<li>Engagement actionnarial → Influer sur les entreprises en votant en assemblée générale pour exiger des stratégies bas carbone.</li>
+</ul>
+</section>
+<section id="raisons-pour-intégrer-les-scénarios-climatiques-en-gestion-de-portefeuille" class="level3">
+<h3 class="anchored" data-anchor-id="raisons-pour-intégrer-les-scénarios-climatiques-en-gestion-de-portefeuille">Raisons pour intégrer les scénarios climatiques en gestion de portefeuille ?</h3>
+<ul>
+<li>Éviter les pertes financières → Anticiper l’impact du climat sur les entreprises et secteurs sensibles.</li>
+<li>Se conformer aux régulations → Respecter les normes SFDR, CSRD et Taxonomie Européenne.</li>
+<li>Capter les opportunités d’investissement → Financer des entreprises et projets alignés avec la transition énergétique.</li>
+</ul>
+<p>Exemple : Un investisseur qui anticipe les réglementations sur les énergies fossiles pourra transférer ses capitaux vers les énergies renouvelables, évitant ainsi des pertes et profitant de la croissance du secteur.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
 </div>
 </div>
-</div>
-<p>A partir de Z, nous construisons un vecteur W tel que les composantes de W suivent des lois marginales différentes, resp <span class="math inline">\(\beta(0,1), \gamma(2,1), \beta(2,1)\)</span>. La corrélation de Spearman entre les éléments de W ne change pas bien que la distribution des marginales ait changé, puisque nous appliquons une fonction croissante à chaque élément de Z.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>w1 <span class="ot">&lt;-</span> <span class="fu">qbeta</span>(Z[,<span class="dv">1</span>], <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>w2 <span class="ot">&lt;-</span> <span class="fu">qgamma</span>(Z[,<span class="dv">2</span>], <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>w3 <span class="ot">&lt;-</span> <span class="fu">qbeta</span>(Z[,<span class="dv">3</span>], <span class="dv">2</span>,<span class="dv">1</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">cbind</span>(w1,w2,w3)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs.panels</span>(W,<span class="at">method=</span><span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="spearman-pearson_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="callout-body-container callout-body">
+<p>Le risque climatique est un enjeu central en gestion d’actifs. Il affecte la valorisation des entreprises, les régulations financières et les décisions d’investissement. Les investisseurs doivent intégrer ces risques dans leur gestion de portefeuille, en utilisant des indicateurs ESG, des stress-tests climatiques et des stratégies de diversification. Ne pas prendre en compte ces scénarios expose à des actifs dévalorisés et à des pertes financières à long terme.</p>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs.panels</span>(W,<span class="at">method=</span><span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="spearman-pearson_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="callout callout-style-default callout-tip callout-titled" title="Take away">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Take away
 </div>
 </div>
-</div>
-<p>On en conclut que la structure de dépendance d’un vecteur de variables aléatoire peut être isolée, caractériséee, et modélisée indépendamment des lois marginales/distributions univariées des composantes du vecteur aléatoire. Le concept de copule permet de modéliser cette structure de dépendance.</p>
-<p>Si l’on utilise la correlation de Pearson, on constate que la corrélation entre les éléments de W et Z change. En effet, la corrélation de Pearson est une mesure de corrélation linéaire et ne permet pas de comparer, xdans tous les cas, les dépendances entre les variables aléatoires.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs.panels</span>(X,<span class="at">method=</span><span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="spearman-pearson_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs.panels</span>(Z,<span class="at">method=</span><span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="spearman-pearson_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs.panels</span>(W,<span class="at">method=</span><span class="st">"spearman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="spearman-pearson_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<div class="callout-body-container callout-body">
+<p>L’investissement responsable intègre les critères ESG (Environnement, Social, Gouvernance) dans la gestion d’actifs afin de concilier performance financière et impact durable. Il repose sur différentes stratégies : exclusion des secteurs controversés, Best-in-Class, Engagement actionnarial et Impact Investing. Les régulations, comme la Taxonomie Européenne, la SFDR et la CSRD, imposent plus de transparence aux entreprises et investisseurs pour lutter contre le greenwashing et favoriser la transition vers une économie bas carbone. Le risque climatique, divisé en risques physiques (catastrophes naturelles) et risques de transition (régulations et évolutions de marché), influence fortement la valorisation des actifs. Les outils comme l’alignement 2°C et les stress-tests climatiques aident à évaluer l’exposition des portefeuilles. Enfin, les Green Bonds et autres financements durables permettent de soutenir la transition énergétique et d’orienter les capitaux vers des projets à fort impact environnemental positif. L’investissement responsable est donc un levier clé pour une finance plus durable et résiliente.</p>
 </div>
 </div>
 
