@@ -1,6 +1,7 @@
 {
   "about.qmd": {
-    "about.html": "c0446c0a"
+    "about.html": "c0446c0a",
+    "about.ipynb": "259745a5"
   },
   "index.qmd": {
     "index.html": "a8146437",
@@ -20,17 +21,20 @@
     "reg_lin.tex": "61392ad3"
   },
   "3A/bilan_entreprise.qmd": {
-    "bilan_entreprise.html": "3ac44b45"
+    "bilan_entreprise.html": "3ac44b45",
+    "bilan_entreprise.ipynb": "a64d4f8e"
   },
   "3A/reglementation_prudentielle.qmd": {
-    "reglementation_prudentielle.html": "b7c11aa2"
+    "reglementation_prudentielle.html": "b7c11aa2",
+    "reglementation_prudentielle.ipynb": "d7fc5728"
   },
   "3A/ISR.qmd": {
     "ISR.html": "9ef98f32",
     "ISR.ipynb": "2b31bfd8"
   },
   "3A/risque_def.qmd": {
-    "risque_def.html": "66259b52"
+    "risque_def.html": "66259b52",
+    "risque_def.ipynb": "e3fcd02b"
   },
   "3A/var_def.qmd": {
     "var_def.html": "c64f6b1a"
@@ -44,13 +48,17 @@
     "TP2-correction-CK.html": "3f903307"
   },
   "3A/Apprentisage-stat/Tp2.qmd": {
-    "Tp2.html": "dd93b6c0"
+    "Tp2.html": "dd93b6c0",
+    "Tp2.ipynb": "2ad88748",
+    "Tp2.tex": "fd851ff7"
   },
   "3A/Apprentisage-stat/Tp3.qmd": {
-    "Tp3.html": "8d8d324b"
+    "Tp3.html": "8d8d324b",
+    "Tp3.ipynb": "22dee928"
   },
   "3A/Apprentisage-stat/Tp4.qmd": {
-    "Tp4.html": "27f4fb6f"
+    "Tp4.html": "27f4fb6f",
+    "Tp4.ipynb": "9bb3966d"
   },
   "blog.qmd": {
     "blog.html": "533f52c3"
@@ -60,7 +68,8 @@
     "mesures_rsq.ipynb": "57a88a3a"
   },
   "3A/gestion_actifs/profil_liquid.qmd": {
-    "profil_liquid.html": "623c63f6"
+    "profil_liquid.html": "623c63f6",
+    "profil_liquid.ipynb": "d8f482e0"
   },
   "3A/spearman-pearson.qmd": {
     "spearman-pearson.html": "9a3bdd6e"
@@ -73,16 +82,19 @@
     "var_application.html": "31d05e8a"
   },
   "3A/proc_stochastique/modele_log_sv-part2.qmd": {
-    "modele_log_sv-part2.html": "130c958d"
+    "modele_log_sv-part2.html": "130c958d",
+    "modele_log_sv-part2.ipynb": "ef847cc4"
   },
   "3A/proc_stochastique/modele_heston.qmd": {
     "modele_heston.html": "0cb607aa"
   },
   "3A/proc_stochastique/modele_log_sv-part1.qmd": {
-    "modele_log_sv-part1.html": "38ded60f"
+    "modele_log_sv-part1.html": "38ded60f",
+    "modele_log_sv-part1.ipynb": "bec218ff"
   },
   "3A/proc_stochastique/modele_bs.qmd": {
-    "modele_bs.html": "ac31001b"
+    "modele_bs.html": "ac31001b",
+    "modele_bs.ipynb": "b10ad491"
   },
   "3A/rsq_extremes/var_classiques.qmd": {
     "var_classiques.html": "d5cdb184"
@@ -94,20 +106,24 @@
     "index.html": "233cd0c8"
   },
   "3A/value-at-risk/var_application.qmd": {
-    "var_application.html": "2941edf8"
+    "var_application.html": "2941edf8",
+    "var_application.ipynb": "fdc6c740"
   },
   "3A/value-at-risk/var_classiques.qmd": {
-    "var_classiques.html": "2304021f"
+    "var_classiques.html": "2304021f",
+    "var_classiques.ipynb": "3564dc17"
   },
   "3A/value-at-risk/var_def.qmd": {
-    "var_def.html": "7bea15e9"
+    "var_def.html": "7bea15e9",
+    "var_def.ipynb": "754bd8f7"
   },
   "3A/value-at-risk/var_evt.qmd": {
     "var_evt.html": "830a5c7f",
     "var_evt.ipynb": "cd1f2af5"
   },
   "3A/value-at-risk/var_garch.qmd": {
-    "var_garch.html": "4be49085"
+    "var_garch.html": "4be49085",
+    "var_garch.ipynb": "f7cf73da"
   },
   "autres/styles.qmd": {
     "styles.html": "d9c678d0"
@@ -116,15 +132,18 @@
     "finance_durable.html": "0bf21220"
   },
   "autres/ISR.qmd": {
-    "ISR.html": "c2643166"
+    "ISR.html": "c2643166",
+    "ISR.ipynb": "fcb206fc"
   },
   "autres/spearman-pearson.qmd": {
-    "spearman-pearson.html": "dcb34e83"
+    "spearman-pearson.html": "dcb34e83",
+    "spearman-pearson.ipynb": "95549f89"
   },
   "autres/tesst.qmd": {
     "tesst.html": "31940f4f"
   },
   "3A/proc_stochastique/pj_courbe_tx.qmd": {
-    "pj_courbe_tx.html": "175faa1a"
+    "pj_courbe_tx.html": "175faa1a",
+    "pj_courbe_tx.ipynb": "3a43d5a5"
   }
 }

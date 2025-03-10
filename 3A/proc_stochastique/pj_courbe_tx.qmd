@@ -28,6 +28,7 @@ data
 ```
 
 En l'absence d'oppotunité d'arbitrage, les valorisations des instruments de marché s'expriment en fonction des taux zéro coupon implicites suivantes :
+
 - Sur le segment **Money Market**, on cote en taux monétaires :
 
     $$
