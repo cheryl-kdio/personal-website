@@ -40,6 +40,7 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 - [Modèle de Heston](3A/proc_stochastique/modele_heston.qmd) :
     - [Estimation de la volatilité avec le filtre boostrap](3A/proc_stochastique/modele_heston.qmd)
     - [Comparaison du filtre bootstrap au filtre particulaire auxiliaire (APF) **TO DO**]()
+- [Courbes de taux (Construction d'une courbe ZC, Modèle Hull -White)](3A/proc_stochastique/pj_courbe_tx.qmd)
 
 :::
 
@@ -55,8 +56,10 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 
 ### Autres sujets 
 ::: {.blog-section}
--   [Investissement socialement responsable](3A/ISR.qmd)
--   [Corrélation de spearman vs Corrélation de pearson](3A/spearman-pearson.qmd)
+-   [Investissement socialement responsable](autres/ISR.qmd)
+-  [Finance durable](autres/finance_durable.qmd)
+- [test](autres/tesst.qmd)
+-   [Corrélation de spearman vs Corrélation de pearson](autres/spearman-pearson.qmd)
 :::
 
 ## Projets et applications déployées

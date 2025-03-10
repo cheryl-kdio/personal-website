@@ -1,0 +1,100 @@
+---
+title: "Investissement responsable"
+author: "Cheryl Kouadio"
+date: "2025-03-02"
+format: html
+---
+
+# Le cadre de la finance durable
+
+La finance durable vise à concilier rentabilité financière et prise en compte des enjeux environnementaux, sociaux et de gouvernance (ESG). Elle repose sur trois grands objectifs :
+
+1. Réorienter les flux de capitaux vers des investissements responsables.
+2. Gérer les risques financiers liés aux critères ESG (changement climatique, violations des droits humains, mauvaise gouvernance).
+3. Favoriser la transparence et une vision à long terme grâce aux nouvelles régulations.
+
+Pour structurer cette transition, plusieurs outils ont été mis en place :
+
+- Les critères ESG, qui permettent d’évaluer la durabilité d’un investissement.
+- La Taxonomie Européenne, qui définit quelles activités économiques sont réellement durables. Il a 6 objectifs principaux.
+- Les labels ISR (pour des investissements prenant en compte les critères ESG), Greenfin (pour des projects plus verts, excluant les énergies fossiles) et Finansol (une finance solidaire pour prendre en compte l’aspect «social»), qui garantissent des investissements alignés avec la finance responsable.
+- Les obligations réglementaires (SFDR - Règlement, CSRD - Directive), qui imposent un reporting extra-financier aux entreprises et investisseurs.
+
+Cependant, des défis subsistent, comme le greenwashing, le manque d’uniformisation des notations ESG et la crainte d’un impact négatif sur la performance financière. Malgré cela, la finance durable est devenue un levier incontournable pour assurer une économie plus résiliante et éthique.
+La finance durable n’est plus une option mais une nécessité pour répondre aux défis climatiques et sociaux tout en maintenant la stabilité du système financier mondial.
+
+# La finance durable appliquée à l’investissement
+
+La finance durable ne se limite pas à des principes théoriques ; elle se traduit par des stratégies d’investissement concrètes visant à intégrer les critères ESG dans la gestion des actifs financiers.
+Pour cela, plusieurs approches existent.
+
+### Les stratégies d’investissement responsable
+
+- L’Exclusion : Éliminer certains secteurs ou entreprises jugés non responsables (ex : tabac, énergies fossiles, armement).
+- Le Best-in-Class : Sélectionner les entreprises ayant les meilleures pratiques ESG dans chaque secteur, sans exclure de domaines spécifiques.
+- L’Engagement actionnarial : Influer sur les entreprises en tant qu’actionnaire via le vote en assemblée générale et le dialogue.
+- L’Impact Investing : Financer directement des entreprises ou projets ayant un impact environnemental ou social positif mesurable.
+Les stratégies les plus actives et efficaces sont l’Engagement Actionnarial et l’Impact Investing, car elles permettent d’influencer directement les pratiques ESG et de créer un impact mesurable sur l’économie.
+
+### L’importance des données ESG
+L’investissement responsable repose sur des données ESG fiables pour évaluer la performance extra-financière des entreprises. Cependant, plusieurs limites persistent :
+
+- Manque de standardisation : Chaque fournisseur (MSCI, Sustainalytics, Moody’s ESG) utilise des méthodologies différentes, rendant les comparaisons complexes.
+- Risque de biais et greenwashing : Certaines entreprises embellissent leurs rapports ESG pour obtenir de meilleures notes.
+- Absence de transparence : Les investisseurs doivent analyser minutieusement les sources de données avant de prendre des décisions.
+
+Des solutions existent pour améliorer la fiabilité des notations ESG :
+
+- Harmonisation des standards via des régulations comme la directive CSRD.
+- Audit indépendant des données ESG pour éviter les manipulations.
+- Utilisation de l’IA et du Big Data pour analyser des sources plus diversifiées et détecter les incohérences.
+
+::: {.callout-note}
+L’intégration de l’ESG est une approche dynamique et évolutive, qui dépend du niveau d’engagement souhaité par l’investisseur.L’Engagement actionnarial et l’Impact Investing sont les stratégies les plus efficaces, car elles permettent d’influencer l’économie de manière proactive. La fiabilité des données ESG doit encore être renforcée pour garantir une transparence totale dans la finance durable.
+:::
+
+# Prise en compte du risque climatique dans la gestion d’actifs
+
+Le changement climatique est devenu un facteur clé dans la gestion d’actifs. Les investisseurs doivent intégrer ces risques pour protéger leurs portefeuilles, se conformer aux régulations et capter les opportunités de la transition énergétique.
+
+### Impact du risque climatique sur les actifs financiers 
+Deux types de risques à prendre en compte :
+
+- Risque physique → Catastrophes naturelles (ouragans, inondations, sécheresses) qui endommagent les infrastructures et réduisent la valeur des actifs.
+- Risque de transition → Régulations environnementales et évolutions du marché qui dévalorisent les industries polluantes (pétrole, charbon, transport intensif, etc.).
+Exemple : L’immobilier en zone inondable peut perdre de la valeur, et les entreprises pétrolières risquent de voir leurs coûts augmenter avec la taxe carbone.
+
+### Mesure et gestion des risques climatiques en finance 
+Indicateurs utilisés :
+
+- Score ESG → Évaluation des critères environnementaux, sociaux et de gouvernance.
+- Émissions de GES (Scope 1, 2, 3) → Mesure l’empreinte carbone d’une entreprise ou d’un portefeuille.
+- Alignement 2°C → Vérifie si un investissement est compatible avec les objectifs climatiques de l’Accord de Paris.
+- Stress-tests climatiques → Simulent l’impact des scénarios climatiques sur les portefeuilles d’investissement.
+
+### Outils de gestion des risques 
+
+- Diversification des actifs → Réduire l’exposition aux secteurs vulnérables au climat.
+- Exclusion des industries polluantes → Éviter les investissements dans le charbon et le pétrole.
+- Investissement dans des actifs verts (Green Bonds, infrastructures bas carbone) → Financer la transition énergétique.
+- Engagement actionnarial → Influer sur les entreprises en votant en assemblée générale pour exiger des stratégies bas carbone.
+
+### Raisons pour intégrer les scénarios climatiques en gestion de portefeuille ? 
+
+- Éviter les pertes financières → Anticiper l’impact du climat sur les entreprises et secteurs sensibles.
+- Se conformer aux régulations → Respecter les normes SFDR, CSRD et Taxonomie Européenne.
+- Capter les opportunités d’investissement → Financer des entreprises et projets alignés avec la transition énergétique.
+
+Exemple : Un investisseur qui anticipe les réglementations sur les énergies fossiles pourra transférer ses capitaux vers les énergies renouvelables, évitant ainsi des pertes et profitant de la croissance du secteur.
+
+::: {.callout-note}
+Le risque climatique est un enjeu central en gestion d’actifs. Il affecte la valorisation des entreprises, les régulations financières et les décisions d’investissement. Les investisseurs doivent intégrer ces risques dans leur gestion de portefeuille, en utilisant des indicateurs ESG, des stress-tests climatiques et des stratégies de diversification. Ne pas prendre en compte ces scénarios expose à des actifs dévalorisés et à des pertes financières à long terme.
+:::
+
+::: {.callout-tip title="Take away"}
+L’investissement responsable intègre les critères ESG (Environnement, Social, Gouvernance) dans la gestion d’actifs afin de concilier performance financière et impact durable. Il repose sur différentes stratégies : exclusion des secteurs controversés, Best-in-Class, Engagement actionnarial et Impact Investing.
+Les régulations, comme la Taxonomie Européenne, la SFDR et la CSRD, imposent plus de transparence aux entreprises et investisseurs pour lutter contre le greenwashing et favoriser la transition vers une économie bas carbone.
+Le risque climatique, divisé en risques physiques (catastrophes naturelles) et risques de transition (régulations et évolutions de marché), influence fortement la valorisation des actifs. Les outils comme l’alignement 2°C et les stress-tests climatiques aident à évaluer l’exposition des portefeuilles.
+Enfin, les Green Bonds et autres financements durables permettent de soutenir la transition énergétique et d’orienter les capitaux vers des projets à fort impact environnemental positif. L’investissement responsable est donc un levier clé pour une finance plus durable et résiliente.
+:::
+

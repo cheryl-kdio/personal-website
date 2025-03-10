@@ -4,7 +4,8 @@
   },
   "index.qmd": {
     "index.html": "a8146437",
-    "index.ipynb": "1a03c5c6"
+    "index.ipynb": "1a03c5c6",
+    "index.tex": "d1e83825"
   },
   "App_sup/reg_lin.qmd": {
     "reg_lin.html": "c8001e69"
@@ -14,7 +15,9 @@
     "index_gdr.ipynb": "0636d7f6"
   },
   "2A/App_sup/reg_lin.qmd": {
-    "reg_lin.html": "809452bf"
+    "reg_lin.html": "809452bf",
+    "reg_lin.ipynb": "a4fe4ffb",
+    "reg_lin.tex": "61392ad3"
   },
   "3A/bilan_entreprise.qmd": {
     "bilan_entreprise.html": "3ac44b45"
@@ -33,7 +36,9 @@
     "var_def.html": "c64f6b1a"
   },
   "3A/Apprentisage-stat/Tp1.qmd": {
-    "Tp1.html": "5a55b2b3"
+    "Tp1.html": "5a55b2b3",
+    "Tp1.ipynb": "e67a7ca8",
+    "Tp1.tex": "043abe04"
   },
   "3A/Apprentisage-stat/TP2-correction-CK.qmd": {
     "TP2-correction-CK.html": "3f903307"
@@ -98,9 +103,28 @@
     "var_def.html": "7bea15e9"
   },
   "3A/value-at-risk/var_evt.qmd": {
-    "var_evt.html": "830a5c7f"
+    "var_evt.html": "830a5c7f",
+    "var_evt.ipynb": "cd1f2af5"
   },
   "3A/value-at-risk/var_garch.qmd": {
     "var_garch.html": "4be49085"
+  },
+  "autres/styles.qmd": {
+    "styles.html": "d9c678d0"
+  },
+  "autres/finance_durable.qmd": {
+    "finance_durable.html": "0bf21220"
+  },
+  "autres/ISR.qmd": {
+    "ISR.html": "c2643166"
+  },
+  "autres/spearman-pearson.qmd": {
+    "spearman-pearson.html": "dcb34e83"
+  },
+  "autres/tesst.qmd": {
+    "tesst.html": "31940f4f"
+  },
+  "3A/proc_stochastique/pj_courbe_tx.qmd": {
+    "pj_courbe_tx.html": "175faa1a"
   }
 }

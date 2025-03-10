@@ -19,6 +19,8 @@ Nous utilisons les données du CAC 40 du 01/03/1990 au 10/05/2024. Le CAC 40 (Co
 ```{python}
 # Librairie où importer les données
 import yfinance as yf
+import warnings
+warnings.filterwarnings('ignore')
 _ = yf.Ticker("^FCHI")
 ts_data = _.history("max")
 ts_data.index = ts_data.index.strftime('%Y-%m-%d')
