@@ -2,31 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://cheryl-kdio.github.io/personal-website/index_stat.html</loc>
-    <lastmod>2025-02-06T19:45:01.302Z</lastmod>
+    <lastmod>2025-03-10T21:40:40.253Z</lastmod>
   </url>
   <url>
     <loc>https://cheryl-kdio.github.io/personal-website/index.html</loc>
-    <lastmod>2025-02-28T21:31:56.326Z</lastmod>
+    <lastmod>2025-03-10T21:40:45.180Z</lastmod>
   </url>
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/autres/finance_durable.html</loc>
-    <lastmod>2025-03-02T21:08:42.855Z</lastmod>
+    <loc>https://cheryl-kdio.github.io/personal-website/autres/spearman-pearson.html</loc>
+    <lastmod>2025-02-08T18:04:51.283Z</lastmod>
   </url>
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/about.html</loc>
-    <lastmod>2025-02-08T20:56:51.549Z</lastmod>
+    <loc>https://cheryl-kdio.github.io/personal-website/autres/ISR.html</loc>
+    <lastmod>2025-02-28T21:19:50.324Z</lastmod>
   </url>
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/value-at-risk/var_evt.html</loc>
-    <lastmod>2025-02-28T21:34:52.040Z</lastmod>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/value-at-risk/var_garch.html</loc>
+    <lastmod>2025-02-28T21:34:53.816Z</lastmod>
   </url>
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/value-at-risk/var_classiques.html</loc>
-    <lastmod>2025-02-28T21:34:35.854Z</lastmod>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/value-at-risk/var_def.html</loc>
+    <lastmod>2025-02-28T21:19:00.109Z</lastmod>
   </url>
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/risque_def.html</loc>
-    <lastmod>2025-02-28T21:19:40.543Z</lastmod>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/value-at-risk/var_application.html</loc>
+    <lastmod>2025-03-10T21:44:19.039Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/reglementation_prudentielle.html</loc>
+    <lastmod>2025-02-28T21:19:28.973Z</lastmod>
   </url>
   <url>
     <loc>https://cheryl-kdio.github.io/personal-website/3A/proc_stochastique/modele_log_sv-part2.html</loc>
@@ -77,31 +81,35 @@
     <lastmod>2025-02-28T21:29:49.139Z</lastmod>
   </url>
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/reglementation_prudentielle.html</loc>
-    <lastmod>2025-02-28T21:19:28.973Z</lastmod>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/proc_stochastique/pj_courbe_tx.html</loc>
+    <lastmod>2025-03-11T00:41:20.756Z</lastmod>
   </url>
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/value-at-risk/var_application.html</loc>
-    <lastmod>2025-03-02T21:11:07.671Z</lastmod>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/risque_def.html</loc>
+    <lastmod>2025-02-28T21:19:40.543Z</lastmod>
   </url>
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/value-at-risk/var_def.html</loc>
-    <lastmod>2025-02-28T21:19:00.109Z</lastmod>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/value-at-risk/var_classiques.html</loc>
+    <lastmod>2025-02-28T21:34:35.854Z</lastmod>
   </url>
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/value-at-risk/var_garch.html</loc>
-    <lastmod>2025-02-28T21:34:53.816Z</lastmod>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/value-at-risk/var_evt.html</loc>
+    <lastmod>2025-02-28T21:34:52.040Z</lastmod>
   </url>
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/autres/ISR.html</loc>
-    <lastmod>2025-02-28T21:19:50.324Z</lastmod>
+    <loc>https://cheryl-kdio.github.io/personal-website/about.html</loc>
+    <lastmod>2025-02-08T20:56:51.549Z</lastmod>
   </url>
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/autres/spearman-pearson.html</loc>
-    <lastmod>2025-02-08T18:04:51.283Z</lastmod>
+    <loc>https://cheryl-kdio.github.io/personal-website/autres/finance_durable.html</loc>
+    <lastmod>2025-03-02T21:22:45.806Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/autres/tesst.html</loc>
+    <lastmod>2025-03-02T21:25:46.104Z</lastmod>
   </url>
   <url>
     <loc>https://cheryl-kdio.github.io/personal-website/index_gdr.html</loc>
-    <lastmod>2025-03-02T21:10:19.522Z</lastmod>
+    <lastmod>2025-03-10T21:40:47.380Z</lastmod>
   </url>
 </urlset>

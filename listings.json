@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/3A/proc_stochastique/pj_courbe_tx.html",
       "/3A/value-at-risk/var_classiques.html",
       "/3A/value-at-risk/var_evt.html",
       "/3A/value-at-risk/var_garch.html",
