@@ -145,5 +145,9 @@
   "3A/proc_stochastique/pj_courbe_tx.qmd": {
     "pj_courbe_tx.html": "175faa1a",
     "pj_courbe_tx.ipynb": "3a43d5a5"
+  },
+  "3A/value-at-risk/pj_copules.qmd": {
+    "pj_copules.html": "dc9f53f2",
+    "pj_copules.ipynb": "d73e4bca"
   }
 }
