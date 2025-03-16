@@ -1,7 +1,9 @@
 ---
 title: Projet de gestion de risques multiples
 jupyter: python3
-author: Cheryl Kouadio
+author: 
+    - Cheryl Kouadio
+    - Mariyam Ouyassin
 date: 2025-03-13
 ---
 
@@ -13,6 +15,9 @@ Dans ce contexte, la théorie des copules constitue un outil statistique puissan
 
 L’objectif de ce projet est d’évaluer le risque de crédit en calculant une CreditVaR avec un niveau de confiance de 99\% sur un portefeuille composé de deux obligations bancaires. Ces obligations, bien que différentes en termes de subordination et de risque de recouvrement, appartiennent au même secteur, ce qui accroît le risque global du portefeuille. Il est donc essentiel de modéliser adéquatement la dépendance entre ces actifs pour obtenir une estimation réaliste du risque de crédit.
 
+::: {.callout-important}
+Le rapport de ce projet est disponible sur [ce lien](../rapports/Rapport_Kouadio_Ouyassin_copules.pdf).
+:::
 
 # I. Données 
 
@@ -829,6 +834,12 @@ plt.show()
 ```{python}
 kendall_plot(u_obs,S,copula="student",rho=rho,nu=nu)
 ```
+
+:::{.callout-warning}
+Attention, nous avons utilisé le package copula.api de statsmodels pour implémenter les copules. Cependant, la classe correspondant à la copule de Student ne permet pas d'obtenir une fonction de répartition (voir [lien](https://www.statsmodels.org/dev/_modules/statsmodels/distributions/copula/elliptical.html#StudentTCopula.cdf)).
+
+En utilisant un environnement virtuel, il a été possible de modifier le fichier statsmodels/distributions/copula/elliptical.py du package afin d'implémenter la méthode pour la fonction de répartition. Vous trouverez ce fichier [ci-joint](utiles/elliptical.py) afin de garantir le bon fonctionnement du code si vous devez le relancer.
+:::
 
 #### III.4.2.d. Test d'adéquation
 

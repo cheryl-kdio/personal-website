@@ -25,13 +25,12 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
     - [TP1 : Méthodes traditionnelles de calcul de la VaR et Expected Shortfall (ES)](3A/value-at-risk/var_classiques.qmd)
     - [TP2 : Méthodes basées sur la théorie des valeurs extrêmes](3A/value-at-risk/var_evt.qmd)
     - [TP3 : Méthodes d'une calcul d'une VaR dynamique (basé sur GARCH)](3A/value-at-risk/var_garch.qmd)
-    - [Estimation de la CreditVaR à l'aide de la théorie des copules](3A/value-at-risk/var_copules.qmd)
+    - [Estimation de la CreditVaR à l'aide de la théorie des copules](3A/value-at-risk/pj_copules.qmd)
 :::
 
 ### Scoring
 ::: {.blog-section}
 ::: 
-
 
 ### Calibrations de processus stochastique
 ::: {.blog-section}

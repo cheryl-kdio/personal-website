@@ -1,8 +1,26 @@
 ---
 title: Modèles de courbe de taux
 date: 2025-03-04
-author: Cheryl KOUADIO
+author: 
+    - Cheryl Kouadio
+    - Mariyam Ouyassin
 ---
+
+## Introduction
+
+Que ce soit pour les banques, les assureurs ou les fonds de pension, la courbe de taux zéro-coupon constitue la brique de base pour la valorisation de nombreux instruments financiers, de la détermination du prix des obligations aux produits dérivés plus complexes tels que les swaps de taux, les caplets, les swaptions ou encore les produits structurés de taux. De ce fait, la construction fiable, cohérente et régulièrement mise à jour d'une courbe de taux zéro-coupon représente un enjeu majeur.
+
+Dans ce contexte, ce projet propose une méthodologie complète de reconstitution de la courbe de taux zéro-coupon implicite, élaborée à partir des cotations de marché disponibles sur différents segments : Money Market (marché monétaire), Futures et Swaps. L’approche adoptée repose sur une combinaison de bootstrapping, permettant d’extraire les taux zéro-coupon pour chaque maturité observable, et d’interpolations par spline cubique, afin d’assurer la lissité et la continuité de la courbe sur l’ensemble de l’échéancier, y compris sur les maturités non directement observées.
+
+La courbe obtenue sert ensuite de référence pour la valorisation de produits dérivés de taux, en particulier les caplets et les swaptions, via le modèle classique de Black, largement utilisé sur les marchés. Toutefois, afin de mieux capturer la dynamique temporelle des taux d’intérêt et de prendre en compte la structure temporelle de la volatilité implicite, la seconde partie du projet repose sur la calibration d’un modèle de Hull-White, un modèle de taux affine avec retour à la moyenne. La calibration est réalisée à partir des cotations de caplets at-the-money (ATM), à l’aide d’une procédure de recherche numérique par dichotomie. 
+
+Le projet met également en évidence la sensibilité de la courbe de taux forward et des prix d’options aux paramètres de marché, notamment la volatilité et le paramètre de mean reversion du modèle Hull-White. Cette analyse de sensibilité illustre comment la structure de la courbe de taux et son évolution future sont influencées par les hypothèses de modélisation, ce qui est particulièrement crucial pour les desks de trading, les gestionnaires d’actifs ou les équipes de gestion actif-passif (ALM). 
+
+Enfin, le projet se prolonge par une extension appliquée aux produits structurés : la valorisation de caplets à barrière désactivante (knock-out caplets), qui nécessite une approche par simulation Monte-Carlo. Cette extension illustre comment la dynamique du taux court, simulée sous la mesure forward neutre, peut être exploitée pour évaluer des produits de plus en plus complexes, répondant à des besoins spécifiques d’investisseurs ou de gestionnaires de risques. 
+
+::: {.callout-important}
+Le rapport de ce projet est disponible sur [ce lien](../rapports/Mode%CC%80les_de_courbes_de_taux.pdf).
+:::
 
 ## I. Reconstitution de la courbe de taux
 
