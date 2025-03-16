@@ -39,7 +39,7 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 - [Calibration du modèle à volatilité stochastique de Taylor - Filtre particulaire bootstrap](3A/proc_stochastique/modele_log_sv-part2.qmd)
 - [Modèle de Heston](3A/proc_stochastique/modele_heston.qmd) :
     - [Estimation de la volatilité avec le filtre boostrap](3A/proc_stochastique/modele_heston.qmd)
-    - [Comparaison du filtre bootstrap au filtre particulaire auxiliaire (APF) **TO DO**]()
+    - [Comparaison du filtre bootstrap au filtre particulaire auxiliaire (APF)](3A/proc_stochastique/APF_filter.qmd)
 - [Courbes de taux (Construction d'une courbe ZC, Modèle Hull - White)](3A/proc_stochastique/pj_courbe_tx.qmd)
 
 :::
@@ -58,7 +58,6 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 ::: {.blog-section}
 -   [Investissement socialement responsable](autres/ISR.qmd)
 -   [Finance durable](autres/finance_durable.qmd)
--   [test](autres/tesst.qmd)
 -   [Corrélation de spearman vs Corrélation de pearson](autres/spearman-pearson.qmd)
 :::
 

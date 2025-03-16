@@ -16,7 +16,7 @@ Dans ce contexte, la théorie des copules constitue un outil statistique puissan
 L’objectif de ce projet est d’évaluer le risque de crédit en calculant une CreditVaR avec un niveau de confiance de 99\% sur un portefeuille composé de deux obligations bancaires. Ces obligations, bien que différentes en termes de subordination et de risque de recouvrement, appartiennent au même secteur, ce qui accroît le risque global du portefeuille. Il est donc essentiel de modéliser adéquatement la dépendance entre ces actifs pour obtenir une estimation réaliste du risque de crédit.
 
 ::: {.callout-important}
-Le rapport de ce projet est disponible sur [ce lien](../rapports/Rapport_Kouadio_Ouyassin_copules.pdf).
+Le rapport de ce projet est disponible [ici](../rapports/Rapport_Kouadio_Ouyassin_copules.pdf).
 :::
 
 # I. Données 

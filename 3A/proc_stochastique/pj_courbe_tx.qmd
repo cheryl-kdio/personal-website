@@ -19,7 +19,7 @@ Le projet met également en évidence la sensibilité de la courbe de taux forwa
 Enfin, le projet se prolonge par une extension appliquée aux produits structurés : la valorisation de caplets à barrière désactivante (knock-out caplets), qui nécessite une approche par simulation Monte-Carlo. Cette extension illustre comment la dynamique du taux court, simulée sous la mesure forward neutre, peut être exploitée pour évaluer des produits de plus en plus complexes, répondant à des besoins spécifiques d’investisseurs ou de gestionnaires de risques. 
 
 ::: {.callout-important}
-Le rapport de ce projet est disponible sur [ce lien](../rapports/Mode%CC%80les_de_courbes_de_taux.pdf).
+Le rapport de ce projet est disponible [ici](../rapports/Mode%CC%80les_de_courbes_de_taux.pdf).
 :::
 
 ## I. Reconstitution de la courbe de taux

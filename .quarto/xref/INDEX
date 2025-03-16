@@ -159,5 +159,8 @@
   "3A/value-at-risk/var_copules.qmd": {
     "var_copules.html": "909a9e2e",
     "var_copules.ipynb": "d26496c1"
+  },
+  "3A/proc_stochastique/APF_filter.qmd": {
+    "APF_filter.html": "620a37c6"
   }
 }
