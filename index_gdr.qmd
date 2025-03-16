@@ -25,7 +25,7 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
     - [TP1 : Méthodes traditionnelles de calcul de la VaR et Expected Shortfall (ES)](3A/value-at-risk/var_classiques.qmd)
     - [TP2 : Méthodes basées sur la théorie des valeurs extrêmes](3A/value-at-risk/var_evt.qmd)
     - [TP3 : Méthodes d'une calcul d'une VaR dynamique (basé sur GARCH)](3A/value-at-risk/var_garch.qmd)
-    - [Estimation de la CreditVaR à l'aide de la théorie des copules](3A/value-at-risk/pj_copules.qmd)
+    - [Estimation de la CreditVaR à l'aide de la théorie des copules](3A/value-at-risk/var_copules.qmd)
 :::
 
 ### Scoring
@@ -41,7 +41,7 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 - [Modèle de Heston](3A/proc_stochastique/modele_heston.qmd) :
     - [Estimation de la volatilité avec le filtre boostrap](3A/proc_stochastique/modele_heston.qmd)
     - [Comparaison du filtre bootstrap au filtre particulaire auxiliaire (APF) **TO DO**]()
-- [Courbes de taux (Construction d'une courbe ZC, Modèle Hull -White)](3A/proc_stochastique/pj_courbe_tx.qmd)
+- [Courbes de taux (Construction d'une courbe ZC, Modèle Hull - White)](3A/proc_stochastique/pj_courbe_tx.qmd)
 
 :::
 
@@ -58,8 +58,8 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 ### Autres sujets 
 ::: {.blog-section}
 -   [Investissement socialement responsable](autres/ISR.qmd)
--  [Finance durable](autres/finance_durable.qmd)
-- [test](autres/tesst.qmd)
+-   [Finance durable](autres/finance_durable.qmd)
+-   [test](autres/tesst.qmd)
 -   [Corrélation de spearman vs Corrélation de pearson](autres/spearman-pearson.qmd)
 :::
 

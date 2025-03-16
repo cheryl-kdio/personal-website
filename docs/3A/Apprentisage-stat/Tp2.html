@@ -277,7 +277,7 @@ window.Quarto = {
 <p>In problem which involves a distance between point, it is a common practice to normalize the data. In this notebook, we are going to normalize the data by dividing the time by 60 to convert it from minutes to hours (and have values between 0 and 1). We are going to use the <code>KernelRidge</code> class from the <code>sklearn</code> library to fit the KRR model. We will start by using the Gaussian/RBF kernel which is defined by: <span class="math display">\[
 K(x, x') = \exp\left(-\gamma||x - x'||^2\right)
 \]</span> where <span class="math inline">\(\gamma\)</span> is an hyperparameter.</p>
-<div id="88ea01f6" class="cell" data-execution_count="1">
+<div id="657cd13b" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.kernel_ridge <span class="im">import</span> KernelRidge</span>
@@ -298,7 +298,7 @@ K(x, x') = \exp\left(-\gamma||x - x'||^2\right)
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="9349d0b0" class="cell" data-execution_count="2">
+<div id="a703f967" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mcycle_data <span class="op">=</span> pd.read_csv(<span class="st">"Data/mcycle.csv"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>mcycle_data[<span class="st">"times"</span>] <span class="op">=</span> mcycle_data[<span class="st">"times"</span>]<span class="op">/</span><span class="dv">60</span> </span>
@@ -362,7 +362,7 @@ K(x, x') = \exp\left(-\gamma||x - x'||^2\right)
 </div>
 </div>
 </div>
-<div id="692fcadf" class="cell" data-execution_count="3">
+<div id="da2f81f4" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the data into train and test sample</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> mcycle_data[[<span class="st">"times"</span>]]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> mcycle_data[[<span class="st">"accel"</span>]]</span>
@@ -371,17 +371,17 @@ K(x, x') = \exp\left(-\gamma||x - x'||^2\right)
 <section id="training-and-testing-rbf-kernel-ridge-regression" class="level3">
 <h3 class="anchored" data-anchor-id="training-and-testing-rbf-kernel-ridge-regression">1. Training and testing RBF kernel ridge regression</h3>
 <p>Since we have two hyperparameter (<span class="math inline">\(\gamma\)</span> and <span class="math inline">\(\lambda\)</span>) to tune, we can use the GridSearchCV function from scikit-learn to find the best hyperparameter.</p>
-<div id="16dbc31c" class="cell" data-execution_count="4">
+<div id="210e4a21" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rbf_krr_model <span class="op">=</span> KernelRidge(kernel<span class="op">=</span><span class="st">"rbf"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>grid_eval <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">50</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {<span class="st">"alpha"</span>: grid_eval, <span class="st">"gamma"</span>: grid_eval}</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>rbf_krr_model_cv <span class="op">=</span> GridSearchCV(rbf_krr_model, param_grid).fit(X_train,y_train)</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Best parameters by CV : </span><span class="sc">{</span>rbf_krr_model_cv<span class="sc">.</span>best_params_<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Best parameters by CV : {'alpha': 0.07196856730011521, 'gamma': 35.564803062231285}</code></pre>
+<pre><code>Best parameters by CV : {'alpha': np.float64(0.07196856730011521), 'gamma': np.float64(35.564803062231285)}</code></pre>
 </div>
 </div>
-<div id="74cc7897" class="cell" data-execution_count="5">
+<div id="fbc9a5cb" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>best_model <span class="op">=</span> KernelRidge(kernel<span class="op">=</span><span class="st">"rbf"</span>, alpha<span class="op">=</span>rbf_krr_model_cv.best_params_[<span class="st">"alpha"</span>], gamma<span class="op">=</span>rbf_krr_model_cv.best_params_[<span class="st">"gamma"</span>])</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>best_model.fit(X_train, y_train)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> best_model.predict(X_test)</span>
@@ -391,7 +391,7 @@ K(x, x') = \exp\left(-\gamma||x - x'||^2\right)
 <pre><code>Root mean square error:  22.98</code></pre>
 </div>
 </div>
-<div id="4df92f58" class="cell" data-execution_count="6">
+<div id="d740fe42" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort X_test and corresponding y_pred values</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>sorted_indices <span class="op">=</span> np.argsort(X_test.values.flatten())</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>X_test_sorted <span class="op">=</span> X_test.values.flatten()[sorted_indices]</span>
@@ -417,7 +417,7 @@ K(x, x') = \exp\left(-\gamma||x - x'||^2\right)
 <section id="ii.-ridge-regression" class="level2">
 <h2 class="anchored" data-anchor-id="ii.-ridge-regression">II. Ridge regression</h2>
 <p>Now we are going to use the basic ridge regression to predict the target variable. There is only one hyperparameter to tune which is the regularization parameter <span class="math inline">\(\lambda\)</span>.</p>
-<div id="70e4743b" class="cell" data-execution_count="7">
+<div id="3128ac38" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ridge_model <span class="op">=</span> RidgeCV(alphas<span class="op">=</span>grid_eval).fit(X_train, y_train)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>y_pred_ridge<span class="op">=</span>ridge_model.predict(X_test)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( <span class="ss">f'RMSE Ridge regression : </span><span class="sc">{</span>math<span class="sc">.</span>sqrt(mean_squared_error(y_test, y_pred_ridge)) <span class="sc">: .2f}</span><span class="ss">'</span>)</span>
@@ -440,8 +440,8 @@ K(x, x') = \exp\left(-\gamma||x - x'||^2\right)
 </div>
 </div>
 </div>
-<p>As we can see, the solelly use of the ridge regression is not enough to predict the target variable. We can try to transform the data by using a sinusoïdal transformation. If we try a transformation of the covariable <span class="math inline">\(x\)</span> by $ = (x) $ and apply the ridge regression, we have a slightly different problem. But still, the performance of the model is not good.</p>
-<div id="85c44965" class="cell" data-execution_count="8">
+<p>As we can see, the solelly use of the ridge regression is not enough to predict the target variable. We can try to transform the data by using a sinusoïdal transformation. If we try a transformation of the covariable <span class="math inline">\(x\)</span> by <span class="math inline">\(\tilde{x} = \frac{\sqrt(2)}{\pi}\cos(\pi x)\)</span> and apply the ridge regression, we have a slightly different problem. But still, the performance of the model is not good.</p>
+<div id="f64a347b" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a function that apply transformation to the features</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apply_cos(x,j):</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    pi <span class="op">=</span> np.pi</span>
@@ -454,7 +454,7 @@ K(x, x') = \exp\left(-\gamma||x - x'||^2\right)
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    X_train_cos[<span class="ss">f"X</span><span class="sc">{</span>j<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> X_train[<span class="st">"times"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: apply_cos(x,j))</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    X_test_cos[<span class="ss">f"X</span><span class="sc">{</span>j<span class="sc">}</span><span class="ss">"</span>] <span class="op">=</span> X_test[<span class="st">"times"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: apply_cos(x,j))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="13f0ebce" class="cell" data-execution_count="9">
+<div id="552433a3" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Train the Ridge regression model</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ridge_model1 <span class="op">=</span> RidgeCV(alphas<span class="op">=</span>grid_eval).fit(X_train_cos[[<span class="st">"X1"</span>]], y_train)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>y_pred_ridge1 <span class="op">=</span> ridge_model1.predict(X_test_cos[[<span class="st">"X1"</span>]])</span>
@@ -482,7 +482,7 @@ K(x, x') = \exp\left(-\gamma||x - x'||^2\right)
 </div>
 </div>
 <p>Even though, the only transformation applied is the cosinus transformation, the RMSE is lower than the RMSE of the simple Ridge Regression. This is due to the fact that the cosinus transformation is able to capture a little bit of the periodicity of the data. Let’s try to use many sinusoidal transformation to see if we can improve the performance of the model. We will fit y using <span class="math inline">\(\tilde{x} = \left[ \frac{\sqrt(2)}{J\pi}\cos(J\pi x)  \right]_{J=1,\dots,10}\)</span></p>
-<div id="b13b63ba" class="cell" data-execution_count="10">
+<div id="917edcd5" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># New ridge with many transformated features</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ridge_model2 <span class="op">=</span> RidgeCV(alphas<span class="op">=</span>grid_eval).fit(X_train_cos, y_train)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>y_pred_ridge2 <span class="op">=</span> ridge_model2.predict(X_test_cos)</span>
@@ -521,7 +521,7 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 \]</span></p>
 <section id="kernel-de-sobolev" class="level3">
 <h3 class="anchored" data-anchor-id="kernel-de-sobolev">Kernel de sobolev</h3>
-<div id="cdd420c7" class="cell" data-execution_count="11">
+<div id="60a0bf46" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sobolev_kernel(x,y):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> B2(x):</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> x <span class="op">+</span> <span class="dv">1</span><span class="op">/</span><span class="dv">6</span></span>
@@ -531,16 +531,16 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span><span class="op">+</span> B2(<span class="bu">abs</span>(x<span class="op">-</span>y)<span class="op">/</span><span class="dv">2</span>) <span class="op">+</span> B2((x<span class="op">+</span>y)<span class="op">/</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="eb693382" class="cell" data-execution_count="12">
+<div id="ddad0a8b" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>krr_model_sobolev <span class="op">=</span> KernelRidge(kernel<span class="op">=</span>sobolev_kernel)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {<span class="st">"alpha"</span>: grid_eval}</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>grid_sobolev <span class="op">=</span> GridSearchCV(krr_model_sobolev, param_grid).fit(X_train,y_train)</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>grid_sobolev.best_params_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
-<pre><code>{'alpha': 0.07196856730011521}</code></pre>
+<pre><code>{'alpha': np.float64(0.07196856730011521)}</code></pre>
 </div>
 </div>
-<div id="73506e30" class="cell" data-execution_count="13">
+<div id="fc67f1ae" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute rmse</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># best_sobolev_krr = KernelRidge(kernel=sobolev_kernel, alpha=grid_sobolev.best_params_["alpha"])</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># best_sobolev_krr.fit(X_train, y_train)</span></span>
@@ -577,7 +577,7 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 <section id="i.-toy-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="i.-toy-dataset">I. Toy dataset</h2>
 <p>Here is the toy dataset that we are going to use to illustrate the SVM. The dataset is composed of two features and the target variable is binary. As we can see, the dataset is not linearly separable. We are going to use the SVM with a gaussian kernel to classify the data, and compare it to a classic classifier such as the k-nearest neighbors and the logistic regression.</p>
-<div id="c9ab8afc" class="cell" data-execution_count="14">
+<div id="d8f3e209" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>two_moon_data <span class="op">=</span> pd.read_csv(<span class="st">"Data/DataTwoMoons.csv"</span>,header<span class="op">=</span><span class="va">None</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>two_moon_data.columns <span class="op">=</span> [<span class="st">"X1"</span>,<span class="st">"X2"</span>,<span class="st">"y"</span>]</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -594,13 +594,13 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 </div>
 </div>
 </div>
-<div id="c4340c59" class="cell" data-execution_count="15">
+<div id="4d77f250" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the data into train and test sample</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(two_moon_data[[<span class="st">"X1"</span>,<span class="st">"X2"</span>]], two_moon_data[<span class="st">"y"</span>], test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="k-nearest-neighbors" class="level3">
 <h3 class="anchored" data-anchor-id="k-nearest-neighbors">1. K-nearest neighbors</h3>
-<div id="f0ae97b0" class="cell" data-execution_count="16">
+<div id="b7eab542" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># KNN with cross validation</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>knn <span class="op">=</span> KNeighborsClassifier()</span>
@@ -622,7 +622,7 @@ B_2(x) = \sum_{k=1}^{\infty} \frac{\cos(2k\pi x)}{(k\pi)^2}
 <span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Classification Report:"</span>)</span>
 <span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, y_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Best parameters by CV : {'n_neighbors': 1}
+<pre><code>Best parameters by CV : {'n_neighbors': np.int64(1)}
 Accuracy: 1.00
 Confusion Matrix:
 [[44  0]
@@ -639,7 +639,7 @@ weighted avg       1.00      1.00      1.00        80
 </code></pre>
 </div>
 </div>
-<div id="7c7a62fb" class="cell" data-execution_count="17">
+<div id="56754d6a" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>disp_knn <span class="op">=</span> DecisionBoundaryDisplay.from_estimator(</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    knn_cv,</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    X_train,</span>
@@ -660,7 +660,7 @@ weighted avg       1.00      1.00      1.00        80
 </section>
 <section id="logistic-regression" class="level3">
 <h3 class="anchored" data-anchor-id="logistic-regression">2. Logistic regression</h3>
-<div id="73ea097b" class="cell" data-execution_count="18">
+<div id="bb41ff09" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute logistic regression</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>log_reg <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>log_reg.fit(X_train, y_train)</span>
@@ -694,7 +694,7 @@ weighted avg       0.92      0.91      0.91        80
 </code></pre>
 </div>
 </div>
-<div id="9fd48dd2" class="cell" data-execution_count="19">
+<div id="93a9838a" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>disp_log_reg <span class="op">=</span> DecisionBoundaryDisplay.from_estimator(</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    log_reg,</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    X_train,</span>
@@ -715,17 +715,17 @@ weighted avg       0.92      0.91      0.91        80
 </section>
 <section id="svm" class="level3">
 <h3 class="anchored" data-anchor-id="svm">3. SVM</h3>
-<div id="88da69c1" class="cell" data-execution_count="20">
+<div id="0548d9a7" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>grid_eval <span class="op">=</span> np.logspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">50</span>)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>param_grid <span class="op">=</span> {<span class="st">"C"</span>: grid_eval, <span class="st">"gamma"</span>: grid_eval}</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>svm_model <span class="op">=</span> SVC(kernel<span class="op">=</span><span class="st">"rbf"</span>)</span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>svm_model_cv <span class="op">=</span> GridSearchCV(svm_model, param_grid).fit(X_train,y_train)</span>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Best parameters by CV : </span><span class="sc">{</span>svm_model_cv<span class="sc">.</span>best_params_<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Best parameters by CV : {'C': 0.030888435964774818, 'gamma': 3.727593720314938}</code></pre>
+<pre><code>Best parameters by CV : {'C': np.float64(0.030888435964774818), 'gamma': np.float64(3.727593720314938)}</code></pre>
 </div>
 </div>
-<div id="3a508345" class="cell" data-execution_count="21">
+<div id="58e94d88" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the accuracy</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> svm_model_cv.predict(X_test)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
@@ -756,7 +756,7 @@ weighted avg       1.00      1.00      1.00        80
 </code></pre>
 </div>
 </div>
-<div id="64dc1842" class="cell" data-execution_count="22">
+<div id="becafb32" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>disp_svm <span class="op">=</span> DecisionBoundaryDisplay.from_estimator(</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    svm_model_cv,</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    X_train,</span>
@@ -787,7 +787,7 @@ weighted avg       1.00      1.00      1.00        80
 <h2 class="anchored" data-anchor-id="ii.-image-dataset">II. Image dataset</h2>
 <p>The SVM is also useful for image classification. In this part, we are going to use the famous MNIST dataset to classify the images. The MNIST dataset is composed of 20 000 images (10 000 in the training dataset, and 10 000 also in the test dataset) of handwritten digits from 0 to 9. Each image is a resolution 28x28 pixels that is represented by a matrix of shape (28, 28), with each element being the pixel intensity (values from 0 to 255). We are going to use the SVM with the gaussian kernel to classify the images.</p>
 <p>We will start by normalizing the data to ensure that all the features contribute equally, and then use the GridSearchCV function from scikit-learn to find the best hyperparameter.</p>
-<div id="0c3b00cf" class="cell" data-execution_count="23">
+<div id="5ae379e0" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>data_train <span class="op">=</span> pd.read_csv(<span class="st">"Data/mnist_train_small.csv"</span>)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>data_test <span class="op">=</span> pd.read_csv(<span class="st">"Data/mnist_test.csv"</span>)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -813,7 +813,7 @@ weighted avg       1.00      1.00      1.00        80
 Name: count, dtype: int64</code></pre>
 </div>
 </div>
-<div id="e4deaf10" class="cell" data-execution_count="24">
+<div id="94e6abdc" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># normalize the data</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
@@ -824,12 +824,12 @@ Name: count, dtype: int64</code></pre>
 <span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> data_test[<span class="st">"label"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As we can see from the umap plot, which is a dimensionality reduction technique, the data is not always linearly separable. We are going to use the SVM with the gaussian kernel to classify the images.</p>
-<div id="36359f98" class="cell" data-execution_count="25">
+<div id="83caf54f" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize the data with UMAP</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>reducer <span class="op">=</span> umap.UMAP(random_state<span class="op">=</span><span class="dv">42</span>)</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>embedding <span class="op">=</span> reducer.fit_transform(X_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="dc8a0bcd" class="cell" data-execution_count="26">
+<div id="6c3d0b71" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(embedding[:, <span class="dv">0</span>], embedding[:, <span class="dv">1</span>], c<span class="op">=</span>data_train[<span class="st">"label"</span>], cmap<span class="op">=</span><span class="st">'Spectral'</span>, s<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>plt.gca().set_aspect(<span class="st">'equal'</span>, <span class="st">'datalim'</span>)</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
@@ -845,7 +845,7 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div id="6f271049" class="cell" data-execution_count="27">
+<div id="00fd87e8" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>svm_model <span class="op">=</span> SVC(kernel<span class="op">=</span><span class="st">"rbf"</span>)</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> product</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -862,7 +862,7 @@ Name: count, dtype: int64</code></pre>
 </div>
 <p>As we can see, the model performs well with an accuracy of 0.88 . As expected from the umap visualization, the model is able to separate the classes well, however there are some errors in the classification. The confusion matrix shows that the model has some difficulty to distinguish between some digits such as 4 and 9, 3.</p>
 <p>The SVM is a good choice for image classification, however, the model is not able to capture the complexity of the data. In this case, we can use a deep learning model such as the convolutional neural network (CNN) which is able to capture the complexity of the data.</p>
-<div id="c02dbba9" class="cell" data-execution_count="28">
+<div id="a513288f" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the accuracy</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> svm_model_cv.predict(X_test)</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
@@ -909,7 +909,7 @@ weighted avg       0.89      0.88      0.88     10000
 </code></pre>
 </div>
 </div>
-<div id="52c28ab1" class="cell" data-execution_count="29">
+<div id="dce1b5d6" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot ROC CURVE</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_curve, auc</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> label_binarize</span>

@@ -131,7 +131,7 @@ plt.plot(X_test, y_pred_ridge, color="red")
 plt.title("Ridge Regression")
 ```
 
-As we can see, the solelly use of the ridge regression is not enough to predict the target variable. We can try to transform the data by using a sinusoïdal transformation. If we try a transformation of the covariable $x$ by $\tilde{x} = \frac{\sqrt(2)}{\pi}\cos(\pi x) $ and apply the ridge regression, we have a slightly different problem. But still, the performance of the model is not good.
+As we can see, the solelly use of the ridge regression is not enough to predict the target variable. We can try to transform the data by using a sinusoïdal transformation. If we try a transformation of the covariable $x$ by $\tilde{x}=\frac{\sqrt(2)}{\pi}\cos(\pi x)$ and apply the ridge regression, we have a slightly different problem. But still, the performance of the model is not good.
 
 ```{python}
 # create a function that apply transformation to the features

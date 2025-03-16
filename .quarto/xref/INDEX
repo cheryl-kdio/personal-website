@@ -13,7 +13,8 @@
   },
   "index_gdr.qmd": {
     "index_gdr.html": "173eda7f",
-    "index_gdr.ipynb": "0636d7f6"
+    "index_gdr.ipynb": "0636d7f6",
+    "index_gdr.tex": "e56da399"
   },
   "2A/App_sup/reg_lin.qmd": {
     "reg_lin.html": "809452bf",
@@ -107,7 +108,8 @@
   },
   "3A/value-at-risk/var_application.qmd": {
     "var_application.html": "2941edf8",
-    "var_application.ipynb": "fdc6c740"
+    "var_application.ipynb": "fdc6c740",
+    "var_application.tex": "ef10fe42"
   },
   "3A/value-at-risk/var_classiques.qmd": {
     "var_classiques.html": "2304021f",
@@ -149,5 +151,13 @@
   "3A/value-at-risk/pj_copules.qmd": {
     "pj_copules.html": "dc9f53f2",
     "pj_copules.ipynb": "d73e4bca"
+  },
+  "3A/value-at-risk/pj_cheryl.qmd": {
+    "pj_cheryl.html": "f32beece",
+    "pj_cheryl.ipynb": "3311e711"
+  },
+  "3A/value-at-risk/var_copules.qmd": {
+    "var_copules.html": "909a9e2e",
+    "var_copules.ipynb": "d26496c1"
   }
 }
