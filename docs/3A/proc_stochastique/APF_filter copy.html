@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cheryl Kouadio">
+<meta name="author" content="Safa Bouzayene">
+<meta name="author" content="Mariyam Ouyassin">
+<meta name="dcterms.date" content="2025-02-26">
+
+<title>APF filter</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../img/logo-bg.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-79108a0fc1995748cbd19a5b0e3e3e7c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-fdf986989e2058d46a90f864900247d8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/logo-bg.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Accueil</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../index_stat.html"> 
+<span class="menu-text">Modélisation stat.</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../index_gdr.html"> 
+<span class="menu-text">Gestion des risques</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">À propos</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sommaire</h2>
+   
+  <ul>
+  <li><a href="#méthodes-étude-de-simulation-sur-la-performance-du-filtre-apf" id="toc-méthodes-étude-de-simulation-sur-la-performance-du-filtre-apf" class="nav-link active" data-scroll-target="#méthodes-étude-de-simulation-sur-la-performance-du-filtre-apf">Méthodes : étude de simulation sur la performance du filtre APF</a>
+  <ul class="collapse">
+  <li><a href="#modèle-utilisé" id="toc-modèle-utilisé" class="nav-link" data-scroll-target="#modèle-utilisé">Modèle utilisé</a>
+  <ul class="collapse">
+  <li><a href="#procédure-de-simulation" id="toc-procédure-de-simulation" class="nav-link" data-scroll-target="#procédure-de-simulation">Procédure de simulation</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#résultats" id="toc-résultats" class="nav-link" data-scroll-target="#résultats">Résultats</a>
+  <ul class="collapse">
+  <li><a href="#option-à-la-monnaie-atm" id="toc-option-à-la-monnaie-atm" class="nav-link" data-scroll-target="#option-à-la-monnaie-atm">Option à la monnaie (ATM)</a>
+  <ul class="collapse">
+  <li><a href="#filtre-bootstrap" id="toc-filtre-bootstrap" class="nav-link" data-scroll-target="#filtre-bootstrap">Filtre bootstrap</a></li>
+  <li><a href="#filtre-apf" id="toc-filtre-apf" class="nav-link" data-scroll-target="#filtre-apf">Filtre APF</a></li>
+  </ul></li>
+  <li><a href="#option-à-la-monnaie-itm" id="toc-option-à-la-monnaie-itm" class="nav-link" data-scroll-target="#option-à-la-monnaie-itm">Option à la monnaie (ITM)</a>
+  <ul class="collapse">
+  <li><a href="#filtre-bootstrap-1" id="toc-filtre-bootstrap-1" class="nav-link" data-scroll-target="#filtre-bootstrap-1">Filtre bootstrap</a></li>
+  <li><a href="#apf" id="toc-apf" class="nav-link" data-scroll-target="#apf">APF</a></li>
+  </ul></li>
+  <li><a href="#options-mixtes" id="toc-options-mixtes" class="nav-link" data-scroll-target="#options-mixtes">Options mixtes</a>
+  <ul class="collapse">
+  <li><a href="#filtre-bootstrap-2" id="toc-filtre-bootstrap-2" class="nav-link" data-scroll-target="#filtre-bootstrap-2">Filtre bootstrap</a></li>
+  <li><a href="#apf-1" id="toc-apf-1" class="nav-link" data-scroll-target="#apf-1">APF</a></li>
+  </ul></li>
+  <li><a href="#comparaison-des-performances" id="toc-comparaison-des-performances" class="nav-link" data-scroll-target="#comparaison-des-performances">Comparaison des performances</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="APF_filter copy.ipynb" download="APF_filter copy.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">APF filter</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    <div>
+    <div class="quarto-title-meta-heading">Authors</div>
+    <div class="quarto-title-meta-contents">
+             <p>Cheryl Kouadio </p>
+             <p>Safa Bouzayene </p>
+             <p>Mariyam Ouyassin </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 26, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="méthodes-étude-de-simulation-sur-la-performance-du-filtre-apf" class="level1">
+<h1>Méthodes : étude de simulation sur la performance du filtre APF</h1>
+<section id="modèle-utilisé" class="level2">
+<h2 class="anchored" data-anchor-id="modèle-utilisé">Modèle utilisé</h2>
+<p>Le filtre particulaire APF (Auxiliary Particle Filter) est un filtre particulaire qui utilise des particules auxiliaires pour estimer la densité de probabilité de l’état caché. Il est utilisé pour estimer l’état caché d’un système dynamique non linéaire. Dans cet article, nous allons étudier la performance du filtre APF en utilisant un exemple simple.</p>
+<p>Comme tout filtre particulaire, il est necessaire de spécifier la distribution a priori de l’état, i.e.&nbsp;<span class="math inline">\(p(x_0)\)</span>, la distribution de transition, i.e.&nbsp;<span class="math inline">\(p(v_t|v_{t-1})\)</span> et la vraisemblance, i.e.&nbsp;<span class="math inline">\(p(y_t|v_t)\)</span>.</p>
+<p>Dans le modèle de Heston spécifié en (1), on considère que : <span class="math display">\[
+p(v_t|v_{t-1})=2c\chi^2(2cx_k; 2q + 2; 2ce^{-\kappa \Delta} x_{k−1}),
+\]</span></p>
+<p><span class="math display">\[p(v_1) = \Gamma(v_1; a,b)\]</span> où <span class="math inline">\(a = \frac{2 \kappa \theta}{\sigma^2}\)</span> et <span class="math inline">\(b = \frac{2 \kappa}{\sigma^2}\)</span>,</p>
+<p>et <span class="math inline">\(p(y_t)|v_t) = N(0,h)\)</span>.</p>
+<p><span class="math display">\[
+\begin{cases}
+dS_t = S_t \left( rds + \sqrt{v_t} dW_t^1 \right) \\
+dv_t = \kappa (\theta - v_t) ds + \sigma \sqrt{v_t} dW_t^2 \\
+dW_t^1 dW_t^2 = \rho ds
+\end{cases}
+\quad (1)
+\]</span></p>
+<p>Pour tester la pertinence de l’APF, nous allons utiliser les paramètres suivants <span class="math inline">\(\Phi = (\theta = 0.03, \kappa = 4, \sigma = 0.4, \kappa = -0.87, \rho = 0.5)\)</span>. Pour passer en temps discret et assurer la positivité de la volatilité, nous utilisosn le schema d’euler (à <span class="math inline">\(|v_t|\)</span>) suivant :</p>
+<p><span class="math display">\[
+\begin{cases}
+y_t = C(t, \theta, v_t, S_t, K, \tau) + \varepsilon_t, \\[10pt]
+v_t = \left| v_{t-1} + \kappa \Delta (\theta - v_{t-1}) + \sigma \sqrt{v_{t-1}\Delta} (\rho w_t^1 + \sqrt{1-\rho^2}w_t^2) \right|, \\[10pt]
+S_t = S_{t-1} \left(1 + \mu \Delta + \sqrt{\Delta v_t} w_t^1 \right), \\[10pt]
+\end{cases}
+\]</span></p>
+<p>où <span class="math inline">\(\varepsilon_t \sim N(0,h=0.01)\)</span>, et <span class="math inline">\(w_t^1, w_t^2\)</span> sont des variables aléatoires gaussiennes et indépendantes.</p>
+<div class="{callout-tip}">
+<p>Nous avons utilisé un schéma d’euler modifié pour garantir la positivité de la volatilité. En effet, la volatilité doit être positive dans le modèle de Heston, et le schéma d’euler standard peut produire des valeurs négatives. En prenant la valeur absolue de la volatilité à chaque étape, nous nous assurons que les valeurs restent positives. Il aurait été également possible d’utiliser le schéma d’euler à <span class="math inline">\(ln(v_t)\)</span> (via le lemme de ito) pour garantir la positivité de la volatilité.</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">################ Simulation de la trajectoire de St et vt ################ </span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Heston_sim <span class="ot">&lt;-</span> <span class="cf">function</span>(N, kappa, theta, sigma, rho, v0, mu, tau, S0){</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># N: Number of time steps</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  dt <span class="ot">&lt;-</span> tau <span class="sc">/</span> N  <span class="co"># Time step</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Store stock prices and volatilities</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  S <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  v <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  S[<span class="dv">1</span>] <span class="ot">&lt;-</span> S0</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  v[<span class="dv">1</span>] <span class="ot">&lt;-</span> v0</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (t <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N){</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate correlated Brownian motions</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    W1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    W2 <span class="ot">&lt;-</span> rho <span class="sc">*</span> W1 <span class="sc">+</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> rho<span class="sc">^</span><span class="dv">2</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(<span class="dv">1</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Euler discretization of variance process (ensure non-negativity)</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    v[t<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">abs</span>(v[t] <span class="sc">+</span> kappa <span class="sc">*</span> (theta <span class="sc">-</span> v[t]) <span class="sc">*</span> dt <span class="sc">+</span> sigma <span class="sc">*</span> <span class="fu">sqrt</span>(v[t] <span class="sc">*</span> dt) <span class="sc">*</span> W2)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Euler discretization of the stock price process </span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    S[t<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> S[t] <span class="sc">*</span> (<span class="dv">1</span><span class="sc">+</span> mu<span class="sc">*</span>dt <span class="sc">+</span> <span class="fu">sqrt</span>(v[t<span class="sc">+</span><span class="dv">1</span>] <span class="sc">*</span> dt) <span class="sc">*</span> W1)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">v_t =</span> v, <span class="at">S_t=</span>S))</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Avec les étapes 1 et 2, nous obtenons les trajectoires de volatilité instantanée et de prix d’action suivantes :</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">300</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fl">0.03</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>kappa <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>v0 <span class="ot">&lt;-</span> <span class="fl">0.03</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>tau<span class="ot">&lt;-</span><span class="dv">1</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>S0 <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">Heston_sim</span>(<span class="at">N=</span>N, <span class="at">kappa=</span>kappa, <span class="at">theta=</span>theta, <span class="at">sigma=</span>sigma, <span class="at">rho=</span>rho, <span class="at">v0=</span>v0, <span class="at">mu=</span>mu, <span class="at">tau=</span>tau, <span class="at">S0=</span>S0)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res<span class="sc">$</span>v_t, <span class="at">type=</span><span class="st">"l"</span>, <span class="at">main=</span><span class="st">"Processus de volatilité simulé"</span>, <span class="at">xlab =</span> <span class="st">"Time step"</span>, <span class="at">ylab =</span> <span class="st">"Volatilité"</span>) </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res<span class="sc">$</span>S_t, <span class="at">type=</span><span class="st">"l"</span>, <span class="at">main=</span><span class="st">"Processus de prix du sous-jacent simulé"</span>, <span class="at">xlab =</span> <span class="st">"Time step"</span>, <span class="at">ylab =</span> <span class="st">"Prix"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="APF_filter-copy_files/figure-html/heston-sim-plots-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="procédure-de-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="procédure-de-simulation">Procédure de simulation</h3>
+<p>La procédure de simulation est la suivante :</p>
+<ol type="1">
+<li><p>Tout d’abord, une trajectoire de 300 pas de temps de la variance instantanée sera simulée pour un pas de 1 jour, en commençant par <span class="math inline">\(v_0\)</span> = 0,03.</p></li>
+<li><p>Conditionnellement à cette trajectoire, une trajectoire correspondante du prix de l’action sera alors générée.</p></li>
+<li><p>Nous calculons, à l’aide du modèle de Heston, les prix d’options bruités pour trois types d’options différents : une option à la monnaie (ATM), une option dans la monnaie (ITM) et une option mixte (50 % ITM / 50 % OTM).</p></li>
+</ol>
+<p>Nous avons choisi trois types d’options afin d’observer comment le filtre APF se comporte dans différentes conditions de marché :</p>
+<ul>
+<li>Option à la monnaie (ATM) :
+<ul>
+<li>Prix d’exercice : <code>K = 1 × S_t</code></li>
+<li>Temps avant l’échéance : <code>τ = 0.5</code> Les options ATM sont souvent utilisées pour l’estimation de la volatilité implicite, car elles sont les plus liquides et présentent un delta proche de 0.5, ce qui les rend sensibles aux variations du sous-jacent.</li>
+</ul></li>
+<li>Option dans la monnaie (ITM) :
+<ul>
+<li>Prix d’exercice : <code>K = 0.95 × S_t</code></li>
+<li>Temps avant l’échéance : <code>τ = 0.5</code> Les options ITM ont une valeur intrinsèque élevée et une volatilité implicite plus stable. Elles sont moins sensibles aux fluctuations immédiates du marché mais permettent d’évaluer l’impact du filtre APF dans des conditions de faible variance du prix d’option.</li>
+</ul></li>
+<li>Option mixte (50 % ITM / 50 % OTM) :
+<ul>
+<li>Prix d’exercice : <code>K = 117</code></li>
+<li>Temps avant l’échéance : <code>τ = 0.5</code> Cette approche permet de tester le filtre APF dans un scénario réaliste de portefeuille d’options où des positions ITM et OTM sont combinées. L’objectif est d’analyser si le filtre reste stable lorsque l’on mélange des options avec des sensibilités différentes aux mouvements du sous-jacent et aux variations de volatilité.</li>
+</ul></li>
+</ul>
+<p><strong>Pourquoi tester différentes configurations d’options ?</strong></p>
+<p>L’objectif de cette analyse est de vérifier comment le filtre APF se comporte en présence de conditions de marché variées :</p>
+<ul>
+<li>Options ATM : impact fort de la volatilité, mais moins sujettes au risque de gamma.</li>
+<li>Options ITM : faible sensibilité à la volatilité implicite, mais risque de couverture plus limité.</li>
+<li>Options mixtes : évaluation de la robustesse du filtre lorsque plusieurs types d’options coexistent dans un même portefeuille.</li>
+</ul>
+<p>Ces tests permettent de comparer la précision du filtre en fonction de la position de l’option par rapport au prix du sous-jacent.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">################ Simulation du prix des options ATM ################ </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"data/Heston_Call_Function.R"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>v_t <span class="ot">&lt;-</span> res<span class="sc">$</span>v_t </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>S_t <span class="ot">&lt;-</span> res<span class="sc">$</span>S_t</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Prix d'option K=1*S, tau = 0.5 =&gt; A la monnaie</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">100</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>tau <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>ATM <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span>N<span class="sc">+</span><span class="dv">1</span>)){</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>ATM[i] <span class="ot">&lt;-</span> <span class="fu">HestonCallClosedForm</span>(<span class="at">lambda =</span> kappa, <span class="at">vbar =</span> theta, <span class="at">eta =</span> sigma, <span class="at">rho =</span> rho, <span class="at">v0 =</span> v_t[i], <span class="at">r =</span> r, <span class="at">tau =</span> tau, <span class="at">S0 =</span> S_t[i], <span class="at">K =</span> K <span class="sc">*</span> S_t[i])</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>ATM <span class="ot">&lt;-</span> ATM <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>,<span class="at">mean=</span><span class="dv">0</span>,<span class="at">sd=</span><span class="fu">sqrt</span>(h))</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="do">################ Simulation du prix des options ITM ################ </span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Prix d'option K=0.95*S, tau = 0.5 =&gt; Hors de la monnaie</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">100</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>tau <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="fl">0.95</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>ITM <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span>N<span class="sc">+</span><span class="dv">1</span>)){</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>ITM[i] <span class="ot">&lt;-</span> <span class="fu">HestonCallClosedForm</span>(<span class="at">lambda =</span> kappa, <span class="at">vbar =</span> theta, <span class="at">eta =</span> sigma, <span class="at">rho =</span> rho, <span class="at">v0 =</span> v_t[i], <span class="at">r =</span> r, <span class="at">tau =</span> tau, <span class="at">S0 =</span> S_t[i], <span class="at">K =</span> K <span class="sc">*</span> S_t[i])</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>ITM <span class="ot">&lt;-</span> ITM <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>,<span class="at">mean=</span><span class="dv">0</span>,<span class="at">sd=</span><span class="fu">sqrt</span>(h))</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="do">################ Simulation du prix des options mixte ################ </span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(S_t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  99.49  104.36  117.23  119.24  128.88  156.89 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prix d'option K=117, tau = 0.5  =&gt; moitié ITM et moitié OTM</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">/</span><span class="dv">100</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>tau <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="dv">117</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>MIXTE <span class="ot">&lt;-</span> <span class="fu">numeric</span>(N<span class="sc">+</span><span class="dv">1</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">0</span><span class="sc">:</span>N<span class="sc">+</span><span class="dv">1</span>)){</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>MIXTE[i] <span class="ot">&lt;-</span> <span class="fu">HestonCallClosedForm</span>(<span class="at">lambda =</span> kappa, <span class="at">vbar =</span> theta, <span class="at">eta =</span> sigma, <span class="at">rho =</span> rho, <span class="at">v0 =</span> v_t[i], <span class="at">r =</span> r, <span class="at">tau =</span> tau, <span class="at">S0 =</span> S_t[i], <span class="at">K =</span> K)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>MIXTE <span class="ot">&lt;-</span> MIXTE <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>,<span class="at">mean=</span><span class="dv">0</span>,<span class="at">sd=</span><span class="fu">sqrt</span>(h))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="prix-doptions-simulés" class="level4">
+<h4 class="anchored" data-anchor-id="prix-doptions-simulés">Prix d’options simulés</h4>
+<p>En simulant le prix de ces options, nous constatons sans surprise que les options mixte ont un prix plus élevé plus on se rapproche de la maturité. Cependant, les options ITM et ATM ont des prix plus stables, avec une légère augmentation pour les options ITM.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">length</span>(res<span class="sc">$</span>ITM)  </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> tau <span class="sc">/</span> N</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>time_axis <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, tau, <span class="at">length.out =</span> N)  <span class="co"># Axe des temps, de 0 à tau</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(time_axis,res<span class="sc">$</span>ITM, <span class="at">type=</span><span class="st">"l"</span>, <span class="at">main =</span> <span class="st">"Evolution du prix des options "</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">50</span>), <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">ylab =</span> <span class="st">"Prix"</span>, <span class="at">xlab =</span> <span class="st">"Temps"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(time_axis,res<span class="sc">$</span>ATM, <span class="at">type =</span> <span class="st">"l"</span>,<span class="at">col=</span><span class="st">"blue"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(time_axis,res<span class="sc">$</span>MIXTE, <span class="at">type=</span><span class="st">'l'</span>, <span class="at">col=</span> <span class="st">"darkgreen"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># legend</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">"ITM"</span>, <span class="st">"ATM"</span>, <span class="st">"Mixte"</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>,<span class="st">'darkgreen'</span>), <span class="at">lty=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>, <span class="at">cex=</span><span class="fl">0.8</span>, <span class="at">title=</span><span class="st">"Types d'option"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="APF_filter-copy_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="filtres-utilisés" class="level4">
+<h4 class="anchored" data-anchor-id="filtres-utilisés">Filtres utilisés</h4>
+<p>L’objectif est de comparer les résultats de l’APF sur du filtre particulaire bootstrap en termes d’erreurs d’ajustement, mesurées par les erreurs quadratiques moyennes (RMSE) de l’ajustement de la variance et de l’ajustement des prix des options, dans différents cas de données.</p>
+<p><strong>Filtre bootstrap :</strong></p>
+<p>Le filtre boostrap fonctionne de la manière suivante :</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data/bootstrap_filter.png" class="img-fluid figure-img"></p>
+<figcaption>Bootstrap filter</figcaption>
+</figure>
+</div>
+<p>Dans le cadre du modèle de heston, nous avons implémenté le filtre bootstrap de la manière suivante :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>BootstrapParticleFilter <span class="ot">&lt;-</span> <span class="cf">function</span>(y, S, v, K, <span class="at">tau =</span> <span class="fl">0.5</span>, <span class="at">M =</span> <span class="dv">200</span>, <span class="at">theta =</span> <span class="fl">0.03</span>, <span class="at">kappa =</span> <span class="dv">4</span>, <span class="at">sigma =</span> <span class="fl">0.4</span>, <span class="at">rho =</span> <span class="fl">0.5</span>, <span class="at">r =</span> <span class="fl">0.05</span>, <span class="at">dt =</span> <span class="dv">1</span>, <span class="at">h =</span> <span class="fl">0.01</span>) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Paramètres supplémentaires</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  sigma_epsilon <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(h)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Paramètres de la loi stationnaire de v</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  alpha1 <span class="ot">&lt;-</span> (<span class="dv">2</span> <span class="sc">*</span> kappa <span class="sc">*</span> theta) <span class="sc">/</span> (sigma<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  alpha2 <span class="ot">&lt;-</span> (sigma<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> kappa)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Initialisation</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(y)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  v_hat <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  v_particle <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> n, <span class="at">ncol =</span> M)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  w <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> n, <span class="at">ncol =</span> M)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  w_normalized <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> n, <span class="at">ncol =</span> M)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filtre particulaire bootstrap</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (t <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (t <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Initialisation des particules à t = 0</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>      v_particle[t, ] <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(M, <span class="at">shape =</span> alpha1, <span class="at">rate =</span> <span class="dv">1</span><span class="sc">/</span>alpha2)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Poids initiaux basés sur la densité de la loi stationnaire</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>      w[t, ] <span class="ot">&lt;-</span> <span class="fu">dgamma</span>(v_particle[t, ], <span class="at">shape =</span> alpha1, <span class="at">rate =</span> <span class="dv">1</span><span class="sc">/</span>alpha2)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Normalisation des poids</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>      w_normalized[t, ] <span class="ot">&lt;-</span> w[t, ] <span class="sc">/</span> <span class="fu">sum</span>(w[t, ])</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Estimation initiale</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>      v_hat[t] <span class="ot">&lt;-</span> <span class="fu">sum</span>(w_normalized[t, ] <span class="sc">*</span> v_particle[t, ])</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Étape de prédiction (propagation des particules)</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>      v_particle[t, ] <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">rnorm</span>(M, </span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">mean =</span> v_particle[t<span class="dv">-1</span>, ] <span class="sc">+</span> kappa <span class="sc">*</span> (theta <span class="sc">-</span> v_particle[t<span class="dv">-1</span>, ]) <span class="sc">*</span> dt, </span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">sd =</span> sigma <span class="sc">*</span> <span class="fu">sqrt</span>(v_particle[t<span class="dv">-1</span>, ] <span class="sc">*</span> dt)))</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>      <span class="co">#  Calcul du prix du Call pour chaque particule</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>      C <span class="ot">&lt;-</span> <span class="fu">numeric</span>(M)</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Si K est un unique scalaire (strike constant), on le conserve</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Si K est un vecteur, on prend K[t] comme strike au temps t</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">length</span>(K) <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>          Kt <span class="ot">&lt;-</span> K  <span class="co"># Strike constant</span></span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>          Kt <span class="ot">&lt;-</span> K[t]  <span class="co"># Strike spécifique au temps t</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Calcul pour chaque particule avec le bon strike</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>M) {</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>          C[i] <span class="ot">&lt;-</span> <span class="fu">HestonCallClosedForm</span>(<span class="at">lambda =</span> kappa, <span class="at">vbar =</span> theta, <span class="at">eta =</span> sigma, <span class="at">rho =</span> rho, </span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">v0 =</span> v_particle[t, i], <span class="at">r =</span> r, <span class="at">tau =</span> tau, <span class="at">S0 =</span> S[t], <span class="at">K =</span> Kt)</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Mise à jour des poids (vraisemblance observation-conditionnelle)</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>      w[t, ] <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(y[t], <span class="at">mean =</span> C, <span class="at">sd =</span> <span class="fu">sqrt</span>(sigma_epsilon))</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Normalisation des poids</span></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>      w_normalized[t, ] <span class="ot">&lt;-</span> w[t, ] <span class="sc">/</span> <span class="fu">sum</span>(w[t, ])</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Rééchantillonnage</span></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>      index <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>M, <span class="at">size =</span> M, <span class="at">prob =</span> w_normalized[t, ], <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>      v_particle[t, ] <span class="ot">&lt;-</span> v_particle[t, index]</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Poids uniformes après resampling</span></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>      w_normalized[t, ] <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span> <span class="sc">/</span> M, M)</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Estimation de la volatilité instantanée</span></span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>      v_hat[t] <span class="ot">&lt;-</span> <span class="fu">sum</span>(w_normalized[t, ] <span class="sc">*</span> v_particle[t, ])</span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(v_hat)</span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Filtre APF :</strong></p>
+<p>Le filtre particulaire auxilaire fonctionne de la manière suivante :</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data/APF.png" class="img-fluid figure-img"></p>
+<figcaption>APF</figcaption>
+</figure>
+</div>
+<p>Dans le cadre du modèle de heston, nous avons implémenté le filtre APF de la manière suivante :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>APF_Heston <span class="ot">&lt;-</span> <span class="cf">function</span>(y, S, v,K, <span class="at">M =</span> <span class="dv">200</span>, <span class="at">theta =</span> <span class="fl">0.03</span>, <span class="at">kappa =</span> <span class="dv">4</span>, <span class="at">sigma =</span> <span class="fl">0.4</span>, </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">lambda =</span> <span class="sc">-</span><span class="fl">0.87</span>, <span class="at">rho =</span> <span class="fl">0.5</span>, <span class="at">r =</span> <span class="fl">0.05</span>, <span class="at">tau =</span> <span class="fl">0.5</span>, <span class="at">dt =</span> <span class="dv">1</span>, <span class="at">h =</span> <span class="fl">0.01</span>) {</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Paramètres de la loi stationnaire de v</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  sigma_epsilon <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(h)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  alpha1 <span class="ot">&lt;-</span> (<span class="dv">2</span> <span class="sc">*</span> kappa <span class="sc">*</span> theta) <span class="sc">/</span> (sigma<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  alpha2 <span class="ot">&lt;-</span> (sigma<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> kappa)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Initialisation des paramètres</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(y)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Initialisation des vecteurs/matrices</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  v_hat <span class="ot">&lt;-</span> <span class="fu">numeric</span>(n)                   </span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  v_particle <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> n, <span class="at">ncol =</span> M)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> n, <span class="at">ncol =</span> M)        </span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  py_mu <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> n, <span class="at">ncol =</span> M) </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  w <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> n, <span class="at">ncol =</span> M)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  w_normalized <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> n, <span class="at">ncol =</span> M)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Filtre particulaire APF</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (t <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (t <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>      v_particle[t, ] <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(M, <span class="at">shape =</span> alpha1, <span class="at">rate =</span> <span class="dv">1</span><span class="sc">/</span>alpha2)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>      w[t, ] <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span> <span class="sc">/</span> M, M)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>      w_normalized[t, ] <span class="ot">&lt;-</span> w[t, ] <span class="sc">/</span> <span class="fu">sum</span>(w[t, ])</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>      v_hat[t] <span class="ot">&lt;-</span> <span class="fu">sum</span>(w_normalized[t, ] <span class="sc">*</span> v_particle[t, ])</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Si K est un unique scalaire (strike constant), on le conserve</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Si K est un vecteur, on prend K[t] comme strike au temps t</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="fu">length</span>(K) <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>          Kt <span class="ot">&lt;-</span> K  <span class="co"># Strike constant</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>          Kt <span class="ot">&lt;-</span> K[t]  <span class="co"># Strike spécifique au temps t</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 1 - Pré-sélection</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>      mu[t, ] <span class="ot">&lt;-</span> <span class="fu">abs</span>(v_particle[t<span class="dv">-1</span>, ] <span class="sc">+</span> kappa <span class="sc">*</span> (theta <span class="sc">-</span> v_particle[t<span class="dv">-1</span>, ]) <span class="sc">*</span> dt)</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>      mean_pymu <span class="ot">&lt;-</span> <span class="fu">numeric</span>(M)</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>M) {</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>        mean_pymu[i] <span class="ot">&lt;-</span> <span class="fu">HestonCallClosedForm</span>(<span class="at">lambda =</span> kappa, <span class="at">vbar =</span> theta, <span class="at">eta =</span> sigma, <span class="at">rho =</span> rho, </span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>                                             <span class="at">v0 =</span> mu[t, i], <span class="at">r =</span> r, <span class="at">tau =</span> tau, <span class="at">S0 =</span> S[t], <span class="at">K =</span> Kt)</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>      py_mu[t, ] <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(y[t], <span class="at">mean =</span> mean_pymu, <span class="at">sd =</span> sigma_epsilon)</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Poids pour la pré-sélection</span></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>      w[t<span class="dv">-1</span>, ] <span class="ot">&lt;-</span> py_mu[t, ] <span class="sc">*</span> w_normalized[t<span class="dv">-1</span>, ]</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 2 - Resampling (échantillonnage)</span></span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>      index <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>M, <span class="at">size =</span> M, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> w[t<span class="dv">-1</span>, ])</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Mise à jour des particules</span></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>      v_particle[t<span class="dv">-1</span>, ] <span class="ot">&lt;-</span> v_particle[t<span class="dv">-1</span>, index]</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>      <span class="co"># 3 - Propagation (évolution des particules)</span></span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>      v_particle[t, ] <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">rnorm</span>(M, </span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">mean =</span> v_particle[t<span class="dv">-1</span>, ] <span class="sc">+</span> kappa <span class="sc">*</span> (theta <span class="sc">-</span> v_particle[t<span class="dv">-1</span>, ]) <span class="sc">*</span> dt, </span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">sd =</span> sigma <span class="sc">*</span> <span class="fu">sqrt</span>(v_particle[t<span class="dv">-1</span>, ] <span class="sc">*</span> dt)))</span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Mise à jour des poids</span></span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>      C <span class="ot">&lt;-</span> <span class="fu">numeric</span>(M)</span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>M) {</span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>        C[i] <span class="ot">&lt;-</span> <span class="fu">HestonCallClosedForm</span>(<span class="at">lambda =</span> kappa, <span class="at">vbar =</span> theta, <span class="at">eta =</span> sigma, <span class="at">rho =</span> rho, </span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">v0 =</span> v_particle[t, i], <span class="at">r =</span> r, <span class="at">tau =</span> tau, <span class="at">S0 =</span> S[t], <span class="at">K =</span> Kt)</span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>      likelihood <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(y[t], <span class="at">mean =</span> C, <span class="at">sd =</span> sigma_epsilon)</span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>      w[t, ] <span class="ot">&lt;-</span> likelihood <span class="sc">/</span> (py_mu[t, index] <span class="sc">+</span> <span class="fl">1e-12</span>)  <span class="co"># Protection pour éviter la division par zéro</span></span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>      w_normalized[t, ] <span class="ot">&lt;-</span> w[t, ] <span class="sc">/</span> <span class="fu">sum</span>(w[t, ])</span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>      v_hat[t] <span class="ot">&lt;-</span> <span class="fu">sum</span>(w_normalized[t, ] <span class="sc">*</span> v_particle[t, ])</span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Retourner les résultats</span></span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(v_hat)</span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Différence entre le filtre bootstrap et le filtre APF :</strong></p>
+<p>Le filtre bootstrap et le filtre APF sont deux méthodes de filtrage particulaire qui permettent d’estimer l’état caché d’un système dynamique non linéaire. La principale différence entre ces deux méthodes réside dans la manière dont elles mettent à jour les poids des particules, et ainsi comme la distribution d’importance q est construite. Par définition, les poids sont définis par : <span class="math display">\[
+w(x_t) = w(x_{t-1}) \frac{p(y_t|x_t)p(x_t|x_{t-1})}{q(x_t|x_{t-1},y_t)},
+\]</span> où <span class="math inline">\(p(y_t|x_t)\)</span> est la vraisemblance, <span class="math inline">\(p(x_t|x_{t-1})\)</span> est la distribution de transition, et <span class="math inline">\(q(x_t|x_{t-1},y_t)\)</span> est la distribution d’importance.</p>
+<p>Dans le cadre du filtre bootstrap, la distribution d’importance est définie comme suit : <span class="math display">\[
+q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
+\]</span> De ce fait, <span class="math inline">\(w(x_t) = w(x_{t-1}) p(y_t|x_t)\)</span>.Cela signifie que les poids sont mis à jour en fonction de la distribution de transition et de la vraisemblance.</p>
+<p>Dans le cadre du filtre APF, la distribution d’importance se rapproche de la distribution optimale, vu dans la littérature comme étant <span class="math inline">\(q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1},y_t)\)</span>. De ce fait, les poids sont mis à jour en fonction de la vraisemblance conditionnelle, ce qui permet d’améliorer la précision de l’estimation de l’état caché, et donc de l’estimation de la volatilité dans notre cas.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="résultats" class="level1">
+<h1>Résultats</h1>
+<section id="option-à-la-monnaie-atm" class="level2">
+<h2 class="anchored" data-anchor-id="option-à-la-monnaie-atm">Option à la monnaie (ATM)</h2>
+<section id="filtre-bootstrap" class="level3">
+<h3 class="anchored" data-anchor-id="filtre-bootstrap">Filtre bootstrap</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">##################### Définition des paramètres #####################</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Définition des paramètres phi</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fl">0.03</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>kappa <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">0.87</span> <span class="co"># Prime de risque</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Paramètres de Heston </span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fl">0.01</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Prix de call (y), du sous-jacent (S), et volatilité instantanée (v)</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> res<span class="sc">$</span>ATM</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> res<span class="sc">$</span>S_t</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>v<span class="ot">&lt;-</span> res<span class="sc">$</span>v_t</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialisation des paramètres</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(y)  <span class="co"># Nombre d'observations</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="dv">200</span>      <span class="co"># Nombre de particules</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Paramètres de l'option </span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">*</span> S</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>tau<span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Exemple d'appel avec tes données "res"</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>et_boot_atm <span class="ot">&lt;-</span> <span class="fu">system.time</span>({</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>boot_atm <span class="ot">&lt;-</span> <span class="fu">BootstrapParticleFilter</span>(<span class="at">y=</span>y, <span class="at">S=</span>S, <span class="at">v=</span>v, <span class="at">K=</span>K, <span class="at">tau =</span> tau, <span class="at">M =</span> M, <span class="at">theta =</span> theta, <span class="at">kappa =</span> kappa, <span class="at">sigma =</span> sigma,  <span class="at">rho =</span> rho, <span class="at">r =</span> r, <span class="at">dt =</span> dt, <span class="at">h =</span> h)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(v, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">col =</span> <span class="st">"black"</span>,  <span class="at">main =</span> <span class="st">"Estimation de la volatilité avec un filtre bootstrap"</span>,<span class="at">xlab =</span> <span class="st">"Temps"</span>, <span class="at">ylab =</span> <span class="st">"Volatilité"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(boot_atm, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Vol. obs."</span>, <span class="st">"Vol. est."</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"red"</span>), <span class="at">lty =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="APF_filter-copy_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(et_boot_atm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   user  system elapsed 
+ 11.810   0.559  12.424 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rmse_boot_atm <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((boot_atm <span class="sc">-</span> v)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RMSE :"</span>, rmse_boot_atm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>RMSE : 0.001402773</code></pre>
+</div>
+</div>
+</section>
+<section id="filtre-apf" class="level3">
+<h3 class="anchored" data-anchor-id="filtre-apf">Filtre APF</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>et_apf_atm <span class="ot">&lt;-</span> <span class="fu">system.time</span>({</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>apf_atm <span class="ot">&lt;-</span> <span class="fu">APF_Heston</span>(<span class="at">y=</span>y, <span class="at">S=</span>S, <span class="at">v=</span>v, <span class="at">K=</span>K, <span class="at">tau =</span> tau, <span class="at">M =</span> M, <span class="at">theta =</span> theta, <span class="at">kappa =</span> kappa, <span class="at">sigma =</span> sigma,  <span class="at">rho =</span> rho, <span class="at">r =</span> r, <span class="at">dt =</span> dt, <span class="at">h =</span> h)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(v, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">col =</span> <span class="st">"black"</span>,  <span class="at">main =</span> <span class="st">"Estimation de la volatilité avec un filtre APF"</span>,<span class="at">xlab =</span> <span class="st">"Temps"</span>, <span class="at">ylab =</span> <span class="st">"Volatilité"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(apf_atm, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Vol. obs."</span>, <span class="st">"Vol. est."</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"red"</span>), <span class="at">lty =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="APF_filter-copy_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(et_apf_atm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   user  system elapsed 
+ 23.422   1.117  24.650 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rmse_apf_atm <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((apf_atm <span class="sc">-</span> v)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RMSE :"</span>, rmse_apf_atm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>RMSE : 0.001889304</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="option-à-la-monnaie-itm" class="level2">
+<h2 class="anchored" data-anchor-id="option-à-la-monnaie-itm">Option à la monnaie (ITM)</h2>
+<section id="filtre-bootstrap-1" class="level3">
+<h3 class="anchored" data-anchor-id="filtre-bootstrap-1">Filtre bootstrap</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> res<span class="sc">$</span>ITM</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="fl">0.95</span> <span class="sc">*</span> S</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>et_boot_itm <span class="ot">&lt;-</span> <span class="fu">system.time</span>({</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>boot_itm <span class="ot">&lt;-</span> <span class="fu">BootstrapParticleFilter</span>(<span class="at">y=</span>y, <span class="at">S=</span>S, <span class="at">v=</span>v, <span class="at">K=</span>K, <span class="at">tau =</span> tau, <span class="at">M =</span> M, <span class="at">theta =</span> theta, <span class="at">kappa =</span> kappa, <span class="at">sigma =</span> sigma,  <span class="at">rho =</span> rho, <span class="at">r =</span> r, <span class="at">dt =</span> dt, <span class="at">h =</span> h)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(v, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">col =</span> <span class="st">"black"</span>,  <span class="at">main =</span> <span class="st">"Estimation de la volatilité avec un filtre bootstrap"</span>,<span class="at">xlab =</span> <span class="st">"Temps"</span>, <span class="at">ylab =</span> <span class="st">"Volatilité"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(boot_itm, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Vol. obs."</span>, <span class="st">"Vol. est."</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"red"</span>), <span class="at">lty =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="APF_filter-copy_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(et_boot_itm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   user  system elapsed 
+ 11.490   0.537  12.092 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>rmse_boot_itm <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((boot_itm <span class="sc">-</span> v)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RMSE :"</span>, rmse_boot_itm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>RMSE : 0.00152023</code></pre>
+</div>
+</div>
+</section>
+<section id="apf" class="level3">
+<h3 class="anchored" data-anchor-id="apf">APF</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>et_apf_itm <span class="ot">&lt;-</span> <span class="fu">system.time</span>({</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>apf_itm <span class="ot">&lt;-</span> <span class="fu">APF_Heston</span>(<span class="at">y=</span>y, <span class="at">S=</span>S, <span class="at">v=</span>v, <span class="at">K=</span>K, <span class="at">tau =</span> tau, <span class="at">M =</span> M, <span class="at">theta =</span> theta, <span class="at">kappa =</span> kappa, <span class="at">sigma =</span> sigma,  <span class="at">rho =</span> rho, <span class="at">r =</span> r, <span class="at">dt =</span> dt, <span class="at">h =</span> h)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(v, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">col =</span> <span class="st">"black"</span>,  <span class="at">main =</span> <span class="st">"Estimation de la volatilité avec un filtre APF"</span>,<span class="at">xlab =</span> <span class="st">"Temps"</span>, <span class="at">ylab =</span> <span class="st">"Volatilité"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(apf_itm, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Vol. obs."</span>, <span class="st">"Vol. est."</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"red"</span>), <span class="at">lty =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="APF_filter-copy_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(et_apf_itm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   user  system elapsed 
+ 22.526   1.016  23.585 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>rmse_apf_itm <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((apf_itm <span class="sc">-</span> v)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RMSE :"</span>, rmse_apf_itm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>RMSE : 0.001850903</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="options-mixtes" class="level2">
+<h2 class="anchored" data-anchor-id="options-mixtes">Options mixtes</h2>
+<section id="filtre-bootstrap-2" class="level3">
+<h3 class="anchored" data-anchor-id="filtre-bootstrap-2">Filtre bootstrap</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> res<span class="sc">$</span>MIXTE</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> <span class="dv">117</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>et_boot_mixte <span class="ot">&lt;-</span> <span class="fu">system.time</span>({</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>boot_mixte <span class="ot">&lt;-</span> <span class="fu">BootstrapParticleFilter</span>(<span class="at">y=</span>y, <span class="at">S=</span>S, <span class="at">v=</span>v, <span class="at">K=</span>K, <span class="at">tau =</span> tau, <span class="at">M =</span> M, <span class="at">theta =</span> theta, <span class="at">kappa =</span> kappa, <span class="at">sigma =</span> sigma,  <span class="at">rho =</span> rho, <span class="at">r =</span> r, <span class="at">dt =</span> dt, <span class="at">h =</span> h)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(v, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">col =</span> <span class="st">"black"</span>,  <span class="at">main =</span> <span class="st">"Estimation de la volatilité avec un filtre bootstrap"</span>,<span class="at">xlab =</span> <span class="st">"Temps"</span>, <span class="at">ylab =</span> <span class="st">"Volatilité"</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(boot_mixte, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Vol. obs."</span>, <span class="st">"Vol. est."</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"red"</span>), <span class="at">lty =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="APF_filter-copy_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(et_boot_mixte)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   user  system elapsed 
+ 11.920   0.515  12.455 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>rmse_boot_mixte<span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((boot_mixte <span class="sc">-</span> v)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RMSE :"</span>, rmse_boot_mixte)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>RMSE : 0.01595637</code></pre>
+</div>
+</div>
+</section>
+<section id="apf-1" class="level3">
+<h3 class="anchored" data-anchor-id="apf-1">APF</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>et_apf_mixte <span class="ot">&lt;-</span> <span class="fu">system.time</span>({</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>apf_mixte <span class="ot">&lt;-</span> <span class="fu">APF_Heston</span>(<span class="at">y=</span>y, <span class="at">S=</span>S, <span class="at">v=</span>v, <span class="at">K=</span>K, <span class="at">tau =</span> tau, <span class="at">M =</span> M, <span class="at">theta =</span> theta, <span class="at">kappa =</span> kappa, <span class="at">sigma =</span> sigma,  <span class="at">rho =</span> rho, <span class="at">r =</span> r, <span class="at">dt =</span> dt, <span class="at">h =</span> h)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(v, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">col =</span> <span class="st">"black"</span>,  <span class="at">main =</span> <span class="st">"Estimation de la volatilité avec un filtre APF"</span>,<span class="at">xlab =</span> <span class="st">"Temps"</span>, <span class="at">ylab =</span> <span class="st">"Volatilité"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(apf_mixte, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Vol. obs."</span>, <span class="st">"Vol. est."</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"red"</span>), <span class="at">lty =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="APF_filter-copy_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(et_apf_mixte)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   user  system elapsed 
+ 23.707   0.960  24.691 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>rmse_apf_mixte <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((apf_mixte <span class="sc">-</span> v)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RMSE :"</span>, rmse_apf_mixte)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>RMSE : 0.01475175</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="comparaison-des-performances" class="level2">
+<h2 class="anchored" data-anchor-id="comparaison-des-performances">Comparaison des performances</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Création du data.frame avec les colonnes demandées</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>comp_perf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    Méthode <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"APF"</span>, <span class="st">"APF"</span>, <span class="st">"APF"</span>, <span class="st">"BOOT"</span>, <span class="st">"BOOT"</span>, <span class="st">"BOOT"</span>),</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Type_Option =</span> <span class="fu">c</span>(<span class="st">"ATM"</span>, <span class="st">"ITM"</span>, <span class="st">"MIXTE"</span>, <span class="st">"ATM"</span>, <span class="st">"ITM"</span>, <span class="st">"MIXTE"</span>),</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">RMSE =</span> <span class="fu">c</span>(rmse_apf_atm, rmse_apf_itm, rmse_apf_mixte, rmse_boot_atm, rmse_boot_itm, rmse_boot_mixte)</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Conversion : Méthode comme colonne</span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>comp_perf_wide <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>    comp_perf,</span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> Méthode,   <span class="co"># Ce qui devient les colonnes</span></span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> RMSE      <span class="co"># Ce qui remplit les cases</span></span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>comp_perf_wide <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>    comp_perf_wide,</span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(</span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">Type_Option =</span> <span class="st">"Moyenne"</span>,</span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">APF =</span> <span class="fu">mean</span>(<span class="fu">c</span>(rmse_apf_atm, rmse_apf_itm, rmse_apf_mixte), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">BOOT =</span> <span class="fu">mean</span>(<span class="fu">c</span>(rmse_boot_atm, rmse_boot_itm, rmse_boot_mixte), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage du résultat</span></span>
+<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a>comp_perf_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Type_Option</th>
+<th style="text-align: right;">APF</th>
+<th style="text-align: right;">BOOT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ATM</td>
+<td style="text-align: right;">0.0018893</td>
+<td style="text-align: right;">0.0014028</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ITM</td>
+<td style="text-align: right;">0.0018509</td>
+<td style="text-align: right;">0.0015202</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MIXTE</td>
+<td style="text-align: right;">0.0147518</td>
+<td style="text-align: right;">0.0159564</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Moyenne</td>
+<td style="text-align: right;">0.0061640</td>
+<td style="text-align: right;">0.0062931</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparaison des temps d'exécution</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>comp_temps <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    Méthode <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"APF"</span>, <span class="st">"APF"</span>, <span class="st">"APF"</span>, <span class="st">"BOOT"</span>, <span class="st">"BOOT"</span>, <span class="st">"BOOT"</span>),</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Type_Option =</span> <span class="fu">c</span>(<span class="st">"ATM"</span>, <span class="st">"ITM"</span>, <span class="st">"MIXTE"</span>, <span class="st">"ATM"</span>, <span class="st">"ITM"</span>, <span class="st">"MIXTE"</span>),</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Temps =</span> <span class="fu">c</span>(et_apf_atm[<span class="dv">3</span>], et_apf_itm[<span class="dv">3</span>], et_apf_mixte[<span class="dv">3</span>], et_boot_atm[<span class="dv">3</span>], et_boot_itm[<span class="dv">3</span>], et_boot_mixte[<span class="dv">3</span>])</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Conversion : Méthode comme colonne</span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>comp_temps_wide <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>    comp_temps,</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> Méthode,   <span class="co"># Ce qui devient les colonnes</span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> Temps      <span class="co"># Ce qui remplit les cases</span></span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>comp_temps_wide <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>    comp_temps_wide,</span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(</span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">Type_Option =</span> <span class="st">"Moyenne"</span>,</span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">APF =</span> <span class="fu">mean</span>(<span class="fu">c</span>(et_apf_atm[<span class="dv">3</span>], et_apf_itm[<span class="dv">3</span>], et_apf_mixte[<span class="dv">3</span>]), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">BOOT =</span> <span class="fu">mean</span>(<span class="fu">c</span>(et_boot_atm[<span class="dv">3</span>], et_boot_itm[<span class="dv">3</span>], et_boot_mixte[<span class="dv">3</span>]), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage du résultat</span></span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>comp_temps_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Type_Option</th>
+<th style="text-align: right;">APF</th>
+<th style="text-align: right;">BOOT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ATM</td>
+<td style="text-align: right;">24.65000</td>
+<td style="text-align: right;">12.42400</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ITM</td>
+<td style="text-align: right;">23.58500</td>
+<td style="text-align: right;">12.09200</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MIXTE</td>
+<td style="text-align: right;">24.69100</td>
+<td style="text-align: right;">12.45500</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Moyenne</td>
+<td style="text-align: right;">24.30867</td>
+<td style="text-align: right;">12.32367</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>En comparant les performances de l’APF à celles du filtre bootstrap, nous constatons que les deux filtres ont des performances assez similaires en termes d’erreurs d’ajustement (RMSE) pour les options ATM et ITM. Cependant, l’APF semble être plus efficace pour les options mixtes, avec des erreurs d’ajustement plus faibles que le filtre bootstrap. Cependant, en termes de temps d’exécution, le filtre bootstrap est plus rapide que l’APF pour les trois types d’options. En moyenne, l’APF est plus lent que le filtre bootstrap, mais offre une meilleure précision tout option confondue.</p>
+<p>Pou connaitre la robustesse de ces estimations, nous avons fait du bootstrap pour estimer la distribution des RMSE, et ainsi obtenir des intervalles de confiance pour ces estimations, de même que des p-valeurs. Le code ayant servi à la simulation est disponible ici.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Charger les résultats du bootstrap</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>res_ATM <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"results_sim/res_ATM_min.rds"</span>)</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>res_ITM <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"results_sim/res_ITM_min.rds"</span>)</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>res_MIXTE <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"results_sim/res_MIXTE_min.rds"</span>)</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraire les RMSE</span></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>rmse_bootstrap_atm <span class="ot">&lt;-</span> res_ATM<span class="sc">$</span>t[, <span class="dv">1</span>]</span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>rmse_apf_atm_b <span class="ot">&lt;-</span> res_ATM<span class="sc">$</span>t[, <span class="dv">2</span>]</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>rmse_bootstrap_itm <span class="ot">&lt;-</span> res_ITM<span class="sc">$</span>t[, <span class="dv">1</span>]</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>rmse_apf_itm_b <span class="ot">&lt;-</span> res_ITM<span class="sc">$</span>t[, <span class="dv">2</span>]</span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>rmse_bootstrap_mixte <span class="ot">&lt;-</span> res_MIXTE<span class="sc">$</span>t[, <span class="dv">1</span>]</span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a>rmse_apf_mixte_b <span class="ot">&lt;-</span> res_MIXTE<span class="sc">$</span>t[, <span class="dv">2</span>]</span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer un dataframe avec les valeurs RMSE pour les trois scénarios</span></span>
+<span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a>df_rmse_boxplot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a>  Méthode <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Bootstrap Filter"</span>, <span class="st">"APF-Heston"</span>), <span class="at">each =</span> <span class="fu">c</span>(<span class="fu">length</span>(rmse_bootstrap_atm), <span class="fu">length</span>(rmse_apf_atm_b), <span class="fu">length</span>(rmse_bootstrap_itm), <span class="fu">length</span>(rmse_apf_itm_b),<span class="fu">length</span>(rmse_bootstrap_mixte), <span class="fu">length</span>(rmse_apf_mixte_b))),</span>
+<span id="cb50-23"><a href="#cb50-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">RMSE =</span> <span class="fu">c</span>(rmse_bootstrap_atm, rmse_apf_atm_b,</span>
+<span id="cb50-24"><a href="#cb50-24" aria-hidden="true" tabindex="-1"></a>           rmse_bootstrap_itm, rmse_apf_itm_b,</span>
+<span id="cb50-25"><a href="#cb50-25" aria-hidden="true" tabindex="-1"></a>           rmse_bootstrap_mixte, rmse_apf_mixte_b),</span>
+<span id="cb50-26"><a href="#cb50-26" aria-hidden="true" tabindex="-1"></a>  Scénario <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"ATM"</span>, <span class="st">"ATM"</span>, <span class="st">"ITM"</span>, <span class="st">"ITM"</span>, <span class="st">"MIXTE"</span>, <span class="st">"MIXTE"</span>), <span class="at">each =</span> <span class="fu">c</span>(<span class="fu">length</span>(rmse_bootstrap_atm), <span class="fu">length</span>(rmse_apf_atm_b),</span>
+<span id="cb50-27"><a href="#cb50-27" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(rmse_bootstrap_itm), <span class="fu">length</span>(rmse_apf_itm_b),</span>
+<span id="cb50-28"><a href="#cb50-28" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(rmse_bootstrap_mixte), <span class="fu">length</span>(rmse_apf_mixte_b)))</span>
+<span id="cb50-29"><a href="#cb50-29" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in rep(c("Bootstrap Filter", "APF-Heston"), each =
+c(length(rmse_bootstrap_atm), : first element used of 'each' argument</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in rep(c("ATM", "ATM", "ITM", "ITM", "MIXTE", "MIXTE"), each =
+c(length(rmse_bootstrap_atm), : first element used of 'each' argument</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul des p-valeurs</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co"># kruskall wallis</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>test_atm <span class="ot">&lt;-</span> <span class="fu">kruskal.test</span>(<span class="fu">list</span>(rmse_bootstrap_atm, rmse_apf_atm_b))<span class="sc">$</span>p.value</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>test_itm <span class="ot">&lt;-</span> <span class="fu">kruskal.test</span>(<span class="fu">list</span>(rmse_bootstrap_itm, rmse_apf_itm_b))<span class="sc">$</span>p.value</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>test_mixte <span class="ot">&lt;-</span> <span class="fu">kruskal.test</span>(<span class="fu">list</span>(rmse_bootstrap_mixte, rmse_apf_mixte_b))<span class="sc">$</span>p.value</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="co"># test_atm &lt;- t.test(rmse_bootstrap_atm, rmse_apf_atm_b)$p.value</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="co"># test_itm &lt;- t.test(rmse_bootstrap_itm, rmse_apf_itm_b)$p.value</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="co"># test_mixte &lt;- t.test(rmse_bootstrap_mixte, rmse_apf_mixte_b)$p.value</span></span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Création du boxplot avec facet_wrap et ajout des p-valeurs en caption</span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_rmse_boxplot, <span class="fu">aes</span>(<span class="at">x =</span> Méthode, <span class="at">y =</span> RMSE, <span class="at">fill =</span> Méthode)) <span class="sc">+</span></span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Scénario, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Comparaison des RMSE (Bootstrap vs APF) selon les scénarios"</span>,</span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Méthode de Filtrage"</span>,</span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"RMSE"</span>,</span>
+<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="fu">paste</span>(<span class="st">"p-values t-test: ATM ="</span>, <span class="fu">formatC</span>(test_atm, <span class="at">format =</span> <span class="st">"e"</span>, <span class="at">digits =</span> <span class="dv">2</span>),</span>
+<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"| ITM ="</span>, <span class="fu">formatC</span>(test_itm, <span class="at">format =</span> <span class="st">"e"</span>, <span class="at">digits =</span> <span class="dv">2</span>),</span>
+<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"| MIXTE ="</span>, <span class="fu">formatC</span>(test_mixte, <span class="at">format =</span> <span class="st">"e"</span>, <span class="at">digits =</span> <span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb53-22"><a href="#cb53-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb53-23"><a href="#cb53-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb53-24"><a href="#cb53-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="APF_filter-copy_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Concaténer toutes les RMSE</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>total_rmse_bootstrap <span class="ot">&lt;-</span> <span class="fu">c</span>(rmse_bootstrap_atm, rmse_bootstrap_itm, rmse_bootstrap_mixte)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>total_rmse_apf <span class="ot">&lt;-</span> <span class="fu">c</span>(rmse_apf_atm_b, rmse_apf_itm_b, rmse_apf_mixte_b)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Kruskal wallis test</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>global_pval <span class="ot">&lt;-</span> <span class="fu">kruskal.test</span>(<span class="fu">list</span>(total_rmse_bootstrap, total_rmse_apf))<span class="sc">$</span>p.value</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a><span class="co"># global_pval &lt;- t.test(total_rmse_bootstrap, total_rmse_apf)$p.value</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot global</span></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggboxplot</span>(df_rmse_boxplot, <span class="at">x =</span> <span class="st">"Méthode"</span>, <span class="at">y =</span> <span class="st">"RMSE"</span>, <span class="at">fill =</span> <span class="st">"Méthode"</span>,</span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">"RMSE"</span>, <span class="at">xlab =</span> <span class="st">"Méthode de Filtrage"</span>,</span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"Comparaison des RMSE (Bootstrap vs APF) pour les trois scénarios"</span>) <span class="sc">+</span></span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">caption =</span> <span class="fu">paste</span>(<span class="st">"p-values: Global ="</span>, <span class="fu">formatC</span>(global_pval, <span class="at">format =</span> <span class="st">"e"</span>, <span class="at">digits =</span> <span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="APF_filter-copy_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Approche pvalue</strong> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>rmse_diff_atm <span class="ot">&lt;-</span> rmse_bootstrap_atm <span class="sc">-</span> rmse_apf_atm_b</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>rmse_diff_atm_obs <span class="ot">&lt;-</span> rmse_boot_atm <span class="sc">-</span> rmse_apf_atm</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(rmse_diff_atm_obs <span class="sc">&gt;</span> rmse_diff_atm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.84</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>rmse_diff_itm <span class="ot">&lt;-</span> rmse_bootstrap_itm <span class="sc">-</span> rmse_apf_itm_b</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>rmse_diff_itm_obs <span class="ot">&lt;-</span> rmse_boot_itm <span class="sc">-</span> rmse_apf_itm</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(rmse_diff_itm_obs <span class="sc">&gt;</span> rmse_diff_itm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.38</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>rmse_diff_mixte <span class="ot">&lt;-</span> rmse_bootstrap_mixte <span class="sc">-</span> rmse_apf_mixte_b</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>rmse_diff_mixte_obs <span class="ot">&lt;-</span> rmse_boot_mixte <span class="sc">-</span> rmse_apf_mixte</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(rmse_diff_mixte_obs <span class="sc">&gt;</span> rmse_diff_mixte)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<div class="{callout-tip}">
+<p><strong>Conclusion :</strong> L’APF est une méthode plus précise que le filtre bootstrap pour estimer la volatilité instantanée dans le cadre d’un modèle de Heston où le prix est bruité <span class="math inline">\(h=0.01\)</span>, mais elle est également plus lente en termes de temps d’exécution. Le choix entre ces deux méthodes dépendra donc des besoins spécifiques de l’analyse, en fonction de la précision et de la vitesse d’exécution requises.</p>
+<p>Pour tester la robustesse de ces estimations, il aurait fallu faire du bootstrap afin d’estimer la distribution des RMSE, et ainsi obtenir des intervalles de confiance pour ces estimations.</p>
+<p>Il aurait été interessant de tester les filtres dans d’autres cas de figures (voir tableau ci-dessous). <img src="pistes.png" class="img-fluid quarto-figure quarto-figure-center" alt="Pistes"></p>
+</div>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

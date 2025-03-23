@@ -1,8 +1,10 @@
 ---
 title: "APF filter"
-author: "Cheryl Kouadio"
+author: 
+  - Cheryl Kouadio
+  - Safa Bouzayene
+  - Mariyam Ouyassin
 date: "2025-02-26"
-format: html
 ---
 
 # Méthodes : étude de simulation sur la performance du filtre APF
@@ -44,7 +46,7 @@ $$
 
 où $\varepsilon_t \sim N(0,h=0.01)$, et $w_t^1, w_t^2$ sont des variables aléatoires gaussiennes et indépendantes.
 
-::: {.callout-note}
+:::{callout-tip}
 Nous avons utilisé un schéma d'euler modifié pour garantir la positivité de la volatilité. En effet, la volatilité doit être positive dans le modèle de Heston, et le schéma d'euler standard peut produire des valeurs négatives. En prenant la valeur absolue de la volatilité à chaque étape, nous nous assurons que les valeurs restent positives. Il aurait été également possible d'utiliser le schéma d'euler à $ln(v_t)$ (via le lemme de ito) pour garantir la positivité de la volatilité.
 :::
 
@@ -81,7 +83,7 @@ Heston_sim <- function(N, kappa, theta, sigma, rho, v0, mu, tau, S0){
 
 Avec les étapes 1 et 2, nous obtenons les trajectoires de volatilité instantanée et de prix d'action suivantes :
 
-```{r}
+```{r heston-sim-plots, fig.width=12, fig.height=5, fig.align='center'}
 set.seed(123)
 N <- 300
 theta <- 0.03
@@ -386,6 +388,7 @@ APF_Heston <- function(y, S, v,K, M = 200, theta = 0.03, kappa = 4, sigma = 0.4,
 
 
 **Différence entre le filtre bootstrap et le filtre APF :**
+
 Le filtre bootstrap et le filtre APF sont deux méthodes de filtrage particulaire qui permettent d'estimer l'état caché d'un système dynamique non linéaire. La principale différence entre ces deux méthodes réside dans la manière dont elles mettent à jour les poids des particules, et ainsi comme la distribution d'importance q est construite.
 Par définition, les poids sont définis par :
 $$
@@ -629,13 +632,113 @@ comp_temps_wide
 
 En comparant les performances de l'APF à celles du filtre bootstrap, nous constatons que les deux filtres ont des performances assez similaires en termes d'erreurs d'ajustement (RMSE) pour les options ATM et ITM. Cependant, l'APF semble être plus efficace pour les options mixtes, avec des erreurs d'ajustement plus faibles que le filtre bootstrap. Cependant, en termes de temps d'exécution, le filtre bootstrap est plus rapide que l'APF pour les trois types d'options. En moyenne, l'APF est plus lent que le filtre bootstrap, mais offre une meilleure précision tout option confondue.
 
-::: {.callout-note}
+Pou connaitre la robustesse de ces estimations, nous avons fait du bootstrap pour estimer la distribution des RMSE, et ainsi obtenir des intervalles de confiance pour ces estimations, de même que des p-valeurs. Le code ayant servi à la simulation est disponible ici.
+
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(ggpubr)
+
+# Charger les résultats du bootstrap
+res_ATM <- readRDS("results_sim/res_ATM_min.rds")
+res_ITM <- readRDS("results_sim/res_ITM_min.rds")
+res_MIXTE <- readRDS("results_sim/res_MIXTE_min.rds")
+
+# Extraire les RMSE
+rmse_bootstrap_atm <- res_ATM$t[, 1]
+rmse_apf_atm_b <- res_ATM$t[, 2]
+
+rmse_bootstrap_itm <- res_ITM$t[, 1]
+rmse_apf_itm_b <- res_ITM$t[, 2]
+
+rmse_bootstrap_mixte <- res_MIXTE$t[, 1]
+rmse_apf_mixte_b <- res_MIXTE$t[, 2]
+
+# Créer un dataframe avec les valeurs RMSE pour les trois scénarios
+df_rmse_boxplot <- data.frame(
+  Méthode = rep(c("Bootstrap Filter", "APF-Heston"), each = c(length(rmse_bootstrap_atm), length(rmse_apf_atm_b), length(rmse_bootstrap_itm), length(rmse_apf_itm_b),length(rmse_bootstrap_mixte), length(rmse_apf_mixte_b))),
+  RMSE = c(rmse_bootstrap_atm, rmse_apf_atm_b,
+           rmse_bootstrap_itm, rmse_apf_itm_b,
+           rmse_bootstrap_mixte, rmse_apf_mixte_b),
+  Scénario = rep(c("ATM", "ATM", "ITM", "ITM", "MIXTE", "MIXTE"), each = c(length(rmse_bootstrap_atm), length(rmse_apf_atm_b),
+length(rmse_bootstrap_itm), length(rmse_apf_itm_b),
+length(rmse_bootstrap_mixte), length(rmse_apf_mixte_b)))
+)
+
+# Calcul des p-valeurs
+
+# kruskall wallis
+test_atm <- kruskal.test(list(rmse_bootstrap_atm, rmse_apf_atm_b))$p.value
+test_itm <- kruskal.test(list(rmse_bootstrap_itm, rmse_apf_itm_b))$p.value
+test_mixte <- kruskal.test(list(rmse_bootstrap_mixte, rmse_apf_mixte_b))$p.value
+
+# test_atm <- t.test(rmse_bootstrap_atm, rmse_apf_atm_b)$p.value
+# test_itm <- t.test(rmse_bootstrap_itm, rmse_apf_itm_b)$p.value
+# test_mixte <- t.test(rmse_bootstrap_mixte, rmse_apf_mixte_b)$p.value
+
+# Création du boxplot avec facet_wrap et ajout des p-valeurs en caption
+ggplot(df_rmse_boxplot, aes(x = Méthode, y = RMSE, fill = Méthode)) +
+  geom_boxplot(alpha = 0.6) +
+  facet_wrap(~Scénario, scales = "free_y") +
+  labs(title = "Comparaison des RMSE (Bootstrap vs APF) selon les scénarios",
+       x = "Méthode de Filtrage",
+       y = "RMSE",
+       caption = paste("p-values t-test: ATM =", formatC(test_atm, format = "e", digits = 2),
+                       "| ITM =", formatC(test_itm, format = "e", digits = 2),
+                       "| MIXTE =", formatC(test_mixte, format = "e", digits = 2))) +
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        strip.text = element_text(size = 12, face = "bold"))
+```
+
+
+```{r}
+# Concaténer toutes les RMSE
+total_rmse_bootstrap <- c(rmse_bootstrap_atm, rmse_bootstrap_itm, rmse_bootstrap_mixte)
+total_rmse_apf <- c(rmse_apf_atm_b, rmse_apf_itm_b, rmse_apf_mixte_b)
+
+# Kruskal wallis test
+global_pval <- kruskal.test(list(total_rmse_bootstrap, total_rmse_apf))$p.value
+
+# global_pval <- t.test(total_rmse_bootstrap, total_rmse_apf)$p.value
+
+# Boxplot global
+ggboxplot(df_rmse_boxplot, x = "Méthode", y = "RMSE", fill = "Méthode",
+          ylab = "RMSE", xlab = "Méthode de Filtrage",
+          title = "Comparaison des RMSE (Bootstrap vs APF) pour les trois scénarios") +
+  labs(caption = paste("p-values: Global =", formatC(global_pval, format = "e", digits = 2))) +
+  theme_minimal()
+```
+
+
+**Approche pvalue** :
+
+```{r}
+rmse_diff_atm <- rmse_bootstrap_atm - rmse_apf_atm_b
+rmse_diff_atm_obs <- rmse_boot_atm - rmse_apf_atm
+
+mean(rmse_diff_atm_obs > rmse_diff_atm)
+
+rmse_diff_itm <- rmse_bootstrap_itm - rmse_apf_itm_b
+rmse_diff_itm_obs <- rmse_boot_itm - rmse_apf_itm
+
+mean(rmse_diff_itm_obs > rmse_diff_itm)
+
+rmse_diff_mixte <- rmse_bootstrap_mixte - rmse_apf_mixte_b
+rmse_diff_mixte_obs <- rmse_boot_mixte - rmse_apf_mixte
+
+mean(rmse_diff_mixte_obs > rmse_diff_mixte)
+```
+
+
+
+:::{callout-tip}
 **Conclusion :** L'APF est une méthode plus précise que le filtre bootstrap pour estimer la volatilité instantanée dans le cadre d'un modèle de Heston où le prix est bruité $h=0.01$, mais elle est également plus lente en termes de temps d'exécution. Le choix entre ces deux méthodes dépendra donc des besoins spécifiques de l'analyse, en fonction de la précision et de la vitesse d'exécution requises.
 
 Pour tester la robustesse de ces estimations, il aurait fallu faire du bootstrap afin d'estimer la distribution des RMSE, et ainsi obtenir des intervalles de confiance pour ces estimations.
 
-Il aurait été interessant de tester les filtres dans d'autres cas de figures (voir tableau ci-dessous).
-![Pistes](data/pistes.png){fig-align="center"}
+Il aurait été interessant de tester les filtres dans d'autres cas de figures.
 :::
 
 

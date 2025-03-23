@@ -1,5 +1,5 @@
 ---
-title: Modèles de courbe de taux
+title: "Modèles de courbe de taux"
 date: 2025-03-04
 author: 
     - Cheryl Kouadio

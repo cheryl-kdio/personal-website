@@ -161,6 +161,14 @@
     "var_copules.ipynb": "d26496c1"
   },
   "3A/proc_stochastique/APF_filter.qmd": {
-    "APF_filter.html": "620a37c6"
+    "APF_filter.html": "620a37c6",
+    "APF_filter.ipynb": "0b64a9f8"
+  },
+  "3A/proc_stochastique/APF_filter copy.qmd": {
+    "APF_filter copy.html": "877de58d"
+  },
+  "3A/gestion_actifs/bond_valo.qmd": {
+    "bond_valo.html": "a2a8e0e4",
+    "bond_valo.ipynb": "485446a3"
   }
 }

@@ -7,6 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Cheryl Kouadio">
+<meta name="author" content="Safa Bouzayene">
+<meta name="author" content="Mariyam Ouyassin">
 <meta name="dcterms.date" content="2025-02-26">
 
 <title>APF filter</title>
@@ -215,7 +217,7 @@ window.Quarto = {
   <li><a href="#comparaison-des-performances" id="toc-comparaison-des-performances" class="nav-link" data-scroll-target="#comparaison-des-performances">Comparaison des performances</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="APF_filter.ipynb" download="APF_filter.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -234,9 +236,11 @@ window.Quarto = {
 <div class="quarto-title-meta column-page-right">
 
     <div>
-    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Authors</div>
     <div class="quarto-title-meta-contents">
              <p>Cheryl Kouadio </p>
+             <p>Safa Bouzayene </p>
+             <p>Mariyam Ouyassin </p>
           </div>
   </div>
     
@@ -283,18 +287,8 @@ S_t = S_{t-1} \left(1 + \mu \Delta + \sqrt{\Delta v_t} w_t^1 \right), \\[10pt]
 \end{cases}
 \]</span></p>
 <p>où <span class="math inline">\(\varepsilon_t \sim N(0,h=0.01)\)</span>, et <span class="math inline">\(w_t^1, w_t^2\)</span> sont des variables aléatoires gaussiennes et indépendantes.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="{callout-tip}">
 <p>Nous avons utilisé un schéma d’euler modifié pour garantir la positivité de la volatilité. En effet, la volatilité doit être positive dans le modèle de Heston, et le schéma d’euler standard peut produire des valeurs négatives. En prenant la valeur absolue de la volatilité à chaque étape, nous nous assurons que les valeurs restent positives. Il aurait été également possible d’utiliser le schéma d’euler à <span class="math inline">\(ln(v_t)\)</span> (via le lemme de ito) pour garantir la positivité de la volatilité.</p>
-</div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
@@ -327,7 +321,7 @@ Note
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Avec les étapes 1 et 2, nous obtenons les trajectoires de volatilité instantanée et de prix d’action suivantes :</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">300</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>theta <span class="ot">&lt;-</span> <span class="fl">0.03</span></span>
@@ -345,9 +339,9 @@ Note
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res<span class="sc">$</span>v_t, <span class="at">type=</span><span class="st">"l"</span>, <span class="at">main=</span><span class="st">"Processus de volatilité simulé"</span>, <span class="at">xlab =</span> <span class="st">"Time step"</span>, <span class="at">ylab =</span> <span class="st">"Volatilité"</span>) </span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res<span class="sc">$</span>S_t, <span class="at">type=</span><span class="st">"l"</span>, <span class="at">main=</span><span class="st">"Processus de prix du sous-jacent simulé"</span>, <span class="at">xlab =</span> <span class="st">"Time step"</span>, <span class="at">ylab =</span> <span class="st">"Prix"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="APF_filter_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="APF_filter_files/figure-html/heston-sim-plots-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1152"></p>
 </figure>
 </div>
 </div>
@@ -454,7 +448,7 @@ Note
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="APF_filter_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="APF_filter_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -638,7 +632,8 @@ Note
 <span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(v_hat)</span>
 <span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>Différence entre le filtre bootstrap et le filtre APF :</strong> Le filtre bootstrap et le filtre APF sont deux méthodes de filtrage particulaire qui permettent d’estimer l’état caché d’un système dynamique non linéaire. La principale différence entre ces deux méthodes réside dans la manière dont elles mettent à jour les poids des particules, et ainsi comme la distribution d’importance q est construite. Par définition, les poids sont définis par : <span class="math display">\[
+<p><strong>Différence entre le filtre bootstrap et le filtre APF :</strong></p>
+<p>Le filtre bootstrap et le filtre APF sont deux méthodes de filtrage particulaire qui permettent d’estimer l’état caché d’un système dynamique non linéaire. La principale différence entre ces deux méthodes réside dans la manière dont elles mettent à jour les poids des particules, et ainsi comme la distribution d’importance q est construite. Par définition, les poids sont définis par : <span class="math display">\[
 w(x_t) = w(x_{t-1}) \frac{p(y_t|x_t)p(x_t|x_{t-1})}{q(x_t|x_{t-1},y_t)},
 \]</span> où <span class="math inline">\(p(y_t|x_t)\)</span> est la vraisemblance, <span class="math inline">\(p(x_t|x_{t-1})\)</span> est la distribution de transition, et <span class="math inline">\(q(x_t|x_{t-1},y_t)\)</span> est la distribution d’importance.</p>
 <p>Dans le cadre du filtre bootstrap, la distribution d’importance est définie comme suit : <span class="math display">\[
@@ -697,7 +692,7 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="APF_filter_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="APF_filter_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -706,7 +701,7 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(et_boot_atm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
- 11.649   0.548  12.209 </code></pre>
+ 11.897   0.602  12.568 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rmse_boot_atm <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((boot_atm <span class="sc">-</span> v)<span class="sc">^</span><span class="dv">2</span>))</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RMSE :"</span>, rmse_boot_atm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -730,7 +725,7 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="APF_filter_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="APF_filter_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -739,7 +734,7 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(et_apf_atm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
- 23.218   1.026  24.250 </code></pre>
+ 23.888   1.181  25.376 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rmse_apf_atm <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((apf_atm <span class="sc">-</span> v)<span class="sc">^</span><span class="dv">2</span>))</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RMSE :"</span>, rmse_apf_atm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -769,7 +764,7 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="APF_filter_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="APF_filter_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -778,7 +773,7 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(et_boot_itm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
- 11.361   0.484  11.848 </code></pre>
+ 11.630   0.550  12.322 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>rmse_boot_itm <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((boot_itm <span class="sc">-</span> v)<span class="sc">^</span><span class="dv">2</span>))</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RMSE :"</span>, rmse_boot_itm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -801,7 +796,7 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="APF_filter_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="APF_filter_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -810,7 +805,7 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(et_apf_itm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
- 22.444   0.950  23.399 </code></pre>
+ 23.285   1.140  24.567 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>rmse_apf_itm <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((apf_itm <span class="sc">-</span> v)<span class="sc">^</span><span class="dv">2</span>))</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RMSE :"</span>, rmse_apf_itm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -840,7 +835,7 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="APF_filter_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="APF_filter_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -849,7 +844,7 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(et_boot_mixte)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
- 11.930   0.485  12.438 </code></pre>
+ 12.300   0.575  12.893 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>rmse_boot_mixte<span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((boot_mixte <span class="sc">-</span> v)<span class="sc">^</span><span class="dv">2</span>))</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RMSE :"</span>, rmse_boot_mixte)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -872,7 +867,7 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="APF_filter_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="APF_filter_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -881,7 +876,7 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(et_apf_mixte)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
- 23.664   0.981  24.706 </code></pre>
+ 24.576   1.150  25.916 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>rmse_apf_mixte <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((apf_mixte <span class="sc">-</span> v)<span class="sc">^</span><span class="dv">2</span>))</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RMSE :"</span>, rmse_apf_mixte)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -894,43 +889,31 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <section id="comparaison-des-performances" class="level2">
 <h2 class="anchored" data-anchor-id="comparaison-des-performances">Comparaison des performances</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Création du data.frame avec les colonnes demandées</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>comp_perf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    Méthode <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"APF"</span>, <span class="st">"APF"</span>, <span class="st">"APF"</span>, <span class="st">"BOOT"</span>, <span class="st">"BOOT"</span>, <span class="st">"BOOT"</span>),</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Type_Option =</span> <span class="fu">c</span>(<span class="st">"ATM"</span>, <span class="st">"ITM"</span>, <span class="st">"MIXTE"</span>, <span class="st">"ATM"</span>, <span class="st">"ITM"</span>, <span class="st">"MIXTE"</span>),</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">RMSE =</span> <span class="fu">c</span>(rmse_apf_atm, rmse_apf_itm, rmse_apf_mixte, rmse_boot_atm, rmse_boot_itm, rmse_boot_mixte)</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Conversion : Méthode comme colonne</span></span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>comp_perf_wide <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(</span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>    comp_perf,</span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> Méthode,   <span class="co"># Ce qui devient les colonnes</span></span>
-<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> RMSE      <span class="co"># Ce qui remplit les cases</span></span>
-<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>comp_perf_wide <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
-<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>    comp_perf_wide,</span>
-<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(</span>
-<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">Type_Option =</span> <span class="st">"Moyenne"</span>,</span>
-<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">APF =</span> <span class="fu">mean</span>(<span class="fu">c</span>(rmse_apf_atm, rmse_apf_itm, rmse_apf_mixte), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">BOOT =</span> <span class="fu">mean</span>(<span class="fu">c</span>(rmse_boot_atm, rmse_boot_itm, rmse_boot_mixte), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage du résultat</span></span>
-<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a>comp_perf_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Création du data.frame avec les colonnes demandées</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>comp_perf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>    Méthode <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"APF"</span>, <span class="st">"APF"</span>, <span class="st">"APF"</span>, <span class="st">"BOOT"</span>, <span class="st">"BOOT"</span>, <span class="st">"BOOT"</span>),</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Type_Option =</span> <span class="fu">c</span>(<span class="st">"ATM"</span>, <span class="st">"ITM"</span>, <span class="st">"MIXTE"</span>, <span class="st">"ATM"</span>, <span class="st">"ITM"</span>, <span class="st">"MIXTE"</span>),</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">RMSE =</span> <span class="fu">c</span>(rmse_apf_atm, rmse_apf_itm, rmse_apf_mixte, rmse_boot_atm, rmse_boot_itm, rmse_boot_mixte)</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Conversion : Méthode comme colonne</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>comp_perf_wide <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>    comp_perf,</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> Méthode,   <span class="co"># Ce qui devient les colonnes</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> RMSE      <span class="co"># Ce qui remplit les cases</span></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>comp_perf_wide <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>    comp_perf_wide,</span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(</span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">Type_Option =</span> <span class="st">"Moyenne"</span>,</span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">APF =</span> <span class="fu">mean</span>(<span class="fu">c</span>(rmse_apf_atm, rmse_apf_itm, rmse_apf_mixte), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">BOOT =</span> <span class="fu">mean</span>(<span class="fu">c</span>(rmse_boot_atm, rmse_boot_itm, rmse_boot_mixte), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage du résultat</span></span>
+<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a>comp_perf_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
@@ -968,30 +951,30 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparaison des temps d'exécution</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>comp_temps <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    Méthode <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"APF"</span>, <span class="st">"APF"</span>, <span class="st">"APF"</span>, <span class="st">"BOOT"</span>, <span class="st">"BOOT"</span>, <span class="st">"BOOT"</span>),</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Type_Option =</span> <span class="fu">c</span>(<span class="st">"ATM"</span>, <span class="st">"ITM"</span>, <span class="st">"MIXTE"</span>, <span class="st">"ATM"</span>, <span class="st">"ITM"</span>, <span class="st">"MIXTE"</span>),</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Temps =</span> <span class="fu">c</span>(et_apf_atm[<span class="dv">3</span>], et_apf_itm[<span class="dv">3</span>], et_apf_mixte[<span class="dv">3</span>], et_boot_atm[<span class="dv">3</span>], et_boot_itm[<span class="dv">3</span>], et_boot_mixte[<span class="dv">3</span>])</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Conversion : Méthode comme colonne</span></span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>comp_temps_wide <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(</span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>    comp_temps,</span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> Méthode,   <span class="co"># Ce qui devient les colonnes</span></span>
-<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> Temps      <span class="co"># Ce qui remplit les cases</span></span>
-<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>comp_temps_wide <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
-<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>    comp_temps_wide,</span>
-<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(</span>
-<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">Type_Option =</span> <span class="st">"Moyenne"</span>,</span>
-<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">APF =</span> <span class="fu">mean</span>(<span class="fu">c</span>(et_apf_atm[<span class="dv">3</span>], et_apf_itm[<span class="dv">3</span>], et_apf_mixte[<span class="dv">3</span>]), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">BOOT =</span> <span class="fu">mean</span>(<span class="fu">c</span>(et_boot_atm[<span class="dv">3</span>], et_boot_itm[<span class="dv">3</span>], et_boot_mixte[<span class="dv">3</span>]), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage du résultat</span></span>
-<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>comp_temps_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparaison des temps d'exécution</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>comp_temps <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    Méthode <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"APF"</span>, <span class="st">"APF"</span>, <span class="st">"APF"</span>, <span class="st">"BOOT"</span>, <span class="st">"BOOT"</span>, <span class="st">"BOOT"</span>),</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Type_Option =</span> <span class="fu">c</span>(<span class="st">"ATM"</span>, <span class="st">"ITM"</span>, <span class="st">"MIXTE"</span>, <span class="st">"ATM"</span>, <span class="st">"ITM"</span>, <span class="st">"MIXTE"</span>),</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Temps =</span> <span class="fu">c</span>(et_apf_atm[<span class="dv">3</span>], et_apf_itm[<span class="dv">3</span>], et_apf_mixte[<span class="dv">3</span>], et_boot_atm[<span class="dv">3</span>], et_boot_itm[<span class="dv">3</span>], et_boot_mixte[<span class="dv">3</span>])</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Conversion : Méthode comme colonne</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>comp_temps_wide <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>    comp_temps,</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> Méthode,   <span class="co"># Ce qui devient les colonnes</span></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> Temps      <span class="co"># Ce qui remplit les cases</span></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>comp_temps_wide <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>    comp_temps_wide,</span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(</span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">Type_Option =</span> <span class="st">"Moyenne"</span>,</span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">APF =</span> <span class="fu">mean</span>(<span class="fu">c</span>(et_apf_atm[<span class="dv">3</span>], et_apf_itm[<span class="dv">3</span>], et_apf_mixte[<span class="dv">3</span>]), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">BOOT =</span> <span class="fu">mean</span>(<span class="fu">c</span>(et_boot_atm[<span class="dv">3</span>], et_boot_itm[<span class="dv">3</span>], et_boot_mixte[<span class="dv">3</span>]), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage du résultat</span></span>
+<span id="cb47-24"><a href="#cb47-24" aria-hidden="true" tabindex="-1"></a>comp_temps_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
@@ -1005,23 +988,23 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">ATM</td>
-<td style="text-align: right;">24.25000</td>
-<td style="text-align: right;">12.209</td>
+<td style="text-align: right;">25.37600</td>
+<td style="text-align: right;">12.56800</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ITM</td>
-<td style="text-align: right;">23.39900</td>
-<td style="text-align: right;">11.848</td>
+<td style="text-align: right;">24.56700</td>
+<td style="text-align: right;">12.32200</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">MIXTE</td>
-<td style="text-align: right;">24.70600</td>
-<td style="text-align: right;">12.438</td>
+<td style="text-align: right;">25.91600</td>
+<td style="text-align: right;">12.89300</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Moyenne</td>
-<td style="text-align: right;">24.11833</td>
-<td style="text-align: right;">12.165</td>
+<td style="text-align: right;">25.28633</td>
+<td style="text-align: right;">12.59433</td>
 </tr>
 </tbody>
 </table>
@@ -1029,20 +1012,129 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 </div>
 </div>
 <p>En comparant les performances de l’APF à celles du filtre bootstrap, nous constatons que les deux filtres ont des performances assez similaires en termes d’erreurs d’ajustement (RMSE) pour les options ATM et ITM. Cependant, l’APF semble être plus efficace pour les options mixtes, avec des erreurs d’ajustement plus faibles que le filtre bootstrap. Cependant, en termes de temps d’exécution, le filtre bootstrap est plus rapide que l’APF pour les trois types d’options. En moyenne, l’APF est plus lent que le filtre bootstrap, mais offre une meilleure précision tout option confondue.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Pou connaitre la robustesse de ces estimations, nous avons fait du bootstrap pour estimer la distribution des RMSE, et ainsi obtenir des intervalles de confiance pour ces estimations, de même que des p-valeurs. Le code ayant servi à la simulation est disponible ici.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Charger les résultats du bootstrap</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>res_ATM <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"results_sim/res_ATM_min.rds"</span>)</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>res_ITM <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"results_sim/res_ITM_min.rds"</span>)</span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>res_MIXTE <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"results_sim/res_MIXTE_min.rds"</span>)</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraire les RMSE</span></span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>rmse_bootstrap_atm <span class="ot">&lt;-</span> res_ATM<span class="sc">$</span>t[, <span class="dv">1</span>]</span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>rmse_apf_atm_b <span class="ot">&lt;-</span> res_ATM<span class="sc">$</span>t[, <span class="dv">2</span>]</span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>rmse_bootstrap_itm <span class="ot">&lt;-</span> res_ITM<span class="sc">$</span>t[, <span class="dv">1</span>]</span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>rmse_apf_itm_b <span class="ot">&lt;-</span> res_ITM<span class="sc">$</span>t[, <span class="dv">2</span>]</span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>rmse_bootstrap_mixte <span class="ot">&lt;-</span> res_MIXTE<span class="sc">$</span>t[, <span class="dv">1</span>]</span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>rmse_apf_mixte_b <span class="ot">&lt;-</span> res_MIXTE<span class="sc">$</span>t[, <span class="dv">2</span>]</span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer un dataframe avec les valeurs RMSE pour les trois scénarios</span></span>
+<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>df_rmse_boxplot <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>  Méthode <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"Bootstrap Filter"</span>, <span class="st">"APF-Heston"</span>), <span class="at">each =</span> <span class="fu">c</span>(<span class="fu">length</span>(rmse_bootstrap_atm), <span class="fu">length</span>(rmse_apf_atm_b), <span class="fu">length</span>(rmse_bootstrap_itm), <span class="fu">length</span>(rmse_apf_itm_b),<span class="fu">length</span>(rmse_bootstrap_mixte), <span class="fu">length</span>(rmse_apf_mixte_b))),</span>
+<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">RMSE =</span> <span class="fu">c</span>(rmse_bootstrap_atm, rmse_apf_atm_b,</span>
+<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a>           rmse_bootstrap_itm, rmse_apf_itm_b,</span>
+<span id="cb48-25"><a href="#cb48-25" aria-hidden="true" tabindex="-1"></a>           rmse_bootstrap_mixte, rmse_apf_mixte_b),</span>
+<span id="cb48-26"><a href="#cb48-26" aria-hidden="true" tabindex="-1"></a>  Scénario <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"ATM"</span>, <span class="st">"ATM"</span>, <span class="st">"ITM"</span>, <span class="st">"ITM"</span>, <span class="st">"MIXTE"</span>, <span class="st">"MIXTE"</span>), <span class="at">each =</span> <span class="fu">c</span>(<span class="fu">length</span>(rmse_bootstrap_atm), <span class="fu">length</span>(rmse_apf_atm_b),</span>
+<span id="cb48-27"><a href="#cb48-27" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(rmse_bootstrap_itm), <span class="fu">length</span>(rmse_apf_itm_b),</span>
+<span id="cb48-28"><a href="#cb48-28" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(rmse_bootstrap_mixte), <span class="fu">length</span>(rmse_apf_mixte_b)))</span>
+<span id="cb48-29"><a href="#cb48-29" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in rep(c("Bootstrap Filter", "APF-Heston"), each =
+c(length(rmse_bootstrap_atm), : first element used of 'each' argument</code></pre>
 </div>
-<div class="callout-title-container flex-fill">
-Note
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in rep(c("ATM", "ATM", "ITM", "ITM", "MIXTE", "MIXTE"), each =
+c(length(rmse_bootstrap_atm), : first element used of 'each' argument</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul des p-valeurs</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co"># kruskall wallis</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>test_atm <span class="ot">&lt;-</span> <span class="fu">kruskal.test</span>(<span class="fu">list</span>(rmse_bootstrap_atm, rmse_apf_atm_b))<span class="sc">$</span>p.value</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>test_itm <span class="ot">&lt;-</span> <span class="fu">kruskal.test</span>(<span class="fu">list</span>(rmse_bootstrap_itm, rmse_apf_itm_b))<span class="sc">$</span>p.value</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>test_mixte <span class="ot">&lt;-</span> <span class="fu">kruskal.test</span>(<span class="fu">list</span>(rmse_bootstrap_mixte, rmse_apf_mixte_b))<span class="sc">$</span>p.value</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="co"># test_atm &lt;- t.test(rmse_bootstrap_atm, rmse_apf_atm_b)$p.value</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="co"># test_itm &lt;- t.test(rmse_bootstrap_itm, rmse_apf_itm_b)$p.value</span></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a><span class="co"># test_mixte &lt;- t.test(rmse_bootstrap_mixte, rmse_apf_mixte_b)$p.value</span></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Création du boxplot avec facet_wrap et ajout des p-valeurs en caption</span></span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_rmse_boxplot, <span class="fu">aes</span>(<span class="at">x =</span> Méthode, <span class="at">y =</span> RMSE, <span class="at">fill =</span> Méthode)) <span class="sc">+</span></span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Scénario, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Comparaison des RMSE (Bootstrap vs APF) selon les scénarios"</span>,</span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Méthode de Filtrage"</span>,</span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"RMSE"</span>,</span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="fu">paste</span>(<span class="st">"p-values t-test: ATM ="</span>, <span class="fu">formatC</span>(test_atm, <span class="at">format =</span> <span class="st">"e"</span>, <span class="at">digits =</span> <span class="dv">2</span>),</span>
+<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"| ITM ="</span>, <span class="fu">formatC</span>(test_itm, <span class="at">format =</span> <span class="st">"e"</span>, <span class="at">digits =</span> <span class="dv">2</span>),</span>
+<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"| MIXTE ="</span>, <span class="fu">formatC</span>(test_mixte, <span class="at">format =</span> <span class="st">"e"</span>, <span class="at">digits =</span> <span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb51-22"><a href="#cb51-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb51-23"><a href="#cb51-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb51-24"><a href="#cb51-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="APF_filter_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<div class="callout-body-container callout-body">
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Concaténer toutes les RMSE</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>total_rmse_bootstrap <span class="ot">&lt;-</span> <span class="fu">c</span>(rmse_bootstrap_atm, rmse_bootstrap_itm, rmse_bootstrap_mixte)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>total_rmse_apf <span class="ot">&lt;-</span> <span class="fu">c</span>(rmse_apf_atm_b, rmse_apf_itm_b, rmse_apf_mixte_b)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Kruskal wallis test</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>global_pval <span class="ot">&lt;-</span> <span class="fu">kruskal.test</span>(<span class="fu">list</span>(total_rmse_bootstrap, total_rmse_apf))<span class="sc">$</span>p.value</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="co"># global_pval &lt;- t.test(total_rmse_bootstrap, total_rmse_apf)$p.value</span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot global</span></span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggboxplot</span>(df_rmse_boxplot, <span class="at">x =</span> <span class="st">"Méthode"</span>, <span class="at">y =</span> <span class="st">"RMSE"</span>, <span class="at">fill =</span> <span class="st">"Méthode"</span>,</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">"RMSE"</span>, <span class="at">xlab =</span> <span class="st">"Méthode de Filtrage"</span>,</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"Comparaison des RMSE (Bootstrap vs APF) pour les trois scénarios"</span>) <span class="sc">+</span></span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">caption =</span> <span class="fu">paste</span>(<span class="st">"p-values: Global ="</span>, <span class="fu">formatC</span>(global_pval, <span class="at">format =</span> <span class="st">"e"</span>, <span class="at">digits =</span> <span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="APF_filter_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Approche pvalue</strong> :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>rmse_diff_atm <span class="ot">&lt;-</span> rmse_bootstrap_atm <span class="sc">-</span> rmse_apf_atm_b</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>rmse_diff_atm_obs <span class="ot">&lt;-</span> rmse_boot_atm <span class="sc">-</span> rmse_apf_atm</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(rmse_diff_atm_obs <span class="sc">&gt;</span> rmse_diff_atm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.84</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>rmse_diff_itm <span class="ot">&lt;-</span> rmse_bootstrap_itm <span class="sc">-</span> rmse_apf_itm_b</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>rmse_diff_itm_obs <span class="ot">&lt;-</span> rmse_boot_itm <span class="sc">-</span> rmse_apf_itm</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(rmse_diff_itm_obs <span class="sc">&gt;</span> rmse_diff_itm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.38</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>rmse_diff_mixte <span class="ot">&lt;-</span> rmse_bootstrap_mixte <span class="sc">-</span> rmse_apf_mixte_b</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>rmse_diff_mixte_obs <span class="ot">&lt;-</span> rmse_boot_mixte <span class="sc">-</span> rmse_apf_mixte</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(rmse_diff_mixte_obs <span class="sc">&gt;</span> rmse_diff_mixte)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<div class="{callout-tip}">
 <p><strong>Conclusion :</strong> L’APF est une méthode plus précise que le filtre bootstrap pour estimer la volatilité instantanée dans le cadre d’un modèle de Heston où le prix est bruité <span class="math inline">\(h=0.01\)</span>, mais elle est également plus lente en termes de temps d’exécution. Le choix entre ces deux méthodes dépendra donc des besoins spécifiques de l’analyse, en fonction de la précision et de la vitesse d’exécution requises.</p>
 <p>Pour tester la robustesse de ces estimations, il aurait fallu faire du bootstrap afin d’estimer la distribution des RMSE, et ainsi obtenir des intervalles de confiance pour ces estimations.</p>
-<p>Il aurait été interessant de tester les filtres dans d’autres cas de figures (voir tableau ci-dessous). <img src="data/pistes.png" class="img-fluid quarto-figure quarto-figure-center" alt="Pistes"></p>
-</div>
+<p>Il aurait été interessant de tester les filtres dans d’autres cas de figures.</p>
 </div>
 
 
@@ -1284,7 +1376,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/cheryl-kdio\.github\.io\/personal-website\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
