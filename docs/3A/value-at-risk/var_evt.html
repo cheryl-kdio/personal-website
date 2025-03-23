@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-02-28">
 
-<title>TP2:Méthodes basées sur la théorie des valeurs extrêmes]</title>
+<title>TP2:Méthodes basées sur la théorie des valeurs extrêmes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -213,7 +213,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TP2:Méthodes basées sur la théorie des valeurs extrêmes]</h1>
+<h1 class="title">TP2:Méthodes basées sur la théorie des valeurs extrêmes</h1>
 </div>
 
 
@@ -237,7 +237,7 @@ window.Quarto = {
 
 
 <p>Ce TP est une continuité du TP-1 dans lequel on souhaitait implémenter la VaR (Value at Risk) et l’ES (Expected Shortfall) en utilisant les méthodes classiques proposées dans la réglementation bâloise, i.e.&nbsp;la méthode historique, paramétrique et bootstrap. Cependant, une limite de ces méthodes est qu’elles ne prennent pas en compte la queue de distribution de la perte. Pour remédier à cela, on peut utiliser des méthodes avec la théorie des valeurs extrêmes, i.e.&nbsp;l’approche Block Maxima et l’approche Peaks Over Threshold.</p>
-<div id="060e40a0" class="cell" data-execution_count="2">
+<div id="31ceb651" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Définition des librairies</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yfinance <span class="im">as</span> yf</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -246,13 +246,11 @@ window.Quarto = {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/Users/cherylkouadio/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning:
-
-urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
-</code></pre>
+<pre><code>/Users/cherylkouadio/Documents/Repositories/personal-website/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(</code></pre>
 </div>
 </div>
-<div id="e671fbd2" class="cell" data-execution_count="3">
+<div id="85844042" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import des données du CAC 40</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> yf.download(<span class="st">"^FCHI"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -268,7 +266,7 @@ urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled 
 <pre><code>[*********************100%***********************]  1 of 1 completed</code></pre>
 </div>
 </div>
-<div id="5fd986cc" class="cell" data-execution_count="4">
+<div id="91b7298c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> data[[<span class="st">'log_return'</span>,<span class="st">"Close"</span>]][<span class="st">'15-10-2008'</span>:<span class="st">'26-07-2022'</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data_train <span class="op">=</span> train[<span class="st">'log_return'</span>]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>neg_data_train <span class="op">=</span> <span class="op">-</span>data_train</span>
@@ -293,7 +291,7 @@ urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled 
 </section>
 <section id="i.1.1.-construction-de-léchantillon-de-maxima-sur-data_train" class="level3">
 <h3 class="anchored" data-anchor-id="i.1.1.-construction-de-léchantillon-de-maxima-sur-data_train">I.1.1. Construction de l’échantillon de maxima sur data_train</h3>
-<div id="73ade8e1" class="cell" data-execution_count="5">
+<div id="b5baeaa5" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -368,7 +366,7 @@ urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled 
 - log(-log(\frac{i - 0.5}{k})), \quad i = 1, \ldots, k.
 \]</span></p>
 <p>Lorsque la distribution adaptée est celle de Gumbel alors le Gumbel plot est linéaire. Dans notre cas, nous constatons une courbure ce qui nous pousse à conclure qu’une distribution Gumbel n’est pas adaptée dans la modélisation des maxima des pertes de rendements du CAC 40. Une distribution Fréchet ou de Weibull serait plus adaptée.</p>
-<div id="13dce6ee" class="cell" data-execution_count="6">
+<div id="4075f5b9" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>quantiles_theoriques_gumbel <span class="op">=</span> []</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>k<span class="op">=</span><span class="bu">len</span>(extremes)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(extremes)<span class="op">+</span><span class="dv">1</span>):</span>
@@ -391,7 +389,7 @@ urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled 
 <section id="i.1.2.-estimation-des-paramètres-de-la-loi-de-gev" class="level3">
 <h3 class="anchored" data-anchor-id="i.1.2.-estimation-des-paramètres-de-la-loi-de-gev">I.1.2. Estimation des paramètres de la loi de GEV</h3>
 <p>En estimant les paramètres de la loi GEV, nous utilisons la méthode du maximum de vraisemblance. Les paramètres estimés par maximisation de la fonction de vraisemblance sont les suivants <span class="math inline">\(\xi = -0.15, \mu=0.02, \sigma=0.01\)</span>. Nous constatons par ailleurs que le paramètre de forme <span class="math inline">\(\xi\)</span> est négatif ce qui est cohérent avec notre observation précédente.</p>
-<div id="747c4dd1" class="cell" data-execution_count="7">
+<div id="5ec49759" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> genextreme <span class="im">as</span> gev</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>params_gev <span class="op">=</span> gev.fit(extremes)</span>
@@ -426,7 +424,7 @@ Scale (sigma) = 0.01
 </ol>
 <p>Cette approche permet une meilleure prise en compte de l’incertitude en évitant les approximations asymptotiques classiques. La modélisation des maxima des pertes de rendements du CAC 40 par une distribution de Weibull serait plus adaptée.</p>
 <p>Nous obtenons ainsi un intervalle de confiance à 95% pour le paramètre de forme <span class="math inline">\(\xi\)</span> de <span class="math inline">\([-0.284, -0.039]\)</span>. Comme 0 n’appartient pas à cet intervalle, nous pouvons rejeter l’hypothèse <span class="math inline">\(\xi=0\)</span>. De ce fait, la distribution de Weibull est plus adaptée pour modéliser les maxima des pertes de rendements du CAC 40 car <span class="math inline">\(\xi\)</span> est négatif.</p>
-<div id="879b1544" class="cell" data-execution_count="8">
+<div id="ad95fa44" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> chi2</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -497,7 +495,7 @@ Scale (sigma) = 0.01
 <section id="a.-validation-ex-ante" class="level4">
 <h4 class="anchored" data-anchor-id="a.-validation-ex-ante">a. Validation ex-ante</h4>
 <p>On remarque la loi GEV estimée par une weibull semble coller à la distribution des rendements extrêmes du CAC 40. De plus, en utilisant un QQ-plot, nous constatons que les quantiles théoriques de la GEV-Weibull et empiriques sembelnt alignés sauf pour les quantiles élévés où l’on constate un décrochage.</p>
-<div id="b0e1d274" class="cell" data-execution_count="9">
+<div id="5a76cfb1" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plt.hist(extremes, bins<span class="op">=</span><span class="dv">30</span>, density<span class="op">=</span><span class="va">True</span>, label<span class="op">=</span><span class="st">'Maxima observées'</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -516,7 +514,7 @@ Scale (sigma) = 0.01
 </div>
 </div>
 </div>
-<div id="5d14c658" class="cell" data-execution_count="10">
+<div id="6843998d" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>niveaux_quantiles <span class="op">=</span> np.arange(<span class="fl">0.001</span>,<span class="dv">1</span>, <span class="fl">0.001</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>quantiles_empiriques_TVE <span class="op">=</span> np.quantile(extremes, niveaux_quantiles) </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>quantiles_theoriques_GEV <span class="op">=</span> gev.ppf(niveaux_quantiles, shape, loc <span class="op">=</span> loc, scale <span class="op">=</span> scale)</span>
@@ -550,7 +548,7 @@ Scale (sigma) = 0.01
 \]</span></p>
 <p>Pour convertir la VaR à horizon 1jour en VaR à horizon T jours, la méthode de scaling soulève quelques questions, car elle repose essentiellement sur la normalité et l’indépendance des rendements ce qui n’est pas le cas en pratique. De ce fait, nous utiliserons la méthode alternative reposant sur la théorie des valeurs extrêmes.</p>
 <p>y revenir</p>
-<div id="9e7ee060" class="cell" data-execution_count="11">
+<div id="42d515a8" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> BM_var(alpha,s,shape,loc,scale):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Calcul de la VaR gaussienne</span></span>
@@ -577,7 +575,7 @@ La VaR TVE pour h=10j et alpha=0.99 est : 20.5167%</code></pre>
 <h3 class="anchored" data-anchor-id="i.1.3.-estimation-des-paramètres-de-la-loi-de-ev">I.1.3. Estimation des paramètres de la loi de EV</h3>
 <p>Bien que l’intervalle de confiance à 95% pour le paramètre de forme <span class="math inline">\(\xi\)</span> de <span class="math inline">\([-0.284, -0.039]\)</span> ne contienne pas 0, nous avons tout de même estimé les paramètres de la loi EV pour comparer les résultats avec ceux de la loi GEV. En estimant tout de même les paramètres de la loi EV, nous obtenons les paramètres suivants : <span class="math inline">\(\mu=0.02, \sigma=0.01, \xi=0\)</span>.</p>
 <p>Nous constatons que la loi EV ne semble pas mal s’adapter à la distribution des rendements extrêmes du CAC 40.</p>
-<div id="994f54cc" class="cell" data-execution_count="12">
+<div id="a180b3be" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> gumbel_r</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>params_gumbel <span class="op">=</span> gumbel_r.fit(extremes)</span>
@@ -598,7 +596,7 @@ Scale (sigma) = 0.01
 ==================================================</code></pre>
 </div>
 </div>
-<div id="68a5f0c4" class="cell" data-execution_count="13">
+<div id="2c32ce46" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.hist(extremes, bins<span class="op">=</span><span class="dv">30</span>, density<span class="op">=</span><span class="va">True</span>, label<span class="op">=</span><span class="st">'Maxima observées'</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -624,7 +622,7 @@ Scale (sigma) = 0.01
 </div>
 </div>
 </div>
-<div id="7f26bb62" class="cell" data-execution_count="14">
+<div id="4773609b" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>quantiles_theoriques_Gumb <span class="op">=</span> gumbel_r.ppf(niveaux_quantiles, <span class="op">*</span>params_gumbel)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">5</span>))</span>
@@ -655,7 +653,7 @@ Scale (sigma) = 0.01
 </div>
 </div>
 </div>
-<div id="f2fff384" class="cell" data-execution_count="15">
+<div id="aaef7d7c" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.99</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>var_BM_train,alpha_bm <span class="op">=</span> BM_var(<span class="fl">0.99</span>, <span class="dv">21</span>, shape<span class="op">=</span><span class="dv">0</span>, loc<span class="op">=</span>params_gumbel[<span class="dv">0</span>], scale<span class="op">=</span>params_gumbel[<span class="dv">1</span>])</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -675,7 +673,7 @@ La VaR TVE Gumbel pour h=10j et alpha=0.99 est : 20.6638%</code></pre>
 <h3 class="anchored" data-anchor-id="i.2.1.-choix-du-seuil-u">I.2.1. Choix du seuil u</h3>
 <p>Cette méthode est basée sur la modélisation de la distribution des excès au-dessus d’un seuil élevé de log-rendement négatif (<span class="math inline">\(u\)</span>), seuil déterminé de manière subjective à partir de l’analyse du mean residual life plot, en ajustant une distribution de Pareto généralisée (GPD). Dans le mean residual life plot, si les excès au-delà de 𝒖 suivent une loi GPD, alors le mean-excess plot a un comportement linéaire. On cherche alors la valeur du seuil $$ pour laquelle le mean-excess plot est linéaire. Nous ne privilégions pas les seuils <span class="math inline">\(u\)</span> élevés puisque la moyenne est faite sur peu d’observations.</p>
 <p>Nous allons choisir un seuil <span class="math inline">\(u = 0.03\)</span> pour lequel le mean residual life plot est linéaire. Nous allons ensuite ajuster une distribution GPD pour les excès au-dessus de ce seuil.</p>
-<div id="13ade2cd" class="cell" data-execution_count="16">
+<div id="6a7e0e30" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm, genpareto</span>
@@ -765,7 +763,7 @@ La VaR TVE Gumbel pour h=10j et alpha=0.99 est : 20.6638%</code></pre>
 <section id="i.2.2.-estimation-des-paramètres-de-la-loi-gpd" class="level3">
 <h3 class="anchored" data-anchor-id="i.2.2.-estimation-des-paramètres-de-la-loi-gpd">I.2.2. Estimation des paramètres de la loi GPD</h3>
 <p>En estimant les paramètres de la loi GPD, nous utilisons la méthode du maximum de vraisemblance. Les paramètres estimés par maximisation de la fonction de vraisemblance sont les suivants <span class="math inline">\(\xi = 1.33, \mu \approx 0.00, \sigma=0.01\)</span>. De ce fait, la distribution de Pareto généralisée est adaptée pour modéliser les excès au-dessus du seuil <span class="math inline">\(u = 0.03\)</span>.</p>
-<div id="d2b3132b" class="cell" data-execution_count="17">
+<div id="58127449" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> <span class="fl">0.03</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>excess_values <span class="op">=</span> [value <span class="op">-</span> u <span class="cf">for</span> value <span class="kw">in</span> neg_data_train <span class="cf">if</span> value <span class="op">&gt;=</span> u]</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -789,7 +787,7 @@ Echelle (sigma) = 0.01</code></pre>
 <section id="i.2.3.-validation-ex-ante" class="level3">
 <h3 class="anchored" data-anchor-id="i.2.3.-validation-ex-ante">I.2.3. Validation ex-ante</h3>
 <p>En comparant la distribution GPD estimée et la distribution empirique des excès, nous constatons que la distribution ne semble pas correspondre. De plus, le QQ-plot estimé indique que les quantiles théoriques de la loi GPD sont beaucoup plus grands que les quantiles empiriques observés dans notre distribution des excès. Nous concluons que la distribution GPD n’est pas adaptée pour modéliser les excès au-dessus du seuil <span class="math inline">\(u = 0.03\)</span>. Cela peut être dû à un mauvais choix du seuil <span class="math inline">\(u\)</span>, une analyse plus aprofondie aurait été nécessaire pour choisir un seuil plus adapté.</p>
-<div id="6bd407aa" class="cell" data-execution_count="18">
+<div id="2062b545" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>plt.hist(excess_values, bins<span class="op">=</span><span class="dv">30</span>, density<span class="op">=</span><span class="va">True</span>, label<span class="op">=</span><span class="st">'Données observées des excès'</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -812,7 +810,7 @@ Echelle (sigma) = 0.01</code></pre>
 </div>
 </div>
 </div>
-<div id="ac4f4383" class="cell" data-execution_count="19">
+<div id="c6fff714" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>niveaux_quantiles <span class="op">=</span> np.arange(<span class="fl">0.01</span>, <span class="dv">1</span>, <span class="fl">0.01</span>)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>quantiles_empiriques_POT <span class="op">=</span> np.quantile(excess_values, niveaux_quantiles)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>quantiles_theoriques_GDP <span class="op">=</span> genpareto.ppf(niveaux_quantiles, <span class="op">*</span>params_gpd)</span>
@@ -846,7 +844,7 @@ Echelle (sigma) = 0.01</code></pre>
 1 - \alpha_{\text{POT}} = \frac{n}{N_u} \times (1 - \alpha),
 \]</span></p>
 <p>où <span class="math inline">\(n\)</span> représente le nombre total d’observations, <span class="math inline">\(N_u\)</span> correspond au nombre d’excès au-delà du seuil <span class="math inline">\(u\)</span>,</p>
-<div id="0fa7abbd" class="cell" data-execution_count="20">
+<div id="36daa4fd" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> POT_var(data,alpha,u,shape,loc,scale):</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Calcul de la VaR gaussienne</span></span>

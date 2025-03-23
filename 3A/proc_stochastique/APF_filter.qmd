@@ -739,7 +739,7 @@ mean(rmse_diff_mixte_obs > rmse_diff_mixte)
 
 Pour tester la robustesse de ces estimations, il aurait fallu faire du bootstrap afin d'estimer la distribution des RMSE, et ainsi obtenir des intervalles de confiance pour ces estimations.
 
-Il aurait été interessant de tester les filtres dans d'autres cas de figures (voir tableau ci-dessous).
+Il aurait été interessant de tester les filtres dans d'autres cas de figures.
 :::
 
 

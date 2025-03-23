@@ -7,7 +7,7 @@ project:
     - "!ignored-dir/" # Ignore a specific directory
 execute:
   cache: true
-  freeze: true 
+  freeze: auto 
   
 website:
   title: ""

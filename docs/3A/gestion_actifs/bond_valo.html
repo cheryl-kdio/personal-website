@@ -323,7 +323,7 @@ B_t &amp;= C_t + N_t + R_t \\
 &amp;= N \left[ \sum_{i=1}^{n}  c \times e^{-(r + \lambda) \times (T_i
 -t)} \mathbb{1}_{T_i \geq t} + e^{-(r+\lambda)(T-t)} \mathbb{1}_{T \geq t} +  \lambda R \times \frac{1 - e^{-(r+\lambda)(T-t)}}{r+\lambda} \mathbb{1}_{T \geq t} \right]
 \end{aligned}\]</span>
-<div id="89cef406" class="cell" data-execution_count="1">
+<div id="89cef406" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pricing_bond(t,c,T,r,lambda_,R,N,dt<span class="op">=</span><span class="dv">1</span>):</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -360,7 +360,7 @@ B_t &amp;= C_t + N_t + R_t \\
 <section id="i.-valorisation-dune-obligation-sans-risque-de-défaut" class="level2">
 <h2 class="anchored" data-anchor-id="i.-valorisation-dune-obligation-sans-risque-de-défaut">I. Valorisation d’une obligation sans risque de défaut</h2>
 <p>Nous souhaitons valoriser une obligation sans risque de défaut, i.e.&nbsp;<span class="math inline">\(\lambda = 0\)</span>. Pour ce faire, nous fixons les paramètres suivants : - <span class="math inline">\(N = 1\)</span> : le nominal de l’obligation - <span class="math inline">\(r = 0.02\)</span> : le taux d’intérêt sans risque - <span class="math inline">\(\lambda = 0\)</span> : l’intensité de défaut - <span class="math inline">\(T = 10\)</span> : l’échéance de l’obligation - <span class="math inline">\(c = 0.02\)</span> : le coupon annuel - <span class="math inline">\(R = 0.4\)</span> : le taux de recouvrement - <span class="math inline">\(n = 10\)</span> : le nombre de coupons - <span class="math inline">\(t = 0\)</span> : l’instant présent</p>
-<div id="7da3ef51" class="cell" data-execution_count="2">
+<div id="7da3ef51" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span><span class="op">/</span><span class="dv">100</span></span>
@@ -379,7 +379,7 @@ B_t &amp;= C_t + N_t + R_t \\
 <blockquote class="blockquote">
 <p>💡 La condition dans laquelle l’obligation émise vaut 100% du nominal, i.e.&nbsp;au pair, est <span class="math inline">\(c \approx r + \lambda\)</span>. C’est une obligation qui permet de recouvrir ausi bien le risque de taux (<span class="math inline">\(r\)</span>) et le risque de crédit lié à l’intensité de défaut (<span class="math inline">\(\lambda\)</span>). Pour voir ceci, nous avons implémenté ci-dessous une fonction qui permet d’extrait le coupon qui permet d’avoir une obligation au pair, avec les mêmes paramètres que précédemment.</p>
 </blockquote>
-<div id="0a4f3a1a" class="cell" data-execution_count="3">
+<div id="0a4f3a1a" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span><span class="op">/</span><span class="dv">100</span></span>
@@ -414,7 +414,7 @@ Prix de l'obligation vu à t=0 : 1.000007783902349</code></pre>
 <blockquote class="blockquote">
 <p>De plus, lorsque l’intensité de défaut est très grande, on retrouve un prix à peu près égal au taux de recouvrement. En effet, la probabilité de défaut est très grande et donc la probabilité qu’il y ait un recouvrement est très élevée. (voir exemple ci-dessous)</p>
 </blockquote>
-<div id="c6565617" class="cell" data-execution_count="4">
+<div id="c6565617" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span><span class="op">/</span><span class="dv">100</span></span>
@@ -443,7 +443,7 @@ Taux de recouvrement : 0.4000</code></pre>
 <li>Le clean price (prix net ou pied de coupon) : il correspond au prix de l’obligation “nettoyé” des coupons accumulés. Ce prix est obtenu en soustrayant les intérêts courus au dirty price. Ainsi, le clean price permet d’évaluer plus précisément la valeur intrinsèque de l’obligation sans être pollué par les variations dues aux paiements périodiques de coupons. C’est cette valeur qui est généralement utilisée pour comparer les obligations entre elles.</li>
 </ul>
 <p>Pour illustrer cette évolution, nous avons tracé l’évolution du prix de l’obligation en fonction du temps. Nous avons fixé les paramètres suivants : - <span class="math inline">\(N = 1\)</span> : le nominal de l’obligation - <span class="math inline">\(r = 0.02\)</span> : le taux d’intérêt sans risque - <span class="math inline">\(\lambda = 0.01\)</span> : l’intensité de défaut - <span class="math inline">\(T = 10\)</span> : l’échéance de l’obligation - <span class="math inline">\(c = 0.03\)</span> : le coupon annuel - <span class="math inline">\(R = 0.4\)</span> : le taux de recouvrement - <span class="math inline">\(n = 10\)</span> : le nombre de coupons - <span class="math inline">\(t = 0\)</span> : l’instant présent</p>
-<div id="97d7d200" class="cell" data-execution_count="5">
+<div id="97d7d200" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> myFloor(x):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x<span class="op">==</span><span class="dv">0</span>:</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
@@ -460,7 +460,7 @@ Taux de recouvrement : 0.4000</code></pre>
 <span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> B_t <span class="op">-</span> cc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="bb27e453" class="cell" data-execution_count="6">
+<div id="bb27e453" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span><span class="op">/</span><span class="dv">100</span></span>
@@ -513,7 +513,7 @@ Taux de recouvrement : 0.4000</code></pre>
 <li>À la veille du paiement, l’obligation converge vers un prix proche de $ N + c $ pour le dirty price (car elle inclut le coupon accumulé) et $ N $ pour le clean price (qui exclut le coupon accumulé).</li>
 </ul>
 <p>Cela signifie que l’obligation s’apprécie au fil du temps en raison de la certitude croissante du paiement des flux futurs. En d’autres termes, plus l’échéance se rapproche, plus l’investisseur est assuré de recevoir ses paiements, ce qui entraîne une augmentation progressive de la valeur de l’obligation.</p>
-<div id="a77fb89a" class="cell" data-execution_count="7">
+<div id="a77fb89a" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">10</span></span>
@@ -559,7 +559,7 @@ Taux de recouvrement : 0.4000</code></pre>
 <li>À la veille du remboursement, l’obligation converge vers $ N + c $ pour le dirty price (qui inclut le dernier coupon à verser) et vers $ N $ pour le clean price.</li>
 </ul>
 <p>Ainsi, cette obligation se déprécie progressivement jusqu’à l’échéance, car l’effet attractif du coupon élevé s’amenuise à mesure que le remboursement du capital nominal devient imminent. En d’autres termes, l’obligation part d’une valeur supérieure à son nominal mais perd progressivement sa prime à l’approche de l’échéance.</p>
-<div id="65c3e694" class="cell" data-execution_count="8">
+<div id="65c3e694" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">10</span></span>
@@ -615,7 +615,7 @@ Taux de recouvrement : 0.4000</code></pre>
 <li>Inversement, si les taux d’intérêt baissent, les obligations existantes deviennent plus attractives puisqu’elles offrent un coupon plus élevé que les nouvelles émissions, ce qui entraîne une hausse de leur prix sur le marché secondaire.</li>
 </ul>
 <p>Ainsi, la sensibilité d’une obligation aux variations de taux d’intérêt, appelée “duration”, est un élément clé dans l’évaluation du risque de taux et la gestion de portefeuille obligataire.</p>
-<div id="93d6d656" class="cell" data-execution_count="9">
+<div id="93d6d656" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">10</span></span>
@@ -664,7 +664,7 @@ Taux de recouvrement : 0.4000</code></pre>
 \]</span></p>
 <p>Cette sensibilité permet de mesurer la variation du prix de l’obligation en réponse à une fluctuation du taux d’intérêt, offrant ainsi une évaluation directe du risque de taux auquel est exposé l’investisseur. De ce fait, si les taux d’intérêt bouge de <span class="math inline">\(\Delta r\)</span> = 1%, alors les prix bougeront de -sensibilité * <span class="math inline">\(\Delta r\)</span> .</p>
 <p>Nous allons implémenter ce calcul en Python, en prenant <span class="math inline">\(\Delta r = 1\)</span> bp (soit <span class="math inline">\(0.0001\)</span> en notation décimale).</p>
-<div id="34abc223" class="cell" data-execution_count="10">
+<div id="34abc223" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sensivity_to_rate(t,c,T,r,lambda_,R,N,dt<span class="op">=</span><span class="dv">1</span>,dr<span class="op">=</span> <span class="fl">0.01</span><span class="op">/</span><span class="dv">100</span>):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Fonction qui calcule la sensibilité d'une obligation à un taux d'intérêt.</span></span>
@@ -675,7 +675,7 @@ Taux de recouvrement : 0.4000</code></pre>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sensivity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Si les taux d’intérêt bouge de <span class="math inline">\(\Delta r\)</span> = 1%, alors les prix bougeront de -sensibilité * <span class="math inline">\(\Delta r\)</span> = -8,64 * 1%. La duration va être souvent proche de la maturité.</p>
-<div id="7a8dedfa" class="cell" data-execution_count="11">
+<div id="7a8dedfa" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">10</span></span>
@@ -701,7 +701,7 @@ Taux de recouvrement : 0.4000</code></pre>
 <blockquote class="blockquote">
 <p>Lorsque la maturité de l’obligation approche, sa sensibilité au taux d’intérêt tend à augmenter. En effet, la duration peut être interprétée comme une mesure du temps moyen pondéré pendant lequel l’investisseur est exposé au risque de taux.</p>
 </blockquote>
-<div id="9a1c485d" class="cell" data-execution_count="12">
+<div id="9a1c485d" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span><span class="op">/</span><span class="dv">100</span></span>
@@ -736,7 +736,7 @@ Taux de recouvrement : 0.4000</code></pre>
 <section id="cas-particulier-absence-de-coupon-de-taux-dintérêt-et-de-risque-de-défaut" class="level4">
 <h4 class="anchored" data-anchor-id="cas-particulier-absence-de-coupon-de-taux-dintérêt-et-de-risque-de-défaut">Cas particulier : absence de coupon, de taux d’intérêt et de risque de défaut</h4>
 <p>Lorsque le coupon, le taux d’intérêt et l’intensité de défaut sont nuls, la duration est exactement égale à la maturité de l’obligation. Puisque la duration peut être interprétée comme le barycentre des flux futurs de l’obligation, lorsque le coupon et l’intensité de défaut sont nuls, tous les flux sont concentrés à l’échéance, ce qui équivaut à la maturité de l’obligation.</p>
-<div id="3359bc72" class="cell" data-execution_count="13">
+<div id="3359bc72" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> lambda_ <span class="op">=</span> <span class="fl">10e-6</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="dv">40</span><span class="op">/</span><span class="dv">100</span></span>
@@ -785,7 +785,7 @@ Duration &amp;= - \frac{d B_t}{d r} \times \frac{1}{B_t} \\
 \frac{d B_t}{B_t} &amp;\approx - Duration \times  \Delta r \\
 \end{aligned}
 \]</span></p>
-<div id="dcb0e9f3" class="cell" data-execution_count="14">
+<div id="dcb0e9f3" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Objectif : écrire une fonction qui calcule la VaR avec l'approche par duration</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -825,13 +825,13 @@ Duration &amp;= - \frac{d B_t}{d r} \times \frac{1}{B_t} \\
 <pre><code>VaR estimé par l'approche par la sensibilité : 5.8049%</code></pre>
 </div>
 </div>
-<p>Pour cette estimation, nous avions supposé que la volatilité <span class="math inline">\(\sigma = 1\%\)</span>. Cependant, cette hypothèse pourrait s’écarter de la réalité. Pour ce faire, nous allons extraire les données de taux d’intérêt et calculer la volatilité empirique. L’ESTR est un taux un jour collatéralisé,c’est donc quasiment sans risque. Nous allons donc utiliser ce taux pour calculer la volatilité empirique. Pour cela, nous allons utiliser l’historique des taux d’intérêt de l’ESTR sur une période de 5 ans, i.e.&nbsp;10/03/2025 - 12/03/2020, disponible sur ce lien : y revenir.</p>
+<p>Pour cette estimation, nous avions supposé que la volatilité <span class="math inline">\(\sigma = 1\%\)</span>. Cependant, cette hypothèse pourrait s’écarter de la réalité. Pour ce faire, nous allons extraire les données de taux d’intérêt et calculer la volatilité empirique. L’ESTR est un taux un jour collatéralisé,c’est donc quasiment sans risque. Nous allons donc utiliser ce taux pour calculer la volatilité empirique. Pour cela, nous allons utiliser l’historique des taux d’intérêt de l’ESTR sur une période de 5 ans, i.e.&nbsp;10/03/2025 - 12/03/2020, disponible sur ce <a href="estr.xlsx">lien</a>.</p>
 <p>Pour ce faire, nous utilisons la formule suivante :</p>
 <p><span class="math display">\[
 \sigma = \sqrt{\frac{1}{n-1} \sum_{i=1}^{n} (r_i - \bar{r})^2}
 \]</span></p>
 <p>Nous constatons que la volatilité empirique sur les 5 ans est de 25.45%. Cette valeur est très élevée, ce qui signifie que les taux d’intérêt ont connu des variations importantes sur cette période. Cela peut être du à la trop grande période utilisée pour la calibration de la volatilité. Pour ce faire, nous avons restreint la période à 1 an, i.e.&nbsp;10/03/2025 - 10/03/2024. La volatilité empirique sur cette période est de 1.04%. Cette valeur est plus cohérente avec les taux d’intérêt sans risque.</p>
-<div id="64f54fce" class="cell" data-execution_count="15">
+<div id="64f54fce" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>estr_df <span class="op">=</span> pd.read_excel(<span class="st">"estr.xlsx"</span>, skiprows<span class="op">=</span><span class="dv">6</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#date as date</span></span>
@@ -889,7 +889,7 @@ Duration &amp;= - \frac{d B_t}{d r} \times \frac{1}{B_t} \\
 </div>
 </div>
 </div>
-<div id="2b12726e" class="cell" data-execution_count="16">
+<div id="2b12726e" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>vol_est <span class="op">=</span> np.std(estr_df[<span class="st">"PX_LAST"</span>].pct_change())</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Volatilité estimée sur 5 ans: </span><span class="sc">{</span>vol_est<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -911,7 +911,7 @@ Volatilité estimée sur 1 an : 0.0104</code></pre>
 \]</span></p>
 <p>où <span class="math inline">\(\Delta r\)</span> est la variation des taux d’intérêt.</p>
 <p>Par définition, la VaR estimée sera plus basse que l’autre approche en raison de la convexité de l’évolution du prix de l’obligation en fonction des taux d’intérêt. La Var par l’approche de la sensibilité, quant à elle, suppose une linéarité de l’évolution du prix de l’obligation en fonction des taux d’intérêt.</p>
-<div id="1cff9ae7" class="cell" data-execution_count="17">
+<div id="1cff9ae7" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> repricing_VaR(mu,sigma,t,c,T,r,lambda_,R,N,h,dt<span class="op">=</span><span class="dv">1</span>,alpha<span class="op">=</span><span class="fl">0.99</span>) :</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Calcul de la VaR gaussienne</span></span>
@@ -985,7 +985,7 @@ B_t = N &amp;\Leftrightarrow c = r + \lambda (1 - R) \\
 <p>Take away : Les notions de duration et de spread sont très importants dans la modélisation du risque de taux</p>
 <section id="cas-de-largentine-pays-risqué" class="level4">
 <h4 class="anchored" data-anchor-id="cas-de-largentine-pays-risqué">cas de l’argentine, pays risqué</h4>
-<div id="e339fa54" class="cell" data-execution_count="18">
+<div id="e339fa54" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">1031</span><span class="op">/</span><span class="dv">10000</span> </span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">0.4</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> s <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> R)</span>
@@ -1017,7 +1017,7 @@ Intensité de défaut : 17.18%</code></pre>
 </section>
 <section id="cas-de-la-france" class="level4">
 <h4 class="anchored" data-anchor-id="cas-de-la-france">cas de la France</h4>
-<div id="f35eadd1" class="cell" data-execution_count="19">
+<div id="f35eadd1" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cas de la France</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="fl">32.4</span><span class="op">/</span><span class="dv">10000</span> </span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">0.4</span></span>
@@ -1052,7 +1052,7 @@ Intensité de défaut : 0.54%</code></pre>
 </section>
 <section id="vi.2-sensibilité-crédit" class="level3">
 <h3 class="anchored" data-anchor-id="vi.2-sensibilité-crédit">VI.2 Sensibilité crédit</h3>
-<div id="a283d2b4" class="cell" data-execution_count="20">
+<div id="a283d2b4" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sensivity_to_credit(t,c,T,r,lambda_,R,N,dt<span class="op">=</span><span class="dv">1</span>,dlambda_<span class="op">=</span> <span class="fl">0.01</span><span class="op">/</span><span class="dv">100</span>):</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Fonction qui calcule la sensibilité d'une obligation à un taux d'intérêt.</span></span>
@@ -1064,7 +1064,7 @@ Intensité de défaut : 0.54%</code></pre>
 <span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sensivity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="98eb8312" class="cell" data-execution_count="21">
+<div id="98eb8312" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">10</span></span>
@@ -1078,7 +1078,7 @@ Intensité de défaut : 0.54%</code></pre>
 <pre><code>np.float64(8.821190868023761)</code></pre>
 </div>
 </div>
-<div id="34121ff0" class="cell" data-execution_count="22">
+<div id="34121ff0" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span><span class="op">/</span><span class="dv">100</span></span>
@@ -1126,7 +1126,7 @@ ou \quad s_{t+h} &amp;= s_t (1 + \sigma_s \sqrt{h} Z_t) \quad (\text{par DL})
 \end{aligned}
 \]</span></p>
 <p>Posons les paramètres suivants : - <span class="math inline">\(\theta = 0.1\)</span> : le coefficient de vitesse de réversion - <span class="math inline">\(\mu = 0.02\)</span> : le taux d’intérêt moyen - <span class="math inline">\(\sigma_r = 0.01\)</span> : la volatilité du taux d’intérêt - <span class="math inline">\(\sigma_s = 0.4\)</span> : la volatilité du spread de crédit - <span class="math inline">\(\rho = 0.4\)</span> : la corrélation entre les deux mouvements browniens - <span class="math inline">\(r = 0.02\)</span> : le taux d’intérêt initial - <span class="math inline">\(h = 1/12\)</span> : l’horizon de calcul de la VaR - <span class="math inline">\(c = 3\%\)</span> : le coupon annuel - <span class="math inline">\(R = 40\%\)</span> : le taux de recouvrement - <span class="math inline">\(N = 1\)</span> : le nominal de l’obligation - <span class="math inline">\(T = 10\)</span> : l’échéance de l’obligation</p>
-<div id="87c3200d" class="cell" data-execution_count="23">
+<div id="87c3200d" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> MC_VaR(c,T,r,lambda_,R,N,h,sigma_r, sigma_s, rho, alpha<span class="op">=</span><span class="fl">0.99</span>, N_MC<span class="op">=</span><span class="dv">1000</span>,dt<span class="op">=</span><span class="dv">1</span>):</span>
@@ -1194,7 +1194,7 @@ ou \quad s_{t+h} &amp;= s_t (1 + \sigma_s \sqrt{h} Z_t) \quad (\text{par DL})
 </div>
 <p>Lorsque $ $ (le coefficient de corrélation entre les taux d’intérêt et le spread de crédit) est positif, une hausse des taux d’intérêt entraîne également une hausse du spread de crédit. Cette dynamique amplifie le risque global, car les pertes dues à la hausse des taux s’ajoutent aux pertes induites par l’élargissement du spread de crédit. Ainsi, la Value at Risk (VaR) est plus élevée, reflétant l’accumulation des risques liés aux deux facteurs.</p>
 <p>En revanche, lorsque $ $ est négatif, une hausse des taux d’intérêt tend à réduire le spread de crédit, et inversement. Il se crée alors un effet de compensation : les pertes générées par l’évolution des taux sont partiellement absorbées par les gains résultant de la contraction du spread (ou inversement). C’est le principe de diversification. Dans ce cas, la VaR est plus faible, car les effets du taux d’intérêt et du spread de crédit s’annulent en partie, réduisant ainsi l’ampleur des pertes potentielles.</p>
-<div id="744a9b08" class="cell" data-execution_count="24">
+<div id="744a9b08" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># VaR en fonction de rho</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm </span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1219,12 +1219,12 @@ ou \quad s_{t+h} &amp;= s_t (1 + \sigma_s \sqrt{h} Z_t) \quad (\text{par DL})
 </div>
 <section id="estimation-de-la-volatilité-du-spread-de-crédit" class="level4">
 <h4 class="anchored" data-anchor-id="estimation-de-la-volatilité-du-spread-de-crédit">Estimation de la volatilité du spread de crédit</h4>
-<p>Pour la volatilité du spread, nous avons supposé que <span class="math inline">\(\sigma_s = 40\%\)</span>. Nous allons maintenant estimer cette volatilité à partir des données de marché, en utilisant l’historique des spreads de crédit sur une période de 5 ans, i.e.&nbsp;11/03/2025 - 11/03/2020, disponible sur ce lien : y revenir.</p>
+<p>Pour la volatilité du spread, nous avons supposé que <span class="math inline">\(\sigma_s = 40\%\)</span>. Nous allons maintenant estimer cette volatilité à partir des données de marché, en utilisant l’historique des spreads de crédit sur une période de 5 ans, i.e.&nbsp;11/03/2025 - 11/03/2020, disponible sur ce <a href="cds.xlsx">lien</a>.</p>
 <p>La volatilité du spread est une volatilité annualisée. De ce fait, la formulation de la volatilité empirique, lorsque la fréquence est quotidienne, est la suivante :</p>
 <p><span class="math display">\[
 \sigma_s = \sqrt{\frac{1}{n-1} \sum_{i=1}^{n} (s_i - \bar{s})^2} \times \sqrt{255}
 \]</span></p>
-<div id="d429b12a" class="cell" data-execution_count="25">
+<div id="d429b12a" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>cds_df <span class="op">=</span> pd.read_excel(<span class="st">"cds.xlsx"</span>, skiprows<span class="op">=</span><span class="dv">6</span>)</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co">#date as date</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>cds_df[<span class="st">"Date"</span>] <span class="op">=</span> pd.to_datetime(cds_df[<span class="st">"Date"</span>], <span class="bu">format</span><span class="op">=</span><span class="st">"%Y-%m-</span><span class="sc">%d</span><span class="st">"</span>)</span>
@@ -1274,7 +1274,7 @@ ou \quad s_{t+h} &amp;= s_t (1 + \sigma_s \sqrt{h} Z_t) \quad (\text{par DL})
 </div>
 </div>
 </div>
-<div id="25ea4343" class="cell" data-execution_count="26">
+<div id="25ea4343" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>vol_est <span class="op">=</span> np.std(cds_df[<span class="st">"PX_LAST"</span>].pct_change())</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Volatilité estimée sur 5 ans: </span><span class="sc">{</span>vol_est<span class="op">*</span>np<span class="sc">.</span>sqrt(<span class="dv">255</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>

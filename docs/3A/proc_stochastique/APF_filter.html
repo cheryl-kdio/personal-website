@@ -701,7 +701,7 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(et_boot_atm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
- 11.614   0.554  12.213 </code></pre>
+ 11.832   0.597  12.488 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>rmse_boot_atm <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((boot_atm <span class="sc">-</span> v)<span class="sc">^</span><span class="dv">2</span>))</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RMSE :"</span>, rmse_boot_atm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -734,7 +734,7 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(et_apf_atm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
- 23.281   1.019  24.362 </code></pre>
+ 23.626   1.113  24.874 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rmse_apf_atm <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((apf_atm <span class="sc">-</span> v)<span class="sc">^</span><span class="dv">2</span>))</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RMSE :"</span>, rmse_apf_atm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -773,7 +773,7 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(et_boot_itm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
- 11.292   0.468  11.762 </code></pre>
+ 11.435   0.521  12.012 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>rmse_boot_itm <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((boot_itm <span class="sc">-</span> v)<span class="sc">^</span><span class="dv">2</span>))</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RMSE :"</span>, rmse_boot_itm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -805,7 +805,7 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(et_apf_itm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
- 22.421   0.926  23.375 </code></pre>
+ 22.633   1.017  23.794 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>rmse_apf_itm <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((apf_itm <span class="sc">-</span> v)<span class="sc">^</span><span class="dv">2</span>))</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RMSE :"</span>, rmse_apf_itm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -844,7 +844,7 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(et_boot_mixte)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
- 11.948   0.480  12.498 </code></pre>
+ 11.923   0.444  12.371 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>rmse_boot_mixte<span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((boot_mixte <span class="sc">-</span> v)<span class="sc">^</span><span class="dv">2</span>))</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RMSE :"</span>, rmse_boot_mixte)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -876,7 +876,7 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(et_apf_mixte)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   user  system elapsed 
- 23.570   0.929  24.542 </code></pre>
+ 23.635   0.869  24.509 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>rmse_apf_mixte <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">mean</span>((apf_mixte <span class="sc">-</span> v)<span class="sc">^</span><span class="dv">2</span>))</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"RMSE :"</span>, rmse_apf_mixte)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1000,23 +1000,23 @@ q(x_t|x_{t-1},y_t) = p(x_t|x_{t-1}).
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">ATM</td>
-<td style="text-align: right;">24.362</td>
-<td style="text-align: right;">12.21300</td>
+<td style="text-align: right;">24.87400</td>
+<td style="text-align: right;">12.48800</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ITM</td>
-<td style="text-align: right;">23.375</td>
-<td style="text-align: right;">11.76200</td>
+<td style="text-align: right;">23.79400</td>
+<td style="text-align: right;">12.01200</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">MIXTE</td>
-<td style="text-align: right;">24.542</td>
-<td style="text-align: right;">12.49800</td>
+<td style="text-align: right;">24.50900</td>
+<td style="text-align: right;">12.37100</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Moyenne</td>
-<td style="text-align: right;">24.093</td>
-<td style="text-align: right;">12.15767</td>
+<td style="text-align: right;">24.39233</td>
+<td style="text-align: right;">12.29033</td>
 </tr>
 </tbody>
 </table>
@@ -1146,7 +1146,7 @@ c(length(rmse_bootstrap_atm), : first element used of 'each' argument</code></pr
 <div class="{callout-tip}">
 <p><strong>Conclusion :</strong> L’APF est une méthode plus précise que le filtre bootstrap pour estimer la volatilité instantanée dans le cadre d’un modèle de Heston où le prix est bruité <span class="math inline">\(h=0.01\)</span>, mais elle est également plus lente en termes de temps d’exécution. Le choix entre ces deux méthodes dépendra donc des besoins spécifiques de l’analyse, en fonction de la précision et de la vitesse d’exécution requises.</p>
 <p>Pour tester la robustesse de ces estimations, il aurait fallu faire du bootstrap afin d’estimer la distribution des RMSE, et ainsi obtenir des intervalles de confiance pour ces estimations.</p>
-<p>Il aurait été interessant de tester les filtres dans d’autres cas de figures (voir tableau ci-dessous).</p>
+<p>Il aurait été interessant de tester les filtres dans d’autres cas de figures.</p>
 </div>
 
 

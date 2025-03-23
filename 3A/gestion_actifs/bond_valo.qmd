@@ -556,7 +556,7 @@ print(f"VaR estimé par l'approche par la sensibilité : {VaR:.4%}")
 ```
 
 Pour cette estimation, nous avions supposé que la volatilité $\sigma = 1\%$. Cependant, cette hypothèse pourrait s'écarter de la réalité. Pour ce faire, nous allons extraire les données de taux d'intérêt et calculer la volatilité empirique. L'ESTR est un taux un jour collatéralisé,c'est donc quasiment sans risque. Nous allons donc utiliser ce taux pour calculer la volatilité empirique.
-Pour cela, nous allons utiliser l'historique des taux d'intérêt de l'ESTR sur une période de 5 ans, i.e. 10/03/2025 - 12/03/2020, disponible sur ce lien : y revenir.
+Pour cela, nous allons utiliser l'historique des taux d'intérêt de l'ESTR sur une période de 5 ans, i.e. 10/03/2025 - 12/03/2020, disponible sur ce [lien](estr.xlsx).
 
 Pour ce faire, nous utilisons la formule suivante :
 
@@ -889,7 +889,7 @@ plt.grid()
 
 #### Estimation de la volatilité du spread de crédit
 
-Pour la volatilité du spread, nous avons supposé que $\sigma_s = 40\%$. Nous allons maintenant estimer cette volatilité à partir des données de marché, en utilisant l'historique des spreads de crédit sur une période de 5 ans, i.e. 11/03/2025 - 11/03/2020, disponible sur ce lien : y revenir.
+Pour la volatilité du spread, nous avons supposé que $\sigma_s = 40\%$. Nous allons maintenant estimer cette volatilité à partir des données de marché, en utilisant l'historique des spreads de crédit sur une période de 5 ans, i.e. 11/03/2025 - 11/03/2020, disponible sur ce [lien](cds.xlsx).
 
 La volatilité du spread est une volatilité annualisée. De ce fait, la formulation de la volatilité empirique, lorsque la fréquence est quotidienne, est la suivante :
 
