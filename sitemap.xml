@@ -21,84 +21,88 @@
     <lastmod>2025-02-28T21:34:52.040Z</lastmod>
   </url>
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/value-at-risk/var_application.html</loc>
-    <lastmod>2025-03-23T18:33:02.697Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/risque_def.html</loc>
-    <lastmod>2025-02-28T21:19:40.543Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/proc_stochastique/pj_courbe_tx.html</loc>
-    <lastmod>2025-03-18T15:12:38.468Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/proc_stochastique/modele_log_sv-part1.html</loc>
-    <lastmod>2025-02-28T21:29:49.139Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/proc_stochastique/modele_bs.html</loc>
-    <lastmod>2025-02-28T21:30:10.129Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/gestion_actifs/profil_liquid.html</loc>
-    <lastmod>2025-02-28T21:20:52.237Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/gestion_actifs/bond_valo.html</loc>
-    <lastmod>2025-03-23T18:43:56.486Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/Apprentisage-stat/Tp4.html</loc>
-    <lastmod>2025-02-28T21:32:44.134Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/Apprentisage-stat/Tp2.html</loc>
-    <lastmod>2025-03-16T11:58:16.663Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/2A/App_sup/reg_lin.html</loc>
-    <lastmod>2025-02-28T21:32:05.717Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/Apprentisage-stat/Tp1.html</loc>
-    <lastmod>2025-02-28T21:32:27.732Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/Apprentisage-stat/Tp3.html</loc>
-    <lastmod>2025-02-28T21:32:40.337Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/bilan_entreprise.html</loc>
-    <lastmod>2025-02-28T21:31:30.079Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/gestion_actifs/mesures_rsq.html</loc>
-    <lastmod>2025-02-28T21:20:43.798Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/proc_stochastique/APF_filter.html</loc>
-    <lastmod>2025-03-23T18:42:54.534Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/proc_stochastique/modele_heston.html</loc>
-    <lastmod>2025-02-08T18:19:05.616Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/proc_stochastique/modele_log_sv-part2.html</loc>
-    <lastmod>2025-02-08T18:39:11.192Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/reglementation_prudentielle.html</loc>
-    <lastmod>2025-02-28T21:19:28.973Z</lastmod>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/value-at-risk/var_classiques.html</loc>
+    <lastmod>2025-02-28T21:34:35.854Z</lastmod>
   </url>
   <url>
     <loc>https://cheryl-kdio.github.io/personal-website/3A/value-at-risk/pj_copules.html</loc>
     <lastmod>2025-03-16T13:03:11.357Z</lastmod>
   </url>
   <url>
-    <loc>https://cheryl-kdio.github.io/personal-website/3A/value-at-risk/var_classiques.html</loc>
-    <lastmod>2025-02-28T21:34:35.854Z</lastmod>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/reglementation_prudentielle.html</loc>
+    <lastmod>2025-02-28T21:19:28.973Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/proc_stochastique/modele_log_sv-part2.html</loc>
+    <lastmod>2025-02-08T18:39:11.192Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/proc_stochastique/modele_heston.html</loc>
+    <lastmod>2025-02-08T18:19:05.616Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/proc_stochastique/APF_filter.html</loc>
+    <lastmod>2025-03-23T18:42:54.534Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/gestion_actifs/TP-2.html</loc>
+    <lastmod>2025-03-30T09:03:08.172Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/bilan_entreprise.html</loc>
+    <lastmod>2025-02-28T21:31:30.079Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/Apprentisage-stat/Tp3.html</loc>
+    <lastmod>2025-02-28T21:32:40.337Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/Apprentisage-stat/Tp1.html</loc>
+    <lastmod>2025-02-28T21:32:27.732Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/2A/App_sup/reg_lin.html</loc>
+    <lastmod>2025-02-28T21:32:05.717Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/Apprentisage-stat/Tp2.html</loc>
+    <lastmod>2025-03-16T11:58:16.663Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/Apprentisage-stat/Tp4.html</loc>
+    <lastmod>2025-02-28T21:32:44.134Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/gestion_actifs/TP-1.html</loc>
+    <lastmod>2025-03-30T09:03:03.955Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/gestion_actifs/TP-3.html</loc>
+    <lastmod>2025-03-30T09:03:09.213Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/proc_stochastique/modele_bs.html</loc>
+    <lastmod>2025-02-28T21:30:10.129Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/proc_stochastique/modele_log_sv-part1.html</loc>
+    <lastmod>2025-02-28T21:29:49.139Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/proc_stochastique/pj_courbe_tx.html</loc>
+    <lastmod>2025-03-18T15:12:38.468Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/risque_def.html</loc>
+    <lastmod>2025-02-28T21:19:40.543Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/value-at-risk/var_application.html</loc>
+    <lastmod>2025-03-23T18:33:02.697Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cheryl-kdio.github.io/personal-website/3A/value-at-risk/var_def.html</loc>
+    <lastmod>2025-03-30T09:07:53.154Z</lastmod>
   </url>
   <url>
     <loc>https://cheryl-kdio.github.io/personal-website/3A/value-at-risk/var_garch.html</loc>
@@ -114,6 +118,6 @@
   </url>
   <url>
     <loc>https://cheryl-kdio.github.io/personal-website/index_gdr.html</loc>
-    <lastmod>2025-03-23T18:33:57.698Z</lastmod>
+    <lastmod>2025-03-30T09:07:39.018Z</lastmod>
   </url>
 </urlset>
