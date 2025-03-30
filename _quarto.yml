@@ -43,4 +43,5 @@ format:
     toc-title: "Sommaire"
     df-print: kable    
   ipynb: default
+  # pdf: default
 

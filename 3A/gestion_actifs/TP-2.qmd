@@ -15,6 +15,7 @@ Le risque de liquidité est l’une des quatre grandes catégories de risques au
 Ainsi, le risque de liquidité est crucial dans la gestion d’un portefeuille, notamment en période de tensions sur les marchés. Si un investisseur doit liquider un actif, il peut être contraint de le vendre à un prix inférieur à sa valeur fondamentale, entraînant ainsi une perte importante.
 
 Pour évaluer ce risque, plusieurs indicateurs sont utilisés :
+
 - le coût de liquidité,
 - le profil d’écoulement (ou profil de liquidation),
 - les gaps de liquidité,
@@ -63,6 +64,7 @@ Pour chaque scénario, on procède selon les étapes suivantes :
    Ce profil est construit en fonction de la quantité liquidée chaque jour, en tenant compte de la limite fixée par le volume moyen quotidien de chaque actif.
 
 Nous utiliserons un portefeuille fictif de 10 actifs du CAC, à savoir :
+
 - Sanofi
 - Societe Generale
 - Thales
@@ -302,7 +304,7 @@ weights.head()
 ```
 
 ```{python}
-plt.figure(figsize=(12, 6))
+plt.figure(figsize=(10, 4))
 
 # Barplot empilé
 bottom = None

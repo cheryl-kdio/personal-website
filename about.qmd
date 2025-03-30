@@ -1,38 +1,28 @@
 ---
 title: "Cheryl KOUADIO"
-page-layout: article
+about:
+  template: trestles
+  image: img/cheryl_kdio.jpeg
+  links:
+    - icon: mailbox-flag
+      text: Email
+      href: https://github.com/cheryl-kdio
+    - icon: github
+      text: Github
+      href: https://github.com/cheryl-kdio
+    - icon: linkedin
+      text: Linkedin
+      href: https://www.linkedin.com/in/cheryl-kouadio-251815206/
+    - icon: medium
+      text: Medium
+      href : https://medium.com/@cheryl.s.kouadio
+    - icon: file-pdf
+      text: CV (Français)
+      href: CV/CV_Cheryl_KOUADIO___3A-fr.pdf
+    - icon: file-pdf
+      text: CV (English)
+      href: CV/CV_Cheryl_KOUADIO___3A-en.pdf
 ---
-
-<div class="box">
-
-<div class="container">
-<div>
-<h2 style="display: block;">Cheryl KOUADIO</h2>
-
-<li>Etudiante en gestion des risques financiers</li>
-<li>Email : cheryl.s.kouadio@gmail.com</li>
-<li>CV (Français/English) : 
-    <a href="CV/CV_Cheryl_KOUADIO___3A-fr.pdf">cv_cheryl_kouadio_fr.pdf</a> / 
-    <a href="CV/CV_Cheryl_KOUADIO___3A-en.pdf">cv_cheryl_kouadio_en.pdf</a>
-</li>
-<li> Github :
-    <a href="https://github.com/cheryl-kdio"> github.com/cheryl-kdio</a>
-</li>
-<li> Linkedin :
-    <a href="https://www.linkedin.com/in/cheryl-kouadio-251815206/">/in/cheryl-kouadio-251815206 </a>
-</li>
-<li> Medium : 
-    <a href="https://medium.com/@cheryl.s.kouadio"> medium.com/@cheryl.s.kouadio</a>
-</li>
-</div>
-
-
-
-<img src="img/cheryl_kdio.jpeg"  style="width: 250px; height: 250px;">
-</div>
-
-<h2 style="display: block;"> A propos de moi </h2>
-
 
 Je suis Cheryl Kouadio, étudiante en gestion des risques bancaires à l'ENSAI. Je me spécialise dans la modélisation des risques financiers, en particulier les risques de marché et de crédit, ainsi que dans l'étude des normes financières, comptables et réglementaires encadrant le système bancaire (Bâle III, IFRS 9, etc.).
 
@@ -40,5 +30,4 @@ Ce site web, conçu et généré avec Quarto, s'adresse principalement aux étud
 
 Au-delà de son utilité pour les étudiants, ce site constitue également une ressource précieuse pour les professionnels souhaitant revisiter certains concepts clés en gestion des risques ou même en statistiques. Il propose des exemples concrets et des pistes de réflexion adaptées aux problématiques actuelles, afin d'aider chacun à mieux appréhender ses projets et à relever ses propres défis académiques et professionnels.
 
-</div>
 

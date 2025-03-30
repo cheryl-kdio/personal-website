@@ -2,7 +2,6 @@
   {
     "listing": "/index.html",
     "items": [
-      "/3A/value-at-risk/var_def.html",
       "/3A/gestion_actifs/TP-3.html",
       "/3A/value-at-risk/pj_copules.html",
       "/3A/proc_stochastique/pj_courbe_tx.html",
@@ -24,7 +23,8 @@
       "/3A/risque_def.html",
       "/2A/App_sup/reg_lin.html",
       "/3A/bilan_entreprise.html",
-      "/3A/value-at-risk/var_application.html"
+      "/3A/value-at-risk/var_application.html",
+      "/3A/value-at-risk/var_def.html"
     ]
   }
 ]

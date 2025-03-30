@@ -40,6 +40,7 @@ Il s’agit de mettre en place des règles de gestion ou des limites pour évite
 Dans notre étude, nous allons constituer un portefeuille de 10 actions choisies dans l’indice CAC 40, en leur attribuant des poids aléatoires.
 
 Les actifs retenus sont les suivants :
+
 - Sanofi  
 - Société Générale  
 - Thales  

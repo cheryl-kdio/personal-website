@@ -1,5 +1,5 @@
 ---
-title: "Cheryl KOUADIO"
+title: ""
 listing:
   contents: 
     - 3A/**/*.qmd
@@ -9,5 +9,4 @@ listing:
   image-placeholder: img/placeholder.jpg
   fields: [image, date, title, author, reading-time,description]
   categories: false
-  filter-ui: true
 ---
