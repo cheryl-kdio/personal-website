@@ -44,11 +44,15 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 
 :::
 
-### Gestion de portefeuille et pricing
+### Asset management
 ::: {.blog-section}
-- [Gestion de risques d'un portefeuille d'actifs](3A/gestion_actifs/mesures_rsq.qmd)
-- [Profil d'écoulement de portefeuille](3A/gestion_actifs/profil_liquid.qmd)
-- [Valorisation d'obligation + risque de taux](3A/gestion_actifs/bond_valo.qmd)
+- [Risque de marché](3A/gestion_actifs/TP-1.qmd)
+- [Risque de liquidité](3A/gestion_actifs/TP-2.qmd)
+- [Risque de valorisation, de crédit etc.](3A/gestion_actifs/TP-3.qmd)
+:::
+
+### Asset pricing
+::: {.blog-section}
 - [Pricing d'options vanilles  **TO DO**]()
 - [Pricing de taux, swap, d'obligations  **TO DO**]()
 - [Tracking error  **TO DO**]()

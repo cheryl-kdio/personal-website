@@ -2,7 +2,8 @@
   {
     "listing": "/index.html",
     "items": [
-      "/3A/gestion_actifs/bond_valo.html",
+      "/3A/value-at-risk/var_def.html",
+      "/3A/gestion_actifs/TP-3.html",
       "/3A/value-at-risk/pj_copules.html",
       "/3A/proc_stochastique/pj_courbe_tx.html",
       "/3A/value-at-risk/var_classiques.html",
@@ -10,8 +11,8 @@
       "/3A/value-at-risk/var_garch.html",
       "/3A/proc_stochastique/APF_filter.html",
       "/3A/proc_stochastique/modele_heston.html",
-      "/3A/gestion_actifs/mesures_rsq.html",
-      "/3A/gestion_actifs/profil_liquid.html",
+      "/3A/gestion_actifs/TP-1.html",
+      "/3A/gestion_actifs/TP-2.html",
       "/3A/proc_stochastique/modele_log_sv-part2.html",
       "/3A/proc_stochastique/modele_log_sv-part1.html",
       "/3A/proc_stochastique/modele_bs.html",

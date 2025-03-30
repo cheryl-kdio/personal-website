@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cheryl Kouadio">
+
+<title>La VaR</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../img/logo-bg.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-79108a0fc1995748cbd19a5b0e3e3e7c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-fdf986989e2058d46a90f864900247d8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/logo-bg.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Accueil</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../index_stat.html"> 
+<span class="menu-text">Modélisation stat.</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../index_gdr.html"> 
+<span class="menu-text">Gestion des risques</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">À propos</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sommaire</h2>
+   
+  <ul>
+  <li><a href="#sec-var-def" id="toc-sec-var-def" class="nav-link active" data-scroll-target="#sec-var-def"><span class="header-section-number">1</span> Définition</a></li>
+  <li><a href="#calcul-de-la-var" id="toc-calcul-de-la-var" class="nav-link" data-scroll-target="#calcul-de-la-var"><span class="header-section-number">2</span> Calcul de la VaR</a>
+  <ul class="collapse">
+  <li><a href="#le-backtesting" id="toc-le-backtesting" class="nav-link" data-scroll-target="#le-backtesting"><span class="header-section-number">2.1</span> Le backtesting</a></li>
+  <li><a href="#cas-général" id="toc-cas-général" class="nav-link" data-scroll-target="#cas-général"><span class="header-section-number">2.2</span> Cas général</a>
+  <ul class="collapse">
+  <li><a href="#exemple" id="toc-exemple" class="nav-link" data-scroll-target="#exemple"><span class="header-section-number">2.2.1</span> Exemple</a></li>
+  </ul></li>
+  <li><a href="#modèles-linéaires-de-facteurs" id="toc-modèles-linéaires-de-facteurs" class="nav-link" data-scroll-target="#modèles-linéaires-de-facteurs"><span class="header-section-number">2.3</span> Modèles linéaires de facteurs</a>
+  <ul class="collapse">
+  <li><a href="#exemple-apple-coca-cola" id="toc-exemple-apple-coca-cola" class="nav-link" data-scroll-target="#exemple-apple-coca-cola"><span class="header-section-number">2.3.1</span> Exemple Apple &amp; Coca-Cola</a></li>
+  <li><a href="#exemple-de-portefeuille-linéaire-dactifs" id="toc-exemple-de-portefeuille-linéaire-dactifs" class="nav-link" data-scroll-target="#exemple-de-portefeuille-linéaire-dactifs"><span class="header-section-number">2.3.2</span> Exemple de portefeuille linéaire d’actifs</a></li>
+  </ul></li>
+  <li><a href="#modèles-factoriels-de-risque" id="toc-modèles-factoriels-de-risque" class="nav-link" data-scroll-target="#modèles-factoriels-de-risque"><span class="header-section-number">2.4</span> Modèles factoriels de risque</a>
+  <ul class="collapse">
+  <li><a href="#exemple-dun-portefeuille-obligataire-sans-risque-de-crédit" id="toc-exemple-dun-portefeuille-obligataire-sans-risque-de-crédit" class="nav-link" data-scroll-target="#exemple-dun-portefeuille-obligataire-sans-risque-de-crédit"><span class="header-section-number">2.4.1</span> Exemple d’un portefeuille obligataire sans risque de crédit</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#la-var-historique" id="toc-la-var-historique" class="nav-link" data-scroll-target="#la-var-historique"><span class="header-section-number">3</span> La VaR historique</a></li>
+  <li><a href="#la-var-monte-carlo" id="toc-la-var-monte-carlo" class="nav-link" data-scroll-target="#la-var-monte-carlo"><span class="header-section-number">4</span> La VaR Monte-Carlo</a></li>
+  <li><a href="#explication-dun-facteur-complémentaire" id="toc-explication-dun-facteur-complémentaire" class="nav-link" data-scroll-target="#explication-dun-facteur-complémentaire"><span class="header-section-number">5</span> Explication d’un facteur complémentaire</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="var_def.ipynb" download="var_def.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">La VaR</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Cheryl Kouadio </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>La mesure de risque réglementaire correspond à la valeur en risque ou value at-risk (VaR) qui est le quantile de perte (ou perte maximale subie). Il s’agit dans cette section de développer la notion de VaR pour des portefeuilles linéaires et non linéaires.</p>
+<section id="sec-var-def" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Définition</h1>
+<p>La VaR est une mesure de perte (potentielle) qui peut survenir à la suite de variations du marché. Elle permet de réponde à la question : combien l’établissement financier peut-il perdre au maximum avec une probabilité <span class="math inline">\(\alpha\)</span> sur un horizon de temps fixé à <span class="math inline">\(h\)</span>?</p>
+<p>Pour bien interpréter la Valeur à Risque (VaR), il est donc nécessaire de prendre en compte deux éléments clés, à savoir, la période de détention et le seuil de confiance.</p>
+<p>Soit un portefeuille <span class="math inline">\(\theta\)</span>. Notons <span class="math inline">\(P(t,\theta)\)</span> la valeur de ce portefeuille à la date t. La variation du portefeuille entre <span class="math inline">\(t\)</span> et <span class="math inline">\(t+h\)</span> est appelée le PnL (Profit and Loss) que nous pouvons calculer comme suit :</p>
+<p><span class="math display">\[
+PnL = P(t+h, \theta) - P(t,\theta)
+\]</span></p>
+<p>La perte potentielle sera ainsi défini come une variation négative de ce portefeuille <span class="math inline">\(L=-PnL\)</span>. La VaR au seuil de confiance <span class="math inline">\(\alpha\)</span> est définie par :</p>
+<p><span class="math display">\[
+P(L\leq VaR(\alpha))=\alpha
+\]</span></p>
+<p>Rappelons que la VaR est égale au quantile d’ordre <span class="math inline">\(\alpha\)</span> de <span class="math inline">\(L\)</span> . Ainsi, nous avons :</p>
+<p><span class="math display">\[
+VaR(\alpha)=F^{-1}_L(\alpha)
+\]</span></p>
+<p>où <span class="math inline">\(F_L\)</span> est la distribution associé à la variable aléatoire de perte <span class="math inline">\(L\)</span>. Si nous considérons une écriture avec le PnL, nous avons <span class="math inline">\(P(PnL\geq - VaR(\alpha))=\alpha\)</span> et nous déduisons que :</p>
+<p><span class="math display">\[
+VaR(\alpha)=-F^{-1}_{PnL}(1-\alpha)
+\]</span></p>
+<p>Dans l’esprit des autorités réglementaires, la VaR vise à donner une image du risque de marché dans le cadre des conditions normales de marché. C’est pourquoi le seuil de confiance pour le risque de marché est généralement fixé à 99%, alors que celui des risques de crédit ou risques opérationnels est souvent plus élevé, à 99,9%. La période de détention est fixée à 10 jours de trading, ce qui reflète le temps que les autorités bancaires jugent nécessaire pour que la banque puisse retourner sa position en cas de besoin.</p>
+<p>Par ailleurs, les fonds propres calculés au titre du risque de marché ne sont pas destinés à faire face à des risques extrêmes. C’est pourquoi, en plus de calculer la VaR, les banques doivent la compléter par des scénarios de crise (stress-testing) qui permettent de mieux appréhender ces types de risque. Néanmoins, les résultats des stress-tests ne donnent pas lieu à une immobilisation de fonds propres réglementaires.</p>
+</section>
+<section id="calcul-de-la-var" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Calcul de la VaR</h1>
+<p>Pour calculer la VaR, il faut identifier les <span class="math inline">\(m\)</span> facteurs de marché <span class="math inline">\(F_1, \dots, F_m\)</span> qui affectent les valeur future du portefeuille. En pratique, nous pouvons les déterminer en décomposant les instruments du portefeuille. Le calcul de la VaR dépendra alors de la méthodologie utilisée pour estimer la distribution de probabilité du PnL. D’une manière générale, nous avons le choix entre trois grandes familles de méthodes correpondant à trois approches différentes pour construire <span class="math inline">\(\hat F_{PnL}\)</span> :</p>
+<ol type="1">
+<li><p>la VaR analytique ou paramétrique ou gaussienne</p></li>
+<li><p>la VaR historique ou non paramétrique</p></li>
+<li><p>la VaR monte-carlo</p></li>
+</ol>
+<p>Le comité de Bâle impose une période détention de dix jours pour calculer les fonds propres et une période de détention d’un jour pour l’exercice de backtesting. Ainsi, tous les jours, l’établissemnt financier doit calculer la VaR sur un jour et les fonds propres associés. Néanmoins, les autorités de supervision autorisent les banques à convertir la VaR sur un jour en VaR sur d’autres périodes de détention en utilisant la règle de la racine carrée ou scaling. Par exemple, pour obtenir la VaR sur 10 jours, il suffit de multiplier la VaR sur un jour par <span class="math inline">\(\sqrt{10}\)</span>.</p>
+<section id="le-backtesting" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="le-backtesting"><span class="header-section-number">2.1</span> Le backtesting</h2>
+<p>Le backtesting est un contrôle de la qualité de la VaR pour un horizon de 1 jour. Il permet de vérifier si la VaR est bien calibrée. Pour cela, on compare la VaR calculée avec la perte réelle. Si la VaR est bien calibrée, la perte réelle ne doit pas dépasser la VaR dans 99,99% des cas. La commission bancaire utilise un nombre d’exception pour valider le modèle. Notons PnL le profit and loss du portefeuille et VaR la valeur à risque. Nous avons : <span class="math display">\[
+P(PnL&lt;-VaR)=1-\alpha
+\]</span></p>
+<p>Considérons maintenant la variable de bernoulli <span class="math inline">\(I\)</span> qui vaut 1 si le PnL est inférieur à l’opposé de la VaR avec probabilité <span class="math inline">\(1-\alpha\)</span> (une exception) et 0 sinon. Pour une période ouvré comptant n jours, la probabilité d’avoir <span class="math inline">\(i\)</span> exceptions est donnée par la loi binomiale <span class="math inline">\(\mathcal{text{Bin}}(n,1-\alpha)\)</span>. La probabilité d’avoir plus de <span class="math inline">\(k\)</span> exceptions est donnée par la loi binomiale cumulative <span class="math inline">\(\mathcal{B}(n,1-\alpha)\)</span>. La probabilité d’avoir au plus de <span class="math inline">\(i\)</span> exceptions est donnée par : <span class="math display">\[
+P(N_{ex}\leq i)=\sum_{j=0}^{i} \binom{n}{j}(1-\alpha)^j \alpha^{n-j}
+\]</span></p>
+<p>Pour tester que la probabilité d’exception n’excède pas <span class="math inline">\(1-\alpha\)</span>, nous pouvons utiliser un test de proportion. Si la proportion d’exceptions empirique est supérieur à celui attendu, le modèle est rejeté :</p>
+<p><span class="math display">\[
+H_0: P(PnL&lt;-VaR)=1-\alpha=p_0 \quad \text{vs} \quad H_1: P(PnL&lt;-VaR)&gt;1-\alpha=p_0
+\]</span></p>
+<p>La statistique de test est donnée par (sous <span class="math inline">\(H_0\)</span>) : <span class="math display">\[
+T= \frac{1}{n} \sum_{i=1}^{n} I_{Pnl&lt;-VaR} \sim \mathcal{N}(p_0,\frac{p_0(1-p_0)}{n})
+\]</span> qui donne la proportion d’exceptions observée lorsque <span class="math inline">\(np&gt;5\)</span> et <span class="math inline">\(n(1-p)&gt;5\)</span>.</p>
+<p>La p-valeur est donnée par <span class="math inline">\(P(T&gt;t|H_0)=1-\phi(t)\)</span> où <span class="math inline">\(t\)</span> est la valeur observée de la statistique de test et <span class="math inline">\(\phi\)</span> est la fonction de répartition de la loi normale. # La VaR analytique</p>
+</section>
+<section id="cas-général" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="cas-général"><span class="header-section-number">2.2</span> Cas général</h2>
+<p>Dans cette approche, nous considérons que les facteurs de risque sont gaussiens <span class="math inline">\(PnL \sim N(\mu_{PnL}, \sigma_{PnL})\)</span> . Nous avons donc :</p>
+<span class="math display">\[\begin{align*}
+P(PnL \leq VaR) = 1 - \alpha\Leftrightarrow\Phi \left( \frac{VaR - \mu_{PnL}}{\sigma_{PnL}} \right) = 1 - \alpha
+\end{align*}\]</span>
+<p>Nous en déduisons donc que la VaR est calculé comme suit :</p>
+<p><span class="math display">\[
+VaR = -\mu_{PnL} + \Phi^{-1}(\alpha) \times \sigma_{PnL}
+\]</span></p>
+<p>Lorsque <span class="math inline">\(\alpha=99\%\)</span>, <span class="math inline">\(\Phi^{-1}(\alpha) = 2.33\)</span>. Remarquons que la VaR est une fonction décroissante de l’espérance de PnL et une fonction croissante de la volatilité du PnL. En pratique, nous posons <span class="math inline">\(\mu_{PnL}=0\)</span> car il est difficle de prévoir l’espérance du PnL futur.</p>
+<section id="exemple" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="exemple"><span class="header-section-number">2.2.1</span> Exemple</h3>
+<p>Nous considérons une position courte de 1 million de dollars sur le contrat à terme S&amp;P 500. Nous estimons que la volatilité annualisée <span class="math inline">\(\sigma_{\text{SPX}}\)</span> est égale à 35%.</p>
+<p>La perte du portefeuille est égale à <span class="math inline">\(L(w) = N \times R_{\text{SPX}}\)</span> où <span class="math inline">\(N\)</span> est le montant de l’exposition (−1 million de dollars) et <span class="math inline">\(R_{\text{SPX}}\)</span> est le rendement (gaussien) de l’indice S&amp;P 500. Nous déduisons que la volatilité de la perte annualisée est <span class="math inline">\(\sigma(L) = |N| \times \sigma_{\text{SPX}}\)</span>. La valeur à risque pour une période de détention d’un an est :</p>
+<p><span class="math display">\[
+VaR_{1Y}(99\%)=2.33 \times 0.35 \times 1 000 000 = 815 500 \text{ euros}
+\]</span></p>
+<p>Ainsi, la perte maximale pour l’investisseur sur un 1an s’élève à 815 500€ avec un seuil de confiance de 99% (donc 1% de chance de se tromper).</p>
+<p>Pour utiliser une autre période de détention, nous utilisons la règle de la racine carré pour convertir la volatilité pour une fréquence donné <span class="math inline">\(f_1\)</span> en une autre volatilité pour une autre fréquence <span class="math inline">\(f_2\)</span> : <span class="math inline">\(\sigma_{f_2}=\sqrt{f_2/f_1}\sigma_{f_1}\)</span></p>
+<p>Ainsi, nous obtenons pour les VaRs 1 mois et 1 jour les résultats suivants :</p>
+<span class="math display">\[\begin{align*}
+VaR_{1M}(99\%) &amp;= \frac{815 500}{\sqrt{12}}=235414  \text{ euros} \\
+VaR_{1J}(99\%) &amp;= \frac{815 500}{\sqrt{260}}=235414  \text{ euros}
+\end{align*}\]</span>
+<p>En pratique, la VaR est calculé sur 1 jour, pour l’avoir sur n jours, il faut donc appliquer cette formule :</p>
+<p><span class="math display">\[
+VaR_{nJ} =  VaR_(1J) \times \sqrt{n}
+\]</span></p>
+</section>
+</section>
+<section id="modèles-linéaires-de-facteurs" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="modèles-linéaires-de-facteurs"><span class="header-section-number">2.3</span> Modèles linéaires de facteurs</h2>
+<p>Nous considérons un portefeuille de <span class="math inline">\(n\)</span> actifs et une fonction de tarification <span class="math inline">\(g\)</span> qui est linéaire par rapport aux prix des actifs. Nous avons : <span class="math display">\[
+P(t; \theta) = \sum_{i=1}^n \theta_i P_{i}(t)
+\]</span></p>
+<p>Ici, <span class="math inline">\(P_i(t)\)</span> est connu tandis que <span class="math inline">\(P_i(t+h)\)</span> est stochastique. La première idée est de choisir les facteurs comme étant les prix futurs.Dans cette approche, les rendements des actifs sont les facteurs de risque du marché et chaque actif possède son propre facteur de risque.</p>
+<p>Le problème est que les prix sont loin d’être stationnaires, ce qui nous amène à devoir affronter certains problèmes pour modéliser la distribution <span class="math inline">\(F_t\)</span>. Une autre idée est de récrire le prix futur comme suit : <span class="math display">\[
+P_i(t+h) = P_i(t) (1 + R_i(t;h))
+\]</span> où <span class="math inline">\(R_i(t;h)\)</span> est le retour de l’actif entre <span class="math inline">\(t\)</span> et <span class="math inline">\(t+h\)</span>.</p>
+<p>Nous déduisons que le PnL aléatoire est :</p>
+<span class="math display">\[\begin{align*}
+PnL &amp;= P(t+h,\theta) - P(t,\theta) \\
+&amp;= \sum_{i=1}^n \theta_i P_i(t+h) - \sum_{i=1}^n \theta_i P_i(t) \\
+&amp;= \sum_{i=1}^n\theta_i P_i(t) (1 - R_i(t,h))  - \sum_{i=1}^n \theta_i P_i(t) \\
+&amp;= \sum_{i=1}^n \theta_i P_i(t)  R_i(t,h) \\
+&amp;= \sum_{i=1}^n W_i(t)  R_i(t,h)
+\end{align*}\]</span>
+<p>où <span class="math inline">\(W_i = \theta_i P_i(t)\)</span> est le montant investi (ou l’exposition nominale)dans l’actif <span class="math inline">\(i\)</span>.</p>
+<p></p>
+<p>Soit <span class="math inline">\(R(t,h)\)</span> le vecteur des retours des actifs et <span class="math inline">\(W_t = (W_{1,t}, \dots, W_{n,t})\)</span> le vecteur des montants investis. Il s’ensuit que : <span class="math display">\[
+PnL = \sum_{i=1}^n W_i(t) R_i(t) = W_t^T R(t,h)
+\]</span></p>
+<p>Si nous supposons que <span class="math inline">\(R(t+h) \sim N(\mu, \Sigma)\)</span>, nous déduisons que <span class="math inline">\(\mu(PnL) = W_t^T \mu\)</span> et <span class="math inline">\(\sigma^2(\Pi) = W_t^T \Sigma W_t\)</span>. Utilisant l’Équation (2.6), l’expression de la valeur à risque est : <span class="math display">\[
+\text{VaR}_\alpha (w; h) = -W_t^T \mu + \phi^{-1}(\alpha) \sqrt{W_t^T \Sigma W_t}
+\]</span></p>
+<p>Dans cette approche, nous avons seulement besoin d’estimer la matrice de covariance des retours des actifs pour calculer la valeur à risque. Cela explique la popularité de ce modèle, surtout lorsque le P&amp;L du portefeuille est une fonction linéaire des retours des actifs.</p>
+<section id="exemple-apple-coca-cola" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="exemple-apple-coca-cola"><span class="header-section-number">2.3.1</span> Exemple Apple &amp; Coca-Cola</h3>
+<p>Considérons l’exemple des entreprises d’Apple et de Coca-Cola. Les expositions nominales sont de 1 093,3$ pour Apple et de 842,8$ pour Coca-Cola. Si nous prenons en compte les prix historiques du 7 janvier 2014 au 2 janvier 2015, l’écart type estimé des rendements quotidiens est de 1,3611 % pour Apple et de 0,9468 % pour Coca-Cola, tandis que la corrélation croisée est égale à 12,0787 %. Il s’ensuit que :</p>
+<span class="math display">\[\begin{align*}
+\sigma^2(PnL) &amp;= W_t^T \Sigma W_t = 1093.3^2 \left(\frac{1.3611}{100}\right)^2 + 842.8^2 \left(\frac{0.9468}{100}\right)^2 \\
+&amp;+ 2 \times 12.0787 \times \frac{1.0933 \times 842.8 \times 1.3611 \times 0.9468}{10000} = 313.80
+\end{align*}\]</span>
+<p>Si nous omettons le terme de rendement attendu <span class="math inline">\(-W_t^T \mu\)</span>, nous déduisons que la valeur à risque quotidienne à 99% est de 41,21 $. Nous obtenons une figure inférieure à celle de la valeur à risque historique, qui était de 47,39 $. Nous expliquons ce résultat par le fait que la distribution gaussienne sous-estime la probabilité des événements extrêmes et n’est donc pas adaptée à des calculs précis de risque dans des situations de marché volatiles.</p>
+</section>
+<section id="exemple-de-portefeuille-linéaire-dactifs" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="exemple-de-portefeuille-linéaire-dactifs"><span class="header-section-number">2.3.2</span> Exemple de portefeuille linéaire d’actifs</h3>
+<p>Considérons un portefeuille linéaire composé de trois actifs A (2 titres positions longues donc <span class="math inline">\(\theta_A=2\)</span>), B(1 titre position courte donc <span class="math inline">\(\theta_B=-1\)</span>) et C(1 titre position longue donc <span class="math inline">\(\theta_C=1\)</span>) dont les rendements journaliers sont en moyenne égaux à : <span class="math display">\[
+\mu =
+\begin{pmatrix}
+50pb\\
+30pb \\
+20pb
+\end{pmatrix}
+= \begin{pmatrix}
+0.005\\
+0.003 \\
+0.002
+\end{pmatrix}
+\]</span></p>
+<p>Les volatilités journalières sont égales à 2%, 3% et 1%. Quant aux prix des actifs, ils sont respectivement de 244€, 135€,315€. La matrice de corrélation est donnée par : <span class="math display">\[
+\mu =
+\begin{pmatrix}
+1 &amp;\\
+0.5 &amp; 1 &amp; \\
+0.25 &amp; 0.6 &amp; 1
+\end{pmatrix}
+\]</span></p>
+<p>Nous obtenons que:</p>
+<p><span class="math display">\[
+VaR(99\%)=2.3263 \times \sqrt{82.1176} - 2.665 = 18.42
+\]</span></p>
+<p>La perte maximale de ce portefeuille en une journée est donc de 18.42€ avec un risque 1% de se tromper.</p>
+<section id="implémentation-en-r" class="level4" data-number="2.3.2.1">
+<h4 data-number="2.3.2.1" class="anchored" data-anchor-id="implémentation-en-r"><span class="header-section-number">2.3.2.1</span> Implémentation en R</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>calculate_VaR <span class="ot">&lt;-</span> <span class="cf">function</span>(mu,W_t,std_devs,correlation_matrix, alpha) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Dimensions de la matrice</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(correlation_matrix)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convertir les écarts-types et les corrélations en matrice de covariance</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  cov_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> n, <span class="at">ncol =</span> n)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      cov_matrix[i, j] <span class="ot">&lt;-</span> std_devs[i] <span class="sc">*</span> std_devs[j] <span class="sc">*</span> correlation_matrix[i, j]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  q<span class="ot">&lt;-</span><span class="fu">qnorm</span>(alpha, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  VaR<span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">t</span>(W_t) <span class="sc">%*%</span> mu <span class="sc">+</span> <span class="fl">2.3263</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="fu">t</span>(W_t) <span class="sc">%*%</span> cov_matrix <span class="sc">%*%</span> W_t)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(VaR)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>W_t <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="sc">*</span><span class="dv">244</span>, <span class="sc">-</span><span class="dv">1</span><span class="sc">*</span><span class="dv">135</span>, <span class="dv">1</span><span class="sc">*</span><span class="dv">315</span>),<span class="at">nrow =</span> <span class="dv">3</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">30</span>,<span class="dv">20</span>),<span class="at">nrow =</span> <span class="dv">3</span>)<span class="sc">/</span><span class="dv">10000</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>std_devs<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>)<span class="sc">/</span><span class="dv">100</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrice de corrélation</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>correlation_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>,<span class="fl">0.5</span>,<span class="fl">0.25</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fl">0.5</span>,<span class="dv">1</span>,<span class="fl">0.6</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fl">0.25</span>,<span class="fl">0.6</span>,<span class="dv">1</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>VaR<span class="ot">&lt;-</span> <span class="fu">calculate_VaR</span>(mu,W_t,std_devs,correlation_matrix,<span class="fl">0.99</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>VaR</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         [,1]
+[1,] 18.41564</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="modèles-factoriels-de-risque" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="modèles-factoriels-de-risque"><span class="header-section-number">2.4</span> Modèles factoriels de risque</h2>
+<p>Nous supposons que la valeur du portefeuille dépend de <span class="math inline">\(m\)</span> facteurs de risque. Nous avons que la valeur du portefeuille à <span class="math inline">\(t+h\)</span> dépend des facteurs de risques :</p>
+<p><span class="math display">\[
+P(t+h,\theta) = g(F_1(t+h), \dots, F_m(t+h);\theta)
+\]</span></p>
+<p>où g est la fonction de valorisation (pricing function)</p>
+<p>Supposons maintenant que le portefeuille soit linéaire par rapport aux facteurs de risque, ainsi donc le retour des actifs à l’horizon h est :</p>
+<p><span class="math display">\[\begin{align*}
+R(t,h)&amp;= B F(t,h) + \epsilon(t,h) \\
+\end{align*}\]</span> où <span class="math inline">\(B\)</span> est la matrice des sensibilités du portefeuille aux facteurs de risque (interne, commun) et <span class="math inline">\(F(t,h)\)</span> est le vecteur des facteurs de risque à l’horizon h avec <span class="math inline">\(E(F)=\mu(F)\)</span> et <span class="math inline">\(cov(F)=\Omega\)</span>. De plus, <span class="math inline">\(\epsilon(t,h)\)</span> est le vecteur des erreurs qui sont des variables aléatoires gaussiennes indépendantes avec <span class="math inline">\(E(\epsilon)=0\)</span> et <span class="math inline">\(cov(\epsilon)=D\)</span>.</p>
+<p>Si le retour des actifs est gaussien, nous en deduisons que le PnL est une variable aléatoire gaussienne:</p>
+<p><span class="math display">\[
+PnL \sim \mathcal{N}(W_t^TB^T\mu(F), W_t^T (B\Omega B^T + D) W_t)
+\]</span></p>
+<p>Ainsi donc la VaR est calculé comme suit : <span class="math inline">\(VaR=-W_t^TB^T\mu(F) + \Phi^{-1}(\alpha)\sqrt{ W_t^T (B\Omega B^T + D) W_t)}\)</span></p>
+<p>Cette méthode repose sur 3 hypothèses : l’indépendance temporelle des variations de la valeur du portefeuille, la normalité des facteurs et la relation linéaire entre les facteurs et la valeur du portefeuille. En général, nous ne connaissons pas <span class="math inline">\(B, \mu, \Sigma\)</span>. Dans la pratique, nous les estimons à partir des données historiques des facteurs et <span class="math inline">\(B\)</span> est le vecteur des sensibilités du portefeuille aux facteurs de risque. La seuil difficulté de cette méthode est l’estimation de la matrice de variance covariance.</p>
+<section id="exemple-dun-portefeuille-obligataire-sans-risque-de-crédit" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="exemple-dun-portefeuille-obligataire-sans-risque-de-crédit"><span class="header-section-number">2.4.1</span> Exemple d’un portefeuille obligataire sans risque de crédit</h3>
+<p>Nous considérons une exposition sur une obligation américaine à $t=$31 décembre 2014. Le nominal de l’obligation est de 100 tandis que les coupons annuels <span class="math inline">\(C(t_m)\)</span> sont égaux à 5, <span class="math inline">\(t_m&gt;t\)</span>. La maturité résiduelle est de cinq ans et les dates de fixation sont à la fin de décembre (<span class="math inline">\(n_C=5\)</span>. Le nombre d’obligations détenues dans le portefeuille est de 10 000.</p>
+<p>Nous notons <span class="math inline">\(B_t(T)\)</span> le prix d’une obligation zéro coupon (montant qu’un investisseur serait prêt à payer aujourd’hui pour recevoir un paiement fixe à une date future : combien me rapport un euro à maturité <span class="math inline">\(T\)</span> aujourd’hui?) au temps <span class="math inline">\(t\)</span> pour l’échéance <span class="math inline">\(T\)</span>. Nous avons <span class="math inline">\(B_t(T) = e^{-(T - t)R_t(T)}\)</span> où <span class="math inline">\(R_t(T)\)</span> est le taux de rendement zéro coupon.</p>
+<p>La valeur de l’obligation est donc : <span class="math display">\[
+P(t) =  \sum_{m=1}^{n_C} C(t_m) B_t(t_m)
+\]</span></p>
+<p>On en déduit que le PnL est : <span class="math display">\[\begin{align*}
+PnL &amp;=  ( \sum_{m=1}^{n_C} C(t_m) B_{t+h}(t_m) - \times \sum_{m=1}^{n_C} C(t_m) B_t(t_m) )\\
+&amp;=  -\sum_{m=1}^{n_C} C(t_m) (t_m - t) B_{t}(t_m) \Delta R(t+h,t_m)) \\
+&amp;=  \sum_{m=1}^{n_C} W_t(tm) \Delta R(t+h,t_m) \\
+\end{align*}\]</span></p>
+<p>où <span class="math inline">\(W_t(t_m) = -C(t_m)(t_m-t) B_t(t_m)\)</span> est le montant investi dans l’obligation <span class="math inline">\(m\)</span> et <span class="math inline">\(\Delta R(t+h,t_m)\)</span> est le rendement de l’obligation <span class="math inline">\(m\)</span> entre <span class="math inline">\(t\)</span> et <span class="math inline">\(t+h\)</span>.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(t_m - t\)</span></th>
+<th><span class="math inline">\(C(t_m)\)</span></th>
+<th><span class="math inline">\(R_t(t_m)\)</span></th>
+<th><span class="math inline">\(B_t(t_m)\)</span></th>
+<th><span class="math inline">\(W_{t_m}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>5</td>
+<td>0.431%</td>
+<td>0.996</td>
+<td>-4.978</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>5</td>
+<td>0.879%</td>
+<td>0.983</td>
+<td>-9.826</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>5</td>
+<td>1.276%</td>
+<td>0.962</td>
+<td>-14.437</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>5</td>
+<td>1.569%</td>
+<td>0.939</td>
+<td>-18.783</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>105</td>
+<td>1.777%</td>
+<td>0.915</td>
+<td>-480.356</td>
+</tr>
+</tbody>
+</table>
+<p>Nous en déduisons que le prix de l’obligation est de <span class="math inline">\(P(t)=115,47 \$\)</span> et l’exposition totale est de 1 154 706 $. En utilisant la période historique de l’année 2014, nous estimons la matrice de covariance entre les variations quotidiennes des cinq taux d’intérêt à coupon zéro sachant que l’écart-type est respectivement de 0,746 pb pour <span class="math inline">\(\Delta_h R_t(t + 1)\)</span>, 2,170 pb pour <span class="math inline">\(\Delta_h R_t(t + 2)\)</span>, 3,264 pb pour <span class="math inline">\(\Delta_h R_t(t + 3)\)</span>, 3,901 pb pour <span class="math inline">\(\Delta_h R_t(t + 4)\)</span> et 4,155 pb pour <span class="math inline">\(\Delta_h R_t(t + 5)\)</span>, où <span class="math inline">\(h\)</span> correspond à un jour de bourse. Pour la matrice de corrélation en pb (points de base), nous obtenons :</p>
+<p><span class="math display">\[
+\rho =
+\begin{pmatrix}
+100.000 &amp;  \\
+87.205 &amp; 100.000 \\
+79.809 &amp; 97.845 &amp; 100.000 \\
+75.584 &amp; 95.270 &amp; 98.895 &amp; 100.000  \\
+71.944 &amp; 92.110 &amp; 96.556 &amp; 99.219 &amp; 100.000 \\
+\end{pmatrix}
+\]</span></p>
+<p>Nous en déduisons que la valeur à risque à 99% est (en supposant que la moyenne du PnL est nulle): <span class="math display">\[
+VaR= 2.33 * \sqrt{W_t^T \Sigma W_t}
+\]</span> Nous obtenons une valeur à risque de 4970$ pour une période de détention d’un jour.</p>
+<section id="implémentation-en-r-1" class="level4" data-number="2.4.1.1">
+<h4 data-number="2.4.1.1" class="anchored" data-anchor-id="implémentation-en-r-1"><span class="header-section-number">2.4.1.1</span> Implémentation en R</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Définition des écarts-types en points de base convertis en pourcentage</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>std_devs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.746</span>, <span class="fl">2.170</span>, <span class="fl">3.264</span>, <span class="fl">3.901</span>, <span class="fl">4.155</span>)<span class="sc">/</span><span class="dv">10000</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrice de corrélation</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>correlation_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="dv">100</span>, <span class="fl">87.205</span>, <span class="fl">79.809</span>, <span class="fl">75.584</span>, <span class="fl">71.944</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fl">87.205</span>, <span class="dv">100</span>, <span class="fl">97.845</span>, <span class="fl">95.270</span>, <span class="fl">92.110</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fl">79.809</span>, <span class="fl">97.845</span>, <span class="dv">100</span>, <span class="fl">98.895</span>, <span class="fl">96.556</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fl">75.584</span>, <span class="fl">95.270</span>, <span class="fl">98.895</span>, <span class="dv">100</span>, <span class="fl">99.219</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fl">71.944</span>, <span class="fl">92.110</span>, <span class="fl">96.556</span>, <span class="fl">99.219</span>, <span class="dv">100</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>), <span class="at">nrow =</span> <span class="dv">5</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)<span class="sc">/</span><span class="dv">100</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>W_tm <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">4.978</span>, <span class="sc">-</span><span class="fl">9.826</span>, <span class="sc">-</span><span class="fl">14.437</span>, <span class="sc">-</span><span class="fl">18.783</span>, <span class="sc">-</span><span class="fl">480.356</span>),<span class="at">nrow =</span> <span class="dv">5</span>)<span class="sc">*</span><span class="dv">10000</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>mu<span class="ot">&lt;-</span><span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">5</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>VaR<span class="ot">&lt;-</span><span class="fu">calculate_VaR</span>(mu,W_tm,std_devs,correlation_matrix,<span class="fl">0.99</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>VaR</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         [,1]
+[1,] 4970.384</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+<section id="la-var-historique" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> La VaR historique</h1>
+<p>Dans cette approche, nous ne faisons pas d’hypothèse sur la distribution des facteurs. A l’instant t, le portefeuille est valorisé en appliquant les facteurs de risque mesurés historiquement. Soit <span class="math inline">\(F_1^{i}, \dots, F_m^{i}\)</span> les valeurs des facteurs de risque du <span class="math inline">\(i\)</span>-ème scénario historique. La valeur du profit &amp; loss (PnL) du portefeuille du <span class="math inline">\(i\)</span>-eme scénario est donc : <span class="math display">\[
+PnL_i = P(t+h,\theta) - P(t,\theta) = g(F_1^{i}, \dots, F_m^{i};\theta) - P(t,\theta)
+\]</span></p>
+<p>Considérant les <span class="math inline">\(n\)</span> scénarios, la probabilité d’occurence est la même pour chaque scénario, nous avons donc <span class="math inline">\(1/N\)</span> pour chaque scénario. La VaR est donc le quantile empirique de l’échantillon des PnL. Pour le calculer au seuil de confiance <span class="math inline">\(\alpha\)</span>, nous ordonnons les PnL de manière croissante (les statistiques d’ordre): <span class="math display">\[
+min(PnL_i)=PnL_{1:n} \leq PnL_{2:n} \leq \dots \leq PnL_{n:n}=max(PnL_i)
+\]</span></p>
+<p>Par la suite, nous estimons la VaR en prenant l’opposé de la <span class="math inline">\(n \times (1-\alpha)\)</span>-ème plus petite valeur de l’échantillon. La VaR est donc : <span class="math display">\[
+VaR(\alpha) = - PnL_{n \times (1-\alpha):n}
+\]</span></p>
+<p>Lorsque <span class="math inline">\(n \times (1-\alpha)\)</span> n’est pas entier, il faut procéder par interpolation linéaire :</p>
+<span class="math display">\[\begin{align*}
+VaR(\alpha) &amp;= - PnL_{\lfloor n \times (1-\alpha) \rfloor:n} + (n \times (1-\alpha) - \lfloor n \times (1-\alpha) \rfloor) \times (PnL_{\lfloor n \times (1-\alpha) \rfloor+1:n} - PnL_{\lfloor n \times (1-\alpha) \rfloor:n})
+\end{align*}\]</span>
+<p>où <span class="math inline">\(\lfloor x \rfloor\)</span> est la partie entière de <span class="math inline">\(x\)</span>. Par exemple, pour un échantillon de taille 1000, la VaR à 99% est la 10ème plus petite valeur de l’échantillon.</p>
+</section>
+<section id="la-var-monte-carlo" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> La VaR Monte-Carlo</h1>
+<p>La VaR Monte-Carlo est une méthode de simulation qui consiste à simuler les facteurs de risque et à calculer le PnL pour chaque scénario. La VaR est ensuite estimée en prenant le quantile empirique de l’échantillon des PnL. La méthode est plus flexible que la VaR historique car elle permet de simuler des scénarios qui n’ont pas été observés dans le passé et la taille d’échantillon n’est pas contrainte. Cependant, elle est plus coûteuse en temps de calcul.</p>
+<p>Pour la <span class="math inline">\(s\)</span>-ieme simulation, nous avons donc : <span class="math display">\[
+PnL_s = P(t+h,\theta) - P(t,\theta) = g(F_1^{s}, \dots, F_m^{s};\theta) - P(t,\theta)
+\]</span></p>
+<p>Il suffit ensuite de calculer le quantile correspondant comme pour la méthode de la VaR historique. Lorsque l’on suppose que les facteurs de risque suivent une distribution gaussienne, nous avons asymptotiquement les mêmes résultats que la VaR analytique.</p>
+</section>
+<section id="explication-dun-facteur-complémentaire" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Explication d’un facteur complémentaire</h1>
+<p>Les méthodes de valeur en risque ne donnent qu’une estimation de la perte potentielle au seuil de confiance <span class="math inline">\(\alpha\)</span>. Cependant, elle peut être différente de la perte potentielle réelle pour plusieurs raisons (hypothèses de normalité, estimation des paramètres, taille de l’échantillon, etc.). C’est pourquoi les autorités réglementaires demandent aux établissements financiers de corriger l’estimation de la VaR par un facteur complémentaire. Ce facteur est souvent appelé facteur de multiplication ou facteur de prudence <span class="math inline">\(3 + \xi\)</span>. Il est souvent compris entre 3 et 5.</p>
+<p>Etant donné la perte <span class="math inline">\(L\)</span> de distribution <span class="math inline">\(F\)</span>. L’idée sous-jacente est de définir un coefficient <span class="math inline">\(\kappa\)</span> tel que <span class="math inline">\(P(L \leq \kappa \times VaR) = \alpha\)</span>. Par exemple, si la distribution <span class="math inline">\(F\)</span> de la perte est effectivement gaussienne, le coefficient <span class="math inline">\(\kappa\)</span> est égal à 1. Si cette distribution présente des queues épaisses, on peut s’attendre à ce que ce coefficient soit plus grand .</p>
+<p>Pour déterminer ce coefficient, nous utilisons l’égalité de Bienaymé-tchebycheff : <span class="math display">\[
+P(|L - \mu(L)| \geq \kappa \times \sigma_L) \leq \frac{1}{\kappa^2}
+\]</span> où <span class="math inline">\(\mu(L)\)</span> est l’espérance de la perte(supposé nul) et <span class="math inline">\(\sigma_L\)</span> est l’écart-type de la perte.</p>
+<p>Si la distribution est asymétrique, nous en déduisons que :</p>
+<p><span class="math display">\[
+P(L \leq \kappa \times \sigma(L)) \geq 1 - \frac{1}{\kappa^2}
+\]</span></p>
+<p>Supposons <span class="math inline">\(\alpha=1-\frac{1}{\kappa^2}\)</span>, nous obtenons : <span class="math display">\[
+P(L \leq \sqrt{\frac{1}{1-\alpha}} \times \sigma(L)) \geq \alpha
+\]</span></p>
+<p>Comme <span class="math inline">\(VaR_{\text{gaussienne}}=\Phi^{-1}(\alpha) \times \sigma(L)\)</span> (puisque <span class="math inline">\(\mu(L)=0\)</span>), nous en déduisons que</p>
+<span class="math display">\[\begin{align*}
+\kappa &amp;= \frac{\sqrt{\frac{1}{1-\alpha}} \times \sigma(L)}{VaR_{\text{gaussienne}}} \\
+&amp;= \frac{1}{\Phi^{-1}(\alpha)}\times \sqrt{\frac{1}{1-\alpha}}
+\end{align*}\]</span>
+<table class="caption-top table">
+<caption>Valeur numérique de <span class="math inline">\(\kappa\)</span> pour différents seuils de confiance</caption>
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th>Symétrique</th>
+<th>Symétrique</th>
+<th>Asymétrique</th>
+<th>Asymétrique</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\alpha\)</span></td>
+<td><span class="math inline">\(\Phi^{-1}(\alpha)\)</span></td>
+<td><span class="math inline">\(k\)</span></td>
+<td><span class="math inline">\(\kappa\)</span></td>
+<td><span class="math inline">\(k\)</span></td>
+<td><span class="math inline">\(\kappa\)</span></td>
+</tr>
+<tr class="even">
+<td>90.00</td>
+<td>1.28</td>
+<td>2.24</td>
+<td>1.74</td>
+<td>3.16</td>
+<td>2.47</td>
+</tr>
+<tr class="odd">
+<td>95.00</td>
+<td>1.64</td>
+<td>3.16</td>
+<td>1.92</td>
+<td>4.47</td>
+<td>2.72</td>
+</tr>
+<tr class="even">
+<td><strong>99.00</strong></td>
+<td><strong>2.33</strong></td>
+<td><strong>7.07</strong></td>
+<td><strong>3.04</strong></td>
+<td><strong>10.00</strong></td>
+<td><strong>4.30</strong></td>
+</tr>
+<tr class="odd">
+<td>99.25</td>
+<td>2.43</td>
+<td>8.16</td>
+<td>3.36</td>
+<td>11.55</td>
+<td>4.75</td>
+</tr>
+<tr class="even">
+<td><strong>99.50</strong></td>
+<td><strong>2.58</strong></td>
+<td><strong>10.00</strong></td>
+<td><strong>3.88</strong></td>
+<td><strong>14.14</strong></td>
+<td><strong>5.49</strong></td>
+</tr>
+<tr class="odd">
+<td>99.75</td>
+<td>2.81</td>
+<td>14.14</td>
+<td>5.04</td>
+<td>20.00</td>
+<td>7.12</td>
+</tr>
+<tr class="even">
+<td>99.99</td>
+<td>3.72</td>
+<td>70.71</td>
+<td>19.01</td>
+<td>100.00</td>
+<td>26.89</td>
+</tr>
+</tbody>
+</table>
+<p>Pour mesurer l’asumétrie de la distribution, nous utilisons les moments d’ordre supérieur à 2 : le skewness et le kurtosis. Le skewness est une mesure de l’asymétrie de la distribution et le kurtosis est une mesure de la concentration des valeurs autour de la moyenne. Soit le moment centré d’ordre <span class="math inline">\(r\)</span> par <span class="math inline">\(\mu_r=E[(X-\mu)^r]\)</span>. Le skewness est défini comme suit :</p>
+<p><span class="math display">\[
+\gamma_1=\frac{\mu_3}{\sigma^3}
+\]</span> Si le skewness est nul, la distribution est symétrique (par exemple, la loi normale). La distribution est asymétrique à droite (resp. à gauche) si <span class="math inline">\(\gamma_1 &lt; 0\)</span> (resp. <span class="math inline">\(\gamma_1 &gt; 0\)</span>)</p>
+<p>Le kurtosis se définit comme suit : <span class="math display">\[
+\nu_4=\frac{\mu_4}{\sigma^4}
+\]</span></p>
+<p>Si le kurtosis est égal à 3, la distribution est dite normale. Si le kurtosis est supérieur à 3, la distribution est dite leptokurtique (queues épaisses), c’est le cas de la distribution de student et si le kurtosis est inférieur à 3, la distribution est dite platykurtique (queues fines).</p>
+<p>En pratique, on considère plutôt <span class="math inline">\(\gamma_2=\nu_4-3\)</span> qui est appelé l’excès de kurtosis. La VaR analytique ne prend pas en compte ces effets. Néanmoins, nous pouvons les intégrer comme suit :</p>
+<p><span class="math display">\[
+VaR(\alpha) = z_{\alpha}(\gamma_1,\gamma_2) \times \sigma
+\]</span></p>
+<p>avec <span class="math inline">\(z_{\alpha}(\gamma_1,\gamma_2) = z_{\alpha} + \frac{1}{6}(z_{\alpha}^2 -1)\gamma_1+ \frac{1}{24}(z_{\alpha}^3-3z_{\alpha})\gamma_2) -  \frac{1}{36}(2z_{\alpha}^3 -5z_{\alpha})\gamma_1^2+\dots\)</span> et <span class="math inline">\(z_{\alpha}=\Phi^{-1}(\alpha)\)</span>. Cette formule est l’expansion de corner-fisher.</p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -170,5 +170,17 @@
   "3A/gestion_actifs/bond_valo.qmd": {
     "bond_valo.html": "a2a8e0e4",
     "bond_valo.ipynb": "485446a3"
+  },
+  "3A/gestion_actifs/TP-1.qmd": {
+    "TP-1.html": "1a121421",
+    "TP-1.ipynb": "32e9c27b"
+  },
+  "3A/gestion_actifs/TP-2.qmd": {
+    "TP-2.html": "f262b99f",
+    "TP-2.ipynb": "13913295"
+  },
+  "3A/gestion_actifs/TP-3.qmd": {
+    "TP-3.html": "45c2fa2f",
+    "TP-3.ipynb": "dd65f87e"
   }
 }
