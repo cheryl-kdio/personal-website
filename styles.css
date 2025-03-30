@@ -3,9 +3,9 @@ body {
   font-family: "Times New Roman", Times, serif;
 }
 
-.quarto-title > h1.title {
+/* .quarto-title > h1.title {
     opacity: 0 !important;
-  }
+  } */
 
 .box{
     float:left;

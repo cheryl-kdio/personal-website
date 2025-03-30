@@ -250,13 +250,13 @@ window.Quarto = {
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>Nous allons ici nous intéresser aux applications de la Value at Risk (VaR) en finance. La VaR est une mesure de risque qui permet d’estimer les pertes maximales potentielles d’un portefeuille d’actifs financiers sur un horizon de temps donné, à un certain niveau de confiance. Elle est largement utilisée par les institutions financières pour évaluer et gérer les risques de marché, de crédit et de liquidité (cf.&nbsp;<a href="3A/value-at-risk/var_def.qmd#sec-var-def">Value at-Risk</a>).</p>
+<p>Nous allons ici nous intéresser aux applications de la Value at Risk (VaR) en finance. La VaR est une mesure de risque qui permet d’estimer les pertes maximales potentielles d’un portefeuille d’actifs financiers sur un horizon de temps donné, à un certain niveau de confiance. Elle est largement utilisée par les institutions financières pour évaluer et gérer les risques de marché, de crédit et de liquidité.</p>
 <p>Nous verrons ainsi les applications des VaR analytique, historique et Monte Carlo.</p>
 </section>
 <section id="import-des-données" class="level1">
 <h1>Import des données</h1>
 <p>Nous utilisons les données du CAC 40 du 01/03/1990 au 10/05/2024. Le CAC 40 (Cotation Assistée en Continu) est l’indice boursier le plus important de la Bourse de Paris. Son nom signifie que c’est un indice composé des 40 sociétés françaises les plus significatives et les plus liquides cotées sur Euronext Paris, qui est l’une des principales places boursières en Europe.</p>
-<div id="2fabb0b4" class="cell" data-execution_count="1">
+<div id="2fabb0b4" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Librairie où importer les données</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yfinance <span class="im">as</span> yf</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
@@ -280,7 +280,7 @@ window.Quarto = {
 R_{t} = \frac{P_{t}-P_{t-1}}{P_{t-1}}
 \]</span></p>
 <p>où <span class="math inline">\(P_{t}\)</span> est le prix de clôture à la date <span class="math inline">\(t\)</span>.</p>
-<div id="ffea1543" class="cell" data-execution_count="2">
+<div id="ffea1543" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>ts_data <span class="op">=</span> ts_data[[ <span class="st">'Close'</span>]]</span>
@@ -305,7 +305,7 @@ Date
 <section id="test-de-stationarité-du-log-rendement" class="level1">
 <h1>Test de stationarité du log-rendement</h1>
 <p>Pour utiliser le rendement comme variable profit et perte (PnL : Profit and Loss) pour impléter la VaR, nous devons tester sa stationarité. En effet, la stationarité est une propriété importante des séries temporelles financières. Une série temporelle est dite stationnaire si ses propriétés statistiques telles que la moyenne, la variance et la covariance restent constantes au fil du temps.</p>
-<div id="dc388db5" class="cell" data-execution_count="3">
+<div id="dc388db5" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -330,7 +330,7 @@ Date
 </div>
 </div>
 <p>Il semblerait que la série des rendements est stationnaire. Nous allons tout de même en observant l’ACF et le PACF mais aussi effectuer un test de stationarité pour confirmer cette hypothèse.</p>
-<div id="5542ed11" class="cell" data-execution_count="4">
+<div id="5542ed11" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.graphics.tsaplots <span class="im">import</span> plot_acf, plot_pacf</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plot_acf(ts_data[<span class="st">'Return'</span>].dropna(), ax<span class="op">=</span>ax[<span class="dv">0</span>],title<span class="op">=</span><span class="st">'ACF'</span>)</span>
@@ -350,7 +350,7 @@ Date
 H_0=\rho = 1, \alpha=0
 \]</span></p>
 <p>Dans le cas d’une série AR(1)(<span class="math inline">\(X_t = \alpha + \rho X_{t-1} + \xi_t\)</span>) avec intercept, la série est non stationnaire si <span class="math inline">\(\rho = 1\)</span> et stationnaire si $&lt; 1. Dans le cas contraire, il faudrait considérer la série de différences pour la rendre stationnaire.</p>
-<div id="217b9b9e" class="cell" data-execution_count="5">
+<div id="217b9b9e" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.stattools <span class="im">import</span> adfuller</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>adf_result <span class="op">=</span> adfuller(ts_data[<span class="st">'Return'</span>].dropna(), regression<span class="op">=</span><span class="st">'c'</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"ADF Statistic: </span><span class="sc">{</span><span class="bu">round</span>(adf_result[<span class="dv">0</span>],<span class="dv">2</span>)<span class="sc">}</span><span class="ss"> and p-value: </span><span class="sc">{</span>adf_result[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -363,7 +363,7 @@ H_0=\rho = 1, \alpha=0
 <section id="modélisation-de-la-var" class="level1">
 <h1>Modélisation de la VaR</h1>
 <p>Pour modéliser la VaR, nous considérons un échantillon d’apprentissage avec 75% (6513) des données et 25% (2172) pour l’échantillon de test.</p>
-<div id="ee8c922c" class="cell" data-execution_count="6">
+<div id="ee8c922c" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>train_size <span class="op">=</span> <span class="bu">int</span>(<span class="bu">len</span>(ts_data)<span class="op">*</span><span class="fl">0.75</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>test_size <span class="op">=</span> <span class="bu">len</span>(ts_data)<span class="op">-</span>train_size</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -383,7 +383,7 @@ Taille de l'ensemble de test : 2225</code></pre>
 VaR = -\mu_{PnL} + \Phi^{-1}(\alpha) \times \sigma_{PnL}
 \]</span> où <span class="math inline">\(\Phi^{-1}(\alpha)\)</span> est le quantile de la distribution normale du PnL (Profit and Loss) à <span class="math inline">\(\alpha\)</span>.</p>
 <p>Pour ce faire, nous allons tester que les rendements suivent une loi normale. Nous utiliserons le test de Shapiro (<code>shapiro</code> dans la librairie <code>scipy.stats</code>) dont l’hypothèse nulle est que la population étudiée suit une distribution normale.</p>
-<div id="d8c9bf2e" class="cell" data-execution_count="7">
+<div id="d8c9bf2e" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>stats.shapiro(train_close[<span class="st">"Return"</span>]).pvalue</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
@@ -391,7 +391,7 @@ VaR = -\mu_{PnL} + \Phi^{-1}(\alpha) \times \sigma_{PnL}
 </div>
 </div>
 <p>Nous obtenons une pvaleur quasiment nulle donc nous rejettons l’hypothèse de la distribution normale de nos rendements. Celà est plus visible avec le QQ-plot ci dessous qui montre clairement que les queues de distribution du rendement ne suit pas une loi normale.</p>
-<div id="871642f2" class="cell" data-execution_count="8">
+<div id="871642f2" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Analyse graphique avec le QQ-plot</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>probplot <span class="op">=</span> stats.probplot(train_close[<span class="st">"Return"</span>], </span>
@@ -410,7 +410,7 @@ VaR = -\mu_{PnL} + \Phi^{-1}(\alpha) \times \sigma_{PnL}
 </div>
 </div>
 </div>
-<div id="26e5e92e" class="cell" data-execution_count="9">
+<div id="26e5e92e" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gaussian_var(PnL, seuil):</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    mean_PnL <span class="op">=</span> np.mean(PnL)</span>
@@ -428,7 +428,7 @@ VaR = -\mu_{PnL} + \Phi^{-1}(\alpha) \times \sigma_{PnL}
 </div>
 <p>La VaR à horizon 1 jour est de 0.0324, ce qui signifie que la perte maximale en terme de rendements du portefeuille est de 3.24% en un jour.</p>
 <p>Sur 10 jours, la VaR est de <span class="math inline">\(VaR_{1j} \times \sqrt{10}=\)</span> 10.24%. Pour le visualiser sur la distribution des rendements, nous avons le graphique ci-dessous :</p>
-<div id="f5d1ae7e" class="cell" data-execution_count="10">
+<div id="f5d1ae7e" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot histogram of returns</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.hist(train_close[<span class="st">"Return"</span>], bins<span class="op">=</span><span class="dv">50</span>, density<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.7</span>,color<span class="op">=</span><span class="st">"grey"</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -460,7 +460,7 @@ VaR = -\mu_{PnL} + \Phi^{-1}(\alpha) \times \sigma_{PnL}
 <h3 class="anchored" data-anchor-id="backtesting">Backtesting</h3>
 <p>Pour backtester la VaR, nous allons comparer dans l’échantillon test les rendements avec la VaR à horizon 1 jour. Si le rendement est inférieur à l’opposé de la VaR gaussienne, alors la VaR est violée et celà correspond à une exception.</p>
 <p>Ci dessous, le graphique qui permet de visualiser le nombre d’exceptions que nous comptabilisons sur nos données test.</p>
-<div id="93fe64a0" class="cell" data-execution_count="11">
+<div id="93fe64a0" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plt.plot(ts_data.index[<span class="dv">0</span>:train_size], train_close[<span class="st">'Return'</span>], label<span class="op">=</span><span class="st">"historical train returns"</span>, color <span class="op">=</span> <span class="st">'gray'</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>plt.plot(ts_data.index[train_size:], test_close[<span class="st">'Return'</span>], label<span class="op">=</span><span class="st">"historical test returns"</span>, color <span class="op">=</span> <span class="st">'blue'</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>plt.plot(ts_data.index[train_size:], [<span class="op">-</span>VaR_gaussienne <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(test_size)], label<span class="op">=</span><span class="st">"gaussian VaR"</span>, color <span class="op">=</span> <span class="st">'red'</span>)</span>
@@ -480,14 +480,14 @@ VaR = -\mu_{PnL} + \Phi^{-1}(\alpha) \times \sigma_{PnL}
 </div>
 </div>
 <p>Nous pouvons compter le nombre d’exceptions pour la VaR à horizon 1 jour qui est égale à 30 et en déduisons que le taux d’exception est 1.38%.</p>
-<div id="ed87ba43" class="cell" data-execution_count="12">
+<div id="ed87ba43" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>((<span class="bu">len</span>(list_exceptions_gaus)<span class="op">/</span>test_size)<span class="op">*</span><span class="dv">100</span>,<span class="dv">2</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>1.12</code></pre>
 </div>
 </div>
 <p>Pour tester la pertinence de la VaR calculée, il faudrait idéalement que le taux d’exception soit inférieur à 1%. Pour ce faire, nous pouvons effectuer un test de proportion. Nous utiliserons la fonction <code>stats.binomtest</code> pour effectuer ce test.</p>
-<div id="234028a7" class="cell" data-execution_count="13">
+<div id="234028a7" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ptest(p0,n,k) :</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  variance<span class="op">=</span>p0<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p0)<span class="op">/</span>n</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  p<span class="op">=</span>(k<span class="op">/</span>n)</span>
@@ -509,7 +509,7 @@ VaR = -\mu_{PnL} + \Phi^{-1}(\alpha) \times \sigma_{PnL}
 <p>La VaR historique est basée sur les rendements historiques. Elle est définie comme l’opposé du quantile de niveau <span class="math inline">\(1-\alpha\)</span> des rendements historiques.</p>
 <p>Considérons les mouvements de prix quotidiens pour l’indice CAC40 au cours des 6513 jours de trading. Nous avons donc 6513 scénarios ou cas qui serviront de guide pour les performances futures de l’indice, c’est-à-dire que les 6513 derniers jours seront représentatifs de ce qui se passera demain.</p>
 <p>Ainsi donc la VaR historique pour un horizon de 1jour à 99% correspond au 1er percentile de la distribution de probabilité des rendements quotidiens (le top 1% des pires rendements).</p>
-<div id="7e0d943b" class="cell" data-execution_count="14">
+<div id="7e0d943b" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> historical_var(PnL, seuil):</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.percentile(PnL, (<span class="dv">1</span> <span class="op">-</span> seuil) <span class="op">*</span> <span class="dv">100</span>)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -520,7 +520,7 @@ VaR = -\mu_{PnL} + \Phi^{-1}(\alpha) \times \sigma_{PnL}
 </div>
 </div>
 <p>Nous en déduisons que la perte maximale en terme de rendements du portefeuille est de 3.96% en un jour (soit 12.52% en 10jours)</p>
-<div id="4ebd38cc" class="cell" data-execution_count="15">
+<div id="4ebd38cc" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot histogram of returns</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>plt.hist(train_close[<span class="st">"Return"</span>], bins<span class="op">=</span><span class="dv">50</span>, density<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.7</span>,color<span class="op">=</span><span class="st">"grey"</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -550,7 +550,7 @@ VaR = -\mu_{PnL} + \Phi^{-1}(\alpha) \times \sigma_{PnL}
 <section id="backtesting-1" class="level3">
 <h3 class="anchored" data-anchor-id="backtesting-1">Backtesting</h3>
 <p>En ce qui concerne le backtesting, nous pouvons voir que la VaR historique est beaucoup moins violée dans l’échantillon test que la VaR gaussienne. Le taux d’exception est de 0.64%.</p>
-<div id="52e74195" class="cell" data-execution_count="16">
+<div id="52e74195" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>plt.plot(ts_data.index[<span class="dv">0</span>:train_size], train_close[<span class="st">'Return'</span>], label<span class="op">=</span><span class="st">"historical train returns"</span>, color <span class="op">=</span> <span class="st">'gray'</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>plt.plot(ts_data.index[train_size:], test_close[<span class="st">'Return'</span>], label<span class="op">=</span><span class="st">"historical test returns"</span>, color <span class="op">=</span> <span class="st">'blue'</span>)</span>
@@ -571,7 +571,7 @@ VaR = -\mu_{PnL} + \Phi^{-1}(\alpha) \times \sigma_{PnL}
 </div>
 </div>
 <p>Nous pouvons compter le nombre d’exceptions pour la VaR à horizon 1 jour qui est égale à 14 et en déduisons que le taux d’exception est 0.64%. Ce taux d’exception est statistiquement supérieur à 1% (car la pvaleur est d’environ 0.95). Ainsi, la VaR historique est performante pour la période considérée.</p>
-<div id="0a4c2dd9" class="cell" data-execution_count="17">
+<div id="0a4c2dd9" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>((<span class="bu">len</span>(list_exceptions_hist)<span class="op">/</span>test_size)<span class="op">*</span><span class="dv">100</span>,<span class="dv">2</span>) </span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>ptest(<span class="fl">0.01</span>,test_size,<span class="bu">len</span>(list_exceptions_hist))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
@@ -583,7 +583,7 @@ VaR = -\mu_{PnL} + \Phi^{-1}(\alpha) \times \sigma_{PnL}
 <section id="var-monte-carlo" class="level2">
 <h2 class="anchored" data-anchor-id="var-monte-carlo">VaR Monte Carlo</h2>
 <p>La VaR Monte Carlo est basée sur la simulation de trajectoires de rendements. Nous allons simuler jusqu’à 10000 scénarios de rendements et calculer la VaR à horizon 1 jour en posant une hypothèse de normalité sur la distribution des rendements afin de voir quand est ce que la VaR se stabilise.</p>
-<div id="2ddbd691" class="cell" data-execution_count="18">
+<div id="2ddbd691" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>VaR_results <span class="op">=</span> []</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>num_simulations_list <span class="op">=</span> <span class="bu">range</span>(<span class="dv">10</span>, <span class="dv">10000</span> <span class="op">+</span> <span class="dv">1</span>, <span class="dv">1</span>)</span>
@@ -614,7 +614,7 @@ VaR = -\mu_{PnL} + \Phi^{-1}(\alpha) \times \sigma_{PnL}
 <span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>  VaR_results.append(VaR_monte_carlo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ea599c8a" class="cell" data-execution_count="19">
+<div id="ea599c8a" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the results</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>plt.xticks(np.arange(<span class="dv">0</span>,<span class="dv">10000</span> <span class="op">+</span> <span class="dv">1</span>, <span class="dv">1000</span>))</span>
@@ -634,7 +634,7 @@ VaR = -\mu_{PnL} + \Phi^{-1}(\alpha) \times \sigma_{PnL}
 </div>
 </div>
 <p>Visuellement, la VaR se stabilise à partir de 3000 scénarios. Nous utiliserons donc 3000 simulations de rendements. Nous en déduisons que la perte maximale en terme de rendements du portefeuille est de 4.31% en un jour (soit 13.98% en 10jours)</p>
-<div id="d2db175c" class="cell" data-execution_count="20">
+<div id="d2db175c" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>num_simulations <span class="op">=</span> <span class="dv">3000</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate random scenarios of future returns</span></span>
@@ -663,7 +663,7 @@ VaR = -\mu_{PnL} + \Phi^{-1}(\alpha) \times \sigma_{PnL}
 <pre><code>np.float64(0.04525343549844288)</code></pre>
 </div>
 </div>
-<div id="79028e07" class="cell" data-execution_count="21">
+<div id="79028e07" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot histogram of returns</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>plt.hist(portfolio_returns, bins<span class="op">=</span><span class="dv">50</span>, density<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.7</span>,color<span class="op">=</span><span class="st">"grey"</span>)</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -693,7 +693,7 @@ VaR = -\mu_{PnL} + \Phi^{-1}(\alpha) \times \sigma_{PnL}
 <section id="backtesting-2" class="level3">
 <h3 class="anchored" data-anchor-id="backtesting-2">Backtesting</h3>
 <p>En ce qui concerne le backtesting, nous pouvons voir que la VaR historique est beaucoup moins violée dans l’échantillon test que les deux autres VaRs. En effet, le taux d’exception est de 0.37%.</p>
-<div id="5199dde2" class="cell" data-execution_count="22">
+<div id="5199dde2" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>plt.plot(ts_data.index[<span class="dv">0</span>:train_size], train_close[<span class="st">'Return'</span>], label<span class="op">=</span><span class="st">"historical train log returns"</span>, color <span class="op">=</span> <span class="st">'gray'</span>)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>plt.plot(ts_data.index[train_size:], test_close[<span class="st">'Return'</span>], label<span class="op">=</span><span class="st">"historical test log returns"</span>, color <span class="op">=</span> <span class="st">'blue'</span>)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>plt.plot(ts_data.index[train_size:], [<span class="op">-</span>VaR_monte_carlo <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(test_size)], label<span class="op">=</span><span class="st">"Non parametric Bootstrap VaR"</span>, color <span class="op">=</span> <span class="st">'red'</span>)</span>
@@ -713,7 +713,7 @@ VaR = -\mu_{PnL} + \Phi^{-1}(\alpha) \times \sigma_{PnL}
 </div>
 </div>
 <p>Ce taux est statistiquement inférieur à 1% ce qui temoigne de la performance de la VaR monte carlo.</p>
-<div id="453e0800" class="cell" data-execution_count="23">
+<div id="453e0800" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>((<span class="bu">len</span>(list_exceptions_np_boot)<span class="op">/</span>test_size)<span class="op">*</span><span class="dv">100</span>,<span class="dv">2</span>) </span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>ptest(<span class="fl">0.01</span>,test_size,<span class="bu">len</span>(list_exceptions_np_boot))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
@@ -726,7 +726,7 @@ VaR = -\mu_{PnL} + \Phi^{-1}(\alpha) \times \sigma_{PnL}
 <section id="comparaison-des-vars" class="level1">
 <h1>Comparaison des VaRs</h1>
 <p>Comme on peut le constater, les différentes méthodes d’implémentations de VaR donnent des résultats différents. Toutefois, la VaR la plus performante est la VaR monte carlo en faisant l’hypothèse de distribution normale des rendements.</p>
-<div id="e195f730" class="cell" data-execution_count="24">
+<div id="e195f730" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the VaR values</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Parametric VaR: </span><span class="sc">{</span>VaR_gaussienne<span class="sc">:.2%}</span><span class="ss">, Pvalue du backtesting: </span><span class="sc">{</span>ptest(<span class="fl">0.01</span>, test_size, <span class="bu">len</span>(list_exceptions_gaus))<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Historical VaR: </span><span class="sc">{</span>VaR_historique<span class="sc">:.2%}</span><span class="ss">, Pvalue du backtesting: </span><span class="sc">{</span>ptest(<span class="fl">0.01</span>, test_size, <span class="bu">len</span>(list_exceptions_hist))<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
