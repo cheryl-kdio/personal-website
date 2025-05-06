@@ -44,6 +44,11 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 
 :::
 
+## Assets
+::: {.blog-section}
+- [Introduction aux marchés financiers](00_Assets/markets_intro.qmd)
+:::
+
 ### Asset management
 ::: {.blog-section}
 - [Risque de marché](3A/gestion_actifs/TP-1.qmd)
