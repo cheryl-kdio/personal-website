@@ -87,5 +87,9 @@ h3 {
   text-decoration: underline;
 }
 
-
-
+.center-table table {
+  width: 50%;
+  align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
