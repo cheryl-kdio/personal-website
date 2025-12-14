@@ -2,22 +2,23 @@
 title: ""
 ---
 
+<div class="postcard-grid">
+
 # Gestion des risques
-
-
 ::: {.callout-note}
 Compte tenu de ma spécialisation en gestion des risques, les contenus que je prévois de partager dans cette section dédiée à la 3ème année (3A) porteront principalement sur les enseignements spécifiques à cette spécialisation. Je m'efforcerai de rendre ces partages aussi pertinents et enrichissants que possible, en espérant qu'ils serviront de guide précieux pour ceux qui suivront une voie similaire.
 :::
 
 
-### Analyse financière
-::: {.blog-section}
+::: {.postcard}
+## Analyse financière
 - [Construction du bilan d'entreprise](3A/bilan_entreprise.qmd)
 - [Reglementation prudentielle  **TO REWRITE**](3A/reglementation_prudentielle.qmd)
 :::
 
-### Risques financiers
-::: {.blog-section}
+::: {.postcard}
+## Risques financiers
+
 - [Définition du risque financier](3A/risque_def.qmd)
 - [Value-at-risk (VaR)](3A/value-at-risk/var_def.qmd) :
     - [Définition de la VaR](3A/value-at-risk/var_def.qmd)
@@ -28,12 +29,9 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
     - [Estimation de la CreditVaR à l'aide de la théorie des copules](3A/value-at-risk/pj_copules.qmd)
 :::
 
-### Scoring
-::: {.blog-section}
-::: 
 
-### Calibrations de processus stochastique
-::: {.blog-section}
+::: {.postcard}
+## Calibrations de processus stochastique
 - [Calibration avec le modèle de black-scholes](3A/proc_stochastique/modele_bs.qmd)
 - [Calibration du modèle à volatilité stochastique de Taylor - Filtre de Kalman](3A/proc_stochastique/modele_log_sv-part1.qmd)
 - [Calibration du modèle à volatilité stochastique de Taylor - Filtre particulaire bootstrap](3A/proc_stochastique/modele_log_sv-part2.qmd)
@@ -44,35 +42,33 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 
 :::
 
+::: {.postcard}
 ## Assets
-::: {.blog-section}
-- [Introduction aux marchés financiers](00_Assets/markets_intro.qmd)
-:::
+- [Bond, Forward, Future, Swaps : Qu'est ce que c'est?](00_Assets/markets_intro.qmd)
 
-### Asset management
-::: {.blog-section}
+**Asset management**
+
 - [Risque de marché](3A/gestion_actifs/TP-1.qmd)
 - [Risque de liquidité](3A/gestion_actifs/TP-2.qmd)
 - [Risque de valorisation, de crédit etc.](3A/gestion_actifs/TP-3.qmd)
-:::
 
-### Asset pricing
-::: {.blog-section}
+**Asset pricing**
+
 - [Pricing d'options vanilles  **TO DO**]()
 - [Pricing de taux, swap, d'obligations  **TO DO**]()
 - [Tracking error  **TO DO**]()
 - [Construction de portefeuille markowitz  **TO DO**]()
 :::
 
-### Autres sujets 
-::: {.blog-section}
+::: {.postcard}
+## Autres sujets 
 -   [Investissement socialement responsable](autres/ISR.qmd)
 -   [Finance durable](autres/finance_durable.qmd)
 -   [Corrélation de spearman vs Corrélation de pearson](autres/spearman-pearson.qmd)
 :::
 
+::: {.postcard}
 ## Projets et applications déployées
-::: {.blog-section}
 
 **Projets**
 
@@ -86,3 +82,5 @@ Compte tenu de ma spécialisation en gestion des risques, les contenus que je pr
 - [Stock price prediction : CAC40](https://cac40forecast.streamlit.app/)
 - [Asset pricing and management](https://github.com/Niyo-D-JC/Asset-Pricing-and-Management)
 :::
+
+</div>

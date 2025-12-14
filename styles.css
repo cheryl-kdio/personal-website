@@ -1,27 +1,21 @@
-/* css styles */
+/* GLOBAL FONT */
 body {
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Inter", sans-serif;
 }
 
-/* .quarto-title > h1.title {
-    opacity: 0 !important;
-  } */
+/* RESPONSIVE IMAGES */
+img {
+  max-width: 100%;
+  height: auto;
+}
 
-.box{
-    float:left;
-    background-color:rgba(238, 237, 237, 0.766); 
-    margin:25px 15px;
-    padding:15px 15px ;
-    border-radius:5px;
-  }
-
+/* FLEX CONTAINER */
 .container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Default layout for larger screens */
 .container ul {
   list-style-type: none;
   margin-right: 20px;
@@ -33,53 +27,54 @@ body {
   height: 250px;
 }
 
-/* Media query for phones (768px and below) */
+/* PHONES */
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
   }
-  
+
   .container ul {
-    text-align: left;
     margin-right: 0;
   }
-  
-  .container img {
-    margin-top: 20px;
-  }
 }
 
-h1,
-h2,
-h3,
-h4 {
-  margin: 0.1rem 0;
+/* HEADINGS */
+h1, h2, h3, h4 {
+  margin: 0.2rem 0;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
-h1 {
-  font-size: 1.5rem;
+h1 { font-size: 2.1rem; }
+h2 { font-size: 1.6rem; padding-left: 20px; }
+h3 { font-size: 1.25rem; padding-left: 40px; }
+
+/* SECTION SPACING */
+section, .content-block {
+  margin-bottom: 2rem;
 }
 
-h2 {
-  font-size: 1.2rem;
-  padding-left: 20px;
+/* BOX STYLING */
+.box {
+  float: left;
+  background-color: var(--quarto-bg-light);
+  margin: 25px 15px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-h3 {
-  font-size: 1rem;
-  padding-left: 40px;
-}
-
+/* BLOG SECTION */
 .blog-section {
-  background-color: rgba(183, 182, 182, 0.342);  /* Fond légèrement gris */
+  background-color: var(--quarto-bg-light);
   padding: 15px;
   margin-bottom: 20px;
   border-radius: 8px;
-  border-left: 5px solid #007bff; /* Barre colorée pour différencier les sections */
+  border-left: 5px solid var(--quarto-color-primary);
 }
 
 .blog-section a {
-  color: black; /* Liens en bleu */
+  color: var(--quarto-color-primary);
   text-decoration: none;
 }
 
@@ -87,9 +82,215 @@ h3 {
   text-decoration: underline;
 }
 
+/* TABLE CENTERING */
 .center-table table {
   width: 50%;
-  align: center;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* SMOOTH SCROLL */
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+/* CARD CONTAINER */
+
+/* CUSTOM CARD COLORS */
+/* Reduce card size in Quarto listings */
+.quarto-grid-item {
+  flex: 0 0 380px ;  /* base card width */
+  max-width: 380px ;
+  margin: 1px ;
+}
+
+
+
+
+:root {
+  --card-bg-light: #f8f9fa;  /* light grey, elegant */
+}
+
+
+.card {
+  background: var(--card-bg-light);
+  color: var(--quarto-text);
+  border-radius: 14px;
+  padding: 24px;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+/* HOVER EFFECT */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.12);
+  border-color: var(--quarto-color-primary);
+  background: var(--quarto-bg);           /* subtle change for hover */
+}
+
+/* CARD TITLE */
+.card h2,
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: var(--quarto-color-primary);
+}
+
+/* CARD TEXT */
+.card p {
+  margin: 0 0 12px 0;
+  line-height: 1.55;
+  color: var(--quarto-text);
+}
+
+/* LINKS */
+.card a {
+  color: var(--quarto-color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+/* CARD IMAGE */
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* TAGS / BADGES */
+.card .tag {
+  display: inline-block;
+  background: var(--quarto-color-primary);
+  color: white;
+  padding: 4px 10px;
+  margin-right: 6px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  margin-bottom: 12px;
+}
+
+
+/* -----------------------------------------------------------
+   POSTCARD GRID LAYOUT
+   ----------------------------------------------------------- */
+
+.postcard-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;            /* spacing between postcards */
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Postcard card */
+.postcard {
+  background: var(--card-bg, var(--quarto-bg-light));
+  border-radius: 14px;
+  padding: 20px 24px;
+  width: 320px;         /* postcard width */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+  border-left: 4px solid var(--quarto-color-primary);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover effect */
+.postcard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+}
+
+/* Postcard title */
+.postcard h2 {
+  font-size: 1.25rem;
+  margin-top: 0;
+  color: var(--quarto-color-primary);
+  margin-bottom: 10px;
+}
+
+/* Lists inside postcards */
+.postcard ul,
+.postcard li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.postcard a {
+  color: var(--quarto-text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.postcard a:hover {
+  color: var(--quarto-color-primary);
+  text-decoration: underline;
+}
+
+/* Dark mode adaptation */
+:root.quarto-dark .postcard {
+  background: #1f1f1f;
+  border-left-color: var(--quarto-color-primary);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.45);
+}
+
+
+/* ============================================
+   BULLET POINT IMPROVEMENT INSIDE POSTCARDS
+   ============================================ */
+
+/* Remove default spacing + indentation */
+.postcard ul,
+.postcard li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Custom bullet style */
+.postcard li {
+  position: relative;
+  padding-left: 18px;          /* indent bullet */
+  margin-bottom: 6px;          /* spacing between items */
+  line-height: 1.45;
+  font-size: 0.97rem;
+}
+
+/* Modern round bullet */
+.postcard li::before {
+  content: "➢";
+  background: none;
+  font-size: 1rem;
+  color: var(--quarto-color-primary);
+  left: 0;
+  top: 0.15rem;
+}
+/* Links inside bullets */
+.postcard a {
+  color: var(--quarto-text);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.postcard a:hover {
+  text-decoration: underline;
+  color: var(--quarto-color-primary);
+}
+
+/* Dark mode adjustments */
+:root.quarto-dark .postcard li::before {
+  background-color: var(--quarto-color-primary);
 }

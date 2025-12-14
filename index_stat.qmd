@@ -2,23 +2,32 @@
 title: ""
 ---
 
-# Théorie des valeurs extrêmes
-::: {.blog-section}
+<div class="postcard-grid">
+
+# Statistiques
+::: {.callout-note}
+Les contenus partagés dans cette section dédiée à la 2ᵉ année (2A) mettront principalement en avant les enseignements spécifiques de ce niveau. Je m’efforcerai de les rendre aussi pertinents et enrichissants que possible, en espérant qu’ils constituent un repère utile pour celles et ceux qui suivront un parcours similaire.
+:::
+
+::: {.postcard}
+## Théorie des valeurs extrêmes
 - [Résumé de la théorie des valeurs extrêmes](3A/EVT/EVT_resume.pdf)
 :::
 
-# Microéconométrie appliquée
-::: {.blog-section}
+::: {.postcard}
+## Microéconométrie appliquée
 - [Résumé des méthodes de microéconométrie appliquée enseignées à la promo 2024-2025 ENSAI](2A/Courses.pdf)
 :::
 
-# Apprentissage supervisé
-::: {.blog-section}
+::: {.postcard}
+## Apprentissage supervisé
 - [Régression linéaire](2A/App_sup/reg_lin.qmd)
-- [Kernel Trick and Support Vector Machines (SVM)](3A/Apprentisage-stat/Tp2.qmd)
-- [Gradient boosting](3A/Apprentisage-stat/Tp3.qmd)
-- [Feature selection](3A/Apprentisage-stat/Tp4.qmd)
-- [Régression ridge et lasso](3A/Apprentisage-stat/Tp1.qmd)
+- [Kernel Trick & SVM](3A/Apprentisage-stat/Tp2.qmd)
+- [Gradient Boosting](3A/Apprentisage-stat/Tp3.qmd)
+- [Feature Selection](3A/Apprentisage-stat/Tp4.qmd)
+- [Régression Ridge & Lasso](3A/Apprentisage-stat/Tp1.qmd)
 - [CART & Random Forest](2A/App_sup/arbres_&_forets_aleatoires.html)
 :::
+
+</div>
 

@@ -18,12 +18,18 @@ website:
     left:
       - href: index.qmd
         text: Accueil
-      - href: index_stat.qmd
-        text: Modélisation stat.
-      # - text: Gestion des risques
+      - text: ENSAI
+        menu:
+          - href: index_stat.qmd
+            text: Statistiques - Ensai 2A 
+          - href: index_gdr.qmd
+            text: Gestion des risques bancaires
+      - text: M2MO
         # menu:
-      - href: index_gdr.qmd
-        text: Gestion des risques
+          # - href: index_stat.qmd
+          #   text: Statistiques - Ensai 2A 
+          # - href: index_gdr.qmd
+          #   text: Gestion des risques bancaires
       - href: about.qmd
         text: À propos
 
@@ -32,16 +38,15 @@ website:
 format:
   html:
     page-layout: full
-    code-fold: false
+    code-fold: true
     code-summary: "Show the code"
     theme:
       light: flat
-      dark: superhero
     css: styles.css
     toc: true
     toc-location: left
     toc-title: "Sommaire"
     df-print: kable    
-  ipynb: default
+  # ipynb: default
   # pdf: default
 

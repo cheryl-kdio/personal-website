@@ -13,21 +13,45 @@ about:
     - icon: linkedin
       text: Linkedin
       href: https://www.linkedin.com/in/cheryl-kouadio-251815206/
-    - icon: medium
-      text: Medium
-      href : https://medium.com/@cheryl.s.kouadio
     - icon: file-pdf
-      text: CV (Français)
-      href: CV/CV_Cheryl_KOUADIO___3A-fr.pdf
-    - icon: file-pdf
-      text: CV (English)
-      href: CV/CV_Cheryl_KOUADIO___3A-en.pdf
+      text: CV
+      href: CV/CV_Cheryl_KOUADIO___3A.pdf
+
 ---
 
-Je suis Cheryl Kouadio, étudiante en gestion des risques bancaires à l'ENSAI. Je me spécialise dans la modélisation des risques financiers, en particulier les risques de marché et de crédit, ainsi que dans l'étude des normes financières, comptables et réglementaires encadrant le système bancaire (Bâle III, IFRS 9, etc.).
 
-Ce site web, conçu et généré avec Quarto, s'adresse principalement aux étudiants de l'ENSAI et a pour vocation d'offrir un soutien à ceux qui, comme moi, ont été confrontés à des défis académiques au cours de leur formation, notamment en deuxième et troisième année. Il ne prétend en aucun cas se substituer à l'enseignement dispensé par nos professeurs, dont la rigueur et l'expertise sont essentielles. Son objectif est plutôt de compléter leur travail en partageant mes expériences personnelles et les projets que j'ai réalisés.
 
-Au-delà de son utilité pour les étudiants, ce site constitue également une ressource précieuse pour les professionnels souhaitant revisiter certains concepts clés en gestion des risques ou même en statistiques. Il propose des exemples concrets et des pistes de réflexion adaptées aux problématiques actuelles, afin d'aider chacun à mieux appréhender ses projets et à relever ses propres défis académiques et professionnels.
+:::{#hero-heading}
+
+
+## Formation
+
+**Université Paris Cité – Paris**  
+*Master 2 – Modélisation Aléatoire (M2MO), Ex-DEA Laure Elie | Sept. 2025 – Sept. 2026*  
+Spécialisation : Finance quantitative, probabilités avancées, statistiques, et modélisation stochastique  
+
+**ENSAI – École Nationale de la Statistique et de l’Analyse de l’Information – Rennes**  
+*Diplôme d’ingénieur en statistiques (grade de master) | Sept. 2022 – Sept. 2025*  
+Spécialisation : Gestion des risques et ingénierie financière  
+
+
+
+## Experiences
+
+**Société Générale – RISQ/MDL/MOD**  
+*Stagiaire analyste quantitatif – IFRS 9 | Avril 2025 - Aout 2025*
+
+**INSERM**  
+*Stagiaire recherche – Mixture cure models | Mai 2024 - Aout 2024*
+
+::: {.callout-note}
+Ce site web, conçu et généré avec Quarto, s'adresse principalement aux étudiants de l'ENSAI et du M2MO et a pour vocation d'offrir un soutien à ceux qui, comme moi, ont été confrontés à des défis académiques au cours de leur formation. Il ne prétend en aucun cas se substituer à l'enseignement dispensé par nos professeurs, dont la rigueur et l'expertise sont essentielles. Son objectif est plutôt de compléter leur travail en partageant mes expériences personnelles et les projets que j'ai réalisés.
+:::
+
+:::
+
+
+
+
 
 

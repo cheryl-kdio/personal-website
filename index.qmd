@@ -9,4 +9,5 @@ listing:
   image-placeholder: img/placeholder.jpg
   fields: [image, date, title, author, reading-time,description]
   categories: false
+  page-size: 6
 ---
