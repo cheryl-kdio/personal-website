@@ -73,12 +73,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-79108a0fc1995748cbd19a5b0e3e3e7c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-fdf986989e2058d46a90f864900247d8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-79108a0fc1995748cbd19a5b0e3e3e7c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -164,13 +162,25 @@ window.Quarto = {
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Accueil</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../index_stat.html"> 
-<span class="menu-text">Modélisation stat.</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ensai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">ENSAI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ensai">    
+        <li>
+    <a class="dropdown-item" href="../../index_stat.html">
+ <span class="dropdown-text">Statistiques - Ensai 2A</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../index_gdr.html">
+ <span class="dropdown-text">Gestion des risques bancaires</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../index_gdr.html"> 
-<span class="menu-text">Gestion des risques</span></a>
+    <span class="nav-link">
+<span class="menu-text">M2MO</span>
+    </span>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
@@ -179,7 +189,6 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -205,7 +214,7 @@ window.Quarto = {
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="TP-2.ipynb" download="TP-2.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -301,6 +310,8 @@ Q_i = 1.5 \times \text{randn}() \times \text{ADV}_{3M}^{(i)},
 <section id="récupération-des-données" class="level3">
 <h3 class="anchored" data-anchor-id="récupération-des-données">Récupération des données</h3>
 <div id="76ec34aa" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#------------------------------------#</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#---------- Package Imports ---------#</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#------------------------------------#</span></span>
@@ -312,8 +323,11 @@ Q_i = 1.5 \times \text{randn}() \times \text{ADV}_{3M}^{(i)},
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="950cbc4a" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_data(start_date, end_date, index_ticker, tickers, column<span class="op">=</span><span class="st">"Close"</span>):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Extraction de prix de clôture d'actions</span></span>
@@ -350,14 +364,18 @@ Q_i = 1.5 \times \text{randn}() \times \text{ADV}_{3M}^{(i)},
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>assets_ticker  <span class="op">=</span> <span class="bu">list</span>(selected_assets.keys())</span>
 <span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> get_data(start_date,end_date, index, assets_ticker, column<span class="op">=</span><span class="st">"Volume"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>[                       0%                       ][                       0%                       ][                       0%                       ][                       0%                       ][**********************50%                       ]  5 of 10 completed[**********************50%                       ]  5 of 10 completed[**********************50%                       ]  5 of 10 completed[**********************80%*************          ]  8 of 10 completed[**********************90%******************     ]  9 of 10 completed[*********************100%***********************]  10 of 10 completed
 [*********************100%***********************]  1 of 1 completed</code></pre>
 </div>
 </div>
 <div id="ea7d4b72" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>portfolio_data <span class="op">=</span> data[<span class="st">"portfolio_data"</span>]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>portfolio_data.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
@@ -469,6 +487,8 @@ Q_i = 1.5 \times \text{randn}() \times \text{ADV}_{3M}^{(i)},
 <p>où <span class="math inline">\(V_i\)</span> est le volume échangé le jour <span class="math inline">\(i\)</span>, et <span class="math inline">\(n\)</span> est le nombre de jours sur la période considérée.</p>
 <p>Dans le code ci-dessous, nous avons calculé l’ADV sur 3 mois pour chaque actif du portefeuille. Nous constatons que l’actif le plus liquide est <strong>Orange</strong>, avec un ADV d’environ 7,7 million d’actions échangées par jour, tandis que l’actif le moins liquide est <strong>Thales</strong>, avec un ADV d’environ 0,4 million d’actions échangées par jour. De ce fait, durant ces trois mois, l’action Orange a été plus plus liquide que l’action Thales.</p>
 <div id="25eb5e10" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#---------------------#</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul des ADV 3Mois#</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#---------------------#</span></span>
@@ -480,6 +500,7 @@ Q_i = 1.5 \times \text{randn}() \times \text{ADV}_{3M}^{(i)},
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># trier par ADV</span></span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ADV.sort_values(by<span class="op">=</span><span class="st">'ADV'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
@@ -544,10 +565,13 @@ Q_i = 1.5 \times \text{randn}() \times \text{ADV}_{3M}^{(i)},
 \]</span></p>
 <p>Cette formule sert à simuler un portefeuille réaliste où les tailles de position sont ajustées à la liquidité de chaque actif, avec une variabilité aléatoire maîtrisée. Elle est simple, mais très utile pour tester des hypothèses de liquidation, de stress, ou de concentration.</p>
 <div id="253c36fc" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Génération des quantités</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ADV[<span class="st">"Quantity"</span>] <span class="op">=</span>  <span class="bu">round</span>(<span class="fl">1.5</span> <span class="op">*</span> np.random.rand(<span class="bu">len</span>(ADV[<span class="st">"ADV"</span>])) <span class="op">*</span> ADV[<span class="st">"ADV"</span>])</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ADV</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
@@ -627,6 +651,8 @@ ADV 3M \times 0.2
 \]</span></p>
 <p>Ce nombre de jours est généralement arrondi à l’entier supérieur et flooré à 1. Plus ce nombre est élevé, plus la liquidation sera longue, et plus le risque de marché sera élevé. En effet, plus la liquidation est longue, plus le risque de marché est élevé, car il y a plus de chances que le prix de l’actif évolue entre le moment où l’investisseur décide de liquider et le moment où la liquidation est terminée.</p>
 <div id="371eee8e" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quantité liquidable en 1 jour</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>market_depth <span class="op">=</span> <span class="dv">20</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ADV[<span class="st">"Quantity in 1day"</span>] <span class="op">=</span> <span class="bu">round</span>(ADV[<span class="st">"ADV"</span>] <span class="op">*</span> market_depth)</span>
@@ -637,6 +663,7 @@ ADV 3M \times 0.2
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># floor to 1 and round</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>ADV[<span class="st">"Days of liquidation"</span>] <span class="op">=</span> ADV[<span class="st">"Days of liquidation"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="bu">max</span>(<span class="dv">1</span>, <span class="bu">round</span>(x)))</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>ADV</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
@@ -729,8 +756,11 @@ ADV 3M \times 0.2
 </div>
 </div>
 <div id="b97f1789" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>time_elapsed <span class="op">=</span> ADV[<span class="st">'Days of liquidation'</span>].<span class="bu">max</span>()</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Temps de liquidation du portefeuille : </span><span class="sc">{</span>time_elapsed<span class="sc">}</span><span class="ss"> jours"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Temps de liquidation du portefeuille : 7 jours</code></pre>
 </div>
@@ -753,6 +783,8 @@ ADV 3M \times 0.2
 <p>💡 Par convention, le jour 0 correspond à la quantité initialement détenue dans le portefeuille, avant toute opération de liquidation.</p>
 </blockquote>
 <div id="c97ce661" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#---------------------------#</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Liquidation du portefeuille</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#---------------------------#</span></span>
@@ -776,6 +808,7 @@ ADV 3M \times 0.2
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>liquidation_df.columns <span class="op">=</span> [<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(quantity_liquidated_per_day))]</span>
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>liquidation_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
@@ -923,6 +956,8 @@ ADV 3M \times 0.2
 </div>
 </div>
 <div id="28e0d056" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>end_date <span class="op">=</span> datetime.now()</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>start_date <span class="op">=</span> end_date <span class="op">-</span> timedelta(days<span class="op">=</span><span class="dv">5</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>price_data <span class="op">=</span> get_data(start_date, end_date, index, assets_ticker, column<span class="op">=</span><span class="st">"Close"</span>)</span>
@@ -935,6 +970,7 @@ ADV 3M \times 0.2
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">50</span>)</span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ticker, price <span class="kw">in</span> price_dict.items():</span>
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Le prix de l'actif </span><span class="sc">{</span>selected_assets[ticker]<span class="sc">}</span><span class="ss"> est de </span><span class="sc">{</span>price<span class="sc">}</span><span class="ss"> €"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>[                       0%                       ][**********            20%                       ]  2 of 10 completed[**************        30%                       ]  3 of 10 completed[**************        30%                       ]  3 of 10 completed[**********************50%                       ]  5 of 10 completed[**********************60%****                   ]  6 of 10 completed[**********************60%****                   ]  6 of 10 completed[**********************80%*************          ]  8 of 10 completed[**********************90%******************     ]  9 of 10 completed[*********************100%***********************]  10 of 10 completed
 [*********************100%***********************]  1 of 1 completed</code></pre>
@@ -959,6 +995,8 @@ Le prix de l'actif Sanofi est de 103.4000015258789 €</code></pre>
 </div>
 </div>
 <div id="dcb8af78" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Valeur liquide des actions par jour de liquidation</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>market_value <span class="op">=</span>[</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    price_dict[ticker] <span class="op">*</span> liquidation_df.loc[ticker]</span>
@@ -967,6 +1005,7 @@ Le prix de l'actif Sanofi est de 103.4000015258789 €</code></pre>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>market_value <span class="op">=</span> pd.DataFrame(market_value, index<span class="op">=</span>selected_assets, columns<span class="op">=</span>liquidation_df.columns)</span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>market_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
@@ -1114,6 +1153,8 @@ Le prix de l'actif Sanofi est de 103.4000015258789 €</code></pre>
 </div>
 </div>
 <div id="cbdf1d39" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la valeur de marché initiale et totale</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>market_value_0 <span class="op">=</span> market_value.iloc[:, <span class="dv">0</span>]</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>total_market_value_0 <span class="op">=</span> market_value_0.<span class="bu">sum</span>()</span>
@@ -1132,6 +1173,7 @@ Le prix de l'actif Sanofi est de 103.4000015258789 €</code></pre>
 <span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> pd.DataFrame(weights).T</span>
 <span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>weights.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code> La valeur de marché initiale est de 836143533.8764086€</code></pre>
 </div>
@@ -1222,6 +1264,8 @@ Le prix de l'actif Sanofi est de 103.4000015258789 €</code></pre>
 </div>
 </div>
 <div id="c3c152b3" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Barplot empilé</span></span>
@@ -1243,6 +1287,7 @@ Le prix de l'actif Sanofi est de 103.4000015258789 €</code></pre>
 <span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1256,6 +1301,8 @@ Le prix de l'actif Sanofi est de 103.4000015258789 €</code></pre>
 💡 Bon à savoir : Pour un fonds de droit français réglementé, il est interdit d’investir plus de 5 % du portefeuille dans un seul émetteur. Cependant, à titre exceptionnel, il est possible d’investir jusqu’à 10 % dans certains titres, à condition que la somme des expositions supérieures à 5 % ne dépasse pas 40 % du portefeuille. C’est ce que l’on appelle la règle des 5/10/40, un ratio réglementaire applicable aux OPC (organismes de placement collectif). Toutes les pertes liées à un non-respect de ce ratio doivent être supportées par la société de gestion. De plus, tout dépassement doit être déclaré à l’AMF.
 </blockquote>
 <div id="328e0cf5" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Valeur liquide du portefeuille</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>market_value_df <span class="op">=</span> pd.DataFrame()</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1268,6 +1315,7 @@ Le prix de l'actif Sanofi est de 103.4000015258789 €</code></pre>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>market_value_df[<span class="st">"cumulative value"</span>] <span class="op">=</span> market_value_df[<span class="st">"relative value"</span>].cumsum() <span class="op">-</span> <span class="dv">1</span></span>
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>market_value_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
@@ -1343,6 +1391,8 @@ Le prix de l'actif Sanofi est de 103.4000015258789 €</code></pre>
 </div>
 </div>
 <div id="d6df2edc" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>market_value_df <span class="op">=</span> market_value_df.iloc[<span class="dv">1</span>:]</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
@@ -1365,6 +1415,7 @@ Le prix de l'actif Sanofi est de 103.4000015258789 €</code></pre>
 <span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
 <span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1376,6 +1427,8 @@ Le prix de l'actif Sanofi est de 103.4000015258789 €</code></pre>
 <p>Pour voir ce qui arrive au profil d’écoulement lorsque les quantités varient, on va utiliser un facteur de modulation de la quantité. Cela permet de déterminer quelle est la taille cible du portefeuille qui permet d’avoir la liquidité pour un certain niveau en nombre de jours qu’on se fixe. Cet exercice est fait une seule fois à l’initialisation du portefeuille.</p>
 <p>Pour facilier l’implémentation, nous allons utiliser une fonction <code>liquidation_profile</code> qui va nous permettre de calculer le profil d’écoulement du portefeuille, en intégrant le facteur de modulation. Lorsqu’on ne souhaite pas de modulation, on peut simplement passer un facteur de modulation de 1.</p>
 <div id="b2a60719" class="cell" data-execution_count="16">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> waterfall_liquidation(ADV, price_dict, selected_assets, fact_modulation<span class="op">=</span><span class="fl">0.30</span>, plot_graphs<span class="op">=</span><span class="va">True</span>):</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Calcule le profil de liquidation et visualise les graphiques des poids et des valeurs cumulées.</span></span>
@@ -1491,11 +1544,15 @@ Le prix de l'actif Sanofi est de 103.4000015258789 €</code></pre>
 <span id="cb21-113"><a href="#cb21-113" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
 <span id="cb21-114"><a href="#cb21-114" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-115"><a href="#cb21-115" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> market_value_df, market_value, weights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Nous constatons qu’en utilisant un facteur de modulation de 0.3, le temps de liquidation est réduit à 3 jours, ce qui est plus rapide que le temps de liquidation initial de 8 jours. Cela montre l’impact significatif de la modulation sur le profil de liquidation du portefeuille.</p>
 <div id="cac32cc4" class="cell" data-execution_count="17">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fact_modulation<span class="op">=</span> <span class="fl">0.3</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>new_market_value_df, new_market_value, new_weights <span class="op">=</span> waterfall_liquidation(ADV, price_dict, selected_assets, fact_modulation, plot_graphs<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Temps de liquidation du portefeuille : 3 jours</code></pre>
 </div>
@@ -1520,6 +1577,8 @@ Le prix de l'actif Sanofi est de 103.4000015258789 €</code></pre>
 <p>Pour stresser le portefeuille, à la baisse, on va diviser la profondeur de marché par 2. Cela signifie que l’on peut vendre moins d’actifs sans impacter le prix de manière significative. En conséquence, le temps de liquidation augmente, car il faut plus de temps pour liquider la même quantité d’actifs. Il est également possible d’avoir des conditions stressées à la hausse, où l’on multiplie la profondeur de marché par 2. Cela signifie que l’on peut vendre plus d’actifs sans impacter le prix de manière significative. En conséquence, le temps de liquidation diminue, car il faut moins de temps pour liquider la même quantité d’actifs.</p>
 <p>Dans notre cas, en stressant le portefeuille à la baisse, nous constatons que le temps de liquidation augmente. On passe de 8 jours de liquidatin à 15 jours.</p>
 <div id="23f01703" class="cell" data-execution_count="18">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#---------------------------#</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Stress Test</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#---------------------------#</span></span>
@@ -1537,12 +1596,16 @@ Le prix de l'actif Sanofi est de 103.4000015258789 €</code></pre>
 <span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>time_elapsed <span class="op">=</span> ADV_stressed[<span class="st">'Days of liquidation'</span>].<span class="bu">max</span>()</span>
 <span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Temps de liquidation du portefeuille stressé: </span><span class="sc">{</span>time_elapsed<span class="sc">}</span><span class="ss"> jours"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Temps de liquidation du portefeuille stressé: 15 jours</code></pre>
 </div>
 </div>
 <div id="fe788855" class="cell" data-execution_count="19">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>stressed_market_value_df, stressed_market_value, stressed_weights <span class="op">=</span> waterfall_liquidation(ADV<span class="op">=</span>ADV_stressed, price_dict<span class="op">=</span>price_dict, selected_assets<span class="op">=</span>selected_assets, fact_modulation<span class="op">=</span><span class="dv">1</span>, plot_graphs<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Temps de liquidation du portefeuille : 15 jours</code></pre>
 </div>
@@ -1569,6 +1632,8 @@ Le prix de l'actif Sanofi est de 103.4000015258789 €</code></pre>
 <p>Dans cette section, nous allons étudier comment éviter cette déformation en procédant à une liquidation proportionnelle : l’objectif est de préserver la répartition initiale du portefeuille tout au long du processus de liquidation.</p>
 <p>Pour cela, on commence par estimer, comme précédemment, la quantité liquidable en un jour pour chaque titre. Cette estimation permet d’en déduire le pourcentage liquidable quotidien par rapport à la position totale sur chaque actif. Si l’on souhaite que tous les titres soient liquidés à la même vitesse, il faut adopter le rythme de liquidation de l’actif le plus lent. Ainsi, on calcule le pourcentage liquidable en un jour pour chaque titre, puis on en retient le minimum. Ce minimum définit alors le pourcentage quotidien de liquidation appliqué à l’ensemble du portefeuille. Ce procédé allonge la durée totale de liquidation, mais il permet de conserver une structure de portefeuille stable. Néanmoins, une légère déformation peut subsister, notamment en raison des arrondis et des limites pratiques de liquidité sur certains actifs.</p>
 <div id="65881353" class="cell" data-execution_count="20">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1688,11 +1753,15 @@ Le prix de l'actif Sanofi est de 103.4000015258789 €</code></pre>
 <span id="cb28-117"><a href="#cb28-117" aria-hidden="true" tabindex="-1"></a>        plt.xticks(rotation<span class="op">=</span><span class="dv">45</span>)</span>
 <span id="cb28-118"><a href="#cb28-118" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
 <span id="cb28-119"><a href="#cb28-119" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> market_value_df, market_value, weights</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <section id="sous-condition-normale-sans-déformation" class="level3">
 <h3 class="anchored" data-anchor-id="sous-condition-normale-sans-déformation">Sous condition normale sans déformation</h3>
 <div id="96b6f9de" class="cell" data-execution_count="21">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>proforma_market_value_df, proforma_market_value, proforma_weights <span class="op">=</span> pro_forma_liquidation(ADV<span class="op">=</span>ADV, price_dict<span class="op">=</span>price_dict, selected_assets<span class="op">=</span>selected_assets, fact_modulation<span class="op">=</span><span class="dv">1</span>, plot_graphs<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Temps de liquidation du portefeuille : 9 jours</code></pre>
 </div>
@@ -1715,7 +1784,10 @@ Le prix de l'actif Sanofi est de 103.4000015258789 €</code></pre>
 <section id="sous-conditions-stressées-sans-déformation" class="level3">
 <h3 class="anchored" data-anchor-id="sous-conditions-stressées-sans-déformation">Sous conditions stressées sans déformation</h3>
 <div id="f72596ee" class="cell" data-execution_count="22">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>proforma_s_market_value_df, proforma_s_market_value, proforma_s_weights <span class="op">=</span> pro_forma_liquidation(ADV<span class="op">=</span>ADV_stressed, price_dict<span class="op">=</span>price_dict, selected_assets<span class="op">=</span>selected_assets, fact_modulation<span class="op">=</span><span class="dv">1</span>, plot_graphs<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Temps de liquidation du portefeuille : 16 jours</code></pre>
 </div>
@@ -1779,150 +1851,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

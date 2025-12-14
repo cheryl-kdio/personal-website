@@ -73,12 +73,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-79108a0fc1995748cbd19a5b0e3e3e7c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-fdf986989e2058d46a90f864900247d8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-79108a0fc1995748cbd19a5b0e3e3e7c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -164,13 +162,25 @@ window.Quarto = {
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Accueil</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../index_stat.html"> 
-<span class="menu-text">Modélisation stat.</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ensai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">ENSAI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ensai">    
+        <li>
+    <a class="dropdown-item" href="../../index_stat.html">
+ <span class="dropdown-text">Statistiques - Ensai 2A</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../index_gdr.html">
+ <span class="dropdown-text">Gestion des risques bancaires</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../index_gdr.html"> 
-<span class="menu-text">Gestion des risques</span></a>
+    <span class="nav-link">
+<span class="menu-text">M2MO</span>
+    </span>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
@@ -179,7 +189,6 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -223,7 +232,7 @@ window.Quarto = {
   </ul></li>
   </ul></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="TP-3.ipynb" download="TP-3.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -330,6 +339,8 @@ B_t &amp;= C_t + N_t + R_t \\
 -t)} \mathbb{1}_{T_i \geq t} + e^{-(r+\lambda)(T-t)} \mathbb{1}_{T \geq t} +  \lambda R \times \frac{1 - e^{-(r+\lambda)(T-t)}}{r+\lambda} \mathbb{1}_{T \geq t} \right]
 \end{aligned}\]</span>
 <div id="3b5f81aa" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#------------------------------------#</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#---------- Package Imports ---------#</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#------------------------------------#</span></span>
@@ -341,8 +352,11 @@ B_t &amp;= C_t + N_t + R_t \\
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> bisect</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="423303ea" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pricing_bond(t,c,T,r,lambda_,R,N,dt<span class="op">=</span><span class="dv">1</span>):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Fonction qui calcule la valeur d'une obligation.</span></span>
@@ -373,6 +387,7 @@ B_t &amp;= C_t + N_t + R_t \\
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">### Valorisation de l'obligation</span></span>
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    Bond <span class="op">=</span> Ct <span class="op">+</span> Nt <span class="op">+</span> Rt</span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Bond</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="i.-valorisation-dune-obligation-sans-risque-de-défaut" class="level2">
@@ -389,6 +404,8 @@ B_t &amp;= C_t + N_t + R_t \\
 <li><span class="math inline">\(t = 0\)</span> : l’instant présent</li>
 </ul>
 <div id="15a351b1" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span><span class="op">/</span><span class="dv">100</span></span>
@@ -399,6 +416,7 @@ B_t &amp;= C_t + N_t + R_t \\
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>B_t <span class="op">=</span> pricing_bond(t<span class="op">=</span>t,c<span class="op">=</span>c,T<span class="op">=</span>T,r<span class="op">=</span>r,lambda_<span class="op">=</span>lambda_,R<span class="op">=</span>R,N<span class="op">=</span>N)</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Prix de l'obligation vu à t=</span><span class="sc">{</span>t<span class="sc">}</span><span class="ss"> : </span><span class="sc">{</span>B_t<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Prix de l'obligation vu à t=0 : 0.9981933497987289</code></pre>
 </div>
@@ -408,6 +426,8 @@ B_t &amp;= C_t + N_t + R_t \\
 <p>💡 La condition dans laquelle l’obligation émise vaut 100% du nominal, i.e.&nbsp;au pair, est <span class="math inline">\(c \approx r + \lambda\)</span>. C’est une obligation qui permet de recouvrir ausi bien le risque de taux (<span class="math inline">\(r\)</span>) et le risque de crédit lié à l’intensité de défaut (<span class="math inline">\(\lambda\)</span>). Pour voir ceci, nous avons implémenté ci-dessous une fonction qui permet d’extrait le coupon qui permet d’avoir une obligation au pair, avec les mêmes paramètres que précédemment.</p>
 </blockquote>
 <div id="1a418a5c" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span><span class="op">/</span><span class="dv">100</span></span>
@@ -432,6 +452,7 @@ B_t &amp;= C_t + N_t + R_t \\
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Coupon pour avoir une obligation au pair vu à t=</span><span class="sc">{</span>t<span class="sc">}</span><span class="ss"> : </span><span class="sc">{</span>c_opt<span class="sc">:.2%}</span><span class="ss">"</span>)</span>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>B_t <span class="op">=</span> pricing_bond(t<span class="op">=</span>t,c<span class="op">=</span>c_opt,T<span class="op">=</span>T,r<span class="op">=</span>r,lambda_<span class="op">=</span>lambda_,R<span class="op">=</span>R,N<span class="op">=</span>N)</span>
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Prix de l'obligation vu à t=</span><span class="sc">{</span>t<span class="sc">}</span><span class="ss"> : </span><span class="sc">{</span>B_t<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Coupon pour avoir une obligation au pair vu à t=0 : 2.64%
 Prix de l'obligation vu à t=0 : 1.000007783902349</code></pre>
@@ -441,6 +462,8 @@ Prix de l'obligation vu à t=0 : 1.000007783902349</code></pre>
 <p>De plus, lorsque l’intensité de défaut est très grande, on retrouve un prix à peu près égal au taux de recouvrement. En effet, la probabilité de défaut est très grande et donc la probabilité qu’il y ait un recouvrement est très élevée. (voir exemple ci-dessous)</p>
 </blockquote>
 <div id="0bd25046" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span><span class="op">/</span><span class="dv">100</span></span>
@@ -453,6 +476,7 @@ Prix de l'obligation vu à t=0 : 1.000007783902349</code></pre>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>B_t <span class="op">=</span> pricing_bond(t<span class="op">=</span>t,c<span class="op">=</span>c,T<span class="op">=</span>T,r<span class="op">=</span>r,lambda_<span class="op">=</span>lambda_,R<span class="op">=</span>R,N<span class="op">=</span>N)</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Prix de l'obligation vu à t=</span><span class="sc">{</span>t<span class="sc">}</span><span class="ss"> : </span><span class="sc">{</span>B_t<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Taux de recouvrement : </span><span class="sc">{</span>R<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Prix de l'obligation vu à t=0 : 0.3992
 Taux de recouvrement : 0.4000</code></pre>
@@ -480,6 +504,8 @@ Taux de recouvrement : 0.4000</code></pre>
 <li><span class="math inline">\(t = 0\)</span> : l’instant présent</li>
 </ul>
 <div id="83821519" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> myFloor(x):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x<span class="op">==</span><span class="dv">0</span>:</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
@@ -495,8 +521,11 @@ Taux de recouvrement : 0.4000</code></pre>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    cc <span class="op">=</span> c <span class="op">*</span> (t <span class="op">-</span> myFloor(t))</span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> B_t <span class="op">-</span> cc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="5b5e59b9" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span><span class="op">/</span><span class="dv">100</span></span>
@@ -522,6 +551,7 @@ Taux de recouvrement : 0.4000</code></pre>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
 <span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Prix de l'obligation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>Text(0, 0.5, "Prix de l'obligation")</code></pre>
 </div>
@@ -553,6 +583,8 @@ Taux de recouvrement : 0.4000</code></pre>
 </ul>
 <p>Cela signifie que l’obligation s’apprécie au fil du temps en raison de la certitude croissante du paiement des flux futurs. En d’autres termes, plus l’échéance se rapproche, plus l’investisseur est assuré de recevoir ses paiements, ce qui entraîne une augmentation progressive de la valeur de l’obligation.</p>
 <div id="a2bc7d37" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">10</span></span>
@@ -575,6 +607,7 @@ Taux de recouvrement : 0.4000</code></pre>
 <span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"t"</span>)</span>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Prix de l'obligation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>Text(0, 0.5, "Prix de l'obligation")</code></pre>
 </div>
@@ -599,6 +632,8 @@ Taux de recouvrement : 0.4000</code></pre>
 </ul>
 <p>Ainsi, cette obligation se déprécie progressivement jusqu’à l’échéance, car l’effet attractif du coupon élevé s’amenuise à mesure que le remboursement du capital nominal devient imminent. En d’autres termes, l’obligation part d’une valeur supérieure à son nominal mais perd progressivement sa prime à l’approche de l’échéance.</p>
 <div id="85241452" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">10</span></span>
@@ -621,6 +656,7 @@ Taux de recouvrement : 0.4000</code></pre>
 <span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
 <span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"t"</span>)</span>
 <span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Prix de l'obligation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>Text(0, 0.5, "Prix de l'obligation")</code></pre>
 </div>
@@ -655,6 +691,8 @@ Taux de recouvrement : 0.4000</code></pre>
 </ul>
 <p>Ainsi, la sensibilité d’une obligation aux variations de taux d’intérêt, appelée “duration”, est un élément clé dans l’évaluation du risque de taux et la gestion de portefeuille obligataire.</p>
 <div id="c9c3ddf0" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">10</span></span>
@@ -674,6 +712,7 @@ Taux de recouvrement : 0.4000</code></pre>
 <span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
 <span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"r"</span>)</span>
 <span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Prix de l'obligation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>Text(0, 0.5, "Prix de l'obligation")</code></pre>
 </div>
@@ -704,6 +743,8 @@ Taux de recouvrement : 0.4000</code></pre>
 <p>Cette sensibilité permet de mesurer la variation du prix de l’obligation en réponse à une fluctuation du taux d’intérêt, offrant ainsi une évaluation directe du risque de taux auquel est exposé l’investisseur. De ce fait, si les taux d’intérêt bouge de <span class="math inline">\(\Delta r\)</span> = 1%, alors les prix bougeront de -sensibilité * <span class="math inline">\(\Delta r\)</span> .</p>
 <p>Nous allons implémenter ce calcul en Python, en prenant <span class="math inline">\(\Delta r = 1\)</span> bp (soit <span class="math inline">\(0.0001\)</span> en notation décimale).</p>
 <div id="b8e9643d" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sensivity_to_rate(t,c,T,r,lambda_,R,N,dt<span class="op">=</span><span class="dv">1</span>,dr<span class="op">=</span> <span class="fl">0.01</span><span class="op">/</span><span class="dv">100</span>):</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Fonction qui calcule la sensibilité d'une obligation à un taux d'intérêt.</span></span>
@@ -712,9 +753,12 @@ Taux de recouvrement : 0.4000</code></pre>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    B_t_plus <span class="op">=</span> pricing_bond(t,c,T,r<span class="op">+</span>dr,lambda_,R,N,dt)</span>
 <span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    sensivity <span class="op">=</span> <span class="op">-</span>((B_t_plus <span class="op">-</span> B_t)<span class="op">/</span>dr) <span class="op">*</span> (<span class="dv">1</span><span class="op">/</span>B_t)</span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sensivity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Si les taux d’intérêt bouge de <span class="math inline">\(\Delta r\)</span> = 1%, alors les prix bougeront de -sensibilité * <span class="math inline">\(\Delta r\)</span> = -8,64 * 1%. La duration va être souvent proche de la maturité.</p>
 <div id="2c9c1724" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">10</span></span>
@@ -724,6 +768,7 @@ Taux de recouvrement : 0.4000</code></pre>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>N<span class="op">=</span><span class="dv">1</span></span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>sensivity_to_rate(t,c,T,r,lambda_,R,N)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>np.float64(8.643982489102903)</code></pre>
 </div>
@@ -741,6 +786,8 @@ Taux de recouvrement : 0.4000</code></pre>
 <p>Lorsque la maturité de l’obligation approche, sa sensibilité au taux d’intérêt tend à augmenter. En effet, la duration peut être interprétée comme une mesure du temps moyen pondéré pendant lequel l’investisseur est exposé au risque de taux.</p>
 </blockquote>
 <div id="484c56d4" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span><span class="op">/</span><span class="dv">100</span></span>
@@ -760,6 +807,7 @@ Taux de recouvrement : 0.4000</code></pre>
 <span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
 <span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"T"</span>)</span>
 <span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Sensibilité"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>Text(0, 0.5, 'Sensibilité')</code></pre>
 </div>
@@ -776,6 +824,8 @@ Taux de recouvrement : 0.4000</code></pre>
 <h4 class="anchored" data-anchor-id="cas-particulier-absence-de-coupon-de-taux-dintérêt-et-de-risque-de-défaut">Cas particulier : absence de coupon, de taux d’intérêt et de risque de défaut</h4>
 <p>Lorsque le coupon, le taux d’intérêt et l’intensité de défaut sont nuls, la duration est exactement égale à la maturité de l’obligation. Puisque la duration peut être interprétée comme le barycentre des flux futurs de l’obligation, lorsque le coupon et l’intensité de défaut sont nuls, tous les flux sont concentrés à l’échéance, ce qui équivaut à la maturité de l’obligation.</p>
 <div id="3ab2ea29" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> lambda_ <span class="op">=</span> <span class="fl">10e-6</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="dv">40</span><span class="op">/</span><span class="dv">100</span></span>
@@ -793,6 +843,7 @@ Taux de recouvrement : 0.4000</code></pre>
 <span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
 <span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"T"</span>)</span>
 <span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Sensibilité"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>Text(0, 0.5, 'Sensibilité')</code></pre>
 </div>
@@ -825,6 +876,8 @@ Duration &amp;= - \frac{d B_t}{d r} \times \frac{1}{B_t} \\
 \end{aligned}
 \]</span></p>
 <div id="a1208540" class="cell" data-execution_count="16">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Objectif : écrire une fonction qui calcule la VaR avec l'approche par duration</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -860,6 +913,7 @@ Duration &amp;= - \frac{d B_t}{d r} \times \frac{1}{B_t} \\
 <span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>VaR <span class="op">=</span> sensitive_VaR(mu,sigma,t,c,T,r,lambda_,R,N,h<span class="op">=</span>h,dt<span class="op">=</span><span class="dv">1</span>,alpha<span class="op">=</span><span class="fl">0.99</span>)</span>
 <span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"VaR estimé par l'approche par la sensibilité : </span><span class="sc">{</span>VaR<span class="sc">:.4%}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>VaR estimé par l'approche par la sensibilité : 5.8049%</code></pre>
 </div>
@@ -871,6 +925,8 @@ Duration &amp;= - \frac{d B_t}{d r} \times \frac{1}{B_t} \\
 \]</span></p>
 <p>Nous constatons que la volatilité empirique sur les 5 ans est de 25.45%. Cette valeur est très élevée, ce qui signifie que les taux d’intérêt ont connu des variations importantes sur cette période. Cela peut être du à la trop grande période utilisée pour la calibration de la volatilité. Pour ce faire, nous avons restreint la période à 1 an, i.e.&nbsp;10/03/2025 - 10/03/2024. La volatilité empirique sur cette période est de 1.04%. Cette valeur est plus cohérente avec les taux d’intérêt sans risque.</p>
 <div id="e9942ccb" class="cell" data-execution_count="17">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>estr_df <span class="op">=</span> pd.read_excel(<span class="st">"estr.xlsx"</span>, skiprows<span class="op">=</span><span class="dv">6</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co">#date as date</span></span>
@@ -879,6 +935,7 @@ Duration &amp;= - \frac{d B_t}{d r} \times \frac{1}{B_t} \\
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>estr_df <span class="op">=</span> estr_df.sort_index()</span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>estr_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <div>
 
@@ -929,12 +986,15 @@ Duration &amp;= - \frac{d B_t}{d r} \times \frac{1}{B_t} \\
 </div>
 </div>
 <div id="1788ec75" class="cell" data-execution_count="18">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>vol_est <span class="op">=</span> np.std(estr_df[<span class="st">"PX_LAST"</span>].pct_change())</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Volatilité estimée sur 5 ans: </span><span class="sc">{</span>vol_est<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="co"># volatilité sur 1 an</span></span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>vol_est<span class="op">=</span> np.std(estr_df.loc[<span class="st">"2024-03-10"</span>:<span class="st">"2025-03-10"</span>, <span class="st">"PX_LAST"</span>].pct_change())</span>
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Volatilité estimée sur 1 an : </span><span class="sc">{</span>vol_est<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Volatilité estimée sur 5 ans: 0.2545
 Volatilité estimée sur 1 an : 0.0104</code></pre>
@@ -951,6 +1011,8 @@ Volatilité estimée sur 1 an : 0.0104</code></pre>
 <p>où <span class="math inline">\(\Delta r\)</span> est la variation des taux d’intérêt.</p>
 <p>Par définition, la VaR estimée sera plus basse que l’autre approche en raison de la convexité de l’évolution du prix de l’obligation en fonction des taux d’intérêt. La Var par l’approche de la sensibilité, quant à elle, suppose une linéarité de l’évolution du prix de l’obligation en fonction des taux d’intérêt.</p>
 <div id="43a6832d" class="cell" data-execution_count="19">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> repricing_VaR(mu,sigma,t,c,T,r,lambda_,R,N,h,dt<span class="op">=</span><span class="dv">1</span>,alpha<span class="op">=</span><span class="fl">0.99</span>) :</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Calcul de la VaR gaussienne</span></span>
@@ -988,6 +1050,7 @@ Volatilité estimée sur 1 an : 0.0104</code></pre>
 <span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"VaR estimé par l'approche par le réajustement : </span><span class="sc">{</span>VaR<span class="sc">:.4%}</span><span class="ss">"</span>)</span>
 <span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Choc de taux : </span><span class="sc">{</span>delta_r<span class="sc">:.2%}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>VaR estimé par l'approche par le réajustement : 5.6272%
 Choc de taux : 0.67%</code></pre>
@@ -1028,6 +1091,8 @@ B_t = N &amp;\Leftrightarrow c = r + \lambda (1 - R) \\
 <section id="cas-de-largentine-pays-risqué" class="level4">
 <h4 class="anchored" data-anchor-id="cas-de-largentine-pays-risqué">cas de l’argentine, pays risqué</h4>
 <div id="904c86db" class="cell" data-execution_count="20">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">1031</span><span class="op">/</span><span class="dv">10000</span> </span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">0.4</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> s <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> R)</span>
@@ -1043,6 +1108,7 @@ B_t = N &amp;\Leftrightarrow c = r + \lambda (1 - R) \\
 <span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"T"</span>)</span>
 <span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Probabilité de survie"</span>)</span>
 <span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>plt.grid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Spread de crédit : 10.31%
 Recouvrement : 40.00%
@@ -1060,6 +1126,8 @@ Intensité de défaut : 17.18%</code></pre>
 <section id="cas-de-la-france" class="level4">
 <h4 class="anchored" data-anchor-id="cas-de-la-france">cas de la France</h4>
 <div id="81e2397a" class="cell" data-execution_count="21">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cas de la France</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="fl">32.4</span><span class="op">/</span><span class="dv">10000</span> </span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">0.4</span></span>
@@ -1076,6 +1144,7 @@ Intensité de défaut : 17.18%</code></pre>
 <span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"T"</span>)</span>
 <span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Probabilité de survie"</span>)</span>
 <span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>plt.grid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Spread de crédit : 0.32%
 Recouvrement : 40.00%
@@ -1095,6 +1164,8 @@ Intensité de défaut : 0.54%</code></pre>
 <section id="vi.2-sensibilité-crédit" class="level3">
 <h3 class="anchored" data-anchor-id="vi.2-sensibilité-crédit">VI.2 Sensibilité crédit</h3>
 <div id="f6639978" class="cell" data-execution_count="22">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sensivity_to_credit(t,c,T,r,lambda_,R,N,dt<span class="op">=</span><span class="dv">1</span>,dlambda_<span class="op">=</span> <span class="fl">0.01</span><span class="op">/</span><span class="dv">100</span>):</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Fonction qui calcule la sensibilité d'une obligation à un taux d'intérêt.</span></span>
@@ -1105,8 +1176,11 @@ Intensité de défaut : 0.54%</code></pre>
 <span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    sensivity <span class="op">=</span> <span class="op">-</span>((B_t_plus <span class="op">-</span> B_t)<span class="op">/</span>dlambda_) <span class="op">*</span> (<span class="dv">1</span><span class="op">/</span>B_t) <span class="op">*</span> (<span class="dv">1</span><span class="op">/</span> (<span class="dv">1</span><span class="op">-</span>R))</span>
 <span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sensivity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="62f9dfb8" class="cell" data-execution_count="23">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">10</span></span>
@@ -1116,11 +1190,14 @@ Intensité de défaut : 0.54%</code></pre>
 <span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>N<span class="op">=</span><span class="dv">1</span></span>
 <span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>sensivity_to_credit(t,c,T,r,lambda_,R,N,dlambda_<span class="op">=</span><span class="fl">0.01</span><span class="op">/</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>np.float64(8.821190868023761)</code></pre>
 </div>
 </div>
 <div id="9dfde616" class="cell" data-execution_count="24">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span><span class="op">/</span><span class="dv">100</span></span>
@@ -1140,6 +1217,7 @@ Intensité de défaut : 0.54%</code></pre>
 <span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
 <span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"T"</span>)</span>
 <span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Sensibilité"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <pre><code>Text(0, 0.5, 'Sensibilité')</code></pre>
 </div>
@@ -1182,6 +1260,8 @@ ou \quad s_{t+h} &amp;= s_t (1 + \sigma_s \sqrt{h} Z_t) \quad (\text{par DL})
 <li><span class="math inline">\(T = 10\)</span> : l’échéance de l’obligation</li>
 </ul>
 <div id="8a47598b" class="cell" data-execution_count="25">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> MC_VaR(c,T,r,lambda_,R,N,h,sigma_r, sigma_s, rho, alpha<span class="op">=</span><span class="fl">0.99</span>, N_MC<span class="op">=</span><span class="dv">1000</span>,dt<span class="op">=</span><span class="dv">1</span>):</span>
@@ -1243,6 +1323,7 @@ ou \quad s_{t+h} &amp;= s_t (1 + \sigma_s \sqrt{h} Z_t) \quad (\text{par DL})
 <span id="cb41-59"><a href="#cb41-59" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-60"><a href="#cb41-60" aria-hidden="true" tabindex="-1"></a>VaR_monte_carlo <span class="op">=</span> MC_VaR(c,T,r,lambda_,R,N,h,sigma_r, sigma_s, rho, alpha<span class="op">=</span><span class="fl">0.99</span>, N_MC<span class="op">=</span><span class="dv">1000</span>,dt<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb41-61"><a href="#cb41-61" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"VaR estimé par Monte Carlo : </span><span class="sc">{</span>VaR_monte_carlo<span class="sc">:.4%}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>VaR estimé par Monte Carlo : -5.9903%</code></pre>
 </div>
@@ -1250,6 +1331,8 @@ ou \quad s_{t+h} &amp;= s_t (1 + \sigma_s \sqrt{h} Z_t) \quad (\text{par DL})
 <p>Lorsque $ $ (le coefficient de corrélation entre les taux d’intérêt et le spread de crédit) est positif, une hausse des taux d’intérêt entraîne également une hausse du spread de crédit. Cette dynamique amplifie le risque global, car les pertes dues à la hausse des taux s’ajoutent aux pertes induites par l’élargissement du spread de crédit. Ainsi, la Value at Risk (VaR) est plus élevée, reflétant l’accumulation des risques liés aux deux facteurs.</p>
 <p>En revanche, lorsque $ $ est négatif, une hausse des taux d’intérêt tend à réduire le spread de crédit, et inversement. Il se crée alors un effet de compensation : les pertes générées par l’évolution des taux sont partiellement absorbées par les gains résultant de la contraction du spread (ou inversement). C’est le principe de diversification. Dans ce cas, la VaR est plus faible, car les effets du taux d’intérêt et du spread de crédit s’annulent en partie, réduisant ainsi l’ampleur des pertes potentielles.</p>
 <div id="3972f543" class="cell" data-execution_count="26">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># VaR en fonction de rho</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm </span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1261,6 +1344,7 @@ ou \quad s_{t+h} &amp;= s_t (1 + \sigma_s \sqrt{h} Z_t) \quad (\text{par DL})
 <span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"rho"</span>)</span>
 <span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"VaR"</span>)</span>
 <span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>plt.grid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>  0%|          | 0/100 [00:00&lt;?, ?it/s] 10%|█         | 10/100 [00:00&lt;00:00, 94.97it/s] 20%|██        | 20/100 [00:00&lt;00:00, 95.02it/s] 30%|███       | 30/100 [00:00&lt;00:00, 95.28it/s] 40%|████      | 40/100 [00:00&lt;00:00, 96.09it/s] 50%|█████     | 50/100 [00:00&lt;00:00, 95.79it/s] 60%|██████    | 60/100 [00:00&lt;00:00, 95.88it/s] 70%|███████   | 70/100 [00:00&lt;00:00, 95.85it/s] 80%|████████  | 80/100 [00:00&lt;00:00, 96.04it/s] 90%|█████████ | 90/100 [00:00&lt;00:00, 95.75it/s]100%|██████████| 100/100 [00:01&lt;00:00, 95.46it/s]100%|██████████| 100/100 [00:01&lt;00:00, 95.62it/s]</code></pre>
 </div>
@@ -1280,6 +1364,8 @@ ou \quad s_{t+h} &amp;= s_t (1 + \sigma_s \sqrt{h} Z_t) \quad (\text{par DL})
 \sigma_s = \sqrt{\frac{1}{n-1} \sum_{i=1}^{n} (s_i - \bar{s})^2} \times \sqrt{255}
 \]</span></p>
 <div id="a1c1b063" class="cell" data-execution_count="27">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>cds_df <span class="op">=</span> pd.read_excel(<span class="st">"cds.xlsx"</span>, skiprows<span class="op">=</span><span class="dv">6</span>)</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co">#date as date</span></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>cds_df[<span class="st">"Date"</span>] <span class="op">=</span> pd.to_datetime(cds_df[<span class="st">"Date"</span>], <span class="bu">format</span><span class="op">=</span><span class="st">"%Y-%m-</span><span class="sc">%d</span><span class="st">"</span>)</span>
@@ -1287,6 +1373,7 @@ ou \quad s_{t+h} &amp;= s_t (1 + \sigma_s \sqrt{h} Z_t) \quad (\text{par DL})
 <span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>cds_df <span class="op">=</span> cds_df.sort_index()</span>
 <span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>cds_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <div>
 
@@ -1330,12 +1417,15 @@ ou \quad s_{t+h} &amp;= s_t (1 + \sigma_s \sqrt{h} Z_t) \quad (\text{par DL})
 </div>
 </div>
 <div id="3a196350" class="cell" data-execution_count="28">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>vol_est <span class="op">=</span> np.std(cds_df[<span class="st">"PX_LAST"</span>].pct_change())</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Volatilité estimée sur 5 ans: </span><span class="sc">{</span>vol_est<span class="op">*</span>np<span class="sc">.</span>sqrt(<span class="dv">255</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co"># volatilité sur 1 an</span></span>
 <span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>vol_est<span class="op">=</span> np.std(cds_df.loc[<span class="st">"2024-03-11"</span>:<span class="st">"2025-03-11"</span>, <span class="st">"PX_LAST"</span>].pct_change())</span>
 <span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Volatilité estimée sur 1 an : </span><span class="sc">{</span>vol_est<span class="op">*</span>np<span class="sc">.</span>sqrt(<span class="dv">255</span>)<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Volatilité estimée sur 5 ans: 0.4512
 Volatilité estimée sur 1 an : 0.5181</code></pre>
@@ -1422,150 +1512,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

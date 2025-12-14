@@ -73,12 +73,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-79108a0fc1995748cbd19a5b0e3e3e7c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-fdf986989e2058d46a90f864900247d8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-79108a0fc1995748cbd19a5b0e3e3e7c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -164,13 +162,25 @@ window.Quarto = {
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Accueil</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../index_stat.html"> 
-<span class="menu-text">Modélisation stat.</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ensai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">ENSAI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ensai">    
+        <li>
+    <a class="dropdown-item" href="../../index_stat.html">
+ <span class="dropdown-text">Statistiques - Ensai 2A</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../index_gdr.html">
+ <span class="dropdown-text">Gestion des risques bancaires</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../index_gdr.html"> 
-<span class="menu-text">Gestion des risques</span></a>
+    <span class="nav-link">
+<span class="menu-text">M2MO</span>
+    </span>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
@@ -179,7 +189,6 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -203,7 +212,7 @@ window.Quarto = {
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="TP-1.ipynb" download="TP-1.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -298,6 +307,8 @@ c’est-à-dire des mesures anticipées, basées sur la composition actuelle du 
 <section id="récupération-des-données" class="level2">
 <h2 class="anchored" data-anchor-id="récupération-des-données">Récupération des données</h2>
 <div id="9f68ba89" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#------------------------------------#</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#---------- Package Imports ---------#</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#------------------------------------#</span></span>
@@ -310,8 +321,11 @@ c’est-à-dire des mesures anticipées, basées sur la composition actuelle du 
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="7941265f" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_data(start_date, end_date, index_ticker, tickers):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Extraction de données de cours d'actions</span></span>
@@ -326,8 +340,11 @@ c’est-à-dire des mesures anticipées, basées sur la composition actuelle du 
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="st">"portfolio_data"</span>: data,</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="st">"benchmark_data"</span>: index,</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="52b7b703" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>end_date <span class="op">=</span> pd.to_datetime(<span class="st">"2025-01-27"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>start_date <span class="op">=</span> end_date <span class="op">-</span> timedelta(days<span class="op">=</span><span class="dv">2</span><span class="op">*</span><span class="dv">365</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -349,14 +366,18 @@ c’est-à-dire des mesures anticipées, basées sur la composition actuelle du 
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>assets_ticker  <span class="op">=</span> <span class="bu">list</span>(selected_assets.keys())</span>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> get_data(start_date,end_date, index, assets_ticker)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>[                       0%                       ][**********            20%                       ]  2 of 10 completed[**********            20%                       ]  2 of 10 completed[*******************   40%                       ]  4 of 10 completed[**********************50%                       ]  5 of 10 completed[**********************60%****                   ]  6 of 10 completed[**********************70%*********              ]  7 of 10 completed[**********************80%*************          ]  8 of 10 completed[**********************90%******************     ]  9 of 10 completed[*********************100%***********************]  10 of 10 completed
 [*********************100%***********************]  1 of 1 completed</code></pre>
 </div>
 </div>
 <div id="333e8c4d" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>portfolio_data <span class="op">=</span> data[<span class="st">"portfolio_data"</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>portfolio_data.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
@@ -463,8 +484,11 @@ c’est-à-dire des mesures anticipées, basées sur la composition actuelle du 
 </div>
 </div>
 <div id="54ae642e" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>benchmark_data <span class="op">=</span> data[<span class="st">"benchmark_data"</span>]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>benchmark_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
@@ -508,8 +532,11 @@ c’est-à-dire des mesures anticipées, basées sur la composition actuelle du 
 </div>
 </div>
 <div id="14b6b9c3" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># On attribue des poids équitables pour chaque action</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>weights_by_asset <span class="op">=</span> {ticker: <span class="dv">1</span> <span class="op">/</span> <span class="bu">len</span>(assets_ticker) <span class="cf">for</span> ticker <span class="kw">in</span> assets_ticker}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Pour connaitre la valeur totale des actifs du portefeuille, nous allons utiliser la notion d’asset under management (AUM) défini comme suit :</p>
 <p><span class="math display">\[
@@ -521,11 +548,14 @@ AUM(T_n) = \sum_{i=1}^{10} \omega_i \times P_i(T_n),
 \Delta AUM(T_n, T_{n+1}) = AUM(T_{n+1}) - AUM(T_n) = \sum_{i=1}^{10} \omega_i \times (P_i(T_{n+1}) - P_i(T_n)).
 \]</span></p>
 <div id="e69e7b8b" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>aum_series <span class="op">=</span> portfolio_data.<span class="bu">apply</span>(<span class="kw">lambda</span> row: <span class="bu">sum</span>(weights_by_asset[ticker] <span class="op">*</span> row[ticker] <span class="cf">for</span> ticker <span class="kw">in</span> weights_by_asset), axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>aum_series</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>AUM <span class="op">=</span> pd.DataFrame(aum_series, columns<span class="op">=</span>[<span class="st">"AUM"</span>])</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>AUM.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 
@@ -569,6 +599,8 @@ AUM(T_n) = \sum_{i=1}^{10} \omega_i \times P_i(T_n),
 </div>
 </div>
 <div id="6adcfcc3" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------------------- #</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Evolution de la valeur totale du portefeuille</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------------------- #</span></span>
@@ -580,6 +612,7 @@ AUM(T_n) = \sum_{i=1}^{10} \omega_i \times P_i(T_n),
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Valeur"</span>)</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -589,9 +622,12 @@ AUM(T_n) = \sum_{i=1}^{10} \omega_i \times P_i(T_n),
 </div>
 </div>
 <div id="bc1d4107" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># On s'interesse aux variations/rendements de l'AUM</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>AUM[<span class="st">"Variation"</span>] <span class="op">=</span> AUM[<span class="st">"AUM"</span>].pct_change()</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>AUM[<span class="st">"Variation"</span>].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>Date
 2023-01-30         NaN
@@ -607,17 +643,22 @@ Name: Variation, dtype: float64</code></pre>
 <p>Pour estimer la volatilité du portefeuille, on peut calculer l’écart-type des variations de l’AUM. On fait le choix de calculer une volatilité ex-ante en se basant sur les variation historiques des prix des actifs avec une profondeur historique de 2 ans. Vu qu’on a une volatilité quotidienne, on va l’annualiser en multipliant par <span class="math inline">\(\sqrt{252}\)</span>.</p>
 <p>En général, sur le marché action, la volatilité quotidienne est environ de 1% et la volatilité annuelle est entre 10% et 20%.</p>
 <div id="94f82e3b" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la volatilité du portefeuille</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>volatility_portfolio <span class="op">=</span> np.std(AUM[<span class="st">"Variation"</span>])</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>annualized_volatility_portfolio <span class="op">=</span> volatility_portfolio <span class="op">*</span> np.sqrt(<span class="dv">252</span>)</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Volatilité de la performance quotidienne : </span><span class="sc">{</span>volatility_portfolio <span class="sc">: .2%}</span><span class="ss">"</span>)</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Volatilité de la performance annuelle : </span><span class="sc">{</span>annualized_volatility_portfolio <span class="sc">: .2%}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Volatilité de la performance quotidienne :  0.87%
 Volatilité de la performance annuelle :  13.75%</code></pre>
 </div>
 </div>
 <div id="bf6480e5" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la volatilité de l'indice CAC 40</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>benchmark_data[<span class="st">"Variation"</span>] <span class="op">=</span> benchmark_data[<span class="st">"^FCHI"</span>].pct_change()</span>
@@ -626,6 +667,7 @@ Volatilité de la performance annuelle :  13.75%</code></pre>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Volatilité de l'indice CAC 40 : </span><span class="sc">{</span>volatility_benchmark <span class="sc">: .2%}</span><span class="ss">"</span>)</span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Volatilité de l'indice CAC 40 annuelle : </span><span class="sc">{</span>annualized_volatility_benchmark <span class="sc">: .2%}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Volatilité de l'indice CAC 40 :  0.84%
 Volatilité de l'indice CAC 40 annuelle :  13.37%</code></pre>
@@ -645,6 +687,8 @@ TE = \sqrt{Var(R_p - R_b)}
 <p>La tracking error mesure l’incercitude du portefeuille par rapport à l’indice de référence, c’est une mesure relative. Plus la tracking error est élevée, plus le portefeuille est risqué. On ne souhaite sous ou sur-performer l’indice de référence. On souhaite suivre véritablement l’indice de référence.</p>
 <p>Pour l’annualiser, on multiplie par <span class="math inline">\(\sqrt{252}\)</span> en supposant que les performances quotidiennes sont indépendantes et donc un utilise l’additivité des variances.</p>
 <div id="45f0918b" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>performance_relative <span class="op">=</span> AUM[<span class="st">"Variation"</span>] <span class="op">-</span> benchmark_data[<span class="st">"Variation"</span>]</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
@@ -655,6 +699,7 @@ TE = \sqrt{Var(R_p - R_b)}
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -664,6 +709,8 @@ TE = \sqrt{Var(R_p - R_b)}
 </div>
 </div>
 <div id="1a078caa" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la tracking error</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>TE <span class="op">=</span> np.std(AUM[<span class="st">"Variation"</span>] <span class="op">-</span> benchmark_data[<span class="st">"Variation"</span>]) </span>
@@ -671,6 +718,7 @@ TE = \sqrt{Var(R_p - R_b)}
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>TE_annualized <span class="op">=</span> TE <span class="op">*</span> np.sqrt(<span class="dv">252</span>)</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Tracking error annualisé : </span><span class="sc">{</span>TE_annualized <span class="sc">: .2%}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Tracking error :  0.51%
 Tracking error annualisé :  8.05%</code></pre>
@@ -686,6 +734,8 @@ Tracking error annualisé :  8.05%</code></pre>
 <p>La VaR peut se calculer suivant trois approches : 1. Approche historique : On se base sur les rendements passés selon l’horizon fixé pour estimer la VaR, à l’aide d’un quantile empirique d’ordre <span class="math inline">\(\alpha\)</span>. Autrement, on peut se baser sur les rendements journaliers et utiliser la méthode de rescaling, i.e.&nbsp;<span class="math inline">\(VaR = \sigma \times \Phi^{-1}(\alpha)\)</span>. 2. Approche paramétrique : On suppose que les rendements suivent une loi normale. 3. Approche Monte Carlo : On simule les rendements futurs.</p>
 <p>Puisqu’on s’intéresse à un portefeuille d’actions qui a un indice de référence, on peut également calculer la VaR relative. La VaR relative suit une philosophie proche du tracking error. Elle se calcule sur les écarts entre le portefeuille et le benchmark. Elle sert à mesurer de combien mon portefeuille sous-performe par rapport à l’indice de référence.</p>
 <div id="d913be13" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------- #</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># VaR historique</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># --------------------------------- #</span></span>
@@ -701,6 +751,7 @@ Tracking error annualisé :  8.05%</code></pre>
 <span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>VaR_hist_benchmark <span class="op">=</span> np.percentile(benchmark_data[<span class="st">"Variation"</span>].dropna(), <span class="dv">100</span><span class="op">*</span>(<span class="dv">1</span> <span class="op">-</span> seuil))</span>
 <span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"VaR historique sur l'indice CAC 40 : </span><span class="sc">{</span><span class="op">-</span>VaR_hist_benchmark <span class="sc">: .2%}</span><span class="ss">"</span>)</span>
 <span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"VaR historique sur 20 jours sur l'indice CAC 40 : </span><span class="sc">{</span><span class="op">-</span>VaR_hist_benchmark<span class="op">*</span>np<span class="sc">.</span>sqrt(<span class="dv">20</span>) <span class="sc">: .2%}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>VaR historique sur le portefeuille :  2.29%
 VaR historique sur 20 jours sur le portefeuille :  10.25%
@@ -710,6 +761,8 @@ VaR historique sur 20 jours sur l'indice CAC 40 :  9.53%</code></pre>
 </div>
 </div>
 <div id="c61dbecd" class="cell" data-execution_count="16">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------- #</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># VaR paramétrique</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------- #</span></span>
@@ -740,6 +793,7 @@ VaR historique sur 20 jours sur l'indice CAC 40 :  9.53%</code></pre>
 <span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"VaR paramétrique sur le portefeuille : </span><span class="sc">{</span>VaR_param_benchmark <span class="sc">: .2%}</span><span class="ss">"</span>)</span>
 <span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"VaR paramétrique sur 20 jours sur le portefeuille : </span><span class="sc">{</span>VaR_param_benchmark <span class="op">*</span> np<span class="sc">.</span>sqrt(<span class="dv">20</span>)<span class="sc">: .2%}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>mu sur le portefeuille :  0.00022
 sigma sur le portefeuille :  0.0087
@@ -753,6 +807,8 @@ VaR paramétrique sur 20 jours sur le portefeuille :  8.65%</code></pre>
 </div>
 </div>
 <div id="5330c588" class="cell" data-execution_count="17">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------- #</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># VaR relative</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ---------------------------------- #</span></span>
@@ -772,6 +828,7 @@ VaR paramétrique sur 20 jours sur le portefeuille :  8.65%</code></pre>
 <span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"VaR paramétrique relative : </span><span class="sc">{</span>VaR_param_relative <span class="sc">: .2%}</span><span class="ss">"</span>)</span>
 <span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"VaR paramétrique relative sur 20 jours : </span><span class="sc">{</span>VaR_param_relative <span class="op">*</span> np<span class="sc">.</span>sqrt(<span class="dv">20</span>)<span class="sc">: .2%}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>VaR historique relative :  1.07%
 VaR historique relative sur 20 jours :  4.80%
@@ -794,6 +851,8 @@ VaR paramétrique relative sur 20 jours :  5.29%</code></pre>
 </ol>
 <p>Dans notre cas, nous allons réaliser un stress test historique sur la crise de covid. Pour cela, nous allons extraire le prix des actifs du 19 février 2020 et du 18 mars 2020. Nous allons ensuite calculer la performance du portefeuille sur cette période. On va également calculer la performance du CAC 40 sur cette période pour voir si notre portefeuille a été plus ou moins résilient que le marché.</p>
 <div id="1ac0403b" class="cell" data-execution_count="18">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recuperons les prix des actifs le 19/02/2020 et le 18/03/2020</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># On va valoriser notre portefeuille à ces dates et calculer les performances</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A ces dates, le CAC 40 a connu de fortes pertes pendant la COVID-19</span></span>
@@ -818,6 +877,7 @@ VaR paramétrique relative sur 20 jours :  5.29%</code></pre>
 <span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Concaténer les données des deux dates pour le portefeuille et le benchmark</span></span>
 <span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>portfolio_data_stress <span class="op">=</span> pd.concat([portfolio_data_1902, portfolio_data_1803], ignore_index<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>benchmark_data_stress <span class="op">=</span> pd.concat([benchmark_data_1902, benchmark_data_1803], ignore_index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>[                       0%                       ][                       0%                       ][                       0%                       ][                       0%                       ][**********************50%                       ]  5 of 10 completed[**********************50%                       ]  5 of 10 completed[**********************50%                       ]  5 of 10 completed[**********************80%*************          ]  8 of 10 completed[**********************80%*************          ]  8 of 10 completed[*********************100%***********************]  10 of 10 completed
 [*********************100%***********************]  1 of 1 completed
@@ -826,6 +886,8 @@ VaR paramétrique relative sur 20 jours :  5.29%</code></pre>
 </div>
 </div>
 <div id="bc0df7a0" class="cell" data-execution_count="19">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stress test covid sur le portefeuille</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>aum_series_stress <span class="op">=</span> portfolio_data_stress.<span class="bu">apply</span>(<span class="kw">lambda</span> row: <span class="bu">sum</span>(weights_by_asset[ticker] <span class="op">*</span> row[ticker] <span class="cf">for</span> ticker <span class="kw">in</span> weights_by_asset), axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -833,6 +895,7 @@ VaR paramétrique relative sur 20 jours :  5.29%</code></pre>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>AUM_stress[<span class="st">"Variation"</span>] <span class="op">=</span> AUM_stress[<span class="st">"AUM"</span>].pct_change()</span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>AUM_stress.iloc[<span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>AUM          43.756626
 Variation    -0.306542
@@ -840,8 +903,11 @@ Name: 2020-03-18 00:00:00, dtype: float64</code></pre>
 </div>
 </div>
 <div id="5c1e0419" class="cell" data-execution_count="20">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>benchmark_data_stress[<span class="st">"Variation"</span>]<span class="op">=</span>benchmark_data_stress[<span class="st">"^FCHI"</span>].pct_change()</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>benchmark_data_stress.iloc[<span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>Ticker
 ^FCHI        3754.840088
@@ -881,150 +947,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

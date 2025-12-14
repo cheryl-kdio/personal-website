@@ -73,12 +73,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-79108a0fc1995748cbd19a5b0e3e3e7c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-fdf986989e2058d46a90f864900247d8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-79108a0fc1995748cbd19a5b0e3e3e7c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -164,13 +162,25 @@ window.Quarto = {
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Accueil</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../index_stat.html"> 
-<span class="menu-text">Modélisation stat.</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ensai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">ENSAI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ensai">    
+        <li>
+    <a class="dropdown-item" href="../../index_stat.html">
+ <span class="dropdown-text">Statistiques - Ensai 2A</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../index_gdr.html">
+ <span class="dropdown-text">Gestion des risques bancaires</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../index_gdr.html"> 
-<span class="menu-text">Gestion des risques</span></a>
+    <span class="nav-link">
+<span class="menu-text">M2MO</span>
+    </span>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
@@ -179,7 +189,6 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -220,7 +229,7 @@ window.Quarto = {
   </ul></li>
   <li><a href="#iv.-estimation-de-la-credit-var" id="toc-iv.-estimation-de-la-credit-var" class="nav-link" data-scroll-target="#iv.-estimation-de-la-credit-var">IV. Estimation de la Credit VaR</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="pj_copules.ipynb" download="pj_copules.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -298,6 +307,8 @@ PD = P(\tau &lt; T) = 1 - e^{-\lambda \times T}
 \]</span></p>
 <p>car <span class="math inline">\(\tau \sim Exp(\lambda)\)</span></p>
 <div id="df362e01" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Noms des entreprises</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -333,6 +344,7 @@ PD = P(\tau &lt; T) = 1 - e^{-\lambda \times T}
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Afficher le dictionnaire</span></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>pprint(probabilites_defaut)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.016666666666666666
 0.02
@@ -358,6 +370,8 @@ a = \frac{\mu^2 \times (1-\mu)}{\sigma^2} - \mu; \quad b = \frac{\mu^2 \times (1
 <section id="ii.1.-caractérisation-de-la-distribution-des-tx-de-recouvrement-bnp" class="level3">
 <h3 class="anchored" data-anchor-id="ii.1.-caractérisation-de-la-distribution-des-tx-de-recouvrement-bnp">II.1. Caractérisation de la distribution des tx de recouvrement BNP</h3>
 <div id="d2f3ad72" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>tx_recouvrement_BNP <span class="op">=</span> <span class="fl">0.6</span></span>
@@ -388,6 +402,7 @@ a = \frac{\mu^2 \times (1-\mu)}{\sigma^2} - \mu; \quad b = \frac{\mu^2 \times (1
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y_BNP)</span>
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Densité de probabilité du taux de recouvrement de BNP"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>a_BNP =  5.8
 b_BNP =  3.8666666666666676</code></pre>
@@ -408,6 +423,8 @@ b_BNP =  3.8666666666666676</code></pre>
 <section id="ii.2.-caractérisation-de-la-distribution-des-tx-de-recouvrement-sg" class="level3">
 <h3 class="anchored" data-anchor-id="ii.2.-caractérisation-de-la-distribution-des-tx-de-recouvrement-sg">II.2. Caractérisation de la distribution des tx de recouvrement SG</h3>
 <div id="e9d23d7b" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tx_recouvrement_SG <span class="op">=</span> <span class="fl">0.3</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>vol_recouvrement_SG <span class="op">=</span> <span class="fl">0.25</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -422,6 +439,7 @@ b_BNP =  3.8666666666666676</code></pre>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y_SG)</span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Densité de probabilité du taux de recouvrement de BNP"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>a_SG =  0.708
 b_SG =  1.652</code></pre>
@@ -443,6 +461,8 @@ b_SG =  1.652</code></pre>
 <section id="ii.3.-comparaison-des-distributions" class="level2">
 <h2 class="anchored" data-anchor-id="ii.3.-comparaison-des-distributions">II.3. Comparaison des distributions</h2>
 <div id="e257510a" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y_BNP, label<span class="op">=</span><span class="st">'BNP'</span>)</span>
@@ -450,6 +470,7 @@ b_SG =  1.652</code></pre>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Densités de probabilité des taux de recouvrement"</span>)</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -472,11 +493,14 @@ b_SG =  1.652</code></pre>
 <h2 class="anchored" data-anchor-id="iii.1.-analyse-exploratoire-univariée-des-données-actions-de-ces-deux-entreprises.">III.1. Analyse exploratoire univariée des données actions de ces deux entreprises.</h2>
 <p>En observant le prix des actions BNP et SG, nous constatons que les actions BNP ont un prix plus élevés que les actions SG. Cela est cohérent avec la capitalisation boursière des deux entreprises. De plus, nous constatons que les rendements de BNP sont semblables à ceux de SG. Cela est cohérent avec le fait que les deux entreprises sont des banques françaises et sont donc exposées aux mêmes risques macroéconomiques. Néanmoins, les actions de BNP présentent une volatilité légèrement plus élevé que celles de SG.</p>
 <div id="51cc307b" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read data.txt</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'data_copules.txt'</span>, sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
@@ -522,12 +546,15 @@ b_SG =  1.652</code></pre>
 </div>
 </div>
 <div id="54e6dd7c" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plt.plot(data[<span class="st">'BNP'</span>], label<span class="op">=</span><span class="st">'BNP'</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plt.plot(data[<span class="st">'SG'</span>], label<span class="op">=</span><span class="st">'SG'</span>)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Prix des actions"</span>)</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -537,6 +564,8 @@ b_SG =  1.652</code></pre>
 </div>
 </div>
 <div id="539ab36f" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>returns <span class="op">=</span> pd.DataFrame()</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>returns[<span class="st">"BNP"</span>] <span class="op">=</span> data[<span class="st">"BNP"</span>].pct_change().dropna()</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>returns[<span class="st">"SG"</span>] <span class="op">=</span> data[<span class="st">"SG"</span>].pct_change().dropna()</span>
@@ -558,6 +587,7 @@ b_SG =  1.652</code></pre>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage</span></span>
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -567,7 +597,10 @@ b_SG =  1.652</code></pre>
 </div>
 </div>
 <div id="911c930a" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>returns.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
@@ -636,6 +669,8 @@ b_SG =  1.652</code></pre>
 <p>En ce qui concerne les rendements de BNP, nous constatons que les lois de student et normal inverse gaussian sont les plus adaptées pour modéliser les rendements de BNP. En effet, lorsqu’on compare les QQ-plot des rendements de BNP avec les lois normales, student, skew student et normal inverse gaussian, on constate que les quantiles empiriques des rendements de BNP sont plus proches des quantiles théoriques des lois student et normal inverse gaussian. De plus, les densités ajustées semblent également mieux coller aux données.</p>
 <p>Si l’on devait choisir une loi pour modéliser les rendements de BNP, nous choisirions la loi normal inverse gaussian. En effet, bien qu’elle soit plus complexe à modéliser, elle permet d’avoir un p-value, au test de Kolmogorov-Smirnov, plus élevé que la loi student. Cela signifie que la loi normal inverse gaussian est plus adaptée pour modéliser les rendements de BNP.</p>
 <div id="180c273e" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
@@ -696,6 +731,7 @@ b_SG =  1.652</code></pre>
 <span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> pd.DataFrame(index<span class="op">=</span>returns.index, columns<span class="op">=</span>returns.columns)</span>
 <span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>U[<span class="st">'BNP'</span>] <span class="op">=</span> stats.norminvgauss.cdf(data,<span class="op">*</span>params_nig)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -705,9 +741,12 @@ b_SG =  1.652</code></pre>
 </div>
 </div>
 <div id="40c913f4" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(params_norm)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(params_std)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(params_nig)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(np.float64(-0.0005897932128196069), np.float64(0.024327449407557697))
 (np.float64(4.605552436800593), np.float64(-0.00046153919290846087), np.float64(0.018734588738427177))
@@ -715,6 +754,8 @@ b_SG =  1.652</code></pre>
 </div>
 </div>
 <div id="af5ed951" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">######## Test de kolmogorov-smirnov ########</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>ks_stat_norm, ks_p_value_norm <span class="op">=</span> stats.kstest(data, <span class="st">'norm'</span>, args<span class="op">=</span>(params_norm))</span>
@@ -731,6 +772,7 @@ b_SG =  1.652</code></pre>
 <span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">50</span>)</span>
 <span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res)</span>
 <span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>==================================================
 Test de Kolmogorov-Smirnov
@@ -747,6 +789,8 @@ Normal Inverse Gaussian   0.026466  0.477953
 <h3 class="anchored" data-anchor-id="iii.2.1.-modélisation-des-rendements-de-sg">III.2.1. Modélisation des rendements de SG</h3>
 <p>Comme les rendements de BNP, les rendements de SG sont mieux modélisés par les lois student et normal inverse gaussian.</p>
 <div id="0b73886d" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
@@ -807,6 +851,7 @@ Normal Inverse Gaussian   0.026466  0.477953
 <span id="cb19-58"><a href="#cb19-58" aria-hidden="true" tabindex="-1"></a>U[<span class="st">'SG'</span>] <span class="op">=</span> stats.norminvgauss.cdf(data,<span class="op">*</span>params_nig)</span>
 <span id="cb19-59"><a href="#cb19-59" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-60"><a href="#cb19-60" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> U.to_numpy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -816,6 +861,8 @@ Normal Inverse Gaussian   0.026466  0.477953
 </div>
 </div>
 <div id="1b3bc359" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">######## Test de kolmogorov-smirnov ########</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>ks_stat_norm, ks_p_value_norm <span class="op">=</span> stats.kstest(data, <span class="st">'norm'</span>, args<span class="op">=</span>(params_norm))</span>
@@ -832,6 +879,7 @@ Normal Inverse Gaussian   0.026466  0.477953
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">50</span>)</span>
 <span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res)</span>
 <span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>==================================================
 Test de Kolmogorov-Smirnov
@@ -855,6 +903,8 @@ u_{i, j}=\frac{1}{n} \sum_{k=1}^n 1_{\left\{x_{j, k} \leq x_{j,i}\right\}}, \qua
 \]</span></p>
 <p>Le dépendogramme de l’échantillon est donc la représentation de n couples <span class="math inline">\(\left(\left(u_{1,1} ; u_{2,1}\right), \cdots,\left(u_{1, n} ; u_{2, n}\right)\right)\)</span>. Il permet d’observer le caractère plus ou moins simultané des réalisations issues de l’échantillon.</p>
 <div id="66ac3a71" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tableax avec tx de pearson, spearman et kendall</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> pearsonr, spearmanr, kendalltau</span>
@@ -870,6 +920,7 @@ u_{i, j}=\frac{1}{n} \sum_{k=1}^n 1_{\left\{x_{j, k} \leq x_{j,i}\right\}}, \qua
 <span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>[<span class="st">"Coefficient"</span>, <span class="st">"p-value"</span>])</span>
 <span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>tableau_correlation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 
@@ -917,6 +968,8 @@ Warning
 </div>
 </div>
 <div id="a0bcadc8" class="cell" data-execution_count="16">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dependogramme</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Posons x1, u1 = BNP et x2, u2 = SG</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
@@ -958,6 +1011,7 @@ Warning
 <span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">False</span>)</span>
 <span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -970,6 +1024,8 @@ Warning
 <p>De plus, en observant le dépendogramme, il semble avoir des dépendances à gauche et à droite entre les deux entreprises. Nous allons tout de même tester un éventail de copules afin de vérifier laquelle des copules est la plus adaptée à notre cas : - Copules elliptiques : gaussienne, Student. - Copules archimédiennes : Clayton, Gumbel, Frank.</p>
 <p>Il faudrait au préalable estimer les paramètres des copules archimédiennes et elliptiques pour déterminer laquelle des copules est la plus adaptée à notre cas. Précedemment, nous avons estimé les paramètres des lois marginales des rendements de BNP et SG. Nous allons utiliser ces paramètres pour estimer les paramètres des copules. Nous allons utiliser ces paramètres pour la modélisation des différentes copules.</p>
 <div id="e6a26374" class="cell" data-execution_count="17">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.distributions.copula.api <span class="im">import</span> (</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    GaussianCopula, StudentTCopula, ClaytonCopula, GumbelCopula, FrankCopula</span>
@@ -1019,6 +1075,7 @@ Warning
 <span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">RuntimeError</span>(<span class="ss">f"MLE failed for </span><span class="sc">{</span>copula_type<span class="sc">}</span><span class="ss"> copula: </span><span class="sc">{</span>result<span class="sc">.</span>message<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result.x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="iii.4.-modélisation-la-structure-de-dépendance-au-moyen-des-copules-paramétriques" class="level2">
@@ -1068,10 +1125,13 @@ Famille &amp; Nom    &amp; Copule $C(u,v)$   &amp; Paramètres \\ \hline
 \]</span></p>
 <p>Dans notre cas, le seul paramètre à estimer est le coefficient de corrélation de pearson. Nous allons donc estimer le coefficient de corrélation de pearson entre les rendements des actions de BNP et SG.</p>
 <div id="8ff9377e" class="cell" data-execution_count="18">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>rho <span class="op">=</span> fit_copula(u_obs, <span class="st">"gaussian"</span>)[<span class="dv">0</span>]</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>mat<span class="op">=</span> np.array([[<span class="dv">1</span>, rho], [rho, <span class="dv">1</span>]])</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>mat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>array([[1.        , 0.86097656],
        [0.86097656, 1.        ]])</code></pre>
@@ -1082,6 +1142,8 @@ Famille &amp; Nom    &amp; Copule $C(u,v)$   &amp; Paramètres \\ \hline
 <h4 class="anchored" data-anchor-id="iii.4.1.b.-simulation-de-la-copule-gaussienne">III.4.1.b. Simulation de la copule gaussienne</h4>
 <p>Pour simuler la copule gaussienne, nous allons utiliser la méthode de distribution puisque la loi est facile à implémenter.</p>
 <div id="02dc15c4" class="cell" data-execution_count="19">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # Simuler réalisation W suivant une loi normale centrée multivariée</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># import scipy.stats as stats</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1100,11 +1162,14 @@ Famille &amp; Nom    &amp; Copule $C(u,v)$   &amp; Paramètres \\ \hline
 <span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> u_obs.shape[<span class="dv">0</span>]</span>
 <span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> GaussianCopula(corr <span class="op">=</span> rho).rvs(n)</span>
 <span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>u_est <span class="op">=</span> pseudo_observations(_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="iii.4.1.c.-test-dajustement" class="level4">
 <h4 class="anchored" data-anchor-id="iii.4.1.c.-test-dajustement">III.4.1.c. Test d’ajustement</h4>
 <div id="0ab55eef" class="cell" data-execution_count="20">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(u_obs[:,<span class="dv">0</span>], u_obs[:,<span class="dv">1</span>], label <span class="op">=</span> <span class="st">"Données empiriques"</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(u_est[:,<span class="dv">0</span>], u_est[:,<span class="dv">1</span>], label <span class="op">=</span> <span class="st">"Copule gaussienne"</span>, color <span class="op">=</span> <span class="st">"red"</span>)</span>
@@ -1114,6 +1179,7 @@ Famille &amp; Nom    &amp; Copule $C(u,v)$   &amp; Paramètres \\ \hline
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">False</span>)</span>
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1123,6 +1189,8 @@ Famille &amp; Nom    &amp; Copule $C(u,v)$   &amp; Paramètres \\ \hline
 </div>
 </div>
 <div id="2f17aecc" class="cell" data-execution_count="21">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kendall plot</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1177,6 +1245,7 @@ Famille &amp; Nom    &amp; Copule $C(u,v)$   &amp; Paramètres \\ \hline
 <span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a>S<span class="op">=</span><span class="dv">1000</span></span>
 <span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a>kendall_plot(u_obs,S,copula<span class="op">=</span><span class="st">"gaussian"</span>,rho<span class="op">=</span>rho)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(999,) (999,)</code></pre>
 </div>
@@ -1192,6 +1261,8 @@ Famille &amp; Nom    &amp; Copule $C(u,v)$   &amp; Paramètres \\ \hline
 <section id="iii.4.1.d.-test-dadéquation" class="level4">
 <h4 class="anchored" data-anchor-id="iii.4.1.d.-test-dadéquation">III.4.1.d. Test d’adéquation</h4>
 <div id="513f5082" class="cell" data-execution_count="22">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copule empirique Cn(u)</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> empirical_copula_cdf(U, u):</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Calcule la copule empirique Cn(u)."""</span></span>
@@ -1252,6 +1323,7 @@ Famille &amp; Nom    &amp; Copule $C(u,v)$   &amp; Paramètres \\ \hline
 <span id="cb31-58"><a href="#cb31-58" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
 <span id="cb31-59"><a href="#cb31-59" aria-hidden="true" tabindex="-1"></a>result_gaussian <span class="op">=</span> adequation_test(X, copula_type<span class="op">=</span><span class="st">"gaussian"</span>)</span>
 <span id="cb31-60"><a href="#cb31-60" aria-hidden="true" tabindex="-1"></a>pprint(result_gaussian)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'T_obs': np.float64(0.054564311624880506),
  'copula_type': 'gaussian',
@@ -1266,10 +1338,13 @@ Famille &amp; Nom    &amp; Copule $C(u,v)$   &amp; Paramètres \\ \hline
 <section id="iii.4.2.a.-estimation-des-paramètres-de-la-copule-student" class="level4">
 <h4 class="anchored" data-anchor-id="iii.4.2.a.-estimation-des-paramètres-de-la-copule-student">III.4.2.a. Estimation des paramètres de la copule student</h4>
 <div id="e5451056" class="cell" data-execution_count="23">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>rho,nu <span class="op">=</span> fit_copula(u_obs, <span class="st">"student"</span>)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"rho = "</span>, rho)</span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"nu = "</span>, nu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>rho =  0.8496143388748167
 nu =  2.0</code></pre>
@@ -1279,14 +1354,19 @@ nu =  2.0</code></pre>
 <section id="iii.4.2.b.-simulation-de-la-copule-de-student" class="level4">
 <h4 class="anchored" data-anchor-id="iii.4.2.b.-simulation-de-la-copule-de-student">III.4.2.b. Simulation de la copule de student</h4>
 <div id="45539844" class="cell" data-execution_count="24">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> u_obs.shape[<span class="dv">0</span>]</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> StudentTCopula(corr <span class="op">=</span> rho, df<span class="op">=</span>nu).rvs(n)</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>u_est <span class="op">=</span> pseudo_observations(_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="iii.4.2.c.-test-dajustement" class="level4">
 <h4 class="anchored" data-anchor-id="iii.4.2.c.-test-dajustement">III.4.2.c. Test d’ajustement</h4>
 <div id="fa9bc028" class="cell" data-execution_count="25">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(u_obs[:,<span class="dv">0</span>], u_obs[:,<span class="dv">1</span>], label <span class="op">=</span> <span class="st">"Données empiriques"</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(u_est[:,<span class="dv">0</span>], u_est[:,<span class="dv">1</span>], label <span class="op">=</span> <span class="st">"Copule de student"</span>, color <span class="op">=</span> <span class="st">"red"</span>)</span>
@@ -1296,6 +1376,7 @@ nu =  2.0</code></pre>
 <span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">False</span>)</span>
 <span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1305,7 +1386,10 @@ nu =  2.0</code></pre>
 </div>
 </div>
 <div id="4d30afde" class="cell" data-execution_count="26">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>kendall_plot(u_obs,S,copula<span class="op">=</span><span class="st">"student"</span>,rho<span class="op">=</span>rho,nu<span class="op">=</span>nu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(999,) (999,)</code></pre>
 </div>
@@ -1335,9 +1419,12 @@ Warning
 <section id="iii.4.2.d.-test-dadéquation" class="level4">
 <h4 class="anchored" data-anchor-id="iii.4.2.d.-test-dadéquation">III.4.2.d. Test d’adéquation</h4>
 <div id="816bc9d9" class="cell" data-execution_count="27">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>result_std <span class="op">=</span> adequation_test(X, copula_type<span class="op">=</span><span class="st">"student"</span>) <span class="co"># </span><span class="al">ATTENTION</span><span class="co"> DIFFICULTE POUR ESSTIMER COPULE STUDENT</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>pprint(result_std)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'T_obs': np.float64(0.05938600115289895),
  'copula_type': 'student',
@@ -1352,9 +1439,12 @@ Warning
 <section id="iii.4.3.a.-estimation-des-paramètres-de-la-copule-clayton" class="level4">
 <h4 class="anchored" data-anchor-id="iii.4.3.a.-estimation-des-paramètres-de-la-copule-clayton">III.4.3.a. Estimation des paramètres de la copule clayton</h4>
 <div id="eea34a95" class="cell" data-execution_count="28">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> fit_copula(u_obs, <span class="st">"clayton"</span>)[<span class="dv">0</span>]</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"theta = "</span>, theta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>theta =  2.4768310546874988</code></pre>
 </div>
@@ -1363,14 +1453,19 @@ Warning
 <section id="iii.4.3.b.-simulation-de-la-copule-de-clayton" class="level4">
 <h4 class="anchored" data-anchor-id="iii.4.3.b.-simulation-de-la-copule-de-clayton">III.4.3.b. Simulation de la copule de clayton</h4>
 <div id="732442ab" class="cell" data-execution_count="29">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> u_obs.shape[<span class="dv">0</span>]</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> ClaytonCopula(theta<span class="op">=</span> theta).rvs(n)</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>u_est <span class="op">=</span> pseudo_observations(_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="iii.4.3.c.-test-dajustement" class="level4">
 <h4 class="anchored" data-anchor-id="iii.4.3.c.-test-dajustement">III.4.3.c. Test d’ajustement</h4>
 <div id="34ae8db2" class="cell" data-execution_count="30">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(u_obs[:,<span class="dv">0</span>], u_obs[:,<span class="dv">1</span>], label <span class="op">=</span> <span class="st">"Données empiriques"</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(u_est[:,<span class="dv">0</span>], u_est[:,<span class="dv">1</span>], label <span class="op">=</span> <span class="st">"Copule de clayton"</span>, color <span class="op">=</span> <span class="st">"red"</span>)</span>
@@ -1380,6 +1475,7 @@ Warning
 <span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">False</span>)</span>
 <span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1389,8 +1485,11 @@ Warning
 </div>
 </div>
 <div id="c5464cc5" class="cell" data-execution_count="31">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>S<span class="op">=</span><span class="dv">1000</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>kendall_plot(u_obs,S,copula<span class="op">=</span><span class="st">"clayton"</span>,theta<span class="op">=</span>theta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(999,) (999,)</code></pre>
 </div>
@@ -1406,9 +1505,12 @@ Warning
 <section id="iii.4.3.d.-test-dadéquation" class="level4">
 <h4 class="anchored" data-anchor-id="iii.4.3.d.-test-dadéquation">III.4.3.d. Test d’adéquation</h4>
 <div id="3191f732" class="cell" data-execution_count="32">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>result_clayton<span class="op">=</span> adequation_test(X, copula_type<span class="op">=</span><span class="st">"clayton"</span>) </span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>pprint(result_clayton)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'T_obs': array([0.86477661]),
  'copula_type': 'clayton',
@@ -1423,9 +1525,12 @@ Warning
 <section id="iii.4.4.a.-estimation-des-paramètres-de-la-copule-gumbel" class="level4">
 <h4 class="anchored" data-anchor-id="iii.4.4.a.-estimation-des-paramètres-de-la-copule-gumbel">III.4.4.a. Estimation des paramètres de la copule gumbel</h4>
 <div id="137df49c" class="cell" data-execution_count="33">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> fit_copula(u_obs, <span class="st">"gumbel"</span>)[<span class="dv">0</span>]</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"theta = "</span>, theta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>theta =  2.9939208984374996</code></pre>
 </div>
@@ -1434,14 +1539,19 @@ Warning
 <section id="iii.4.4.b.-simulation-de-la-copule-de-clayton" class="level4">
 <h4 class="anchored" data-anchor-id="iii.4.4.b.-simulation-de-la-copule-de-clayton">III.4.4.b. Simulation de la copule de clayton</h4>
 <div id="00ff74f6" class="cell" data-execution_count="34">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> u_obs.shape[<span class="dv">0</span>]</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> GumbelCopula(theta<span class="op">=</span> theta).rvs(n)</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>u_est <span class="op">=</span> pseudo_observations(_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="iii.4.4.c.-test-dajustement" class="level4">
 <h4 class="anchored" data-anchor-id="iii.4.4.c.-test-dajustement">III.4.4.c. Test d’ajustement</h4>
 <div id="e451fe16" class="cell" data-execution_count="35">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(u_obs[:,<span class="dv">0</span>], u_obs[:,<span class="dv">1</span>], label <span class="op">=</span> <span class="st">"Données empiriques"</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(u_est[:,<span class="dv">0</span>], u_est[:,<span class="dv">1</span>], label <span class="op">=</span> <span class="st">"Copule de gumbel"</span>, color <span class="op">=</span> <span class="st">"red"</span>)</span>
@@ -1451,6 +1561,7 @@ Warning
 <span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">False</span>)</span>
 <span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1460,7 +1571,10 @@ Warning
 </div>
 </div>
 <div id="abf19c0e" class="cell" data-execution_count="36">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>kendall_plot(u_obs,S,copula<span class="op">=</span><span class="st">"gumbel"</span>,theta<span class="op">=</span>theta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(999,) (999,)</code></pre>
 </div>
@@ -1476,9 +1590,12 @@ Warning
 <section id="iii.4.4.d.-test-dadéquation" class="level4">
 <h4 class="anchored" data-anchor-id="iii.4.4.d.-test-dadéquation">III.4.4.d. Test d’adéquation</h4>
 <div id="f3029130" class="cell" data-execution_count="37">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>result_gumbel <span class="op">=</span> adequation_test(X, copula_type<span class="op">=</span><span class="st">"gumbel"</span>) </span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>pprint(result_gumbel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'T_obs': array([0.03485682]),
  'copula_type': 'gumbel',
@@ -1493,9 +1610,12 @@ Warning
 <section id="iii.4.4.a.-estimation-des-paramètres-de-la-copule-frank" class="level4">
 <h4 class="anchored" data-anchor-id="iii.4.4.a.-estimation-des-paramètres-de-la-copule-frank">III.4.4.a. Estimation des paramètres de la copule frank</h4>
 <div id="d268f9e1" class="cell" data-execution_count="38">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> fit_copula(u_obs, <span class="st">"frank"</span>)[<span class="dv">0</span>]</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"theta = "</span>, theta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>theta =  10.0</code></pre>
 </div>
@@ -1504,14 +1624,19 @@ Warning
 <section id="iii.4.4.b.-simulation-de-la-copule-de-clayton-1" class="level4">
 <h4 class="anchored" data-anchor-id="iii.4.4.b.-simulation-de-la-copule-de-clayton-1">III.4.4.b. Simulation de la copule de clayton</h4>
 <div id="76d3055f" class="cell" data-execution_count="39">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> u_obs.shape[<span class="dv">0</span>]</span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> FrankCopula(theta<span class="op">=</span> theta).rvs(n)</span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>u_est <span class="op">=</span> pseudo_observations(_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="iii.4.4.c.-test-dajustement-1" class="level4">
 <h4 class="anchored" data-anchor-id="iii.4.4.c.-test-dajustement-1">III.4.4.c. Test d’ajustement</h4>
 <div id="0b85cdfe" class="cell" data-execution_count="40">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>plt.scatter(u_obs[:,<span class="dv">0</span>], u_obs[:,<span class="dv">1</span>], label <span class="op">=</span> <span class="st">"Données empiriques"</span>, color <span class="op">=</span> <span class="st">"grey"</span>)</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(u_est[:,<span class="dv">0</span>], u_est[:,<span class="dv">1</span>], label <span class="op">=</span> <span class="st">"Copule de frank"</span>, color <span class="op">=</span> <span class="st">"red"</span>)</span>
@@ -1521,6 +1646,7 @@ Warning
 <span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">False</span>)</span>
 <span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1530,7 +1656,10 @@ Warning
 </div>
 </div>
 <div id="e73e6f31" class="cell" data-execution_count="41">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>kendall_plot(u_obs,S,copula<span class="op">=</span><span class="st">"frank"</span>,theta<span class="op">=</span>theta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(999,) (999,)</code></pre>
 </div>
@@ -1546,9 +1675,12 @@ Warning
 <section id="iii.4.4.d.-test-dadéquation-1" class="level4">
 <h4 class="anchored" data-anchor-id="iii.4.4.d.-test-dadéquation-1">III.4.4.d. Test d’adéquation</h4>
 <div id="54d4e9cd" class="cell" data-execution_count="42">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pprint <span class="im">import</span> pprint</span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>result_frank <span class="op">=</span> adequation_test(X, copula_type<span class="op">=</span><span class="st">"frank"</span>) </span>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>pprint(result_frank)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'T_obs': array([0.12454173]),
  'copula_type': 'frank',
@@ -1562,11 +1694,14 @@ Warning
 <h3 class="anchored" data-anchor-id="iii.5.-résultats">III.5. Résultats</h3>
 <p>Nos résultats mettent en évidence l’importance de la structure de dépendance dans l’évaluation du risque de crédit. Après avoir testé plusieurs copules paramétriques, nous avons retenu la copule de Gumbel comme la plus appropriée, en raison de son bon ajustement aux données et de sa capacité à capturer les asymétries et les queues de distribution lourdes, essentielles dans un contexte de crise financière.</p>
 <div id="9b795f5c" class="cell" data-execution_count="43">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>dict_list <span class="op">=</span> [result_gaussian, result_std, result_clayton, result_gumbel, result_frank]</span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to DataFrame</span></span>
 <span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(dict_list)</span>
 <span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="42">
 <div>
 
@@ -1631,6 +1766,8 @@ Warning
 <p>La simulation Monte Carlo nous a permis d’estimer la distribution des pertes du portefeuille et de déterminer une CreditVaR à 99% de 1286,61 euros. L’analyse de la convergence des résultats confirme la robustesse de cette estimation, qui reste stable malgré les variations de taille d’échantillon.</p>
 <p>Ainsi, cette étude illustre la pertinence des copules pour modéliser de manière plus réaliste la dépendance entre les actifs financiers, là où les approches classiques fondées sur la corrélation linéaire sont insuffisantes. Une perspective d’amélioration pourrait consister à explorer des copules dynamiques ou à affiner l’estimation des paramètres via des méthodes bayésiennes.</p>
 <div id="456a0c5a" class="cell" data-execution_count="44">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la credit var par monte carlo</span></span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> credit_var(params_R1,params_R2,lambda_1,lambda_2,EAD,params,S,tau,copula_type<span class="op">=</span><span class="st">"gumbel"</span>,alpha<span class="op">=</span><span class="fl">0.99</span>):</span>
@@ -1662,8 +1799,11 @@ Warning
 <span id="cb66-29"><a href="#cb66-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb66-30"><a href="#cb66-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculer et retourner le quantile de niveau 99%</span></span>
 <span id="cb66-31"><a href="#cb66-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.percentile(L, alpha <span class="op">*</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="8b510b90" class="cell" data-execution_count="45">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tracer la courbe de la VaR en fonction de S</span></span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="co"># set seed</span></span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
@@ -1693,6 +1833,7 @@ Warning
 <span id="cb67-27"><a href="#cb67-27" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"VaR"</span>)</span>
 <span id="cb67-28"><a href="#cb67-28" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">False</span>)</span>
 <span id="cb67-29"><a href="#cb67-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1702,15 +1843,21 @@ Warning
 </div>
 </div>
 <div id="52203d8c" class="cell" data-execution_count="46">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>np.mean(VaR_values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="45">
 <pre><code>np.float64(1286.2298311022887)</code></pre>
 </div>
 </div>
 <div id="061542cd" class="cell" data-execution_count="47">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> <span class="dv">40000</span></span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>credit_var(params_R1<span class="op">=</span>params_R1,params_R2<span class="op">=</span>params_R2, lambda_1<span class="op">=</span>lambda_1, <span class="op">\</span></span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>                         lambda_2<span class="op">=</span>lambda_2, EAD<span class="op">=</span>EAD, params<span class="op">=</span>params, S<span class="op">=</span>S, tau<span class="op">=</span>tau)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="46">
 <pre><code>np.float64(1290.3822356040268)</code></pre>
 </div>
@@ -1740,150 +1887,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
