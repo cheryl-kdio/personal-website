@@ -35,7 +35,6 @@ Spécialisation : Finance quantitative, probabilités avancées, statistiques, e
 Spécialisation : Gestion des risques et ingénierie financière  
 
 
-
 ## Experiences
 
 **Société Générale – RISQ/MDL/MOD**  
@@ -48,6 +47,9 @@ Spécialisation : Gestion des risques et ingénierie financière
 Ce site web, conçu et généré avec Quarto, s'adresse principalement aux étudiants de l'ENSAI et du M2MO et a pour vocation d'offrir un soutien à ceux qui, comme moi, ont été confrontés à des défis académiques au cours de leur formation. Il ne prétend en aucun cas se substituer à l'enseignement dispensé par nos professeurs, dont la rigueur et l'expertise sont essentielles. Son objectif est plutôt de compléter leur travail en partageant mes expériences personnelles et les projets que j'ai réalisés.
 :::
 
+## Articles publiés
+
+*[Detecting the Cure Model Appropriateness in Randomized Clinical Trials With Long-Term Survivors](https://ascopubs.org/doi/10.1200/CCI-25-00084); Cheryl Kouadio, Msc, Subodh Selukar, PhD, Megan Othus, PhD, and Sylvie Chevret, MD, PhD*
 :::
 
 

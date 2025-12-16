@@ -165,18 +165,19 @@ window.Quarto = {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-ensai">    
         <li>
     <a class="dropdown-item" href="../../index_stat.html">
- <span class="dropdown-text">Statistiques</span></a>
+ <span class="dropdown-text">Statistiques - Ensai 2A</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../index_gdr.html">
  <span class="dropdown-text">Gestion des risques bancaires</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../../stat_linear.qmd">
- <span class="dropdown-text">Régression linéaire</span></a>
-  </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <span class="nav-link">
+<span class="menu-text">M2MO</span>
+    </span>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">À propos</span></a>
@@ -189,7 +190,7 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
@@ -222,7 +223,7 @@ window.Quarto = {
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -231,7 +232,7 @@ window.Quarto = {
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -323,6 +324,8 @@ R^2_a = 1 - \frac{SCR/(n-p)}{SCT/(n-1)}
 <h2 class="anchored" data-anchor-id="simulation-des-données">1. Simulation des données</h2>
 <p>Pour évaluer l’intérêt de la regréssion linéaire, nous allons simuler un échantillon de taille n=200, où la variable cible Y est une fonction linéaire de la variable explicative X. La vraie relation est donnée par <span class="math inline">\(Y = 2 + 3X + \epsilon\)</span>, où <span class="math inline">\(\epsilon \sim N(0, 1.6)\)</span>. De fait le modèle linéaire est adéquat.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">314</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n<span class="ot">&lt;-</span><span class="dv">200</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">runif</span>(n,<span class="dv">0</span>,<span class="dv">10</span>)</span>
@@ -334,6 +337,7 @@ R^2_a = 1 - \frac{SCR/(n-p)}{SCT/(n-1)}
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sim1<span class="ot">&lt;-</span><span class="fu">data.frame</span>(X,Y)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sim1<span class="sc">$</span>X,sim1<span class="sc">$</span>Y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -344,8 +348,11 @@ R^2_a = 1 - \frac{SCR/(n-p)}{SCT/(n-1)}
 </div>
 <p>En ajustant un modèle linéaire simple à nos données, nous obtenons une estimation des paramètres <span class="math inline">\(\hat \beta_0 = 1.92\)</span> et <span class="math inline">\(\hat \beta_1 = 2.98\)</span>. Les erreurs du modèle suivent une loi normale avec une variance <span class="math inline">\(\hat \sigma^2 = 1.45\)</span>.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sim1_lm<span class="ot">&lt;-</span><span class="fu">lm</span>(Y<span class="sc">~</span>X,<span class="at">data=</span>sim1)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sim1_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -374,8 +381,11 @@ F-statistic:  6908 on 1 and 198 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h3 class="anchored" data-anchor-id="hypothèses-sur-les-erreurs-et-lexistence-dune-relation-linéaire">2.1. Hypothèses sur les erreurs et l’existence d’une relation linéaire</h3>
 <p>Pour évaluer la qualité du modèle, nous allons tracer les résidus studentisés en fonction des valeurs ajustées. Les résidus studentisés sont les résidus divisés par l’écart-type des erreurs.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sim1_lm<span class="sc">$</span>fitted.values,<span class="fu">rstudent</span>(sim1_lm),<span class="at">xlab=</span><span class="st">"Valeurs ajustées"</span>, <span class="at">ylab=</span><span class="st">"Résidus studentisés"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -389,12 +399,18 @@ F-statistic:  6908 on 1 and 198 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Lorsque le nuage de point n’a pas de structure particulière, a priori l’hypothèse d’homoscédascticité n’est pas remise en question, comme cela semble être le cas ici. Attention : ces principes peuvent parfois être mis en défaut et il vaut toujours mieux réaliser plusieurs contrôles différents.</p>
 <p>Pour vérifier l’hypothèse d’homoscédasticité, nouspouvons également utiliser le test de Breusch-Pagan. Ce test est basé sur la régression des carrés des résidus sur les variables explicatives. Si le test est significatif, l’hypothèse d’homoscédasticité est rejetée.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(leaps)</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Le chargement a nécessité le package : carData</code></pre>
 </div>
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncvTest</span>(sim1_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Non-constant Variance Score Test 
 Variance formula: ~ fitted.values 
@@ -403,7 +419,10 @@ Chisquare = 0.0003134709, Df = 1, p = 0.98587</code></pre>
 </div>
 <p>Pour tester l’hypothèse de non corrélation des résidus, nous pouvons utiliser le test de Durbin-Watson. Ce test est basé sur l’autocorrélation des résidus. Si le test est significatif, l’hypothèse de non corrélation des résidus est rejetée.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">durbinWatsonTest</span>(sim1_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code> lag Autocorrelation D-W Statistic p-value
    1      0.02199557      1.939509    0.63
@@ -412,7 +431,10 @@ Chisquare = 0.0003134709, Df = 1, p = 0.98587</code></pre>
 </div>
 <p>En ce qui concerne l’hypothèse de normalité des résidus, nous pouvons utiliser le test de Shapiro-Wilk. Ce test est basé sur la comparaison des résidus avec une loi normale. Si le test est significatif, l’hypothèse de normalité des résidus est rejetée.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(sim1_lm<span class="sc">$</span>residuals)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Shapiro-Wilk normality test
@@ -427,19 +449,31 @@ W = 0.99131, p-value = 0.2749</code></pre>
 <h3 class="anchored" data-anchor-id="qualité-du-modèle">2.2. Qualité du modèle</h3>
 <p>Pour évaluer la qualité du modèle, nous allons calculer le coefficient de détermination <span class="math inline">\(R^2\)</span> et le <span class="math inline">\(R^2\)</span> ajusté.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(R2<span class="ot">&lt;-</span><span class="fu">summary</span>(sim1_lm)<span class="sc">$</span>r.squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.9721382</code></pre>
 </div>
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(R2_adj<span class="ot">&lt;-</span><span class="fu">summary</span>(sim1_lm)<span class="sc">$</span>adj.r.squared)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.9719975</code></pre>
 </div>
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">AIC</span>(sim1_lm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 719.3729</code></pre>
 </div>
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">BIC</span>(sim1_lm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 729.2678</code></pre>
 </div>
@@ -542,7 +576,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/cheryl-kdio\.github\.io\/personal-website\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

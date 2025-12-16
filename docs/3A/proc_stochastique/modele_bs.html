@@ -71,12 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-79108a0fc1995748cbd19a5b0e3e3e7c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-fdf986989e2058d46a90f864900247d8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-79108a0fc1995748cbd19a5b0e3e3e7c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -159,13 +157,25 @@ window.Quarto = {
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Accueil</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../index_stat.html"> 
-<span class="menu-text">Modélisation stat.</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ensai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">ENSAI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ensai">    
+        <li>
+    <a class="dropdown-item" href="../../index_stat.html">
+ <span class="dropdown-text">Statistiques - Ensai 2A</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../index_gdr.html">
+ <span class="dropdown-text">Gestion des risques bancaires</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../index_gdr.html"> 
-<span class="menu-text">Gestion des risques</span></a>
+    <span class="nav-link">
+<span class="menu-text">M2MO</span>
+    </span>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
@@ -174,7 +184,6 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -196,7 +205,7 @@ window.Quarto = {
   </ul></li>
   </ul></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="modele_bs.ipynb" download="modele_bs.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -251,6 +260,8 @@ d_2 = d_1 - \sigma \sqrt{T}
 <section id="calcul-dun-call" class="level2">
 <h2 class="anchored" data-anchor-id="calcul-dun-call">1. Calcul d’un call</h2>
 <div id="b3617dde" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul d'un call</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -261,6 +272,7 @@ d_2 = d_1 - \sigma \sqrt{T}
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    d2 <span class="op">=</span> d1 <span class="op">-</span> sigma <span class="op">*</span> np.sqrt(tau)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    call <span class="op">=</span> S<span class="op">*</span>norm.cdf(d1) <span class="op">-</span> K<span class="op">*</span> np.exp( <span class="op">-</span> tau <span class="op">*</span> r) <span class="op">*</span> norm.cdf(d2)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> call</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>Lorsqu’on a pas accès à une formule analytique pour le prix d’une option, on peut utiliser la méthode de Monte-Carlo pour estimer ce prix. Pour cela, on simule un grand nombre de trajectoires du prix de l’actif sous-jacent, et on calcule la valeur de l’option à chaque date de maturité. On fait ensuite la moyenne de ces valeurs pour obtenir une estimation du prix de l’option.</p>
 <p>Le prix de l’actif sous-jacent suit un mouvement brownien géométrique, et on peut simuler ce mouvement en utilisant la formule d’Ito :</p>
@@ -268,6 +280,8 @@ d_2 = d_1 - \sigma \sqrt{T}
 S_t = S_0 e^{(\mu - \frac{\sigma^2}{2})t + \sigma W_t}
 \]</span></p>
 <div id="0f511e41" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> FormulaBSMC(K,r,tau,sigma,M, S0) :</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Simulation du M mouvement brownien de loi N(0, sigma*sqrt(T))</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    var_brown <span class="op">=</span> sigma <span class="op">*</span> np.sqrt(tau)</span>
@@ -278,8 +292,11 @@ S_t = S_0 e^{(\mu - \frac{\sigma^2}{2})t + \sigma W_t}
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    call <span class="op">=</span> np.exp(<span class="op">-</span>r<span class="op">*</span>tau) <span class="op">*</span> np.mean(payoff)</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> call</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="ac1ca99b" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul du prix d'un call lors t=O, T=6mois, S0= 42, K=40, r=10%, sigma=20%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>S0 <span class="op">=</span> <span class="dv">42</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> <span class="dv">40</span></span>
@@ -289,15 +306,19 @@ S_t = S_0 e^{(\mu - \frac{\sigma^2}{2})t + \sigma W_t}
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>call_BS <span class="op">=</span> FormulaBS(S0,K,r,tau,sigma)</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Le prix d'un call est de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> est de </span><span class="sc">{</span>call_BS<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Le prix d'un call est de maturité 6mois et de strike 40 est de 20.67722481517296</code></pre>
 </div>
 </div>
 <div id="61bfae0c" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>M_values <span class="op">=</span> [<span class="dv">500</span>, <span class="dv">5000</span>, <span class="dv">50000</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> M <span class="kw">in</span> M_values:</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    call_BSMC <span class="op">=</span> FormulaBSMC(K, r, tau, sigma, M, S0)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Le prix d'un call avec M=</span><span class="sc">{</span>M<span class="sc">}</span><span class="ss">, de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> est de </span><span class="sc">{</span>call_BSMC<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Le prix d'un call avec M=500, de maturité 6mois et de strike 40 est de 20.21549073157966
 Le prix d'un call avec M=5000, de maturité 6mois et de strike 40 est de 20.341643527763484
@@ -305,6 +326,8 @@ Le prix d'un call avec M=50000, de maturité 6mois et de strike 40 est de 20.710
 </div>
 </div>
 <div id="282adc1c" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul du prix d'un call lors t=O, T=3mois, S0= 42, K=40, r=10%, sigma=20%</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>call_BS <span class="op">=</span> FormulaBS(S0,K,r,tau,sigma)</span>
@@ -314,6 +337,7 @@ Le prix d'un call avec M=50000, de maturité 6mois et de strike 40 est de 20.710
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> M <span class="kw">in</span> M_values:</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    call_BSMC <span class="op">=</span> FormulaBSMC(K, r, tau, sigma, M, S0)</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Le prix d'un call avec M=</span><span class="sc">{</span>M<span class="sc">}</span><span class="ss">, de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> est de </span><span class="sc">{</span>call_BSMC<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Le prix d'un call est de maturité 3mois et de strike 40 est de 13.362666146646749
 Le prix d'un call avec M=500, de maturité 3mois et de strike 40 est de 13.949252228829925
@@ -349,6 +373,8 @@ Vega = S_t \sqrt{T} N(d_1)
 \]</span></p>
 <p>Cependant, lorsqu’on a pas accès à une formule analytique pour le prix de l’option, on peut utiliser la méthode de Monte-Carlo pour estimer ces greeks. Pour cela, on calcule le prix de l’option pour une petite variation de chaque paramètre, et on fait la différence entre ces deux prix pour obtenir une estimation du greek. On peut également utiliser la méthode des différences finies pour calculer ces greeks.</p>
 <div id="8c8fc5fc" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> FormulaBSGreeks(S,K,r,tau,sigma):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    d1 <span class="op">=</span> (np.log(S<span class="op">/</span>K) <span class="op">+</span> (r <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span>sigma<span class="op">**</span><span class="dv">2</span>)<span class="op">*</span>tau ) <span class="op">/</span> (sigma <span class="op">*</span> np.sqrt(tau))</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># d2 = d1 - sigma * np.sqrt(tau)</span></span>
@@ -358,8 +384,11 @@ Vega = S_t \sqrt{T} N(d_1)
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    vega <span class="op">=</span> S <span class="op">*</span> np.sqrt(tau) <span class="op">*</span> norm.pdf(d1)</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> delta, gamma, vega</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="d55c16b2" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> <span class="dv">110</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">0.1</span></span>
@@ -368,11 +397,14 @@ Vega = S_t \sqrt{T} N(d_1)
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>delta, gamma, vega <span class="op">=</span> FormulaBSGreeks(S<span class="op">=</span>S,K<span class="op">=</span>K,r<span class="op">=</span>r,tau<span class="op">=</span>tau,sigma<span class="op">=</span>sigma)</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Les greeks d'un call sont de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> sont delta=</span><span class="sc">{</span>delta<span class="sc">}</span><span class="ss">, gamma=</span><span class="sc">{</span>gamma<span class="sc">}</span><span class="ss">, vega=</span><span class="sc">{</span>vega<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Les greeks d'un call sont de maturité 0.5mois et de strike 110 sont delta=0.40141715171302983, gamma=0.027343746144537384, vega=27.343746144537384</code></pre>
 </div>
 </div>
 <div id="2225d380" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Supposons qu'on a pas la formule des greeks</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># comment calculer les greeks</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Approche montecarlo </span></span>
@@ -393,11 +425,14 @@ Vega = S_t \sqrt{T} N(d_1)
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>delta, gamma, vega <span class="op">=</span> FormulaBSGreeksMC(K,r,tau,sigma,<span class="dv">500</span>, S)</span>
 <span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Les greeks d'un call sont de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> sont delta=</span><span class="sc">{</span>delta<span class="sc">}</span><span class="ss">, gamma=</span><span class="sc">{</span>gamma<span class="sc">}</span><span class="ss">, vega=</span><span class="sc">{</span>vega<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Les greeks d'un call sont de maturité 0.5mois et de strike 110 sont delta=0.42713711028344337, gamma=0.027343746144537384, vega=27.94419858966199</code></pre>
 </div>
 </div>
 <div id="fd8298ff" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mérhode de différencee finie basé sur la méthode de Taylor</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> FormulaBSGreeks_FD_num(S, K, r, tau, sigma, delta_S<span class="op">=</span><span class="fl">1e-5</span>):</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -428,6 +463,7 @@ Vega = S_t \sqrt{T} N(d_1)
 <span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>delta, gamma, vega <span class="op">=</span> FormulaBSGreeks_FD_num(S,K,r,tau,sigma)</span>
 <span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Les greeks d'un call sont de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> sont delta=</span><span class="sc">{</span>delta<span class="sc">}</span><span class="ss">, gamma=</span><span class="sc">{</span>gamma<span class="sc">}</span><span class="ss">, vega=</span><span class="sc">{</span>vega<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Les greeks d'un call sont de maturité 0.5mois et de strike 110 sont delta=0.4014171516075748, gamma=0.027142732506035824, vega=27.34374614092871</code></pre>
 </div>
@@ -440,6 +476,8 @@ Vega = S_t \sqrt{T} N(d_1)
 C(S_t, K, T, r, \sigma) = S_t N(d_1) - K e^{-rT} N(d_2)
 \]</span></p>
 <div id="351f79be" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ImpliedVolBS(S,K,r,tau, Call):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># optim function</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> obj_func(sigma):</span>
@@ -448,8 +486,11 @@ C(S_t, K, T, r, \sigma) = S_t N(d_1) - K e^{-rT} N(d_2)
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    res <span class="op">=</span> minimize(obj_func, <span class="fl">0.2</span>)</span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    sigma <span class="op">=</span> res.x[<span class="dv">0</span>]</span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sigma</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="b80f65cd" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la volatilité d'une option d'achat à la monnaie de maturité 3 mois et de strike K=S=4.58 sachant que S0=100; r=5%</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> <span class="dv">100</span></span>
@@ -460,11 +501,14 @@ C(S_t, K, T, r, \sigma) = S_t N(d_1) - K e^{-rT} N(d_2)
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> ImpliedVolBS(S,K,r,tau, Call)</span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"La volatilité implicite d'un call est de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> est de </span><span class="sc">{</span>sigma<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>La volatilité implicite d'un call est de maturité 0.25mois et de strike 100 est de 0.19821832844648876</code></pre>
 </div>
 </div>
 <div id="8ef9dee3" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la volatilité d'une option d'achat à la monnaie de maturité 6 mois et de strike K=S=5.53 sachant que S0=100; r=5%</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> <span class="dv">100</span></span>
@@ -475,6 +519,7 @@ C(S_t, K, T, r, \sigma) = S_t N(d_1) - K e^{-rT} N(d_2)
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> ImpliedVolBS(S,K,r,tau, Call)</span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"La volatilité implicite d'un call est de maturité </span><span class="sc">{</span>tau<span class="sc">}</span><span class="ss">mois et de strike </span><span class="sc">{</span>K<span class="sc">}</span><span class="ss"> est de </span><span class="sc">{</span>sigma<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>La volatilité implicite d'un call est de maturité 0.5mois et de strike 100 est de 0.15010660990708588</code></pre>
 </div>
@@ -506,150 +551,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

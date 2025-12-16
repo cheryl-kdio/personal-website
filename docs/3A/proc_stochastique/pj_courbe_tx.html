@@ -73,12 +73,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-79108a0fc1995748cbd19a5b0e3e3e7c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-fdf986989e2058d46a90f864900247d8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-79108a0fc1995748cbd19a5b0e3e3e7c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -164,13 +162,25 @@ window.Quarto = {
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Accueil</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../index_stat.html"> 
-<span class="menu-text">Modélisation stat.</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-ensai" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">ENSAI</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-ensai">    
+        <li>
+    <a class="dropdown-item" href="../../index_stat.html">
+ <span class="dropdown-text">Statistiques - Ensai 2A</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../index_gdr.html">
+ <span class="dropdown-text">Gestion des risques bancaires</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
-    <a class="nav-link" href="../../index_gdr.html"> 
-<span class="menu-text">Gestion des risques</span></a>
+    <span class="nav-link">
+<span class="menu-text">M2MO</span>
+    </span>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
@@ -179,7 +189,6 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -206,7 +215,7 @@ window.Quarto = {
   <li><a href="#valorisation-dun-produit-structuré" id="toc-valorisation-dun-produit-structuré" class="nav-link" data-scroll-target="#valorisation-dun-produit-structuré">3.7 Valorisation d’un produit structuré</a></li>
   </ul></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="pj_courbe_tx.ipynb" download="pj_courbe_tx.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></nav>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
@@ -275,6 +284,8 @@ Important
 <p>La courbe interbancaire est une courbe de taux qui représente les taux d’intérêt auxquels les banques se prêtent de l’argent entre elles. Elle est utilisée pour déterminer les taux d’intérêt des prêts et des emprunts à court terme. Elle est construite sur le court terme (maturité&lt;6M) à partir des taux du marchés monétaire (Money Market) basés sur les dépots non garantis entre banques. Sur le moyen terme (6m - 3y) elle est construite à partir des contrats futures, i.e.&nbsp;des forwards sur un marché OTC (Over The Counter) et sur le long terme (&gt;3y) elle est construite à partir des contrats de swap euribor (Euro Interbank Offered Rate) 3M ou 6M.</p>
 <p>Ci dessous, nous disposons de ces données de taux de marché cotés sur le marché interbancaire. Nous allons essayer de reconstituer la courbe de taux zero coupon implicite, qui ne cote pas directement sur le marché. Le fichier de données contient trois variables : - Type d’instruments (Money Market, Futures, Swap) - Maturité (en années) - Taux d’intérêt</p>
 <div id="0c4645ae" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
@@ -283,6 +294,7 @@ Important
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_excel(<span class="st">'data/Data_tx.xlsx'</span>, sheet_name<span class="op">=</span><span class="st">'tx_marche'</span>)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>data.columns <span class="op">=</span> [<span class="st">'type'</span>, <span class="st">'T'</span>, <span class="st">'tx'</span>]</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
@@ -493,6 +505,8 @@ Important
 <section id="i.2.-construction-de-la-courbe-des-taux-zéro-coupon" class="level3">
 <h3 class="anchored" data-anchor-id="i.2.-construction-de-la-courbe-des-taux-zéro-coupon">I.2. Construction de la courbe des taux zéro-coupon</h3>
 <div id="a36e0da8" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.interpolate <span class="im">import</span> interp1d</span>
@@ -525,6 +539,7 @@ Important
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>df_interp <span class="op">=</span> interpolate_and_update_df(data, <span class="st">'T'</span>, <span class="st">'tx'</span>) </span>
 <span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>df_interp[<span class="st">'type'</span>] <span class="op">=</span> <span class="st">'SWAP'</span></span>
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>df_interp.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
@@ -576,9 +591,12 @@ Important
 </div>
 </div>
 <div id="78344364" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Le rajoiuter dans le df</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>new_df <span class="op">=</span> pd.concat([data[data[<span class="st">"type"</span>] <span class="op">!=</span> <span class="st">"SWAP"</span>], df_interp], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>new_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
@@ -630,6 +648,8 @@ Important
 </div>
 </div>
 <div id="708397fe" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage d'une courbe homogène de taux de marché en fonction de la maturité</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>new_df[<span class="st">'tx_h'</span>] <span class="op">=</span> new_df.<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="dv">1</span> <span class="op">-</span> x[<span class="st">'tx'</span>] <span class="cf">if</span> x[<span class="st">'type'</span>] <span class="op">==</span> <span class="st">'FUT'</span> <span class="cf">else</span> x[<span class="st">'tx'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -640,6 +660,7 @@ Important
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Courbe des taux de marché'</span>)</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -663,6 +684,8 @@ L_0(0,\delta) = \frac{1}{\delta} \left( \frac{1}{B(0,\delta)} - 1 \right)
 B(0,\delta) = \frac{1}{1 + \delta L_0(0,\delta)}
 \]</span></p>
 <div id="ac700ad2" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraction des facteurs d'actualisation pour les Money Market</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>mm <span class="op">=</span> new_df[new_df[<span class="st">'type'</span>] <span class="op">==</span> <span class="st">'MM'</span>]</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -670,6 +693,7 @@ B(0,\delta) = \frac{1}{1 + \delta L_0(0,\delta)}
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>mm.loc[:, <span class="st">'R'</span>] <span class="op">=</span> <span class="op">-</span> np.log(mm[<span class="st">'B'</span>]) <span class="op">/</span> mm[<span class="st">'T'</span>]</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>df_ZC <span class="op">=</span> mm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="extraction-du-taux-zero-coupon-sur-le-segment-future" class="level4">
@@ -682,6 +706,8 @@ Future = 1 - L_0(T,T+\delta) = 1 - \frac{1}{\delta} \left( \frac{B(0,T)}{B(0,T+\
 B(0,T+\delta) = \frac{B(0,T)}{1 + \delta (1- Future)}
 \]</span></p>
 <div id="b0c2e75e" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraction des facteurs d'actualisation pour les Futures</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fut <span class="op">=</span> new_df[new_df[<span class="st">'type'</span>] <span class="op">==</span> <span class="st">'FUT'</span>]</span>
@@ -694,6 +720,7 @@ B(0,T+\delta) = \frac{B(0,T)}{1 + \delta (1- Future)}
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(mm_len, <span class="bu">len</span>(df_ZC)):</span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    df_ZC.loc[i, <span class="st">'B'</span>] <span class="op">=</span> df_ZC.loc[i<span class="op">-</span><span class="dv">1</span>, <span class="st">'B'</span>] <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> df_ZC.loc[i, <span class="st">'tx'</span>])<span class="op">*</span> <span class="fl">0.25</span>)</span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    df_ZC.loc[i, <span class="st">'R'</span>] <span class="op">=</span> <span class="op">-</span> np.log(df_ZC.loc[i, <span class="st">'B'</span>]) <span class="op">/</span> df_ZC.loc[i, <span class="st">'T'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="extraction-du-taux-zero-coupon-sur-le-segment-swap" class="level4">
@@ -706,6 +733,8 @@ Swap(t, T_0, T_n) = B(t, T_0)−B(t, T_n)−K ×lvl(t) = 0,
 B(0,T_n) = \frac{1 - K \sum_{i=1}^{n-1} \delta_i B(0,T_i)}{1 + K}
 \]</span></p>
 <div id="1e3fdcf6" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraction des facteurs d'actualisation pour les Swaps</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>swap <span class="op">=</span> new_df[new_df[<span class="st">'type'</span>] <span class="op">==</span> <span class="st">'SWAP'</span>]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>fut_len <span class="op">=</span> <span class="bu">len</span>(fut)</span>
@@ -717,8 +746,11 @@ B(0,T_n) = \frac{1 - K \sum_{i=1}^{n-1} \delta_i B(0,T_i)}{1 + K}
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> (df_ZC[<span class="st">'T'</span>] <span class="op">&lt;</span> T_n) <span class="op">&amp;</span> (df_ZC[<span class="st">'T'</span>] <span class="op">%</span> <span class="dv">1</span> <span class="op">==</span> <span class="dv">0</span>)  <span class="co"># Sélectionne uniquement les T entiers &lt; T_n</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    df_ZC.loc[i, <span class="st">'B'</span>] <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> df_ZC.loc[i, <span class="st">'tx'</span>] <span class="op">*</span> <span class="bu">sum</span>(df_ZC.loc[mask, <span class="st">'B'</span>].fillna(<span class="dv">0</span>)))<span class="op">/</span>(<span class="dv">1</span><span class="op">+</span>df_ZC.loc[i, <span class="st">'tx'</span>])</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    df_ZC.loc[i, <span class="st">'R'</span>] <span class="op">=</span> <span class="op">-</span> np.log(df_ZC.loc[i, <span class="st">'B'</span>]) <span class="op">/</span> T_n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="c719afa8" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.plot(df_ZC[<span class="st">'T'</span>], df_ZC[<span class="st">'R'</span>], label<span class="op">=</span><span class="st">'Courbe de taux zéro coupon'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.plot(new_df[<span class="st">"T"</span>], new_df[<span class="st">"tx_h"</span>], label<span class="op">=</span><span class="st">'Taux de marché'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
@@ -726,6 +758,7 @@ B(0,T_n) = \frac{1 - K \sum_{i=1}^{n-1} \delta_i B(0,T_i)}{1 + K}
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'R'</span>)</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Courbe de taux zéro coupon discrétisée'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>Text(0.5, 1.0, 'Courbe de taux zéro coupon discrétisée')</code></pre>
 </div>
@@ -749,9 +782,14 @@ L_0(T,T+\delta) = \frac{1}{\delta} (\frac{B(0,T)}{B(0,T+\delta)} - 1)
 \]</span> avec <span class="math inline">\(\delta = 0.25\)</span>.</p>
 <p>Pour le segment swap, il s’agira d’interpoler les taux zéro-coupon implicites pour avoir des tx forwards 3M. # changer la discretisatio à 1an ce qui est différent du ténor.</p>
 <div id="d886d6d8" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_ZC <span class="op">=</span> pd.concat([pd.DataFrame({<span class="st">"T"</span>: [<span class="dv">0</span>], <span class="st">"B"</span>: [<span class="dv">1</span>], <span class="st">"R"</span>: [<span class="dv">0</span>]}), df_ZC], ignore_index<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="7ec78c17" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>new_df_ZC<span class="op">=</span> interpolate_and_update_df(df_ZC, <span class="st">'T'</span>, <span class="st">'R'</span>, kind<span class="op">=</span><span class="st">'linear'</span>, start<span class="op">=</span><span class="dv">0</span>, end<span class="op">=</span><span class="dv">30</span>, step<span class="op">=</span><span class="fl">0.1</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> <span class="fl">0.25</span>  <span class="co"># 3 mois = 0.25 an</span></span>
@@ -784,6 +822,7 @@ L_0(T,T+\delta) = \frac{1}{\delta} (\frac{B(0,T)}{B(0,T+\delta)} - 1)
 <span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Taux forward'</span>)</span>
 <span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Courbe des taux forward avec interpolation linéaire'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>Text(0.5, 1.0, 'Courbe des taux forward avec interpolation linéaire')</code></pre>
 </div>
@@ -796,6 +835,8 @@ L_0(T,T+\delta) = \frac{1}{\delta} (\frac{B(0,T)}{B(0,T+\delta)} - 1)
 </div>
 </div>
 <div id="31e0037d" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>new_df_ZC<span class="op">=</span> interpolate_and_update_df(df_ZC, <span class="st">'T'</span>, <span class="st">'R'</span>, kind<span class="op">=</span><span class="st">'cubic'</span>, start<span class="op">=</span><span class="dv">0</span>, end<span class="op">=</span><span class="dv">30</span>, step<span class="op">=</span><span class="fl">0.1</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> <span class="fl">0.25</span>  <span class="co"># 3 mois = 0.25 an</span></span>
@@ -807,6 +848,7 @@ L_0(T,T+\delta) = \frac{1}{\delta} (\frac{B(0,T)}{B(0,T+\delta)} - 1)
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Taux forward'</span>)</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Courbe des taux forward avec interpolation par spline'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>Text(0.5, 1.0, 'Courbe des taux forward avec interpolation par spline')</code></pre>
 </div>
@@ -822,6 +864,8 @@ L_0(T,T+\delta) = \frac{1}{\delta} (\frac{B(0,T)}{B(0,T+\delta)} - 1)
 <p>Nous sommes intéressés à ce qui pourrait se passer lorsque nous shiftons le taux de swap 5Y de 10 points de base. Cela permet de déterminer la sensibilité de la courbe des taux forward aux variations des taux de swap et donc donner des indications sur comment hedger ce risque.</p>
 <p>Nous allons donc calculer le taux forward 3M pour les deux courbes de taux forward et comparer les résultats.</p>
 <div id="0f561488" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>choc <span class="op">=</span> <span class="dv">10</span><span class="op">/</span><span class="dv">10000</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>new_df[<span class="st">"tx_s"</span>] <span class="op">=</span> new_df.<span class="bu">apply</span>(<span class="kw">lambda</span> x: x[<span class="st">'tx_h'</span>]<span class="op">+</span>choc <span class="cf">if</span> x[<span class="st">'T'</span>] <span class="op">==</span> <span class="dv">5</span> <span class="cf">else</span> x[<span class="st">'tx_h'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -837,6 +881,7 @@ L_0(T,T+\delta) = \frac{1}{\delta} (\frac{B(0,T)}{B(0,T+\delta)} - 1)
 <span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>new_df[<span class="st">"tx_s"</span>] <span class="op">=</span> new_df.<span class="bu">apply</span>(<span class="kw">lambda</span> x: x[<span class="st">'tx'</span>]<span class="op">+</span>choc <span class="cf">if</span> x[<span class="st">'T'</span>] <span class="op">==</span> <span class="dv">5</span> <span class="cf">else</span> x[<span class="st">'tx'</span>], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -846,6 +891,8 @@ L_0(T,T+\delta) = \frac{1}{\delta} (\frac{B(0,T)}{B(0,T+\delta)} - 1)
 </div>
 </div>
 <div id="6f837689" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraction des facteurs d'actualisation pour les Money Market</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -909,6 +956,7 @@ L_0(T,T+\delta) = \frac{1}{\delta} (\frac{B(0,T)}{B(0,T+\delta)} - 1)
 <span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'R'</span>)</span>
 <span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Courbe de taux zéro coupon discrétisée'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>Text(0.5, 1.0, 'Courbe de taux zéro coupon discrétisée')</code></pre>
 </div>
@@ -921,6 +969,8 @@ L_0(T,T+\delta) = \frac{1}{\delta} (\frac{B(0,T)}{B(0,T+\delta)} - 1)
 </div>
 </div>
 <div id="1e8a5e30" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>new_df_ZC<span class="op">=</span> interpolate_and_update_df(df_ZC_s, <span class="st">'T'</span>, <span class="st">'R'</span>, kind<span class="op">=</span><span class="st">'linear'</span>, start<span class="op">=</span><span class="dv">0</span>, end<span class="op">=</span><span class="dv">30</span>, step<span class="op">=</span><span class="fl">0.1</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> <span class="fl">0.25</span>  <span class="co"># 3 mois = 0.25 an</span></span>
@@ -932,6 +982,7 @@ L_0(T,T+\delta) = \frac{1}{\delta} (\frac{B(0,T)}{B(0,T+\delta)} - 1)
 <span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Taux forward'</span>)</span>
 <span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Courbe des taux forward avec interpolation par spline'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>Text(0.5, 1.0, 'Courbe des taux forward avec interpolation par spline')</code></pre>
 </div>
@@ -944,6 +995,8 @@ L_0(T,T+\delta) = \frac{1}{\delta} (\frac{B(0,T)}{B(0,T+\delta)} - 1)
 </div>
 </div>
 <div id="08a3bafa" class="cell" data-execution_count="16">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>new_df_ZC<span class="op">=</span> interpolate_and_update_df(df_ZC_s, <span class="st">'T'</span>, <span class="st">'R'</span>, kind<span class="op">=</span><span class="st">'cubic'</span>, start<span class="op">=</span><span class="dv">0</span>, end<span class="op">=</span><span class="dv">30</span>, step<span class="op">=</span><span class="fl">0.1</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>tau <span class="op">=</span> <span class="fl">0.25</span>  <span class="co"># 3 mois = 0.25 an</span></span>
@@ -955,6 +1008,7 @@ L_0(T,T+\delta) = \frac{1}{\delta} (\frac{B(0,T)}{B(0,T+\delta)} - 1)
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Taux forward'</span>)</span>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Courbe des taux forward avec interpolation par spline'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>Text(0.5, 1.0, 'Courbe des taux forward avec interpolation par spline')</code></pre>
 </div>
@@ -1007,8 +1061,11 @@ d = \frac{1}{\sigma_S \sqrt{T_0 - t}} \left( \ln \left( \frac{F_S(t)}{K} \right)
 \]</span></p>
 <p>Il s’agit, à partir des cotations décrites dans le tableau ci-dessous et de la courbe des taux zéro-coupon construite précédemment, calculer les prix de marché de caplets sur euribor12M, ce qui implique une période de capitalisation annuelle, de maturité T = 5Y, i.e.&nbsp;payé à 6Y, et de strikes K associés au tableau. Nous souhaitons ainsi calculer : - Le prix des caplets Caplet(t, 5Y, 6Y) pour les strikes du tableau ci-dessous. - Le prix des swaptions Swaption(t, 5Y, 6Y) pour les strikes du tableau ci-dessous.</p>
 <div id="adc05a4a" class="cell" data-execution_count="17">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>vol_data <span class="op">=</span> pd.read_excel(<span class="st">'data/Data_tx.xlsx'</span>, sheet_name<span class="op">=</span><span class="st">'vol'</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>vol_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <div>
 
@@ -1072,6 +1129,8 @@ d = \frac{1}{\sigma_S \sqrt{T_0 - t}} \left( \ln \left( \frac{F_S(t)}{K} \right)
 </div>
 </div>
 <div id="f1836d22" class="cell" data-execution_count="18">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1134,6 +1193,7 @@ d = \frac{1}{\sigma_S \sqrt{T_0 - t}} \left( \ln \left( \frac{F_S(t)}{K} \right)
 <span id="cb23-60"><a href="#cb23-60" aria-hidden="true" tabindex="-1"></a>    vol_data.loc[i, <span class="st">'Caplet Price MKT'</span>] <span class="op">=</span> caplet_price</span>
 <span id="cb23-61"><a href="#cb23-61" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-62"><a href="#cb23-62" aria-hidden="true" tabindex="-1"></a>vol_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <div>
 
@@ -1205,7 +1265,10 @@ d = \frac{1}{\sigma_S \sqrt{T_0 - t}} \left( \ln \left( \frac{F_S(t)}{K} \right)
 </div>
 </div>
 <div id="a1cbec8f" class="cell" data-execution_count="19">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pricer les swaptions</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="iii.-modèle-de-hull-white" class="level2">
@@ -1366,13 +1429,18 @@ C\Bigl( Z_t,\, \tilde{K},\, T_i,\, \sigma_i^*,\, B(t, T_{i+1}) \Bigr) \quad (11)
 <p>On pose également, pour la calibration, <span class="math inline">\(\lambda = 5\%\)</span>.</p>
 <p>Pour extraire la volatilité spot, nous utiliserons uniquement le prix de marche ATM.</p>
 <div id="8c82239f" class="cell" data-execution_count="20">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>caplet_price_MKT <span class="op">=</span> vol_data.loc[<span class="dv">3</span>, <span class="st">'Caplet Price MKT'</span>]</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Le prix de marché caplet sur euribor 12M de maturité T=5Y est de </span><span class="sc">{</span>caplet_price_MKT<span class="sc">:.4%}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Le prix de marché caplet sur euribor 12M de maturité T=5Y est de 0.7137%</code></pre>
 </div>
 </div>
 <div id="3b9ee3b4" class="cell" data-execution_count="21">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1383,8 +1451,11 @@ C\Bigl( Z_t,\, \tilde{K},\, T_i,\, \sigma_i^*,\, B(t, T_{i+1}) \Bigr) \quad (11)
 <span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> price_oplet(N<span class="op">=</span>N, delta_i<span class="op">=</span>delta_i, B_t_Ti<span class="op">=</span>B_t_Ti, L_i_t<span class="op">=</span>Z_t, K<span class="op">=</span>K, sigma_i<span class="op">=</span>sigma_i, Ti<span class="op">=</span>Ti, t<span class="op">=</span>t, option_type<span class="op">=</span>option_type)</span>
 <span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
 <span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> price_oplet(N<span class="op">=</span>N, delta_i<span class="op">=</span>delta_i, B_t_Ti<span class="op">=</span>B_t_Ti, L_i_t<span class="op">=</span>L_i_t, K<span class="op">=</span>K, sigma_i<span class="op">=</span>sigma_i, Ti<span class="op">=</span>Ti, t<span class="op">=</span>t, option_type<span class="op">=</span>option_type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="45e22637" class="cell" data-execution_count="22">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Dichotomie(N, delta_i, B_t_Ti, L_i_t, K, Ti, t,caplet_price_MKT,option_type<span class="op">=</span><span class="st">'caplet'</span>, model<span class="op">=</span><span class="st">"HW"</span>,tol<span class="op">=</span><span class="fl">1e-6</span>, sigma_low<span class="op">=</span><span class="dv">1</span><span class="op">/</span><span class="dv">10000</span>, sigma_high<span class="op">=</span><span class="dv">1</span>):</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Extrait la volatilité implicite sigma en utilisant la méthode de dichotomie.</span></span>
@@ -1431,17 +1502,21 @@ C\Bigl( Z_t,\, \tilde{K},\, T_i,\, \sigma_i^*,\, B(t, T_{i+1}) \Bigr) \quad (11)
 <span id="cb28-44"><a href="#cb28-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a>sigma_i <span class="op">=</span> Dichotomie(N, delta_i, B_t_Ti, L_i_t, K, Ti, t,caplet_price_MKT, option_type<span class="op">=</span><span class="st">'caplet'</span>,model<span class="op">=</span><span class="st">"HW"</span>)</span>
 <span id="cb28-46"><a href="#cb28-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Volatilité implicite (en %) :"</span>, sigma_i<span class="op">*</span><span class="dv">100</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Volatilité implicite (en %) : 0.9271045541763303</code></pre>
 </div>
 </div>
 <div id="d9959dd1" class="cell" data-execution_count="23">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>beta_Ti_Ti_1 <span class="op">=</span>  ((<span class="dv">1</span> <span class="op">-</span> np.exp(<span class="op">-</span> lambda_ <span class="op">*</span> delta_i))<span class="op">/</span>lambda_)<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>Ti_1 <span class="op">=</span> Ti <span class="op">-</span> delta_i</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>phi <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> np.exp(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>lambda_<span class="op">*</span>(Ti_1<span class="op">-</span>t)))<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>lambda_)</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> np.sqrt((sigma_i<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> Ti_1)<span class="op">/</span> (beta_Ti_Ti_1 <span class="op">*</span> phi))</span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Volatilité instantanée (en %) :"</span>, sigma<span class="op">*</span><span class="dv">100</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Volatilité instantanée (en %) : 1.071446257025021</code></pre>
 </div>
@@ -1450,6 +1525,8 @@ C\Bigl( Z_t,\, \tilde{K},\, T_i,\, \sigma_i^*,\, B(t, T_{i+1}) \Bigr) \quad (11)
 <li>Cette volatilité spot nous permet de valoriiser les caplets pour des strikes différents de l’ATM à l’aide de la formule de valorisation fermée du modèle Hull et White.</li>
 </ol>
 <div id="4d41d6ea" class="cell" data-execution_count="24">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> vol_data.index:</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Notional</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="dv">1</span>  </span>
@@ -1477,6 +1554,7 @@ C\Bigl( Z_t,\, \tilde{K},\, T_i,\, \sigma_i^*,\, B(t, T_{i+1}) \Bigr) \quad (11)
 <span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>    vol_data.loc[i, <span class="st">'Caplet Price HW'</span>] <span class="op">=</span> caplet_price</span>
 <span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>vol_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <div>
 
@@ -1557,6 +1635,8 @@ C\Bigl( Z_t,\, \tilde{K},\, T_i,\, \sigma_i^*,\, B(t, T_{i+1}) \Bigr) \quad (11)
 </div>
 <p>L’une des faiblesses du modèle de Hull et White est le fait qu’il n’arrive pas à capter le smile de volatilité. En effet, la volatilité implicite extraite est un skew. Pour constater ce phénomène, nous inverserons la formule de Black pour les caplets et nous en déduirons la volatilité implicite pour chaque strike. Nous utiliserons toujours la méthode de dichotomie pour trouver la volatilité implicite.</p>
 <div id="7d3aba42" class="cell" data-execution_count="25">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> vol_data.index:</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    delta_i <span class="op">=</span> <span class="dv">1</span></span>
@@ -1571,6 +1651,7 @@ C\Bigl( Z_t,\, \tilde{K},\, T_i,\, \sigma_i^*,\, B(t, T_{i+1}) \Bigr) \quad (11)
 <span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>    vol_data.loc[i, <span class="st">'Sigma_HW'</span>] <span class="op">=</span> sigma_extracted</span>
 <span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>vol_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <div>
 
@@ -1658,6 +1739,8 @@ C\Bigl( Z_t,\, \tilde{K},\, T_i,\, \sigma_i^*,\, B(t, T_{i+1}) \Bigr) \quad (11)
 </div>
 </div>
 <div id="95d34c5b" class="cell" data-execution_count="26">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>plt.plot(vol_data[<span class="st">"Strike en bps et en rel. / fwd"</span>], vol_data[<span class="st">"Sigma_HW"</span>], label<span class="op">=</span><span class="st">'Volatilité extraite'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>plt.plot(vol_data[<span class="st">"Strike en bps et en rel. / fwd"</span>], vol_data[<span class="st">"Vols Caplets"</span>], label<span class="op">=</span><span class="st">'Volatilité de marché'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
@@ -1665,6 +1748,7 @@ C\Bigl( Z_t,\, \tilde{K},\, T_i,\, \sigma_i^*,\, B(t, T_{i+1}) \Bigr) \quad (11)
 <span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Comparaison de la volatilité extraite par le modèle HW et la volatilité de marché'</span>)</span>
 <span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Strike en bps et en rel. / fwd '</span>)</span>
 <span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Volatilité'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>Text(0, 0.5, 'Volatilité')</code></pre>
 </div>
@@ -1677,7 +1761,10 @@ C\Bigl( Z_t,\, \tilde{K},\, T_i,\, \sigma_i^*,\, B(t, T_{i+1}) \Bigr) \quad (11)
 </div>
 </div>
 <div id="160af4ce" class="cell" data-execution_count="27">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>ATM  <span class="op">=</span> L_i_t</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="valorisation-dun-produit-structuré" class="level3">
@@ -1755,6 +1842,8 @@ X_t|X_s \sim \mathcal{N}\left( X_s e^{-\lambda (t-s)} + \int_s^t e^{-\lambda (t-
 <section id="méthode-1-simulation-de-la-loi-de-x_5x_0" class="level5">
 <h5 class="anchored" data-anchor-id="méthode-1-simulation-de-la-loi-de-x_5x_0">Méthode 1 : Simulation de la loi de <span class="math inline">\(X_5|X_0\)</span></h5>
 <div id="bf4450d6" class="cell" data-execution_count="28">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> quad</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1803,12 +1892,15 @@ X_t|X_s \sim \mathcal{N}\left( X_s e^{-\lambda (t-s)} + \int_s^t e^{-\lambda (t-
 <span id="cb37-46"><a href="#cb37-46" aria-hidden="true" tabindex="-1"></a>var_5_given_0 <span class="op">=</span> compute_variance(sigma, lambda_, t, s)</span>
 <span id="cb37-47"><a href="#cb37-47" aria-hidden="true" tabindex="-1"></a><span class="co"># var_5_given_0 = (sigma**2) * (1 - np.exp(-2 * lambda_ * (t - s))) / (2 * lambda_)</span></span>
 <span id="cb37-48"><a href="#cb37-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Variance conditionnelle de X_5 | X_0 : </span><span class="sc">{</span>var_5_given_0<span class="sc">:.6f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Moyenne conditionnelle de X_5 | X_0 : 0.000000
 Variance conditionnelle de X_5 | X_0 : 0.000452</code></pre>
 </div>
 </div>
 <div id="a6413d3e" class="cell" data-execution_count="29">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>Ti_1 <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>Ti <span class="op">=</span> <span class="dv">6</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1853,6 +1945,7 @@ Variance conditionnelle de X_5 | X_0 : 0.000452</code></pre>
 <span id="cb39-42"><a href="#cb39-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Prix de l'option call</span></span>
 <span id="cb39-43"><a href="#cb39-43" aria-hidden="true" tabindex="-1"></a>call_price <span class="op">=</span> B0_6 <span class="op">*</span> np.mean(payoffs)</span>
 <span id="cb39-44"><a href="#cb39-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Prix du call : </span><span class="sc">{</span>call_price<span class="sc">:.6f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Prix du call : 0.003048</code></pre>
 </div>
@@ -1861,6 +1954,8 @@ Variance conditionnelle de X_5 | X_0 : 0.000452</code></pre>
 <section id="méthode-2-methode-de-diffusion" class="level5">
 <h5 class="anchored" data-anchor-id="méthode-2-methode-de-diffusion">Méthode 2 : Methode de diffusion</h5>
 <div id="5b230802" class="cell" data-execution_count="30">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation Monte Carlo</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>n_simulations <span class="op">=</span> <span class="dv">10000</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1910,6 +2005,7 @@ Variance conditionnelle de X_5 | X_0 : 0.000452</code></pre>
 <span id="cb41-47"><a href="#cb41-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Prix de l'option call</span></span>
 <span id="cb41-48"><a href="#cb41-48" aria-hidden="true" tabindex="-1"></a>call_price <span class="op">=</span> B0_6 <span class="op">*</span> np.mean(payoffs)</span>
 <span id="cb41-49"><a href="#cb41-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Prix du call : </span><span class="sc">{</span>call_price<span class="sc">:.6f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Prix du call : 0.003032</code></pre>
 </div>
@@ -1918,6 +2014,8 @@ Variance conditionnelle de X_5 | X_0 : 0.000452</code></pre>
 <p>En dégénérant le produit en faisant tendre la barrière à <span class="math inline">\(+\infty\)</span>, nous constatons que le prix de l’option call est égal au prix de marché du forward. En dégénérant le produit en faisant tendre la barrière à 0, nous constatons que le prix de l’option call est égal à 0.</p>
 <p>Cela est cohérent car lorsque la barrière est très élevée, le produit est équivalent à un forward et lorsque la barrière est nulle, le produit est équivalent à un call classique. La fonction que nous avons implémenté est donc cohérente et bien implémentée.</p>
 <div id="4b4de405" class="cell" data-execution_count="31">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>Ti_1 <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>Ti <span class="op">=</span> <span class="dv">6</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1962,6 +2060,7 @@ Variance conditionnelle de X_5 | X_0 : 0.000452</code></pre>
 <span id="cb43-42"><a href="#cb43-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Prix de l'option call</span></span>
 <span id="cb43-43"><a href="#cb43-43" aria-hidden="true" tabindex="-1"></a>call_price <span class="op">=</span> B0_6 <span class="op">*</span> np.mean(payoffs)</span>
 <span id="cb43-44"><a href="#cb43-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Prix du call : </span><span class="sc">{</span>call_price<span class="sc">:.6f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Prix du call : 0.007094</code></pre>
 </div>
@@ -1971,6 +2070,8 @@ Variance conditionnelle de X_5 | X_0 : 0.000452</code></pre>
 \text{Payoff} = \delta_i \max\Bigl( L_i(T_i) - K,\; 0 \Bigr) \mathbb{1}_{max_{i=1,\dots,5}(L_i(T_i) &lt; B)}
 \]</span></p>
 <div id="00ad37a1" class="cell" data-execution_count="32">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option bermudienne</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation Monte Carlo</span></span>
@@ -2033,12 +2134,15 @@ Variance conditionnelle de X_5 | X_0 : 0.000452</code></pre>
 <span id="cb45-60"><a href="#cb45-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Prix de l'option call</span></span>
 <span id="cb45-61"><a href="#cb45-61" aria-hidden="true" tabindex="-1"></a>call_price <span class="op">=</span> B0_6 <span class="op">*</span> np.mean(payoffs)</span>
 <span id="cb45-62"><a href="#cb45-62" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Prix du call : </span><span class="sc">{</span>call_price<span class="sc">:.6f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Prix du call : 0.003071</code></pre>
 </div>
 </div>
 <p>L’un des paramètres important du modèle de Hull et White est la mean reversion <span class="math inline">\(\lambda\)</span>, qui caractérise la force de rappel à la moyenne du processus. Ce paramètre a un impact positive sur la valorisation de l’option, comme nous pouvons l’observer dans la figure ci dessous .</p>
 <div id="0b757055" class="cell" data-execution_count="33">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Liste des lambda à tester</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>lambdas <span class="op">=</span> np.linspace(<span class="fl">0.01</span>, <span class="dv">1</span>, <span class="dv">15</span>)  <span class="co"># Exemple de grille de lambda</span></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
@@ -2086,8 +2190,11 @@ Variance conditionnelle de X_5 | X_0 : 0.000452</code></pre>
 <span id="cb47-45"><a href="#cb47-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-46"><a href="#cb47-46" aria-hidden="true" tabindex="-1"></a>    call_price <span class="op">=</span> B0_6 <span class="op">*</span> np.mean(payoffs)</span>
 <span id="cb47-47"><a href="#cb47-47" aria-hidden="true" tabindex="-1"></a>    results.append((lambda_, call_price,prob_toucher_barriere))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div id="a7afeb0a" class="cell" data-execution_count="34">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optionnel : Graphique de la sensibilité</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2098,6 +2205,7 @@ Variance conditionnelle de X_5 | X_0 : 0.000452</code></pre>
 <span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Sensibilité du prix à la mean reversion (λ)'</span>)</span>
 <span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -2108,12 +2216,15 @@ Variance conditionnelle de X_5 | X_0 : 0.000452</code></pre>
 </div>
 <p>De plus, plus le paramètre de mean reversion <span class="math inline">\(\lambda\)</span> est élevé, plus la probabilité de toucher la barrière est faible. Inversement, une faible mean reversion laisse plus de liberté au processus pour explorer des valeurs extrêmes, augmentant ainsi la probabilité de franchir la barrière.</p>
 <div id="9de42ce7" class="cell" data-execution_count="35">
+<details class="code-fold">
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>plt.plot(lambdas, probabilities, marker<span class="op">=</span><span class="st">'o'</span>)</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Lambda (Mean Reversion)'</span>)</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Probabilité de toucher la barrière'</span>)</span>
 <span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Probabilité de toucher la barrière en fonction de la mean reversion (λ)'</span>)</span>
 <span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -2149,150 +2260,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
