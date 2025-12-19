@@ -46,7 +46,7 @@
     "href": "about.html",
     "title": "Cheryl KOUADIO",
     "section": "",
-    "text": "Université Paris Cité – Paris\nMaster 2 – Modélisation Aléatoire (M2MO), Ex-DEA Laure Elie | Sept. 2025 – Sept. 2026\nSpécialisation : Finance quantitative, probabilités avancées, statistiques, et modélisation stochastique\nENSAI – École Nationale de la Statistique et de l’Analyse de l’Information – Rennes\nDiplôme d’ingénieur en statistiques (grade de master) | Sept. 2022 – Sept. 2025\nSpécialisation : Gestion des risques et ingénierie financière\n\n\n\nSociété Générale – RISQ/MDL/MOD\nStagiaire analyste quantitatif – IFRS 9 | Avril 2025 - Aout 2025\nINSERM\nStagiaire recherche – Mixture cure models | Mai 2024 - Aout 2024\n\n\n\n\n\n\nNote\n\n\n\nCe site web, conçu et généré avec Quarto, s’adresse principalement aux étudiants de l’ENSAI et du M2MO et a pour vocation d’offrir un soutien à ceux qui, comme moi, ont été confrontés à des défis académiques au cours de leur formation. Il ne prétend en aucun cas se substituer à l’enseignement dispensé par nos professeurs, dont la rigueur et l’expertise sont essentielles. Son objectif est plutôt de compléter leur travail en partageant mes expériences personnelles et les projets que j’ai réalisés.\n\n\n\n\n\nDetecting the Cure Model Appropriateness in Randomized Clinical Trials With Long-Term Survivors; Cheryl Kouadio, Msc, Subodh Selukar, PhD, Megan Othus, PhD, and Sylvie Chevret, MD, PhD\nSubodh Selukar, PhD, Megan Othus, PhD, and Sylvie Chevret, MD, PhD"
+    "text": "Université Paris Cité – Paris\nMaster 2 – Modélisation Aléatoire (M2MO), Ex-DEA Laure Elie | Sept. 2025 – Sept. 2026\nSpécialisation : Finance quantitative, probabilités avancées, statistiques, et modélisation stochastique\nENSAI – École Nationale de la Statistique et de l’Analyse de l’Information – Rennes\nDiplôme d’ingénieur en statistiques (grade de master) | Sept. 2022 – Sept. 2025\nSpécialisation : Gestion des risques et ingénierie financière\n\n\n\nSociété Générale – RISQ/MDL/MOD\nStagiaire analyste quantitatif – IFRS 9 | Avril 2025 - Aout 2025\nINSERM\nStagiaire recherche – Mixture cure models | Mai 2024 - Aout 2024\n\n\n\n\n\n\nNote\n\n\n\nCe site web, conçu et généré avec Quarto, s’adresse principalement aux étudiants de l’ENSAI et du M2MO et a pour vocation d’offrir un soutien à ceux qui, comme moi, ont été confrontés à des défis académiques au cours de leur formation. Il ne prétend en aucun cas se substituer à l’enseignement dispensé par nos professeurs, dont la rigueur et l’expertise sont essentielles. Son objectif est plutôt de compléter leur travail en partageant mes expériences personnelles et les projets que j’ai réalisés.\n\n\n\n\n\nDetecting the Cure Model Appropriateness in Randomized Clinical Trials With Long-Term Survivors; Cheryl Kouadio, Msc, Subodh Selukar, PhD, Megan Othus, PhD, and Sylvie Chevret, MD, PhD"
   },
   {
     "objectID": "about.html#formation",
@@ -61,6 +61,13 @@
     "title": "Cheryl KOUADIO",
     "section": "",
     "text": "Société Générale – RISQ/MDL/MOD\nStagiaire analyste quantitatif – IFRS 9 | Avril 2025 - Aout 2025\nINSERM\nStagiaire recherche – Mixture cure models | Mai 2024 - Aout 2024\n\n\n\n\n\n\nNote\n\n\n\nCe site web, conçu et généré avec Quarto, s’adresse principalement aux étudiants de l’ENSAI et du M2MO et a pour vocation d’offrir un soutien à ceux qui, comme moi, ont été confrontés à des défis académiques au cours de leur formation. Il ne prétend en aucun cas se substituer à l’enseignement dispensé par nos professeurs, dont la rigueur et l’expertise sont essentielles. Son objectif est plutôt de compléter leur travail en partageant mes expériences personnelles et les projets que j’ai réalisés."
+  },
+  {
+    "objectID": "about.html#articles-publiés",
+    "href": "about.html#articles-publiés",
+    "title": "Cheryl KOUADIO",
+    "section": "",
+    "text": "Detecting the Cure Model Appropriateness in Randomized Clinical Trials With Long-Term Survivors; Cheryl Kouadio, Msc, Subodh Selukar, PhD, Megan Othus, PhD, and Sylvie Chevret, MD, PhD"
   },
   {
     "objectID": "3A/value-at-risk/var_evt.html",
@@ -880,12 +887,5 @@
     "title": "Gestion des risques",
     "section": "",
     "text": "Projets\n\nProjet de séries temporelles\nProjet de scoring TO DO\nProjet de théorie de valeurs extrêmes 1\nProjet de théorie de valeurs extrêmes 2\n\nApplications déployées\n\nStock price prediction : CAC40\nAsset pricing and management"
-  },
-  {
-    "objectID": "about.html#articles-publiés",
-    "href": "about.html#articles-publiés",
-    "title": "Cheryl KOUADIO",
-    "section": "",
-    "text": "Detecting the Cure Model Appropriateness in Randomized Clinical Trials With Long-Term Survivors; Cheryl Kouadio, Msc, Subodh Selukar, PhD, Megan Othus, PhD, and Sylvie Chevret, MD, PhD"
   }
 ]
